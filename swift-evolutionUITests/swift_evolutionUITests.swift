@@ -1,11 +1,3 @@
-//
-//  swift_evolutionUITests.swift
-//  swift-evolutionUITests
-//
-//  Created by Thiago Holanda on 01/03/17.
-//  Copyright © 2017 Holanda Mobile. All rights reserved.
-//
-
 import XCTest
 
 class swift_evolutionUITests: XCTestCase {
