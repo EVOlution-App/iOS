@@ -24,6 +24,8 @@
 		915265761E67814000C2AFDA /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265751E67814000C2AFDA /* DateFormatter.swift */; };
 		915265781E6781EF00C2AFDA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265771E6781EF00C2AFDA /* Utils.swift */; };
 		9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265791E67976F00C2AFDA /* EvolutionService.swift */; };
+		9152657C1E67A3AD00C2AFDA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152657B1E67A3AD00C2AFDA /* State.swift */; };
+		9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152657E1E67C64D00C2AFDA /* StateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		915265751E67814000C2AFDA /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		915265771E6781EF00C2AFDA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		915265791E67976F00C2AFDA /* EvolutionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvolutionService.swift; sourceTree = "<group>"; };
+		9152657B1E67A3AD00C2AFDA /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		9152657E1E67C64D00C2AFDA /* StateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,11 +230,13 @@
 		9152655C1E6775AE00C2AFDA /* models */ = {
 			isa = PBXGroup;
 			children = (
+				9152657D1E67C63B00C2AFDA /* customFormatters */,
 				915265721E677E1900C2AFDA /* Bug.swift */,
 				915265601E67794C00C2AFDA /* Evolution.swift */,
 				915265621E6779F500C2AFDA /* Person.swift */,
 				915265661E677A4E00C2AFDA /* Status.swift */,
 				915265641E677A3100C2AFDA /* Warning.swift */,
+				9152657B1E67A3AD00C2AFDA /* State.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -258,6 +264,14 @@
 				915265751E67814000C2AFDA /* DateFormatter.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		9152657D1E67C63B00C2AFDA /* customFormatters */ = {
+			isa = PBXGroup;
+			children = (
+				9152657E1E67C64D00C2AFDA /* StateFormatter.swift */,
+			);
+			name = customFormatters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +432,7 @@
 				915265761E67814000C2AFDA /* DateFormatter.swift in Sources */,
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
 				915265281E67659900C2AFDA /* ViewController.swift in Sources */,
+				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
@@ -426,6 +441,7 @@
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
 				9152655F1E6777B600C2AFDA /* Service.swift in Sources */,
 				915265611E67794C00C2AFDA /* Evolution.swift in Sources */,
+				9152657C1E67A3AD00C2AFDA /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
