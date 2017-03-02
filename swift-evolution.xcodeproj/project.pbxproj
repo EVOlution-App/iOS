@@ -27,7 +27,9 @@
 		9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152657E1E67C64D00C2AFDA /* StateFormatter.swift */; };
 		915265821E67D7A900C2AFDA /* EvolutionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265801E67D7A900C2AFDA /* EvolutionTableViewCell.swift */; };
 		915265831E67D7A900C2AFDA /* EvolutionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */; };
-		915265861E67D82600C2AFDA /* ListEvolutionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265851E67D82600C2AFDA /* ListEvolutionsTableViewController.swift */; };
+		9152658A1E67E01800C2AFDA /* ListEvolutionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265891E67E01800C2AFDA /* ListEvolutionsViewController.swift */; };
+		9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658C1E67E12800C2AFDA /* BorderedLabel.swift */; };
+		9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658E1E67E74700C2AFDA /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,9 +74,11 @@
 		915265791E67976F00C2AFDA /* EvolutionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvolutionService.swift; sourceTree = "<group>"; };
 		9152657B1E67A3AD00C2AFDA /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		9152657E1E67C64D00C2AFDA /* StateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateFormatter.swift; sourceTree = "<group>"; };
-		915265801E67D7A900C2AFDA /* EvolutionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvolutionTableViewCell.swift; path = EvolutionTableViewCell.swift; sourceTree = "<group>"; };
-		915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EvolutionTableViewCell.xib; path = EvolutionTableViewCell.xib; sourceTree = "<group>"; };
-		915265851E67D82600C2AFDA /* ListEvolutionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEvolutionsTableViewController.swift; sourceTree = "<group>"; };
+		915265801E67D7A900C2AFDA /* EvolutionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvolutionTableViewCell.swift; sourceTree = "<group>"; };
+		915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EvolutionTableViewCell.xib; sourceTree = "<group>"; };
+		915265891E67E01800C2AFDA /* ListEvolutionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListEvolutionsViewController.swift; sourceTree = "<group>"; };
+		9152658C1E67E12800C2AFDA /* BorderedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
+		9152658E1E67E74700C2AFDA /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +253,7 @@
 		9152655D1E6775BE00C2AFDA /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				9152658B1E67E10500C2AFDA /* designables */,
 				915265741E67811B00C2AFDA /* extensions */,
 				915265771E6781EF00C2AFDA /* Utils.swift */,
 			);
@@ -267,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				915265751E67814000C2AFDA /* DateFormatter.swift */,
+				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -284,7 +290,6 @@
 			children = (
 				915265871E67D86E00C2AFDA /* list */,
 			);
-			name = evolutions;
 			path = evolutions;
 			sourceTree = "<group>";
 		};
@@ -292,9 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				915265881E67D87E00C2AFDA /* uitableviewcell */,
-				915265851E67D82600C2AFDA /* ListEvolutionsTableViewController.swift */,
+				915265891E67E01800C2AFDA /* ListEvolutionsViewController.swift */,
 			);
-			name = list;
 			path = list;
 			sourceTree = "<group>";
 		};
@@ -303,8 +307,15 @@
 			children = (
 				915265801E67D7A900C2AFDA /* EvolutionTableViewCell.swift */,
 			);
-			name = uitableviewcell;
 			path = uitableviewcell;
+			sourceTree = "<group>";
+		};
+		9152658B1E67E10500C2AFDA /* designables */ = {
+			isa = PBXGroup;
+			children = (
+				9152658C1E67E12800C2AFDA /* BorderedLabel.swift */,
+			);
+			path = designables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,8 +478,10 @@
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
-				915265861E67D82600C2AFDA /* ListEvolutionsTableViewController.swift in Sources */,
+				9152658A1E67E01800C2AFDA /* ListEvolutionsViewController.swift in Sources */,
+				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
+				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
 				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
