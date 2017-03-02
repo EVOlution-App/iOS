@@ -23,6 +23,7 @@
 		915265731E677E1900C2AFDA /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265721E677E1900C2AFDA /* Bug.swift */; };
 		915265761E67814000C2AFDA /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265751E67814000C2AFDA /* DateFormatter.swift */; };
 		915265781E6781EF00C2AFDA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265771E6781EF00C2AFDA /* Utils.swift */; };
+		9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265791E67976F00C2AFDA /* EvolutionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		915265721E677E1900C2AFDA /* Bug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		915265751E67814000C2AFDA /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		915265771E6781EF00C2AFDA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		915265791E67976F00C2AFDA /* EvolutionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvolutionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				9152655E1E6777B600C2AFDA /* Service.swift */,
+				915265791E67976F00C2AFDA /* EvolutionService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -254,7 +257,6 @@
 			children = (
 				915265751E67814000C2AFDA /* DateFormatter.swift */,
 			);
-			name = extensions;
 			path = extensions;
 			sourceTree = "<group>";
 		};
@@ -418,6 +420,7 @@
 				915265281E67659900C2AFDA /* ViewController.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
+				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
