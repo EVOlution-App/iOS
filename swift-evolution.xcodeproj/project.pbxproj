@@ -213,8 +213,8 @@
 		9152655A1E676F3800C2AFDA /* services */ = {
 			isa = PBXGroup;
 			children = (
-				9152655E1E6777B600C2AFDA /* Service.swift */,
 				915265791E67976F00C2AFDA /* EvolutionService.swift */,
+				9152655E1E6777B600C2AFDA /* Service.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -234,9 +234,9 @@
 				915265721E677E1900C2AFDA /* Bug.swift */,
 				915265601E67794C00C2AFDA /* Evolution.swift */,
 				915265621E6779F500C2AFDA /* Person.swift */,
+				9152657B1E67A3AD00C2AFDA /* State.swift */,
 				915265661E677A4E00C2AFDA /* Status.swift */,
 				915265641E677A3100C2AFDA /* Warning.swift */,
-				9152657B1E67A3AD00C2AFDA /* State.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -272,6 +272,7 @@
 				9152657E1E67C64D00C2AFDA /* StateFormatter.swift */,
 			);
 			name = customFormatters;
+			path = customFormatters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
