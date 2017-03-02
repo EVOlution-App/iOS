@@ -12,4 +12,4 @@ At this moment, we do not have any layout so then, use the screenshots from webp
 
 ## License
 
-Compose is available under the MIT license. See the LICENSE file for more info. 
+Swift Evolution is available under the MIT license. See the LICENSE file for more info. 
