@@ -2,10 +2,25 @@ import UIKit
 
 class ListEvolutionsViewController: UIViewController {
 
+    // Private IBOutlets
+    @IBOutlet private weak var tableView: UITableView!
+    
+    // Private properties
+    open var dataSource: [Evolution] = []
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Register Cell to TableView
+        let proposalCell = Config.Nib.loadNib(name: "EvolutionTableViewCell")
+        self.tableView.register(proposalCell, forCellReuseIdentifier: EvolutionTableViewCell.cellIdentifier)
+        
+        self.tableView.estimatedRowHeight = 164
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        // Request the Proposes
+        self.getProposalList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -13,15 +28,45 @@ class ListEvolutionsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Requests
+    func getProposalList() {
+        EvolutionService.listEvolutions { error, proposals in
+            guard error == nil, let proposals = proposals else {
+                return
+            }
 
-    /*
-    // MARK: - Navigation
+            self.dataSource = proposals
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
-    */
+}
+
+
+// MARK: - UITableView DataSource
+
+extension ListEvolutionsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = EvolutionTableViewCell.cellIdentifier
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EvolutionTableViewCell {
+            cell.proposal = self.dataSource[indexPath.row]
+            
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+}
+
+// MARK:- UITableView Delegate
+
+extension ListEvolutionsViewController: UITableViewDelegate {
 
 }
