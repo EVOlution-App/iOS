@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <scene sceneID="Qxq-bI-Ays">
             <objects>
                 <navigationController id="uUZ-fy-2NM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r4M-VW-5SC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-1604" y="211"/>
         </scene>
-        <!--View Controller-->
+        <!--List Evolutions View Controller-->
         <scene sceneID="XRC-8N-KTw">
             <objects>
-                <viewController id="alP-NB-bbT" sceneMemberID="viewController">
+                <viewController id="alP-NB-bbT" customClass="ListEvolutionsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ndH-s4-ED8"/>
                         <viewControllerLayoutGuide type="bottom" id="rAt-nJ-6SM"/>
@@ -41,6 +41,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="alP-NB-bbT" id="eWy-DB-ZIo"/>
+                                    <outlet property="delegate" destination="alP-NB-bbT" id="pmD-ov-32j"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,6 +77,9 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="wrl-Y8-uLB" id="BXF-tf-kVq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Els-ho-mf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
