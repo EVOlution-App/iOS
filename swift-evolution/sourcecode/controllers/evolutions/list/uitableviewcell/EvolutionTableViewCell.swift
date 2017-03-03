@@ -44,6 +44,16 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
             details += bugs + String.newLine
         }
         
+        // Render Implemented Proposal
+        if proposal.status.state == .implemented, let version = proposal.status.version {
+            details += "Implemented In: Swift \(version)"
+        }
+        
+        self.detailsLabel.text = details
+    }
+    
+    
+    
     func renderAuthors() -> String? {
         guard let proposal = self.proposal,
             let authors = proposal.authors,
