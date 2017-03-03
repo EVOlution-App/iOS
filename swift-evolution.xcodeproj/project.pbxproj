@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		915265261E67659900C2AFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265251E67659900C2AFDA /* AppDelegate.swift */; };
 		9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915265291E67659A00C2AFDA /* Main.storyboard */; };
 		9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9152652C1E67659A00C2AFDA /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		915265221E67659900C2AFDA /* swift-evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		915265251E67659900C2AFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9152652A1E67659A00C2AFDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
+				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +266,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 				9152656F1E677D1200C2AFDA /* Unbox.framework */,
 			);
 			name = Frameworks;
@@ -460,6 +464,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Unbox.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
 			);
 			outputPaths = (
 			);
