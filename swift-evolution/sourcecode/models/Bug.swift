@@ -19,6 +19,6 @@ extension Bug: Unboxable {
         self.link       = unboxer.unbox(key: "link")
         self.radar      = unboxer.unbox(key: "radar")
         self.resolution = unboxer.unbox(key: "resolution")
-        self.updated    = unboxer.unbox(key: "updated", formatter: Config.Date.Formatter.internals)
+        self.updated    = unboxer.unbox(key: "updated", formatter: Config.Date.Formatter.iso8601)
     }
 }
