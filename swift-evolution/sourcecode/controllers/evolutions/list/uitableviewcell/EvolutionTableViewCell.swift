@@ -27,6 +27,18 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        var details = ""
+        
+        // Render Authors
+        if let authors = self.renderAuthors() {
+            details += authors + String.newLine
+        }
+        
+        // Render Review Manager
+        if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
+            details += "Review Manager: " + name + String.newLine
+        }
+        
     func renderAuthors() -> String? {
         guard let proposal = self.proposal,
             let authors = proposal.authors,
