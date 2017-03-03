@@ -13,19 +13,38 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var detailsLabel: UILabel!
     
+    static var cellIdentifier: String {
+        return String(describing: self)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
     }
     
-    public var evolution: Evolution? = nil {
+    public var proposal: Evolution? {
         didSet {
-        
+            self.configureElements()
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+    }
+
+    func configureElements() {
+        guard let proposal = self.proposal else {
+            return
+        }
+        
+        let state = proposal.status.state.rawValue
+        self.statusLabel.borderColor = state.color
+        self.statusLabel.textColor = state.color
+        self.statusLabel.text = state.name
+            
+        self.idLabel.text = proposal.id
+        self.nameLabel.text = proposal.title
         
         var details = ""
         
