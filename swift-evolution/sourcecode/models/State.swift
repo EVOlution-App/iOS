@@ -6,17 +6,17 @@ public struct State {
     let shortName: String
     let className: String
     let identifier: String
-    let color: UIColor?
+    let color: UIColor
     
     public init(_ identifier: String) {
         self.name = ""
         self.shortName = ""
         self.className = ""
         self.identifier = identifier
-        self.color = nil
+        self.color = UIColor.clear
     }
     
-    public init(name: String? = nil, shortName: String? = nil, className: String? = nil, identifier: String, color: UIColor? = nil) {
+    public init(name: String? = nil, shortName: String? = nil, className: String? = nil, identifier: String, color: UIColor = UIColor.clear) {
         self.name = name ?? ""
         self.shortName = shortName ?? ""
         self.className = className ?? ""
