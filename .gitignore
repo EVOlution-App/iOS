@@ -4,7 +4,7 @@
 ### Carthage ###
 # Carthage - A simple, decentralized dependency manager for Cocoa
 Carthage/Checkouts/
-Carthage/Build/
+# Carthage/Build/
 
 #!! ERROR: cocoapods is undefined. Use list command to see defined gitignore types !!#
 
@@ -63,7 +63,7 @@ Pods/
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
-Carthage/Build
+# Carthage/Build
 
 # fastlane
 #
