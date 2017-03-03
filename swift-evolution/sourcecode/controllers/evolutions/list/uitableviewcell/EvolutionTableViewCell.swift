@@ -39,6 +39,11 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
             details += "Review Manager: " + name + String.newLine
         }
         
+        // Render Bugs
+        if let bugs = self.renderBugs() {
+            details += bugs + String.newLine
+        }
+        
     func renderAuthors() -> String? {
         guard let proposal = self.proposal,
             let authors = proposal.authors,
@@ -53,4 +58,32 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
         
         return detail
     }
+    
+    func renderBugs() -> String? {
+        guard let proposal = self.proposal,
+            let bugs = proposal.bugs,
+            bugs.count > 0 else {
+                return nil
+        }
+        
+        let names: [String] = bugs.flatMap({
+            if let id = $0.id, let assignee = $0.assignee, let status = $0.status {
+                var issue = id
+                issue += " ("
+                issue += assignee == "" ? "Unassigned" : assignee
+                issue += ", "
+                issue += status
+                issue += ")"
+                
+                return issue
+            }
+            return nil
+        })
+        
+        var detail = names.count > 1 ? "Bugs" : "Bug"
+        detail = "\(detail): \(names.joined(separator: ", "))"
+        
+        return detail
+    }
+    
 }
