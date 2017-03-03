@@ -25,7 +25,7 @@ public struct State {
     }
 }
 
-public enum StatusState: String {
+public enum StatusState {
     case awaitingReview
     case scheduledForReview
     case activeReview

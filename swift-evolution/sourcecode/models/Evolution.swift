@@ -10,7 +10,7 @@ struct Evolution {
     let link: String?
     let reviewManager: Person?
     let sha: String?
-    let trackingBugs: [Bug]?
+    let bugs: [Bug]?
 }
 
 extension Evolution: Unboxable {
@@ -24,6 +24,6 @@ extension Evolution: Unboxable {
         self.link = unboxer.unbox(key: "link")
         self.reviewManager = unboxer.unbox(key: "reviewManager")
         self.sha = unboxer.unbox(key: "sha")
-        self.trackingBugs = unboxer.unbox(key: "trackingBugs")
+        self.bugs = unboxer.unbox(key: "trackingBugs")
     }
 }
