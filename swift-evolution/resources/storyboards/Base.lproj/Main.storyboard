@@ -41,6 +41,30 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="5Th-Io-cw0">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6Y-q1-3ee">
+                                            <rect key="frame" x="8" y="8" width="359" height="57"/>
+                                            <string key="text">Copyright © 2017 Apple Inc. All rights reserved.
+
+Swift and the Swift logo are trademarks of Apple Inc. For more information about the Swift project, see Swift.org.</string>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="J6Y-q1-3ee" firstAttribute="top" secondItem="5Th-Io-cw0" secondAttribute="top" constant="8" id="Jdo-9K-dOw"/>
+                                        <constraint firstItem="J6Y-q1-3ee" firstAttribute="centerY" secondItem="5Th-Io-cw0" secondAttribute="centerY" id="KGA-KK-nsu"/>
+                                        <constraint firstItem="J6Y-q1-3ee" firstAttribute="centerX" secondItem="5Th-Io-cw0" secondAttribute="centerX" id="QuK-8x-5NI"/>
+                                        <constraint firstAttribute="bottom" secondItem="J6Y-q1-3ee" secondAttribute="bottom" constant="9" id="bWH-hA-ari"/>
+                                        <constraint firstItem="J6Y-q1-3ee" firstAttribute="leading" secondItem="5Th-Io-cw0" secondAttribute="leading" constant="8" id="dUn-CH-22E"/>
+                                        <constraint firstAttribute="trailing" secondItem="J6Y-q1-3ee" secondAttribute="trailing" constant="8" id="wBf-5Y-39Y"/>
+                                    </constraints>
+                                </view>
                                 <connections>
                                     <outlet property="dataSource" destination="alP-NB-bbT" id="eWy-DB-ZIo"/>
                                     <outlet property="delegate" destination="alP-NB-bbT" id="pmD-ov-32j"/>
