@@ -4,18 +4,24 @@ struct Config {
     
     struct Date {
         struct Formatter {
-            static var internals: DateFormatter {
+            static var iso8601: DateFormatter {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
                 
                 return formatter
             }
             
-            static var externals: DateFormatter {
+            static var yearMonthDay: DateFormatter {
                 let formatter = DateFormatter()
-                formatter.dateFormat = "dd 'de' MMMM 'de' YYYY - 'às' HH'h'mm"
-                formatter.locale = Locale(identifier: "pt_BR")
+                formatter.dateFormat = "yyyy-MM-dd"
                 
+                return formatter
+            }
+
+            static var monthDay: DateFormatter {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMMM dd"
+
                 return formatter
             }
         }
