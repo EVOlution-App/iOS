@@ -11,12 +11,12 @@ You need to create an issue and associate a pull request to this issue.
 After send your pull request, other developers will make a code review before merge it your changes into development branch.
 
 
-## Author
+## Authors
 
-- Thiago Holanda, [thiago@holanda.mobi](mailto:thiago@holanda.mobi), [iOSDevBR/@tholanda](https://iosdevbr.slack.com/messages/@tholanda/)
-- Bruno Bilescky, [bruno@compose.tools](mailto:bruno@compose.tools), [iOSDevBR/@bbilescky](https://iosdevbr.slack.com/messages/@bbilescky/)
+- [Thiago Holanda](https://twitter.com/tholanda)
+- [Bruno Bilescky](https://twitter.com/bgondim)
 
-If you do not have access to **iOSDevBR** Slack:
+Be part of our community, the **iOSDevBR** (portuguese): 
 
 - Slack - [https://iosdevbr.slack.com](https://iosdevbr.slack.com)
 - Invite - [https://iosdevbr.herokuapp.com](https://iosdevbr.herokuapp.com)
