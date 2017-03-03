@@ -8,7 +8,7 @@ struct Evolution {
     let title: String
     let warnings: [Warning]?
     let link: String?
-    let reviewManager: [Person]?
+    let reviewManager: Person?
     let sha: String?
     let trackingBugs: [Bug]?
 }
