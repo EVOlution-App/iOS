@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
+		91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEC1E6902A2008C4715 /* StatusLabel.swift */; };
+		91485DEF1E690A33008C4715 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEE1E690A33008C4715 /* Protocols.swift */; };
 		915265261E67659900C2AFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265251E67659900C2AFDA /* AppDelegate.swift */; };
 		9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915265291E67659A00C2AFDA /* Main.storyboard */; };
 		9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9152652C1E67659A00C2AFDA /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
+		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
+		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		915265221E67659900C2AFDA /* swift-evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		915265251E67659900C2AFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9152652A1E67659A00C2AFDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 			children = (
 				9152658B1E67E10500C2AFDA /* designables */,
 				915265741E67811B00C2AFDA /* extensions */,
+				91485DEE1E690A33008C4715 /* Protocols.swift */,
 				915265771E6781EF00C2AFDA /* Utils.swift */,
 			);
 			path = utils;
@@ -318,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				9152658C1E67E12800C2AFDA /* BorderedLabel.swift */,
+				91485DEC1E6902A2008C4715 /* StatusLabel.swift */,
 			);
 			path = designables;
 			sourceTree = "<group>";
@@ -482,8 +488,10 @@
 				915265761E67814000C2AFDA /* DateFormatter.swift in Sources */,
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
+				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListEvolutionsViewController.swift in Sources */,
+				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
