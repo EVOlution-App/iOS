@@ -58,8 +58,6 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="J6Y-q1-3ee" firstAttribute="top" secondItem="5Th-Io-cw0" secondAttribute="top" constant="8" id="Jdo-9K-dOw"/>
-                                        <constraint firstItem="J6Y-q1-3ee" firstAttribute="centerY" secondItem="5Th-Io-cw0" secondAttribute="centerY" id="KGA-KK-nsu"/>
-                                        <constraint firstItem="J6Y-q1-3ee" firstAttribute="centerX" secondItem="5Th-Io-cw0" secondAttribute="centerX" id="QuK-8x-5NI"/>
                                         <constraint firstAttribute="bottom" secondItem="J6Y-q1-3ee" secondAttribute="bottom" constant="9" id="bWH-hA-ari"/>
                                         <constraint firstItem="J6Y-q1-3ee" firstAttribute="leading" secondItem="5Th-Io-cw0" secondAttribute="leading" constant="8" id="dUn-CH-22E"/>
                                         <constraint firstAttribute="trailing" secondItem="J6Y-q1-3ee" secondAttribute="trailing" constant="8" id="wBf-5Y-39Y"/>
