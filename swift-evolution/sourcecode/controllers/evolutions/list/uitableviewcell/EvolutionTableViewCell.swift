@@ -1,56 +1,34 @@
 import UIKit
 import SwiftRichString
 
-enum Tag: String {
-    case content = "content"
-    case title = "title"
-    case value = "value"
-    case id = "id"
-    
-    func wrap(string: String) -> String {
-        return "<\(self.rawValue)>\(string)</\(self.rawValue)>"
-    }
-}
-
-extension String {
-    static var newLine: String {
-        return "\n"
-    }
-    
-    static var doubleSpace: String {
-        return "  "
-    }
-    
-    func tag(_ tag: Tag) -> String {
-        return tag.wrap(string: self)
-    }
-}
-
 class EvolutionTableViewCell: UITableViewCell, CellProtocol {
     
+    // MARK: - IBOutlets
+    @IBOutlet private weak var statusIndicatorView: UIView!
     @IBOutlet private weak var statusLabel: StatusLabel!
     @IBOutlet private weak var detailsLabel: UILabel!
     
+    @IBOutlet private weak var statusLabelWidthConstraint: NSLayoutConstraint!
+    
+    // MARK: - Cell Protocol
     static var cellIdentifier: String {
         return String(describing: self)
     }
     
+    // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
     }
     
+    // MARK: - Public properties
     public var proposal: Evolution? {
         didSet {
             self.configureElements()
         }
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
 
+    // MARK: - Layout
     private func configureElements() {
         guard let proposal = self.proposal else {
             return
@@ -60,6 +38,14 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
         self.statusLabel.borderColor = state.color
         self.statusLabel.textColor = state.color
         self.statusLabel.text = state.name
+        self.statusIndicatorView.backgroundColor = state.color
+        
+        // Fit size to status text
+        let statusWidth = state.name.contraint(height: self.statusLabel.bounds.size.height,
+                                               font: self.statusLabel.font)
+        self.statusLabelWidthConstraint.constant = statusWidth + 20
+        self.statusLabel.setNeedsUpdateConstraints()
+        self.statusLabel.layoutIfNeeded()
         
         var details = ""
         
@@ -85,7 +71,7 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
         
         // Render Implemented Proposal
         if proposal.status.state == .implemented, let version = proposal.status.version {
-            details += String.newLine + "Implemented In:" + String.doubleSpace + "Swift \(version)".tag(.value)
+            details += String.newLine + "Implemented in:" + String.doubleSpace + "Swift \(version)".tag(.value)
         }
         
         let defaultStyle = Style("defaultStyle", {
@@ -118,6 +104,7 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
         return [id, title, value]
     }
     
+    // MARK: - Renders
     private func renderAuthors() -> String? {
         guard let proposal = self.proposal,
             let authors = proposal.authors,
