@@ -12,15 +12,23 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EvolutionTableViewCell" rowHeight="164" id="KGk-i7-Jjw" customClass="EvolutionTableViewCell" customModule="swift_evolution" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EvolutionTableViewCell" rowHeight="176" id="KGk-i7-Jjw" customClass="EvolutionTableViewCell" customModule="swift_evolution" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="163"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="175.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfk-ZI-eLx">
+                        <rect key="frame" x="11" y="64" width="353" height="91"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <string key="text">Author: Lorenzo Racca, Jeff Hajewski, Nate Cook Review Manager: Daniel Dunbar Bug: SR-3706 (Ankit Aggarwal, Resolved) Implemented In: Swift 4</string>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-Ru-ZXx" customClass="StatusLabel" customModule="swift_evolution" customModuleProvider="target">
-                        <rect key="frame" x="8" y="8" width="119" height="26"/>
+                        <rect key="frame" x="11" y="18" width="119" height="26"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="119" id="dRy-i3-YVN"/>
@@ -41,54 +49,22 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SE-0637" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdM-zg-LCp">
-                        <rect key="frame" x="135" y="8" width="92" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="26" id="YIZ-5B-Itl"/>
-                            <constraint firstAttribute="width" constant="92" id="etL-mu-r7b"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfk-ZI-eLx">
-                        <rect key="frame" x="8" y="77" width="359" height="78"/>
-                        <string key="text">Author: Lorenzo Racca, Jeff Hajewski, Nate Cook Review Manager: Daniel Dunbar Bug: SR-3706 (Ankit Aggarwal, Resolved) Implemented In: Swift 4</string>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                        <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package Manager Support for branches" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZnE-t6-QGJ">
-                        <rect key="frame" x="8" y="42" width="359" height="27"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="27" id="Lwx-uE-vFk"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZnE-t6-QGJ" firstAttribute="top" secondItem="0uG-Ru-ZXx" secondAttribute="bottom" constant="8" id="1Af-Ze-ozi"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ZnE-t6-QGJ" secondAttribute="trailing" id="2QN-88-PZS"/>
-                    <constraint firstItem="rfk-ZI-eLx" firstAttribute="top" secondItem="ZnE-t6-QGJ" secondAttribute="bottom" constant="8" id="7ZT-Qi-sHt"/>
-                    <constraint firstAttribute="topMargin" secondItem="CdM-zg-LCp" secondAttribute="top" id="8Zb-gd-bho"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="0uG-Ru-ZXx" secondAttribute="leading" id="Oez-NL-hM5"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="rfk-ZI-eLx" secondAttribute="leading" id="XXf-F4-VDM"/>
-                    <constraint firstItem="CdM-zg-LCp" firstAttribute="leading" secondItem="0uG-Ru-ZXx" secondAttribute="trailing" constant="8" id="azz-f9-O3z"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="rfk-ZI-eLx" secondAttribute="trailing" id="cDG-EM-EJl"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="ZnE-t6-QGJ" secondAttribute="leading" id="eqr-bv-ft5"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="rfk-ZI-eLx" secondAttribute="bottom" id="qfi-IO-pCt"/>
-                    <constraint firstAttribute="topMargin" secondItem="0uG-Ru-ZXx" secondAttribute="top" id="sNT-Nm-dZM"/>
+                    <constraint firstItem="rfk-ZI-eLx" firstAttribute="top" secondItem="0uG-Ru-ZXx" secondAttribute="bottom" constant="20" id="7gc-tY-QS2"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="rfk-ZI-eLx" secondAttribute="leading" constant="-3" id="KhB-NU-qun"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="0uG-Ru-ZXx" secondAttribute="leading" constant="-3" id="MsW-cz-GUg"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rfk-ZI-eLx" secondAttribute="bottom" constant="12.5" id="POv-ur-Iqv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="rfk-ZI-eLx" secondAttribute="trailing" constant="3" id="R2o-Um-YZK"/>
+                    <constraint firstAttribute="topMargin" secondItem="0uG-Ru-ZXx" secondAttribute="top" constant="-10" id="cal-H7-gaL"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="detailsLabel" destination="rfk-ZI-eLx" id="bdk-qq-Cew"/>
-                <outlet property="idLabel" destination="CdM-zg-LCp" id="5Xs-Xm-eAZ"/>
-                <outlet property="nameLabel" destination="ZnE-t6-QGJ" id="RCt-vA-4lf"/>
                 <outlet property="statusLabel" destination="0uG-Ru-ZXx" id="x4M-Ip-ydv"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="114"/>
+            <point key="canvasLocation" x="43.5" y="106"/>
         </tableViewCell>
     </objects>
 </document>
