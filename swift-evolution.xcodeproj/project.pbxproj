@@ -23,7 +23,6 @@
 		915265671E677A4F00C2AFDA /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265661E677A4E00C2AFDA /* Status.swift */; };
 		915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152656F1E677D1200C2AFDA /* Unbox.framework */; };
 		915265731E677E1900C2AFDA /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265721E677E1900C2AFDA /* Bug.swift */; };
-		915265761E67814000C2AFDA /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265751E67814000C2AFDA /* DateFormatter.swift */; };
 		915265781E6781EF00C2AFDA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265771E6781EF00C2AFDA /* Utils.swift */; };
 		9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265791E67976F00C2AFDA /* EvolutionService.swift */; };
 		9152657C1E67A3AD00C2AFDA /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152657B1E67A3AD00C2AFDA /* State.swift */; };
@@ -76,7 +75,6 @@
 		915265661E677A4E00C2AFDA /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		9152656F1E677D1200C2AFDA /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Unbox.framework; path = Carthage/Build/iOS/Unbox.framework; sourceTree = "<group>"; };
 		915265721E677E1900C2AFDA /* Bug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
-		915265751E67814000C2AFDA /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		915265771E6781EF00C2AFDA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		915265791E67976F00C2AFDA /* EvolutionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvolutionService.swift; sourceTree = "<group>"; };
 		9152657B1E67A3AD00C2AFDA /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				915265751E67814000C2AFDA /* DateFormatter.swift */,
 				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
 			);
@@ -489,7 +486,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				91E1500D1E6A758100025B77 /* String.swift in Sources */,
-				915265761E67814000C2AFDA /* DateFormatter.swift in Sources */,
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
