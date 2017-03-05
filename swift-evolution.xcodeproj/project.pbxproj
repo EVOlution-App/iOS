@@ -33,6 +33,8 @@
 		9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658C1E67E12800C2AFDA /* BorderedLabel.swift */; };
 		9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658E1E67E74700C2AFDA /* UIColor.swift */; };
 		91E1500D1E6A758100025B77 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500C1E6A758100025B77 /* String.swift */; };
+		91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */; };
+		91E150121E6BBBD600025B77 /* FilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150111E6BBBD600025B77 /* FilterHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		9152658C1E67E12800C2AFDA /* BorderedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		9152658E1E67E74700C2AFDA /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		91E1500C1E6A758100025B77 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		91E150111E6BBBD600025B77 /* FilterHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */,
+				91E150111E6BBBD600025B77 /* FilterHeaderView.xib */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -280,8 +285,8 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
+				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 		915265841E67D7D900C2AFDA /* evolutions */ = {
 			isa = PBXGroup;
 			children = (
+				91E1500E1E6BBB1C00025B77 /* filter */,
 				915265871E67D86E00C2AFDA /* list */,
 			);
 			path = evolutions;
@@ -326,6 +332,15 @@
 				91485DEC1E6902A2008C4715 /* StatusLabel.swift */,
 			);
 			path = designables;
+			sourceTree = "<group>";
+		};
+		91E1500E1E6BBB1C00025B77 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */,
+			);
+			name = filter;
+			path = filter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +456,7 @@
 			files = (
 				915265301E67659A00C2AFDA /* LaunchScreen.storyboard in Resources */,
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
+				91E150121E6BBBD600025B77 /* FilterHeaderView.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
 				915265831E67D7A900C2AFDA /* EvolutionTableViewCell.xib in Resources */,
 			);
@@ -496,6 +512,7 @@
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
 				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
+				91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */,
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
