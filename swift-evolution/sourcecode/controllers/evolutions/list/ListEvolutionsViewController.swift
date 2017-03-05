@@ -52,15 +52,10 @@ extension ListEvolutionsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = EvolutionTableViewCell.cellIdentifier
+        let cell = tableView.getCell(withIndexPath: indexPath) as EvolutionTableViewCell
+        cell.proposal = self.dataSource[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EvolutionTableViewCell {
-            cell.proposal = self.dataSource[indexPath.row]
-            
-            return cell
-        }
-        
-        return UITableViewCell()
+        return cell
     }
 }
 
