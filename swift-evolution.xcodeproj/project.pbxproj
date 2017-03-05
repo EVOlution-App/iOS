@@ -35,6 +35,8 @@
 		91E1500D1E6A758100025B77 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500C1E6A758100025B77 /* String.swift */; };
 		91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */; };
 		91E150121E6BBBD600025B77 /* FilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150111E6BBBD600025B77 /* FilterHeaderView.xib */; };
+		91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */; };
+		91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		91E1500C1E6A758100025B77 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		91E150111E6BBBD600025B77 /* FilterHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterHeaderView.xib; sourceTree = "<group>"; };
+		91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterCollectionViewCell.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,8 +221,9 @@
 		915265581E676F2D00C2AFDA /* xibs */ = {
 			isa = PBXGroup;
 			children = (
-				915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */,
-				91E150111E6BBBD600025B77 /* FilterHeaderView.xib */,
+				91E150191E6BBCD900025B77 /* uicollectionviewcell */,
+				91E150181E6BBCCF00025B77 /* uitableviewcell */,
+				91E1501A1E6BBCE500025B77 /* uiview */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -337,10 +342,46 @@
 		91E1500E1E6BBB1C00025B77 /* filter */ = {
 			isa = PBXGroup;
 			children = (
+				91E150131E6BBC8A00025B77 /* uicollectionviewcell */,
 				91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */,
 			);
-			name = filter;
 			path = filter;
+			sourceTree = "<group>";
+		};
+		91E150131E6BBC8A00025B77 /* uicollectionviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */,
+			);
+			name = uicollectionviewcell;
+			path = uicollectionviewcell;
+			sourceTree = "<group>";
+		};
+		91E150181E6BBCCF00025B77 /* uitableviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */,
+			);
+			name = uitableviewcell;
+			path = uitableviewcell;
+			sourceTree = "<group>";
+		};
+		91E150191E6BBCD900025B77 /* uicollectionviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */,
+			);
+			name = uicollectionviewcell;
+			path = uicollectionviewcell;
+			sourceTree = "<group>";
+		};
+		91E1501A1E6BBCE500025B77 /* uiview */ = {
+			isa = PBXGroup;
+			children = (
+				91E150111E6BBBD600025B77 /* FilterHeaderView.xib */,
+			);
+			name = uiview;
+			path = uiview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,6 +499,7 @@
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
 				91E150121E6BBBD600025B77 /* FilterHeaderView.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
+				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
 				915265831E67D7A900C2AFDA /* EvolutionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +553,7 @@
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
+				91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */,
 				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
 				91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */,
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
