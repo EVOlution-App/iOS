@@ -52,7 +52,7 @@ extension ListEvolutionsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.getCell(withIndexPath: indexPath) as EvolutionTableViewCell
+        let cell = tableView.cell(forRowAt: indexPath) as EvolutionTableViewCell
         cell.proposal = self.dataSource[indexPath.row]
         
         return cell

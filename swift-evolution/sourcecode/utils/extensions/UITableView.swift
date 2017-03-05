@@ -13,7 +13,7 @@ extension UITableView {
         register(cellClass.self, forCellReuseIdentifier: cellClass.cellIdentifier)
     }
     
-    func getCell<T: ReusableCellIdentifiable>(withIndexPath indexPath: IndexPath) -> T {
+    func cell<T: ReusableCellIdentifiable>(forRowAt indexPath: IndexPath) -> T {
         return dequeueReusableCell(withIdentifier: T.cellIdentifier, for: indexPath) as! T
     }
     
