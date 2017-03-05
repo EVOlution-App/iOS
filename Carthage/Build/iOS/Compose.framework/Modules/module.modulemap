@@ -1,0 +1,10 @@
+framework module Compose {
+  umbrella header "Compose.h"
+
+  export *
+  module * { export * }
+}
+
+module Compose.Swift {
+    header "Compose-Swift.h"
+}

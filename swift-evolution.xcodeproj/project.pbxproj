@@ -37,6 +37,7 @@
 		91E150121E6BBBD600025B77 /* FilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150111E6BBBD600025B77 /* FilterHeaderView.xib */; };
 		91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */; };
 		91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */; };
+		91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E1501C1E6BE19300025B77 /* Compose.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +93,8 @@
 		91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		91E150111E6BBBD600025B77 /* FilterHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterHeaderView.xib; sourceTree = "<group>"; };
 		91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
-		91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterCollectionViewCell.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		91E1501C1E6BE19300025B77 /* Compose.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compose.framework; path = Carthage/Build/iOS/Compose.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			files = (
 				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
+				91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +284,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91E1501C1E6BE19300025B77 /* Compose.framework */,
 				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 				9152656F1E677D1200C2AFDA /* Unbox.framework */,
 			);
@@ -342,6 +346,7 @@
 		91E1500E1E6BBB1C00025B77 /* filter */ = {
 			isa = PBXGroup;
 			children = (
+				91E1501B1E6BDE7400025B77 /* uiview */,
 				91E150131E6BBC8A00025B77 /* uicollectionviewcell */,
 				91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */,
 			);
@@ -353,7 +358,6 @@
 			children = (
 				91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */,
 			);
-			name = uicollectionviewcell;
 			path = uicollectionviewcell;
 			sourceTree = "<group>";
 		};
@@ -362,7 +366,6 @@
 			children = (
 				915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */,
 			);
-			name = uitableviewcell;
 			path = uitableviewcell;
 			sourceTree = "<group>";
 		};
@@ -371,7 +374,6 @@
 			children = (
 				91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */,
 			);
-			name = uicollectionviewcell;
 			path = uicollectionviewcell;
 			sourceTree = "<group>";
 		};
@@ -380,8 +382,14 @@
 			children = (
 				91E150111E6BBBD600025B77 /* FilterHeaderView.xib */,
 			);
-			name = uiview;
 			path = uiview;
+			sourceTree = "<group>";
+		};
+		91E1501B1E6BDE7400025B77 /* uiview */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = uiview;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -529,6 +537,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Unbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Compose.framework",
 			);
 			outputPaths = (
 			);
