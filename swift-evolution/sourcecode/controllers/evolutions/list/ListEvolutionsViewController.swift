@@ -13,8 +13,7 @@ class ListEvolutionsViewController: UIViewController {
         super.viewDidLoad()
 
         // Register Cell to TableView
-        let proposalCell = Config.Nib.loadNib(name: "EvolutionTableViewCell")
-        self.tableView.register(proposalCell, forCellReuseIdentifier: EvolutionTableViewCell.cellIdentifier)
+        self.tableView.registerNib(withClass: EvolutionTableViewCell.self)
         
         self.tableView.estimatedRowHeight = 164
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -53,15 +52,10 @@ extension ListEvolutionsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = EvolutionTableViewCell.cellIdentifier
+        let cell = tableView.cell(forRowAt: indexPath) as EvolutionTableViewCell
+        cell.proposal = self.dataSource[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? EvolutionTableViewCell {
-            cell.proposal = self.dataSource[indexPath.row]
-            
-            return cell
-        }
-        
-        return UITableViewCell()
+        return cell
     }
 }
 

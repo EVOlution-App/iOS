@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEC1E6902A2008C4715 /* StatusLabel.swift */; };
 		91485DEF1E690A33008C4715 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEE1E690A33008C4715 /* Protocols.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -280,8 +282,9 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
+				9152658E1E67E74700C2AFDA /* UIColor.swift */,
+				0BCEEE251E6CC0B100F7D176 /* UITableView.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
+				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListEvolutionsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
