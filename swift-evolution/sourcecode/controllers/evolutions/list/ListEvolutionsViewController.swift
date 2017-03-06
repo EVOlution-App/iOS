@@ -50,6 +50,9 @@ class ListEvolutionsViewController: UIViewController {
             }
 
             self.dataSource = proposals
+            
+            // Language Versions source
+            self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().map({ "Swift \($0)"}).sorted()
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
