@@ -45,7 +45,7 @@ class EvolutionTableViewCell: UITableViewCell {
         var details = ""
         
         details += proposal.id.tag(.id)
-        details += String.doubleSpace
+        details += String.newLine
         details += proposal.title.trimmingCharacters(in: .whitespacesAndNewlines).tag(.title)
         
         // Render Authors
