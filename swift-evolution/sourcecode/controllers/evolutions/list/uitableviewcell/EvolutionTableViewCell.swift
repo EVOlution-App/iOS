@@ -1,7 +1,7 @@
 import UIKit
 import SwiftRichString
 
-class EvolutionTableViewCell: UITableViewCell, CellProtocol {
+class EvolutionTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var statusIndicatorView: UIView!
@@ -9,11 +9,6 @@ class EvolutionTableViewCell: UITableViewCell, CellProtocol {
     @IBOutlet private weak var detailsLabel: UILabel!
     
     @IBOutlet private weak var statusLabelWidthConstraint: NSLayoutConstraint!
-    
-    // MARK: - Cell Protocol
-    static var cellIdentifier: String {
-        return String(describing: self)
-    }
     
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
