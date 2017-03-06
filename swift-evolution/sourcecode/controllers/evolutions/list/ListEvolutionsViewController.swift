@@ -6,7 +6,9 @@ class ListEvolutionsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     // Private properties
-    open var dataSource: [Evolution] = []
+    fileprivate var dataSource: [Evolution] = []
+    fileprivate var filterHeaderView: FilterHeaderView?
+    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -17,6 +19,19 @@ class ListEvolutionsViewController: UIViewController {
         
         self.tableView.estimatedRowHeight = 164
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+
+        if let filterHeaderView = FilterHeaderView.fromNib() as? FilterHeaderView {
+            self.filterHeaderView = filterHeaderView
+            
+            // Status source
+            self.filterHeaderView?.statusSource = [
+                .awaitingReview, .scheduledForReview, .activeReview, .returnedForRevision,
+                .withdrawn, .deferred, .accepted, .acceptedWithRevisions, .rejected, .implemented
+            ]
+            
+            self.tableView.tableHeaderView = self.filterHeaderView
+        }
         
         // Request the Proposes
         self.getProposalList()

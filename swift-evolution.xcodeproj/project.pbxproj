@@ -39,6 +39,11 @@
 		91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */; };
 		91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */; };
 		91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E1501C1E6BE19300025B77 /* Compose.framework */; };
+		91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */; };
+		91E150221E6CCDD300025B77 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150211E6CCDD300025B77 /* UIView.swift */; };
+		91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150231E6CF37900025B77 /* UICollectionView.swift */; };
+		91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */; };
+		91E1502A1E6D250E00025B77 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150291E6D250E00025B77 /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +102,11 @@
 		91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
 		91E1501C1E6BE19300025B77 /* Compose.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compose.framework; path = Carthage/Build/iOS/Compose.framework; sourceTree = "<group>"; };
+		91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListGenericView.swift; sourceTree = "<group>"; };
+		91E150211E6CCDD300025B77 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		91E150231E6CF37900025B77 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGCollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
+		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +285,7 @@
 		9152655D1E6775BE00C2AFDA /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				91E150251E6D153A00025B77 /* vendor */,
 				9152658B1E67E10500C2AFDA /* designables */,
 				915265741E67811B00C2AFDA /* extensions */,
 				91485DEE1E690A33008C4715 /* Protocols.swift */,
@@ -296,9 +307,12 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				91E150291E6D250E00025B77 /* Array.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
 				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 				0BCEEE251E6CC0B100F7D176 /* UITableView.swift */,
+				91E150211E6CCDD300025B77 /* UIView.swift */,
+				91E150231E6CF37900025B77 /* UICollectionView.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -349,8 +363,8 @@
 		91E1500E1E6BBB1C00025B77 /* filter */ = {
 			isa = PBXGroup;
 			children = (
-				91E1501B1E6BDE7400025B77 /* uiview */,
 				91E150131E6BBC8A00025B77 /* uicollectionviewcell */,
+				91E1501B1E6BDE7400025B77 /* uiview */,
 				91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */,
 			);
 			path = filter;
@@ -391,8 +405,25 @@
 		91E1501B1E6BDE7400025B77 /* uiview */ = {
 			isa = PBXGroup;
 			children = (
+				91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */,
 			);
-			name = uiview;
+			path = uiview;
+			sourceTree = "<group>";
+		};
+		91E150251E6D153A00025B77 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				91E150261E6D159A00025B77 /* DGCollectionViewLeftAlignFlowLayout */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		91E150261E6D159A00025B77 /* DGCollectionViewLeftAlignFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */,
+			);
+			name = DGCollectionViewLeftAlignFlowLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,10 +588,15 @@
 			files = (
 				91E1500D1E6A758100025B77 /* String.swift in Sources */,
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
+				91E150221E6CCDD300025B77 /* UIView.swift in Sources */,
+				91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
+				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
 				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
+				91E1502A1E6D250E00025B77 /* Array.swift in Sources */,
+				91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListEvolutionsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
