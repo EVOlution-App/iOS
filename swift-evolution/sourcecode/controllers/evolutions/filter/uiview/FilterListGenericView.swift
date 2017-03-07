@@ -1,24 +1,31 @@
 import UIKit
 
-public enum FilterType {
+public enum FilterListGenericType {
     case status
     case version
     case none
 }
-
-
 
 class FilterListGenericView: UIView {
 
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    var type: FilterType = .none
+    weak open var delegate: FilterGenericViewDelegate?
+    weak open var layoutDelegate: FilterGenericViewLayoutDelegate?
+    
+    open var height: CGFloat = 0
+    open var type: FilterListGenericType = .none
+    open var selectedItems: [IndexPath] = []
+    open var indexPathsForSelectedItems: [IndexPath]? {
+        get {
+            return self.collectionView.indexPathsForSelectedItems
+        }
+    }
+    
     var dataSource: [Any] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+            self.reloadData()
         }
     }
     
@@ -30,6 +37,7 @@ class FilterListGenericView: UIView {
     override func awakeFromNib() {
         self.collectionView.registerNib(withClass: FilterCollectionViewCell.self)
         self.collectionView.collectionViewLayout = DGCollectionViewLeftAlignFlowLayout()
+        self.collectionView.allowsMultipleSelection = true
     }
     
     // MARK: - Util
@@ -42,14 +50,37 @@ class FilterListGenericView: UIView {
             text = item.rawValue.shortName
         }
         else if item is String, let item = item as? String {
-            text = item
+            text = "Swift \(item)"
         }
         
         return text
     }
     
-    public var height: CGFloat {
-        return self.descriptionLabel.bounds.maxY + self.collectionView.contentSize.height
+    // MARK: - Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.height = self.collectionView.contentSize.height + self.descriptionLabel.frame.maxY
+        self.layoutDelegate?.didFinishedCalculateHeightToView(type: self.type, height: self.height)
+    }
+    
+    private func reloadData() {
+        guard dataSource.count > 0 else {
+            return
+        }
+        
+        let indexPaths: [IndexPath] = dataSource.enumerated().map {
+            IndexPath(item: $0.offset, section: 0)
+        }
+        
+        DispatchQueue.main.async {
+            self.collectionView.performBatchUpdates({
+                self.collectionView.insertItems(at: indexPaths)
+            }) { finished in
+                self.height = self.collectionView.contentSize.height + self.descriptionLabel.bounds.maxY
+                self.layoutDelegate?.didFinishedCalculateHeightToView(type: self.type, height: self.height)
+            }
+        }
     }
 }
 
@@ -73,10 +104,13 @@ extension FilterListGenericView: UICollectionViewDataSource {
 // MARK: - UICollectionView Delegate
 
 extension FilterListGenericView: UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        print("collectionView:didSelectItemAt:")
+        self.delegate?.didSelectedFilter(self, type: self.type, indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        self.delegate?.didDeselectedFilter(self, type: self.type, indexPath: indexPath)
     }
 
 }
