@@ -4,11 +4,11 @@ class ListEvolutionsViewController: UIViewController {
 
     // Private IBOutlets
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
+    @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
     
     // Private properties
     fileprivate var dataSource: [Evolution] = []
-    fileprivate var filterHeaderView: FilterHeaderView?
-    
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -20,18 +20,18 @@ class ListEvolutionsViewController: UIViewController {
         self.tableView.estimatedRowHeight = 164
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
+        
+        // Filter Header View settings
+        self.filterHeaderView.statusFilterView.delegate = self
+        self.filterHeaderView.languageVersionFilterView.delegate = self
+        self.filterHeaderView.searchBar.delegate = self
+        self.filterHeaderView.clipsToBounds = true
+        
+        self.filterHeaderView.filterButton.addTarget(self, action: #selector(filterButtonAction(_:)), for: .touchUpInside)
+        self.filterHeaderView.filteredByButton.addTarget(self, action: #selector(filteredByButtonAction(_:)), for: .touchUpInside)
+        
+        self.filterHeaderView.filterLevel = .without
 
-        if let filterHeaderView = FilterHeaderView.fromNib() as? FilterHeaderView {
-            self.filterHeaderView = filterHeaderView
-            
-            // Status source
-            self.filterHeaderView?.statusSource = [
-                .awaitingReview, .scheduledForReview, .activeReview, .returnedForRevision,
-                .withdrawn, .deferred, .accepted, .acceptedWithRevisions, .rejected, .implemented
-            ]
-            
-            self.tableView.tableHeaderView = self.filterHeaderView
-        }
         
         // Request the Proposes
         self.getProposalList()
@@ -40,6 +40,22 @@ class ListEvolutionsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Layout
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
+        
+    }
+    
+    func layoutFilterHeaderView() {
+        UIView.animate(withDuration: 0.25) {
+            self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
+            self.view.layoutIfNeeded()
+        }
     }
     
     // MARK: - Requests
@@ -51,13 +67,42 @@ class ListEvolutionsViewController: UIViewController {
 
             self.dataSource = proposals
             
+            // Status source
+            self.filterHeaderView?.statusSource = [
+                .awaitingReview, .scheduledForReview, .activeReview, .returnedForRevision,
+                .withdrawn, .deferred, .accepted, .acceptedWithRevisions, .rejected, .implemented
+            ]
+            
             // Language Versions source
-            self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().map({ "Swift \($0)"}).sorted()
+            self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    // Actions
+    func filterButtonAction(_ sender: UIButton?) {
+        guard let sender = sender else { return }
+        
+        sender.isSelected = !sender.isSelected
+        self.filterHeaderView.filterLevel = sender.isSelected ? .filtered :  .without
+        
+        if !sender.isSelected {
+            self.filterHeaderView.filteredByButton.isSelected = false
+        }
+        
+        self.layoutFilterHeaderView()
+    }
+    
+    func filteredByButtonAction(_ sender: UIButton?) {
+        guard let sender = sender else { return }
+
+        sender.isSelected = !sender.isSelected
+        self.filterHeaderView.filterLevel = sender.isSelected ? .status : .filtered
+
+        self.layoutFilterHeaderView()    
     }
 }
 
@@ -77,8 +122,62 @@ extension ListEvolutionsViewController: UITableViewDataSource {
     }
 }
 
-// MARK:- UITableView Delegate
+// MARK: - UITableView Delegate
 
 extension ListEvolutionsViewController: UITableViewDelegate {
 
+}
+
+// MARK: - FilterGenericView Delegate
+
+extension ListEvolutionsViewController: FilterGenericViewDelegate {
+    func didSelectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
+        switch type {
+        case .status:
+            if self.filterHeaderView.statusSource[indexPath.item] == .implemented {
+                self.filterHeaderView.filterLevel = .version
+                self.layoutFilterHeaderView()
+            }
+            
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func didDeselectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
+        switch type {
+        case .status:
+            if let indexPaths = view.indexPathsForSelectedItems,
+                indexPaths.flatMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == .implemented }).count == 0 {
+                
+                self.filterHeaderView.filterLevel = .status
+                self.layoutFilterHeaderView()
+                
+            }
+            
+            break
+            
+        default:
+            break
+        }
+    }
+}
+
+// MARK: - UISearchBar Delegate
+
+extension ListEvolutionsViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("textDidChange: \(searchText)")
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.resignFirstResponder()
+    }
 }
