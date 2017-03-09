@@ -4,6 +4,7 @@ class ListEvolutionsViewController: UIViewController {
 
     // Private IBOutlets
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var footerView: UIView!
     @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
     @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
     
@@ -19,7 +20,6 @@ class ListEvolutionsViewController: UIViewController {
         
         self.tableView.estimatedRowHeight = 164
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
         
         // Filter Header View settings
         self.filterHeaderView.statusFilterView.delegate = self
@@ -47,19 +47,19 @@ class ListEvolutionsViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
-        
+        self.footerView.isHidden = true
+        self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView.paddingBottom
     }
     
-    func layoutFilterHeaderView() {
+    fileprivate func layoutFilterHeaderView() {
         UIView.animate(withDuration: 0.25) {
-            self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
+            self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView.paddingBottom
             self.view.layoutIfNeeded()
         }
     }
     
     // MARK: - Requests
-    func getProposalList() {
+    fileprivate func getProposalList() {
         EvolutionService.listEvolutions { error, proposals in
             guard error == nil, let proposals = proposals else {
                 return
@@ -78,19 +78,30 @@ class ListEvolutionsViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.footerView.isHidden = false
             }
         }
     }
     
-    // Actions
+    // MARK: - Actions
     func filterButtonAction(_ sender: UIButton?) {
         guard let sender = sender else { return }
         
         sender.isSelected = !sender.isSelected
-        self.filterHeaderView.filterLevel = sender.isSelected ? .filtered :  .without
+        self.filterHeaderView.filterLevel = .without
         
         if !sender.isSelected {
             self.filterHeaderView.filteredByButton.isSelected = false
+        }
+        else {
+            // Open filter until filteredByButton max height
+            self.filterHeaderView.filterLevel = .filtered
+            
+            // If have any status selected, open to status list max height, else open to language version max height
+            if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0 {
+                self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
+                print(self.filterHeaderView.filterLevel.hashValue)
+            }
         }
         
         self.layoutFilterHeaderView()
@@ -101,9 +112,27 @@ class ListEvolutionsViewController: UIViewController {
 
         sender.isSelected = !sender.isSelected
         self.filterHeaderView.filterLevel = sender.isSelected ? .status : .filtered
+        
+        // If have any status selected, open to status list max height, else open to language version max height
+        if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0 {
+            self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
+        }
 
-        self.layoutFilterHeaderView()    
+        self.layoutFilterHeaderView()
     }
+    
+    // MARK: - Filters
+    
+    fileprivate func selected(status: StatusState) -> Bool {
+        guard let indexPaths = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems,
+            indexPaths.flatMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == status }).count > 0 else {
+            return false
+        }
+        return true
+    }
+    
+    
+
 }
 
 
