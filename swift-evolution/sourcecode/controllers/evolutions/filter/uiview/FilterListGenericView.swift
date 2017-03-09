@@ -23,7 +23,7 @@ class FilterListGenericView: UIView {
         }
     }
     
-    var dataSource: [Any] = [] {
+    var dataSource: [CustomStringConvertible] = [] {
         didSet {
             self.reloadData()
         }
@@ -45,13 +45,8 @@ class FilterListGenericView: UIView {
     fileprivate func textFor(indexPath: IndexPath) -> String? {
         var text: String?
         let item = self.dataSource[indexPath.item]
-        
-        if item is StatusState, let item = item as? StatusState {
-            text = item.rawValue.shortName
-        }
-        else if item is String, let item = item as? String {
-            text = "Swift \(item)"
-        }
+
+        text = (item is String) ? "Swift \(item)" : item.description
         
         return text
     }

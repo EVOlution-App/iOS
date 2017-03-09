@@ -97,8 +97,14 @@ class ListEvolutionsViewController: UIViewController {
             
             // If have any status selected, open to status list max height, else open to language version max height
             if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0 {
-                self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
-                print(self.filterHeaderView.filterLevel.hashValue)
+                //self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
+                
+                self.filterHeaderView.filterLevel = .status
+                if self.selected(status: .implemented) {
+                    self.filterHeaderView.filterLevel = .version
+                    
+                    // TODO: Get language version selected and filter the proposal list
+                }
             }
         }
         
@@ -181,7 +187,6 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
                 
                 self.filterHeaderView.filterLevel = .status
                 self.layoutFilterHeaderView()
-                
             }
             
             break
