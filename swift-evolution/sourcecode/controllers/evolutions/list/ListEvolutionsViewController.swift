@@ -48,12 +48,12 @@ class ListEvolutionsViewController: UIViewController {
         super.viewWillLayoutSubviews()
         
         self.footerView.isHidden = true
-        self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView.paddingBottom
+        self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
     }
     
     fileprivate func layoutFilterHeaderView() {
         UIView.animate(withDuration: 0.25) {
-            self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView.paddingBottom
+            self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
             self.view.layoutIfNeeded()
         }
     }
