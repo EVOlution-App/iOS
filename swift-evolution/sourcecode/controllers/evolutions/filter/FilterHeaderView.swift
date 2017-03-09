@@ -58,11 +58,15 @@ class FilterHeaderView: UIView {
         return maxy + 10
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
         self.statusFilterView.layoutDelegate = self
         self.languageVersionFilterView.layoutDelegate = self
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         self.set(to: .bottom, with: UIColor.Filter.darkGray)
     }
