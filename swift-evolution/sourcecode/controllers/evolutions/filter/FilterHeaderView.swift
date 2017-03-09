@@ -7,6 +7,12 @@ public enum FilterLevels {
     case version
 }
 
+extension CGFloat {
+    var paddingBottom: CGFloat {
+        return self + 10
+    }
+}
+
 class FilterHeaderView: UIView {
 
     @IBOutlet weak var statusFilterView: FilterListGenericView!
@@ -38,16 +44,16 @@ class FilterHeaderView: UIView {
         switch self.filterLevel {
 
         case .without:
-            return searchBar.frame.maxY + 10
+            return searchBar.frame.maxY
             
         case .filtered:
-            return self.filteredByButton.frame.maxY + 10
+            return self.filteredByButton.frame.maxY
             
         case .status:
-            return self.statusFilterView.frame.maxY + 10
+            return self.statusFilterView.frame.maxY
             
         case .version:
-            return self.languageVersionFilterView.frame.maxY + 10
+            return self.languageVersionFilterView.frame.maxY
         }
     }
     
@@ -56,6 +62,8 @@ class FilterHeaderView: UIView {
         
         self.statusFilterView.layoutDelegate = self
         self.languageVersionFilterView.layoutDelegate = self
+        
+        self.set(to: .bottom, with: UIColor.Filter.darkGray)
     }
 }
 
