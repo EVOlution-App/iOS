@@ -34,6 +34,15 @@
 		9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658C1E67E12800C2AFDA /* BorderedLabel.swift */; };
 		9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658E1E67E74700C2AFDA /* UIColor.swift */; };
 		91E1500D1E6A758100025B77 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500C1E6A758100025B77 /* String.swift */; };
+		91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */; };
+		91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */; };
+		91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */; };
+		91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E1501C1E6BE19300025B77 /* Compose.framework */; };
+		91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */; };
+		91E150221E6CCDD300025B77 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150211E6CCDD300025B77 /* UIView.swift */; };
+		91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150231E6CF37900025B77 /* UICollectionView.swift */; };
+		91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */; };
+		91E1502A1E6D250E00025B77 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150291E6D250E00025B77 /* Array.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +96,15 @@
 		9152658C1E67E12800C2AFDA /* BorderedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		9152658E1E67E74700C2AFDA /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		91E1500C1E6A758100025B77 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
+		91E1501C1E6BE19300025B77 /* Compose.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compose.framework; path = Carthage/Build/iOS/Compose.framework; sourceTree = "<group>"; };
+		91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListGenericView.swift; sourceTree = "<group>"; };
+		91E150211E6CCDD300025B77 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		91E150231E6CF37900025B77 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGCollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
+		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +114,7 @@
 			files = (
 				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
+				91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +234,8 @@
 		915265581E676F2D00C2AFDA /* xibs */ = {
 			isa = PBXGroup;
 			children = (
-				915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */,
+				91E150191E6BBCD900025B77 /* uicollectionviewcell */,
+				91E150181E6BBCCF00025B77 /* uitableviewcell */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -262,6 +282,7 @@
 		9152655D1E6775BE00C2AFDA /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				91E150251E6D153A00025B77 /* vendor */,
 				9152658B1E67E10500C2AFDA /* designables */,
 				915265741E67811B00C2AFDA /* extensions */,
 				91485DEE1E690A33008C4715 /* Protocols.swift */,
@@ -273,6 +294,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91E1501C1E6BE19300025B77 /* Compose.framework */,
 				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 				9152656F1E677D1200C2AFDA /* Unbox.framework */,
 			);
@@ -282,9 +304,12 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				91E150291E6D250E00025B77 /* Array.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
 				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 				0BCEEE251E6CC0B100F7D176 /* UITableView.swift */,
+				91E150211E6CCDD300025B77 /* UIView.swift */,
+				91E150231E6CF37900025B77 /* UICollectionView.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -300,6 +325,7 @@
 		915265841E67D7D900C2AFDA /* evolutions */ = {
 			isa = PBXGroup;
 			children = (
+				91E1500E1E6BBB1C00025B77 /* filter */,
 				915265871E67D86E00C2AFDA /* list */,
 			);
 			path = evolutions;
@@ -329,6 +355,64 @@
 				91485DEC1E6902A2008C4715 /* StatusLabel.swift */,
 			);
 			path = designables;
+			sourceTree = "<group>";
+		};
+		91E1500E1E6BBB1C00025B77 /* filter */ = {
+			isa = PBXGroup;
+			children = (
+				91E150131E6BBC8A00025B77 /* uicollectionviewcell */,
+				91E1501B1E6BDE7400025B77 /* uiview */,
+				91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */,
+			);
+			path = filter;
+			sourceTree = "<group>";
+		};
+		91E150131E6BBC8A00025B77 /* uicollectionviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */,
+			);
+			path = uicollectionviewcell;
+			sourceTree = "<group>";
+		};
+		91E150181E6BBCCF00025B77 /* uitableviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				915265811E67D7A900C2AFDA /* EvolutionTableViewCell.xib */,
+			);
+			path = uitableviewcell;
+			sourceTree = "<group>";
+		};
+		91E150191E6BBCD900025B77 /* uicollectionviewcell */ = {
+			isa = PBXGroup;
+			children = (
+				91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */,
+			);
+			path = uicollectionviewcell;
+			sourceTree = "<group>";
+		};
+		91E1501B1E6BDE7400025B77 /* uiview */ = {
+			isa = PBXGroup;
+			children = (
+				91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */,
+			);
+			path = uiview;
+			sourceTree = "<group>";
+		};
+		91E150251E6D153A00025B77 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				91E150261E6D159A00025B77 /* DGCollectionViewLeftAlignFlowLayout */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		91E150261E6D159A00025B77 /* DGCollectionViewLeftAlignFlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */,
+			);
+			name = DGCollectionViewLeftAlignFlowLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +529,7 @@
 				915265301E67659A00C2AFDA /* LaunchScreen.storyboard in Resources */,
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
+				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
 				915265831E67D7A900C2AFDA /* EvolutionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +559,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Unbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Compose.framework",
 			);
 			outputPaths = (
 			);
@@ -490,16 +576,23 @@
 			files = (
 				91E1500D1E6A758100025B77 /* String.swift in Sources */,
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
+				91E150221E6CCDD300025B77 /* UIView.swift in Sources */,
+				91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
+				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
 				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
+				91E1502A1E6D250E00025B77 /* Array.swift in Sources */,
+				91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListEvolutionsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
+				91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */,
 				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
+				91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */,
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
@@ -666,6 +759,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolution";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -688,6 +782,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolution";
 				PRODUCT_NAME = "$(TARGET_NAME)";

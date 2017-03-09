@@ -1,0 +1,71 @@
+clean: true
+author: VivaReal
+author_url: https://github.com/vivareal
+module: Compose
+module_version: 1.0
+readme: README.md
+documentation: Documentation/*.md
+github_url: http://github.com/vivareal/Compose
+theme: Documentation/jazzy-theme
+
+custom_categories:
+
+  - name: Guides
+    children:
+    - Introduction
+    - ComposingUnit API
+    - Building UI
+
+  - name: Composing Unit
+    children:
+    - ComposingUnit
+    - DimensionUnit
+    - TypedUnit
+
+  - name: Container
+    children:
+    - ComposingContainer
+    - ComposingContainerDirection
+
+  - name: Collections
+    children:
+    - CollectionStackView
+    - ComposingCollectionView
+    - ComposingUnitCollectionViewCell
+
+  - name: Table
+    children:
+    - TableStackView
+    - ComposingTableView
+    - ComposingUnitTableViewCell
+
+  - name: Extending Units
+    children:
+    - SelectableUnit
+    - TwoStepDisplayUnit
+    - HighlightableUnit
+
+  - name: ViewUnit
+    children:
+    - ViewUnit
+    - ViewTraits
+
+  - name: Conditional Array
+    children:
+    - Array
+
+  - name: UIKit Extensions
+    children:
+    - UICollectionViewCell
+    - UITableViewCell
+    - UIEdgeInsets
+    - UIView
+
+  - name: Sample Units
+    children:
+    - CollectionStackUnit
+    - LabelUnit
+
+
+
+

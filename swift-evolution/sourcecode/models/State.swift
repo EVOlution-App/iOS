@@ -113,3 +113,9 @@ extension StatusState: RawRepresentable {
         }
     }
 }
+
+extension StatusState: CustomStringConvertible {
+    public var description: String {
+        return self.rawValue.shortName
+    }
+}

@@ -4,8 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +13,7 @@
         <scene sceneID="Qxq-bI-Ays">
             <objects>
                 <navigationController id="uUZ-fy-2NM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r4M-VW-5SC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
@@ -35,11 +35,157 @@
                         <viewControllerLayoutGuide type="bottom" id="rAt-nJ-6SM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yon-bb-kvg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xy9-CI-bMR" customClass="FilterHeaderView" customModule="swift_evolution" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="355"/>
+                                <subviews>
+                                    <searchBar clipsSubviews="YES" contentMode="redraw" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" searchBarStyle="minimal" placeholder="Search" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpo-KX-Er6">
+                                        <rect key="frame" x="6" y="5" width="318" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="EKL-60-fQe"/>
+                                        </constraints>
+                                        <color key="barTintColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="webSearch" keyboardAppearance="alert"/>
+                                    </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vQ-lh-azd">
+                                        <rect key="frame" x="319" y="0.0" width="56" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="wZ9-Df-EHc"/>
+                                            <constraint firstAttribute="height" constant="55" id="xTy-dH-Zts"/>
+                                        </constraints>
+                                        <state key="normal" image="icon-filter-off"/>
+                                        <state key="selected" image="icon-filter-on"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWA-Ou-HCw">
+                                        <rect key="frame" x="16" y="49" width="343" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="MAF-aM-Vw1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <state key="normal" title="Filtered by: All Statuses">
+                                            <color key="titleColor" red="0.0" green="0.53333333329999999" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="5u9-zd-vRu" customClass="FilterListGenericView" customModule="swift_evolution" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="89" width="343" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSP-jv-VOG">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="27" id="w6M-xm-ZEP"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YoH-Hx-d3Y">
+                                                <rect key="frame" x="0.0" y="27" width="343" height="101"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="yGa-bk-usj">
+                                                    <size key="itemSize" width="169" height="28"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="5u9-zd-vRu" id="MW1-lk-wFX"/>
+                                                    <outlet property="delegate" destination="5u9-zd-vRu" id="zcu-BB-G7t"/>
+                                                </connections>
+                                            </collectionView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="YoH-Hx-d3Y" firstAttribute="top" secondItem="RSP-jv-VOG" secondAttribute="bottom" id="6So-tq-cDv"/>
+                                            <constraint firstItem="RSP-jv-VOG" firstAttribute="top" secondItem="5u9-zd-vRu" secondAttribute="top" id="GS7-KP-QHe"/>
+                                            <constraint firstItem="YoH-Hx-d3Y" firstAttribute="leading" secondItem="5u9-zd-vRu" secondAttribute="leading" id="Z0G-Mv-rgQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="YoH-Hx-d3Y" secondAttribute="trailing" id="ak5-HB-Tx8"/>
+                                            <constraint firstAttribute="trailing" secondItem="RSP-jv-VOG" secondAttribute="trailing" id="eJD-UR-dKA"/>
+                                            <constraint firstItem="RSP-jv-VOG" firstAttribute="leading" secondItem="5u9-zd-vRu" secondAttribute="leading" id="oBy-sL-MXE"/>
+                                            <constraint firstAttribute="height" constant="128" id="tGu-yD-oE6"/>
+                                            <constraint firstAttribute="bottom" secondItem="YoH-Hx-d3Y" secondAttribute="bottom" id="y7O-5M-4xl"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="collectionView" destination="YoH-Hx-d3Y" id="r0p-8w-VO9"/>
+                                            <outlet property="descriptionLabel" destination="RSP-jv-VOG" id="W1c-3C-gjT"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="u9T-oO-Ijy" customClass="FilterListGenericView" customModule="swift_evolution" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="217" width="343" height="128"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEm-Gc-vcB">
+                                                <rect key="frame" x="0.0" y="24" width="343" height="27"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="27" id="ouI-MY-PM6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wj9-L6-Nr6">
+                                                <rect key="frame" x="0.0" y="51" width="343" height="77"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pRd-IR-8ln">
+                                                    <size key="itemSize" width="169" height="28"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="u9T-oO-Ijy" id="7uU-6F-ZT2"/>
+                                                    <outlet property="delegate" destination="u9T-oO-Ijy" id="iIc-zS-ZDV"/>
+                                                </connections>
+                                            </collectionView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="6hC-hr-zRG"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wj9-L6-Nr6" secondAttribute="bottom" id="DXB-qo-Xj4"/>
+                                            <constraint firstItem="Wj9-L6-Nr6" firstAttribute="top" secondItem="aEm-Gc-vcB" secondAttribute="bottom" id="N6N-Wa-FZj"/>
+                                            <constraint firstItem="aEm-Gc-vcB" firstAttribute="leading" secondItem="u9T-oO-Ijy" secondAttribute="leading" id="PPK-tK-dST"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wj9-L6-Nr6" secondAttribute="trailing" id="TCE-XU-5HC"/>
+                                            <constraint firstItem="aEm-Gc-vcB" firstAttribute="top" secondItem="u9T-oO-Ijy" secondAttribute="top" constant="24" id="YfR-o7-mxY"/>
+                                            <constraint firstItem="Wj9-L6-Nr6" firstAttribute="leading" secondItem="u9T-oO-Ijy" secondAttribute="leading" id="ZlZ-z5-Jdx"/>
+                                            <constraint firstAttribute="trailing" secondItem="aEm-Gc-vcB" secondAttribute="trailing" id="cGe-fQ-LTq"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="collectionView" destination="Wj9-L6-Nr6" id="DXf-FH-fl2"/>
+                                            <outlet property="descriptionLabel" destination="aEm-Gc-vcB" id="CEp-6Z-4Gr"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="2vQ-lh-azd" firstAttribute="top" secondItem="Xy9-CI-bMR" secondAttribute="top" id="0bu-O1-lar"/>
+                                    <constraint firstItem="GWA-Ou-HCw" firstAttribute="leading" secondItem="Xy9-CI-bMR" secondAttribute="leading" constant="16" id="1hg-KH-3ti"/>
+                                    <constraint firstItem="5u9-zd-vRu" firstAttribute="top" secondItem="GWA-Ou-HCw" secondAttribute="bottom" constant="10" id="1ou-OX-xkw"/>
+                                    <constraint firstItem="wpo-KX-Er6" firstAttribute="top" secondItem="Xy9-CI-bMR" secondAttribute="top" constant="5" id="5w5-Mh-mYe"/>
+                                    <constraint firstAttribute="trailing" secondItem="2vQ-lh-azd" secondAttribute="trailing" id="779-Kn-pfQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="u9T-oO-Ijy" secondAttribute="trailing" constant="16" id="7JE-aQ-RGf"/>
+                                    <constraint firstItem="GWA-Ou-HCw" firstAttribute="top" secondItem="wpo-KX-Er6" secondAttribute="bottom" id="IjB-BQ-Up0"/>
+                                    <constraint firstItem="wpo-KX-Er6" firstAttribute="leading" secondItem="Xy9-CI-bMR" secondAttribute="leading" constant="6" id="asb-4Q-BAX"/>
+                                    <constraint firstItem="5u9-zd-vRu" firstAttribute="leading" secondItem="Xy9-CI-bMR" secondAttribute="leading" constant="16" id="hcw-pE-vuJ"/>
+                                    <constraint firstAttribute="height" constant="355" id="irg-z7-87c"/>
+                                    <constraint firstItem="u9T-oO-Ijy" firstAttribute="leading" secondItem="Xy9-CI-bMR" secondAttribute="leading" constant="16" id="oPF-sQ-fhL"/>
+                                    <constraint firstItem="2vQ-lh-azd" firstAttribute="leading" secondItem="wpo-KX-Er6" secondAttribute="trailing" constant="-5" id="pZM-3v-l1e"/>
+                                    <constraint firstItem="u9T-oO-Ijy" firstAttribute="top" secondItem="5u9-zd-vRu" secondAttribute="bottom" id="tok-Pf-6Mo"/>
+                                    <constraint firstAttribute="trailing" secondItem="GWA-Ou-HCw" secondAttribute="trailing" constant="16" id="wrp-IK-wNY"/>
+                                    <constraint firstAttribute="trailing" secondItem="5u9-zd-vRu" secondAttribute="trailing" constant="16" id="xrI-Ak-eDY"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="filterButton" destination="2vQ-lh-azd" id="Pza-Xh-W4P"/>
+                                    <outlet property="filteredByButton" destination="GWA-Ou-HCw" id="Oe9-5V-IO3"/>
+                                    <outlet property="languageVersionFilterView" destination="u9T-oO-Ijy" id="v69-qy-aBp"/>
+                                    <outlet property="languageVersionFilterViewHeightConstraint" destination="6hC-hr-zRG" id="fcc-kT-CCC"/>
+                                    <outlet property="searchBar" destination="wpo-KX-Er6" id="Nve-6C-HyW"/>
+                                    <outlet property="statusFilterView" destination="5u9-zd-vRu" id="5HN-Ty-wfq"/>
+                                    <outlet property="statusFilterViewHeightConstraint" destination="tGu-yD-oE6" id="g4y-Vr-A9m"/>
+                                </connections>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="355" width="375" height="248"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="5Th-Io-cw0">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
@@ -71,16 +217,20 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="centerX" secondItem="yon-bb-kvg" secondAttribute="centerX" id="E0Y-kQ-Qvg"/>
-                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="height" secondItem="yon-bb-kvg" secondAttribute="height" id="ONI-Nn-TW2"/>
-                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="centerY" secondItem="yon-bb-kvg" secondAttribute="centerY" id="VVb-RY-teb"/>
-                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="width" secondItem="yon-bb-kvg" secondAttribute="width" id="ue5-3o-LVr"/>
+                            <constraint firstItem="Xy9-CI-bMR" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leadingMargin" constant="-16" id="91V-Wp-60q"/>
+                            <constraint firstItem="Xy9-CI-bMR" firstAttribute="top" secondItem="ndH-s4-ED8" secondAttribute="bottom" id="9qH-ov-ZfC"/>
+                            <constraint firstItem="rAt-nJ-6SM" firstAttribute="top" secondItem="wrl-Y8-uLB" secondAttribute="bottom" id="CSf-We-hW3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wrl-Y8-uLB" secondAttribute="trailing" constant="-16" id="POP-vO-ngg"/>
+                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="top" secondItem="Xy9-CI-bMR" secondAttribute="bottom" id="V4m-wd-KRg"/>
+                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leadingMargin" constant="-16" id="nlW-5J-gcF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xy9-CI-bMR" secondAttribute="trailing" constant="-16" id="pyb-EP-kdI"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="7ao-nW-5Ea">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="dnt-f2-jNQ">
-                            <rect key="frame" x="121" y="6" width="134" height="33"/>
+                            <rect key="frame" x="120.5" y="5.5" width="134" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swift Evolution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxQ-2o-kaS">
@@ -100,6 +250,9 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="filterHeaderView" destination="Xy9-CI-bMR" id="ALD-ZF-bPv"/>
+                        <outlet property="filterHeaderViewHeightConstraint" destination="irg-z7-87c" id="PVk-u8-tXk"/>
+                        <outlet property="footerView" destination="J6Y-q1-3ee" id="ejk-HT-wtf"/>
                         <outlet property="tableView" destination="wrl-Y8-uLB" id="BXF-tf-kVq"/>
                     </connections>
                 </viewController>
@@ -109,6 +262,8 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         </scene>
     </scenes>
     <resources>
+        <image name="icon-filter-off" width="23" height="23"/>
+        <image name="icon-filter-on" width="23" height="23"/>
         <image name="logo-swift" width="40" height="40"/>
     </resources>
 </document>

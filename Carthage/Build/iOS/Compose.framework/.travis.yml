@@ -1,0 +1,9 @@
+language: objective-c
+osx_image: xcode8.1 
+before_install:
+  - gem install bundler
+
+script:
+ - bundle install
+ - bundle exec fastlane validate_pr 
+ - bundle exec danger

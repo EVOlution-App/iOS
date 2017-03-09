@@ -89,5 +89,11 @@ public extension UIColor {
             return UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
         }
     }
+    
+    public struct Filter {
+        public static var darkGray: UIColor {
+            return UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        }
+    }
 }
 
