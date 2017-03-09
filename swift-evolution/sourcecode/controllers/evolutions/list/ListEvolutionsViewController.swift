@@ -46,8 +46,7 @@ class ListEvolutionsViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        self.footerView.isHidden = true
+
         self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
     }
     
@@ -78,7 +77,6 @@ class ListEvolutionsViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.footerView.isHidden = false
             }
         }
     }
