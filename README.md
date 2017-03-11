@@ -5,6 +5,29 @@ At this moment, we do not have any layout so then, use the screenshots from webp
 
 ![](images/screenshots_base.png)
 
+## Configure environment
+
+### Prerequisites
+
+- Ruby
+- Bundler
+
+### Installing
+
+Just run on the project root
+
+```
+$ rake setup
+```
+
+
+## Running the tests
+
+```
+$ rake unit_tests
+```
+
+
 ## How to contribute
 
 You need to create an issue and associate a pull request to this issue.
