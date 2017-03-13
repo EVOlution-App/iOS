@@ -31,18 +31,20 @@ $ rake unit_tests
 ## How to contribute
 
 You need to create an issue and associate a pull request to this issue.
-After send your pull request, other developers will make a code review before merge it your changes into development branch.
+After send your pull request, other developers will make a code review before merge into _development_ branch.
 
 
 ## Authors
 
-- [Thiago Holanda](https://twitter.com/tholanda)
-- [Bruno Bilescky](https://twitter.com/bgondim)
+- Thiago Holanda - [GitHub](https://github.com/unnamedd) / [Twitter](https://twitter.com/tholanda)
+- Bruno Bilescky - [GitHub](https://github.com/brunogb) / [Twitter](https://twitter.com/bgondim)
 
-Be part of our community, the **iOSDevBR** (portuguese): 
+## Contributors 
 
-- Slack - [https://iosdevbr.slack.com](https://iosdevbr.slack.com)
-- Invite - [https://iosdevbr.herokuapp.com](https://iosdevbr.herokuapp.com)
+- Bruno Hecktheuer - [Github](https://github.com/bbheck) / [Twitter](https://twitter.com/brunobheck)
+- Diego Ventura - [GitHub](https://github.com/diegoventura) / [Twitter](https://twitter.com/venturadiego)
+- Diogo Tridapalli - [Github](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
+- Ricardo Borelli - [Github](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
 
 ## License
 
