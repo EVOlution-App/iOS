@@ -86,13 +86,7 @@ extension String {
             
             let contents: [Int] = results.flatMap({
                 let value = (self as NSString).substring(with: $0.rangeAt(1))
-                
-                let numberFormatter = NumberFormatter()
-                if let number = numberFormatter.number(from: value) {
-                    return number.intValue
-                }
-                
-                return nil
+                return Int(value)
             })
             
             return contents
