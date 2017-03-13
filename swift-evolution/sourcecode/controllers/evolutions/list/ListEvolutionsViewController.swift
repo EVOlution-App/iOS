@@ -64,7 +64,8 @@ class ListEvolutionsViewController: UIViewController {
                 return
             }
 
-            self.dataSource = proposals
+            // Descending order
+            self.dataSource = proposals.sorted { $0.id > $1.id }
             
             // Status source
             self.filterHeaderView?.statusSource = [
@@ -97,7 +98,6 @@ class ListEvolutionsViewController: UIViewController {
             
             // If have any status selected, open to status list max height, else open to language version max height
             if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0 {
-                //self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
                 
                 self.filterHeaderView.filterLevel = .status
                 if self.selected(status: .implemented) {
