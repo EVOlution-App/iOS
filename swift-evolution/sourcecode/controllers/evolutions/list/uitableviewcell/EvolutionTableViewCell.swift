@@ -37,14 +37,14 @@ class EvolutionTableViewCell: UITableViewCell {
         
         // Fit size to status text
         let statusWidth = state.shortName.contraint(height: self.statusLabel.bounds.size.height,
-                                               font: self.statusLabel.font)
+                                                    font: self.statusLabel.font)
         self.statusLabelWidthConstraint.constant = statusWidth + 20
         self.statusLabel.setNeedsUpdateConstraints()
         self.statusLabel.layoutIfNeeded()
         
         var details = ""
         
-        details += proposal.id.tag(.id)
+        details += proposal.description.tag(.id)
         details += String.newLine
         details += proposal.title.trimmingCharacters(in: .whitespacesAndNewlines).tag(.title)
         
