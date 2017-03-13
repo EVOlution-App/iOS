@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
+		912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* IDFormatter.swift */; };
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEC1E6902A2008C4715 /* StatusLabel.swift */; };
 		91485DEF1E690A33008C4715 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEE1E690A33008C4715 /* Protocols.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		912938D01E762C3000D2B2CF /* IDFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDFormatter.swift; sourceTree = "<group>"; };
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				9152657E1E67C64D00C2AFDA /* StateFormatter.swift */,
+				912938D01E762C3000D2B2CF /* IDFormatter.swift */,
 			);
 			path = customFormatters;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				9152655F1E6777B600C2AFDA /* Service.swift in Sources */,
 				915265821E67D7A900C2AFDA /* EvolutionTableViewCell.swift in Sources */,
 				915265611E67794C00C2AFDA /* Evolution.swift in Sources */,
+				912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */,
 				9152657C1E67A3AD00C2AFDA /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

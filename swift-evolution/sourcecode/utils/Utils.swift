@@ -42,4 +42,12 @@ struct Config {
             return nib
         }
     }
+    
+    struct Common {
+        struct Regex {
+            static var proposalID: String {
+                return "SE-([0-9]+)"
+            }
+        }
+    }
 }
