@@ -135,6 +135,8 @@ GEM
       nanaimo (~> 0.2.3)
     xcpretty (0.2.4)
       rouge (~> 1.8)
+    xcpretty-json-formatter (0.1.0)
+      xcpretty (~> 0.2, >= 0.0.7)
     xcpretty-travis-formatter (0.0.4)
       xcpretty (~> 0.2, >= 0.0.7)
 
@@ -144,9 +146,11 @@ PLATFORMS
 DEPENDENCIES
   fastlane
   rake
+  xcpretty-json-formatter
+  xcpretty-travis-formatter
 
 RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.14.3
+   1.14.6

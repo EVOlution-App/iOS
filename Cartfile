@@ -1,3 +1,2 @@
 github "johnsundell/unbox"
 github "malcommac/SwiftRichString"
-github "VivaReal/Compose" ~> 1.0
