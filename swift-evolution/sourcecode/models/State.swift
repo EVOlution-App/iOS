@@ -100,7 +100,7 @@ extension StatusState: RawRepresentable {
             return State(name: "Accepted", shortName: "Accepted", className: "accepted", identifier: ".accepted", color: UIColor.Status.accepted)
             
         case .acceptedWithRevisions:
-            return State(name: "Accepted with revisions", shortName: "Accepted", className: "accepted-with-revisions", identifier: ".acceptedWithRevisions", color: UIColor.Status.acceptedWithRevisions)
+            return State(name: "Accepted with Revisions", shortName: "Accepted", className: "accepted-with-revisions", identifier: ".acceptedWithRevisions", color: UIColor.Status.acceptedWithRevisions)
             
         case .rejected:
             return State(name: "Rejected", shortName: "Rejected", className: "rejected", identifier: ".rejected", color: UIColor.Status.rejected)
