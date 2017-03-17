@@ -7,9 +7,21 @@ class ListEvolutionsViewController: UIViewController {
     @IBOutlet private weak var footerView: UIView!
     @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
     @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
-    
+
     // Private properties
+    fileprivate var filteredDataSource: [Evolution] = []
     fileprivate var dataSource: [Evolution] = []
+    
+    // Filters
+    fileprivate var languages: [Version] = []
+    fileprivate var status: [StatusState] = []
+    
+    // Proposal ordering
+    fileprivate lazy var statusOrder: [StatusState] = {
+        return [.awaitingReview, .scheduledForReview, .activeReview,
+                .returnedForRevision, .accepted, .implemented,
+                .deferred, .rejected, .withdrawn]
+    }()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -63,15 +75,11 @@ class ListEvolutionsViewController: UIViewController {
             guard error == nil, let proposals = proposals else {
                 return
             }
-
-            // Descending order
-            self.dataSource = proposals.sorted { $0.id > $1.id }
             
-            // Status source
-            self.filterHeaderView?.statusSource = [
-                .awaitingReview, .scheduledForReview, .activeReview, .returnedForRevision,
-                .withdrawn, .deferred, .accepted, .acceptedWithRevisions, .rejected, .implemented
-            ]
+            self.dataSource = proposals.filter(by: self.statusOrder)
+            self.filteredDataSource = self.dataSource
+
+            self.filterHeaderView?.statusSource = self.statusOrder
             
             // Language Versions source
             self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
@@ -84,7 +92,9 @@ class ListEvolutionsViewController: UIViewController {
     
     // MARK: - Actions
     func filterButtonAction(_ sender: UIButton?) {
-        guard let sender = sender else { return }
+        guard let sender = sender else {
+            return
+        }
         
         sender.isSelected = !sender.isSelected
         self.filterHeaderView.filterLevel = .without
@@ -102,12 +112,11 @@ class ListEvolutionsViewController: UIViewController {
                 self.filterHeaderView.filterLevel = .status
                 if self.selected(status: .implemented) {
                     self.filterHeaderView.filterLevel = .version
-                    
-                    // TODO: Get language version selected and filter the proposal list
                 }
             }
         }
         
+        self.updateTableVew()
         self.layoutFilterHeaderView()
     }
     
@@ -135,8 +144,37 @@ class ListEvolutionsViewController: UIViewController {
         return true
     }
     
+    // MARK: - Utils
     
+    fileprivate func updateTableVew() {
+        self.filteredDataSource = self.dataSource
+        
+        if self.filterHeaderView.filterButton.isSelected {
+            
+            // Check if there is at least on status selected
+            if self.status.count > 0 {
+                var expection: [StatusState] = [.implemented]
+                if self.selected(status: .implemented) && self.languages.count == 0 {
+                    expection = []
+                }
+                
+                self.filteredDataSource = self.filteredDataSource.filter(by: self.status, exceptions: expection).sort(.descending)
+            }
+            
+            // Check if the status selected is equal to .implemented and has language versions selected
+            if self.selected(status: .implemented) && self.languages.count > 0 {
+                let implemented = self.dataSource.filter(by: self.languages).filter(status: .implemented)
+                self.filteredDataSource.append(contentsOf: implemented)
+            }
+        }
 
+        // Sort in the right order
+        self.filteredDataSource = self.filteredDataSource.removeDuplicates().filter(by: self.statusOrder)
+        
+        self.tableView.beginUpdates()
+        self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+        self.tableView.endUpdates()
+    }
 }
 
 
@@ -144,12 +182,12 @@ class ListEvolutionsViewController: UIViewController {
 
 extension ListEvolutionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataSource.count
+        return self.filteredDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.cell(forRowAt: indexPath) as EvolutionTableViewCell
-        cell.proposal = self.dataSource[indexPath.row]
+        cell.proposal = self.filteredDataSource[indexPath.row]
         
         return cell
     }
@@ -170,7 +208,25 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
             if self.filterHeaderView.statusSource[indexPath.item] == .implemented {
                 self.filterHeaderView.filterLevel = .version
                 self.layoutFilterHeaderView()
+                
+                self.languages = []
             }
+            
+            if let item: StatusState = view.dataSource[indexPath.item] as? StatusState {
+                self.status.append(item)
+            }
+
+            self.updateTableVew()
+            
+            
+            break
+            
+        case .version:
+            if let version = view.dataSource[indexPath.item] as? String {
+                self.languages.append(version)
+            }
+            
+            self.updateTableVew()
             
             break
             
@@ -180,6 +236,8 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
     }
     
     func didDeselectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
+        let item = view.dataSource[indexPath.item]
+        
         switch type {
         case .status:
             if let indexPaths = view.indexPathsForSelectedItems,
@@ -187,6 +245,18 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
                 
                 self.filterHeaderView.filterLevel = .status
                 self.layoutFilterHeaderView()
+            }
+
+            
+            if let status = item as? StatusState, self.status.remove(status) {
+                self.updateTableVew()
+            }
+            
+            break
+            
+        case .version:
+            if self.languages.remove(string: item.description) {
+                self.updateTableVew()
             }
             
             break
@@ -213,3 +283,4 @@ extension ListEvolutionsViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
+

@@ -34,3 +34,25 @@ extension Evolution: CustomStringConvertible {
         return String(format: "SE-%04i", self.id)
     }
 }
+
+extension Evolution: Comparable {
+    public static func ==(lhs: Evolution, rhs: Evolution) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public static func <(lhs: Evolution, rhs: Evolution) -> Bool {
+        return lhs.id < rhs.id
+    }
+    
+    public static func <=(lhs: Evolution, rhs: Evolution) -> Bool {
+        return lhs.id <= rhs.id
+    }
+    
+    public static func >=(lhs: Evolution, rhs: Evolution) -> Bool {
+        return lhs.id >= rhs.id
+    }
+    
+    public static func >(lhs: Evolution, rhs: Evolution) -> Bool {
+        return lhs.id > rhs.id
+    }
+}
