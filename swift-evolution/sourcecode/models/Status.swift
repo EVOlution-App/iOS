@@ -1,8 +1,10 @@
 import UIKit
 import Unbox
 
+typealias Version = String
+
 struct Status {
-    let version: String?
+    let version: Version?
     let state: StatusState
     let start: Date?
     let end: Date?
