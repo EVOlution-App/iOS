@@ -1,11 +1,11 @@
 // MARK: - Proposals Filters
 
-enum Sorting {
+public enum Sorting {
     case ascending
     case descending
 }
 
-extension Sequence where Self: RandomAccessCollection, Iterator.Element == Evolution {
+extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == Evolution {
     func filter(status: StatusState) -> [Evolution] {
         return self.filter { $0.status.state == status }
     }
@@ -25,16 +25,20 @@ extension Sequence where Self: RandomAccessCollection, Iterator.Element == Evolu
             let list = self.filter(language: language)
             filter.append(contentsOf: list)
         }
-        
+
         return filter
     }
     
-    func filter(by statuses: [StatusState]) -> [Evolution] {
+    func filter(by statuses: [StatusState], exceptions: [StatusState] = []) -> [Evolution] {
         var filter: [Evolution] = []
         
         statuses.forEach { state in
-            let list = self.filter(status: state)
-            filter.append(contentsOf: list.sort(.descending))
+            guard exceptions.contains(state) == false else {
+                return
+            }
+            
+            let list = self.filter(status: state).sort(.descending)
+            filter.append(contentsOf: list)
         }
         
         return filter
@@ -45,7 +49,7 @@ extension Sequence where Self: RandomAccessCollection, Iterator.Element == Evolu
     }
 
     func sort(_ direction: Sorting) -> [Evolution] {
-        return self.sorted(by: direction == .ascending ? { $0 > $1 } : { $0 < $1 })
+        return self.sorted(by: direction == .ascending ? { $0 < $1 } : { $0 > $1 })
     }
     
     mutating func removeDuplicates() -> [Evolution] {
