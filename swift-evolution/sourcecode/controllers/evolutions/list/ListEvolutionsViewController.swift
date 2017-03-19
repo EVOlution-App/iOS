@@ -9,6 +9,7 @@ class ListEvolutionsViewController: UIViewController {
     @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
 
     // Private properties
+    fileprivate var timer: Timer = Timer()
     fileprivate var filteredDataSource: [Evolution] = []
     fileprivate var dataSource: [Evolution] = []
     
@@ -134,6 +135,17 @@ class ListEvolutionsViewController: UIViewController {
         self.layoutFilterHeaderView()
     }
     
+    func fireSearch(_ timer: Timer) {
+        guard let search = timer.userInfo as? Search else {
+            return
+        }
+        
+        print("FireSearch() called. Term: \(search.query)")
+        
+        let filtered = self.dataSource.filter(by: search.query)
+        self.updateTableVew(filtered)
+    }
+    
     // MARK: - Filters
     
     fileprivate func selected(status: StatusState) -> Bool {
@@ -146,8 +158,13 @@ class ListEvolutionsViewController: UIViewController {
     
     // MARK: - Utils
     
-    fileprivate func updateTableVew() {
-        self.filteredDataSource = self.dataSource
+    fileprivate func updateTableVew(_ filtered: [Evolution]? = nil) {
+        if let filtered = filtered {
+            self.filteredDataSource = filtered
+        }
+        else {
+            self.filteredDataSource = self.dataSource
+        }
         
         if self.filterHeaderView.filterButton.isSelected {
             
@@ -169,7 +186,7 @@ class ListEvolutionsViewController: UIViewController {
         }
 
         // Sort in the right order
-        self.filteredDataSource = self.filteredDataSource.removeDuplicates().filter(by: self.statusOrder)
+        self.filteredDataSource = self.filteredDataSource.distinct().filter(by: self.statusOrder)
         
         self.tableView.beginUpdates()
         self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
@@ -269,18 +286,58 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
 
 // MARK: - UISearchBar Delegate
 
+struct Search {
+    let query: String
+}
+
 extension ListEvolutionsViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("textDidChange: \(searchText)")
+        if self.timer.isValid {
+            self.timer.invalidate()
+        }
+        
+        if searchText.characters.count > 3 {
+            let interval = 0.7
+            if #available(iOS 10.0, *) {
+                self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { timer in
+                    print("Block called. Term: \(searchText)")
+                    
+                    let filtered = self.dataSource.filter(by: searchText)
+                    self.updateTableVew(filtered)
+                }
+            }
+            else {
+                let search = Search(query: searchText)
+                self.timer = Timer.scheduledTimer(timeInterval: interval,
+                                                  target: self,
+                                                  selector: #selector(fireSearch(_:)),
+                                                  userInfo: search,
+                                                  repeats: false)
+            }
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text,
+            query.trimmingCharacters(in: .whitespaces) != ""
+            else {
+                return
+        }
+
+        let filtered = self.dataSource.filter(by: query)
+        self.updateTableVew(filtered)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.resignFirstResponder()
+        searchBar.text = ""
+        
+        self.updateTableVew()
     }
 }
 
