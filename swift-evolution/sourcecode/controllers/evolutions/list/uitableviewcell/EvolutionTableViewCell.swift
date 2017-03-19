@@ -141,8 +141,8 @@ extension EvolutionTableViewCell {
         }
         
         let names: [String] = bugs.flatMap({
-            if let id = $0.id, let assignee = $0.assignee, let status = $0.status {
-                var issue = id
+            if let assignee = $0.assignee, let status = $0.status {
+                var issue = $0.description
                 issue += " ("
                 issue += assignee == "" ? "Unassigned" : assignee
                 issue += ", "
