@@ -140,8 +140,6 @@ class ListEvolutionsViewController: UIViewController {
             return
         }
         
-        print("FireSearch() called. Term: \(search.query)")
-        
         let filtered = self.dataSource.filter(by: search.query)
         self.updateTableVew(filtered)
     }
@@ -304,8 +302,6 @@ extension ListEvolutionsViewController: UISearchBarDelegate {
             let interval = 0.7
             if #available(iOS 10.0, *) {
                 self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { timer in
-                    print("Block called. Term: \(searchText)")
-                    
                     let filtered = self.dataSource.filter(by: searchText)
                     self.updateTableVew(filtered)
                 }
