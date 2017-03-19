@@ -184,7 +184,7 @@
                                     <outlet property="statusFilterViewHeightConstraint" destination="tGu-yD-oE6" id="g4y-Vr-A9m"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
                                 <rect key="frame" x="0.0" y="355" width="375" height="248"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="5Th-Io-cw0">
@@ -230,7 +230,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <navigationItem key="navigationItem" id="7ao-nW-5Ea">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="dnt-f2-jNQ">
-                            <rect key="frame" x="120.5" y="5.5" width="134" height="33"/>
+                            <rect key="frame" x="121" y="6" width="134" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swift Evolution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxQ-2o-kaS">
