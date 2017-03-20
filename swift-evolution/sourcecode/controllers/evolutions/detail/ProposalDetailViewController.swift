@@ -19,7 +19,6 @@ class ProposalDetailViewController: BaseViewController {
         self.rotate = true
         
         self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "")
-        self.downView?.autoresizesSubviews = true
         if let downView = self.downView {
             self.detailView.addSubview(downView)
         }
