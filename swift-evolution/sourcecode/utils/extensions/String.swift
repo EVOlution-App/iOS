@@ -4,6 +4,7 @@ import UIKit
 enum Tag: String {
     case content = "content"
     case title = "title"
+    case label = "label"
     case value = "value"
     case id = "id"
     

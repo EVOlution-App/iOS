@@ -6,7 +6,7 @@ class EvolutionTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet private weak var statusIndicatorView: UIView!
     @IBOutlet private weak var statusLabel: StatusLabel!
-    @IBOutlet private weak var detailsLabel: UILabel!
+    @IBOutlet private weak var detailsLabel: UITextView!
     
     @IBOutlet private weak var statusLabelWidthConstraint: NSLayoutConstraint!
     
@@ -56,7 +56,7 @@ class EvolutionTableViewCell: UITableViewCell {
         
         // Render Review Manager
         if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
-            details += String.newLine + "Review Manager:" + String.doubleSpace + name.tag(.value)
+            details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name.tag(.value)
         }
         
         // Render Bugs
@@ -66,7 +66,7 @@ class EvolutionTableViewCell: UITableViewCell {
         
         // Render Implemented Proposal
         if proposal.status.state == .implemented, let version = proposal.status.version {
-            details += String.newLine + "Implemented in:" + String.doubleSpace + "Swift \(version)".tag(.value)
+            details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)".tag(.value)
         }
         
         // Render Status
@@ -75,7 +75,7 @@ class EvolutionTableViewCell: UITableViewCell {
             proposal.status.state == .scheduledForReview ||
             proposal.status.state == .returnedForRevision {
             
-            details += String.newLine + "Status:" + String.doubleSpace + state.name.tag(.value)
+            details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
             
             if (proposal.status.state == .activeReview ||
                 proposal.status.state == .scheduledForReview), let period = self.renderReviewPeriod() {
@@ -111,11 +111,17 @@ extension EvolutionTableViewCell {
             $0.lineSpacing = 0
         })
         
-        let value = Style("value", {
-            $0.color = UIColor.Proposal.darkGray
+        let label = Style("label", {
+            $0.color = UIColor.Proposal.lightGray
+            $0.font = FontAttribute(.HelveticaNeue, size: 14)
         })
         
-        return [id, title, value]
+        let value = Style("value", {
+            $0.color = UIColor.Proposal.darkGray
+            $0.font = FontAttribute(.HelveticaNeue, size: 14)
+        })
+        
+        return [id, title, label, value]
     }
 
     fileprivate func renderAuthors() -> String? {
@@ -128,7 +134,7 @@ extension EvolutionTableViewCell {
         let names: [String] = authors.flatMap({ $0.name })
         
         var detail = names.count > 1 ? "Authors" : "Author"
-        detail = "\(detail):" + String.doubleSpace + names.joined(separator: ", ").tag(.value)
+        detail = "\(detail):".tag(.label) + String.doubleSpace + names.joined(separator: ", ").tag(.value)
         
         return detail
     }
@@ -155,7 +161,7 @@ extension EvolutionTableViewCell {
         })
         
         var detail = names.count > 1 ? "Bugs" : "Bug"
-        detail = "\(detail):" + String.doubleSpace + names.joined(separator: ", ").tag(.value)
+        detail = "\(detail):".tag(.label) + String.doubleSpace + names.joined(separator: ", ").tag(.value)
         
         return detail
     }
@@ -185,7 +191,7 @@ extension EvolutionTableViewCell {
             }
         }
         
-        details = "Scheduled:" + String.doubleSpace + details.tag(.value)
+        details = "Scheduled:".tag(.label) + String.doubleSpace + details.tag(.value)
         
         return details
     }
