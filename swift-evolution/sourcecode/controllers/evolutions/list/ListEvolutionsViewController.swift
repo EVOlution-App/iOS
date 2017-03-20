@@ -1,6 +1,6 @@
 import UIKit
 
-class ListEvolutionsViewController: UIViewController {
+class ListEvolutionsViewController: BaseViewController {
 
     // Private IBOutlets
     @IBOutlet private weak var tableView: UITableView!
@@ -69,6 +69,18 @@ class ListEvolutionsViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Disable Rotation
+        self.rotate = false
+        
+        // Force rotation back to portrait
+        Config.Orientation.portrait()
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
