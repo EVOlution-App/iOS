@@ -1,19 +1,22 @@
 import UIKit
 
 class Service {
-    typealias CompletionJSON = (_ error: Error?, _ json: Any?) -> Swift.Void
+    typealias CompletionObject = (_ error: Error?, _ object: Data?) -> Swift.Void
+    typealias CompletionString = (_ error: Error?, _ string: String?) -> Swift.Void
+    typealias CompletionListKeyValue = (_ error: Error?, _ listKeyValue: [[String: Any]]?) -> Swift.Void
     
-    static func request(_ url: String, completion: @escaping CompletionJSON) {
-        guard let baseURL = URL(string: "https://data.swift.org/swift-evolution\(url)") else {
+    static func requestList(_ url: String, completion: @escaping CompletionListKeyValue) {
+        guard url != "" else {
             return
         }
         
-        var request: URLRequest = URLRequest(url: baseURL);
-        request.httpMethod = "GET"
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let baseURL = "https://data.swift.org/swift-evolution\(url)"
+
+        self.request(url: baseURL) { error, data in
             guard error == nil, let data = data else {
                 print("error=\(error)")
+                completion(error, nil)
+                
                 return
             }
             
@@ -25,6 +28,48 @@ class Service {
             catch let error as NSError {
                 completion(error, nil)
             }
+        }
+    }
+    
+    static func requestText(_ url: String, completion: @escaping CompletionString) {
+        guard url != "" else {
+            return
+        }
+        
+        let baseURL = "https://raw.githubusercontent.com/apple/swift-evolution/master/proposals/\(url)"
+        
+        self.request(url: baseURL) { error, data in
+            guard error == nil, let data = data else {
+                print("error=\(error)")
+                completion(error, nil)
+                
+                return
+            }
+
+            if let content = String(data: data, encoding: .utf8) {
+                completion(nil, content)
+            }
+        }
+    }
+    
+    
+    fileprivate static func request(url: String, completion: @escaping CompletionObject) {
+        guard let baseURL = URL(string: url) else {
+            return
+        }
+        
+        var request: URLRequest = URLRequest(url: baseURL);
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil, let data = data else {
+                print("error=\(error)")
+                completion(error, nil)
+
+                return
+            }
+            
+            completion(nil, data)
         }
         
         task.resume()
