@@ -58,4 +58,16 @@ struct Config {
             }
         }
     }
+    
+    struct Orientation {
+        /**
+         Force the screen back to portrait orientation
+         */
+        static func portrait() {
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
+    }
 }
+
+
