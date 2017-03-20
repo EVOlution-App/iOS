@@ -1,4 +1,5 @@
 import UIKit
+import WebKit
 import Down
 
 class ProposalDetailViewController: BaseViewController {
@@ -19,6 +20,8 @@ class ProposalDetailViewController: BaseViewController {
         self.rotate = true
         
         self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "")
+        self.downView?.navigationDelegate = self
+        
         if let downView = self.downView {
             self.detailView.addSubview(downView)
         }
@@ -55,5 +58,16 @@ class ProposalDetailViewController: BaseViewController {
                 }
             }
         }
+    }
+}
+
+extension ProposalDetailViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if navigationAction.navigationType == .linkActivated {
+            decisionHandler(.cancel)
+        }
+        
+        decisionHandler(.allow)
     }
 }
