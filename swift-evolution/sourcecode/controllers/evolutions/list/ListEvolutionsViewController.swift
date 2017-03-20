@@ -1,6 +1,6 @@
 import UIKit
 
-class ListEvolutionsViewController: UIViewController {
+class ListEvolutionsViewController: BaseViewController {
 
     // Private IBOutlets
     @IBOutlet private weak var tableView: UITableView!
@@ -69,7 +69,30 @@ class ListEvolutionsViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Disable Rotation
+        self.rotate = false
+        
+        // Force rotation back to portrait
+        Config.Orientation.portrait()
+    }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ProposalDetailViewController,
+            let indexPath = self.tableView.indexPathForSelectedRow,
+            let destination = segue.destination as? ProposalDetailViewController {
+            
+            let item = self.filteredDataSource[indexPath.row]
+            destination.proposal = item
+        }
+    }
+
+
     // MARK: - Requests
     fileprivate func getProposalList() {
         EvolutionService.listEvolutions { error, proposals in
@@ -211,7 +234,9 @@ extension ListEvolutionsViewController: UITableViewDataSource {
 // MARK: - UITableView Delegate
 
 extension ListEvolutionsViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Config.Segues.proposalDetail.performSegue(in: self)
+    }
 }
 
 // MARK: - FilterGenericView Delegate

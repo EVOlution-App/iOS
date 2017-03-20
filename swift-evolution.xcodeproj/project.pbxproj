@@ -13,6 +13,10 @@
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEC1E6902A2008C4715 /* StatusLabel.swift */; };
 		91485DEF1E690A33008C4715 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEE1E690A33008C4715 /* Protocols.swift */; };
+		914A5C191E7F5701005E653A /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914A5C181E7F5701005E653A /* Down.framework */; };
+		914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5C1B1E7F5794005E653A /* ProposalDetailViewController.swift */; };
+		914A5C1E1E7F710C005E653A /* SegueRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */; };
+		914A5C231E7F97EF005E653A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5C221E7F97EF005E653A /* BaseViewController.swift */; };
 		915265261E67659900C2AFDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265251E67659900C2AFDA /* AppDelegate.swift */; };
 		9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 915265291E67659A00C2AFDA /* Main.storyboard */; };
 		9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9152652C1E67659A00C2AFDA /* Assets.xcassets */; };
@@ -45,7 +49,6 @@
 		91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */; };
 		91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */; };
 		91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */; };
-		91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E1501C1E6BE19300025B77 /* Compose.framework */; };
 		91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */; };
 		91E150221E6CCDD300025B77 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150211E6CCDD300025B77 /* UIView.swift */; };
 		91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150231E6CF37900025B77 /* UICollectionView.swift */; };
@@ -77,6 +80,10 @@
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		914A5C181E7F5701005E653A /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
+		914A5C1B1E7F5794005E653A /* ProposalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalDetailViewController.swift; sourceTree = "<group>"; };
+		914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueRepresentable.swift; sourceTree = "<group>"; };
+		914A5C221E7F97EF005E653A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		915265221E67659900C2AFDA /* swift-evolution.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-evolution.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		915265251E67659900C2AFDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9152652A1E67659A00C2AFDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -115,7 +122,6 @@
 		91E1500F1E6BBBA400025B77 /* FilterHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		91E150141E6BBCC100025B77 /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		91E150151E6BBCC100025B77 /* FilterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterCollectionViewCell.xib; sourceTree = "<group>"; };
-		91E1501C1E6BE19300025B77 /* Compose.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Compose.framework; path = Carthage/Build/iOS/Compose.framework; sourceTree = "<group>"; };
 		91E1501F1E6BF0BC00025B77 /* FilterListGenericView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterListGenericView.swift; sourceTree = "<group>"; };
 		91E150211E6CCDD300025B77 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		91E150231E6CF37900025B77 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
@@ -128,9 +134,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				914A5C191E7F5701005E653A /* Down.framework in Frameworks */,
 				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
-				91E1501D1E6BE19300025B77 /* Compose.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +157,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		914A5C1A1E7F5753005E653A /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				914A5C1B1E7F5794005E653A /* ProposalDetailViewController.swift */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		914A5C211E7F97DC005E653A /* base */ = {
+			isa = PBXGroup;
+			children = (
+				914A5C221E7F97EF005E653A /* BaseViewController.swift */,
+			);
+			name = base;
+			path = base;
+			sourceTree = "<group>";
+		};
 		915265191E67659900C2AFDA = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +299,7 @@
 		9152655B1E676F3E00C2AFDA /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				914A5C211E7F97DC005E653A /* base */,
 				915265841E67D7D900C2AFDA /* evolutions */,
 			);
 			path = controllers;
@@ -311,7 +335,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91E1501C1E6BE19300025B77 /* Compose.framework */,
+				914A5C181E7F5701005E653A /* Down.framework */,
 				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 				9152656F1E677D1200C2AFDA /* Unbox.framework */,
 			);
@@ -322,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				91E150291E6D250E00025B77 /* Array.swift */,
+				914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */,
 				912938D21E766EE000D2B2CF /* Sequence.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
 				91E150231E6CF37900025B77 /* UICollectionView.swift */,
@@ -345,6 +370,7 @@
 		915265841E67D7D900C2AFDA /* evolutions */ = {
 			isa = PBXGroup;
 			children = (
+				914A5C1A1E7F5753005E653A /* detail */,
 				91E1500E1E6BBB1C00025B77 /* filter */,
 				915265871E67D86E00C2AFDA /* list */,
 			);
@@ -436,7 +462,6 @@
 			children = (
 				91E150261E6D159A00025B77 /* DGCollectionViewLeftAlignFlowLayout */,
 			);
-			name = vendor;
 			path = vendor;
 			sourceTree = "<group>";
 		};
@@ -445,7 +470,6 @@
 			children = (
 				91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */,
 			);
-			name = DGCollectionViewLeftAlignFlowLayout;
 			path = DGCollectionViewLeftAlignFlowLayout;
 			sourceTree = "<group>";
 		};
@@ -593,7 +617,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Unbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Compose.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 			);
 			outputPaths = (
 			);
@@ -616,8 +640,10 @@
 				91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* StateFormatter.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
+				914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
+				914A5C231E7F97EF005E653A /* BaseViewController.swift in Sources */,
 				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
 				91D589651E7E441C00FE958D /* Status+Extension.swift in Sources */,
 				91E1502A1E6D250E00025B77 /* Array.swift in Sources */,
@@ -631,6 +657,7 @@
 				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
 				91E150161E6BBCC100025B77 /* FilterCollectionViewCell.swift in Sources */,
 				9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */,
+				914A5C1E1E7F710C005E653A /* SegueRepresentable.swift in Sources */,
 				91E150101E6BBBA400025B77 /* FilterHeaderView.swift in Sources */,
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				91D589691E7E4E4A00FE958D /* Bug+Extension.swift in Sources */,

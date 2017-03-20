@@ -30,6 +30,10 @@ struct Config {
         }
     }
     
+    enum Segues: String, SegueRepresentable {
+        case proposalDetail = "ProposalDetailSegue"
+    }
+    
     struct Nib {
         static func loadNib(name: String?) -> UINib? {
             guard let name = name else {
@@ -54,4 +58,16 @@ struct Config {
             }
         }
     }
+    
+    struct Orientation {
+        /**
+         Force the screen back to portrait orientation
+         */
+        static func portrait() {
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
+    }
 }
+
+
