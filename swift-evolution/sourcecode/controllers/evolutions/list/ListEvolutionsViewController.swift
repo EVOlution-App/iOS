@@ -211,7 +211,9 @@ extension ListEvolutionsViewController: UITableViewDataSource {
 // MARK: - UITableView Delegate
 
 extension ListEvolutionsViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Config.Segues.proposalDetail.performSegue(in: self)
+    }
 }
 
 // MARK: - FilterGenericView Delegate

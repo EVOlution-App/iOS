@@ -31,3 +31,10 @@ protocol FilterGenericViewDelegate: class {
 protocol FilterGenericViewLayoutDelegate: class {
     func didFinishedCalculateHeightToView(type: FilterListGenericType, height: CGFloat)
 }
+
+// MARK: - Enum Representable Protocols
+
+protocol SegueRepresentable: RawRepresentable {
+    func performSegue(in viewController: UIViewController)
+    func performSegue(in viewController: UIViewController, with object: Any?)
+}

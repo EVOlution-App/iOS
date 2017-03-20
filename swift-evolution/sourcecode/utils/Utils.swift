@@ -30,6 +30,10 @@ struct Config {
         }
     }
     
+    enum Segues: String, SegueRepresentable {
+        case proposalDetail = "ProposalDetailSegue"
+    }
+    
     struct Nib {
         static func loadNib(name: String?) -> UINib? {
             guard let name = name else {
