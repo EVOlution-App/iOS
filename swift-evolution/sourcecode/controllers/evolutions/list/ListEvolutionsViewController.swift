@@ -70,6 +70,17 @@ class ListEvolutionsViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ProposalDetailViewController,
+            let indexPath = self.tableView.indexPathForSelectedRow,
+            let destination = segue.destination as? ProposalDetailViewController {
+            
+            let item = self.filteredDataSource[indexPath.row]
+            destination.proposal = item
+        }
+    }
+
+
     // MARK: - Requests
     fileprivate func getProposalList() {
         EvolutionService.listEvolutions { error, proposals in
