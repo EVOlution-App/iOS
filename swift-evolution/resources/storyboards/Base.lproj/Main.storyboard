@@ -13,9 +13,10 @@
         <scene sceneID="Qxq-bI-Ays">
             <objects>
                 <navigationController id="uUZ-fy-2NM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.93824797869999998" green="0.31846234200000001" blue="0.2183952928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
@@ -26,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-1604" y="211"/>
         </scene>
-        <!--List Evolutions View Controller-->
+        <!--Swift Evolution-->
         <scene sceneID="XRC-8N-KTw">
             <objects>
                 <viewController id="alP-NB-bbT" customClass="ListEvolutionsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
@@ -227,43 +228,56 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="7ao-nW-5Ea">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="dnt-f2-jNQ">
-                            <rect key="frame" x="121" y="6" width="134" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swift Evolution" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxQ-2o-kaS">
-                                    <rect key="frame" x="24" y="0.0" width="111" height="33"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo-swift" translatesAutoresizingMaskIntoConstraints="NO" id="EQn-NO-8Rt">
-                                    <rect key="frame" x="0.0" y="6" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </view>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Swift Evolution" id="7ao-nW-5Ea"/>
                     <connections>
                         <outlet property="filterHeaderView" destination="Xy9-CI-bMR" id="ALD-ZF-bPv"/>
                         <outlet property="filterHeaderViewHeightConstraint" destination="irg-z7-87c" id="PVk-u8-tXk"/>
                         <outlet property="footerView" destination="J6Y-q1-3ee" id="ejk-HT-wtf"/>
                         <outlet property="tableView" destination="wrl-Y8-uLB" id="BXF-tf-kVq"/>
+                        <segue destination="b40-fX-jN2" kind="show" identifier="ProposalDetailSegue" id="sHa-dI-MgD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Els-ho-mf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-460" y="210.94452773613196"/>
         </scene>
+        <!--Proposal Detail View Controller-->
+        <scene sceneID="Hoh-3i-XTJ">
+            <objects>
+                <viewController id="b40-fX-jN2" customClass="ProposalDetailViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L4P-6d-O4b"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EqY-9D-y2h">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UrU-21-DUf" firstAttribute="top" secondItem="L4P-6d-O4b" secondAttribute="bottom" id="dGt-mE-WGw"/>
+                            <constraint firstItem="UrU-21-DUf" firstAttribute="leading" secondItem="EqY-9D-y2h" secondAttribute="leadingMargin" constant="-16" id="fj5-jK-z6P"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UrU-21-DUf" secondAttribute="trailing" constant="-16" id="wzd-Le-y1F"/>
+                            <constraint firstItem="2ZS-ut-GeF" firstAttribute="top" secondItem="UrU-21-DUf" secondAttribute="bottom" id="yjZ-6t-m67"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gDa-Vo-N0W"/>
+                    <connections>
+                        <outlet property="detailView" destination="UrU-21-DUf" id="60U-rP-Qzh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H8D-qN-2aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560.79999999999995" y="210.94452773613196"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icon-filter-off" width="23" height="23"/>
         <image name="icon-filter-on" width="23" height="23"/>
-        <image name="logo-swift" width="40" height="40"/>
     </resources>
 </document>
