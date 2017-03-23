@@ -829,10 +829,10 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolution";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6264c081-fec2-4dc0-b00b-37b78675b319";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development mobi.holanda.swift-evolution";
+				PROVISIONING_PROFILE = "ba2a5e0c-a942-4def-a0d8-87f2fae07216";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -852,10 +852,10 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolution";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "82bc7169-bf93-4e9a-bf1b-1a5c51eade0e";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore mobi.holanda.swift-evolution";
+				PROVISIONING_PROFILE = "305af9fb-8789-4515-9425-f65ceb70c860";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.swift-evolution.app";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
