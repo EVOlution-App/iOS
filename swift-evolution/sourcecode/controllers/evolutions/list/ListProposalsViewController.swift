@@ -237,6 +237,10 @@ extension ListProposalsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Config.Segues.proposalDetail.performSegue(in: self)
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
 }
 
 // MARK: - FilterGenericView Delegate
