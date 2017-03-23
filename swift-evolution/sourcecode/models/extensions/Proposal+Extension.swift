@@ -5,17 +5,17 @@ public enum Sorting {
     case descending
 }
 
-extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == Evolution {
-    func filter(status: StatusState) -> [Evolution] {
+extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == Proposal {
+    func filter(status: StatusState) -> [Proposal] {
         return self.filter { $0.status.state == status }
     }
     
-    func filter(language version: Version) -> [Evolution] {
+    func filter(language version: Version) -> [Proposal] {
         return self.filter { $0.status.version == version}
     }
     
-    func filter(by value: String) -> [Evolution] {
-        var filter: [Evolution] = []
+    func filter(by value: String) -> [Proposal] {
+        var filter: [Proposal] = []
         
         // ID
         let ids = self.filter { String($0.id) == value }
@@ -85,8 +85,8 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
         return filter
     }
     
-    func filter(by languages: [Version]) -> [Evolution] {
-        var filter: [Evolution] = []
+    func filter(by languages: [Version]) -> [Proposal] {
+        var filter: [Proposal] = []
         
         languages.forEach { language in
             let list = self.filter(language: language)
@@ -96,8 +96,8 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
         return filter
     }
     
-    func filter(by statuses: [StatusState], exceptions: [StatusState] = []) -> [Evolution] {
-        var filter: [Evolution] = []
+    func filter(by statuses: [StatusState], exceptions: [StatusState] = []) -> [Proposal] {
+        var filter: [Proposal] = []
         
         statuses.forEach { state in
             guard exceptions.contains(state) == false else {
@@ -111,19 +111,19 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
         return filter
     }
     
-    func index(of proposal: Evolution) -> Int? {
+    func index(of proposal: Proposal) -> Int? {
         return self.index(where: { $0 == proposal }) as? Int
     }
     
-    func sort(_ direction: Sorting) -> [Evolution] {
+    func sort(_ direction: Sorting) -> [Proposal] {
         return self.sorted(by: direction == .ascending ? { $0 < $1 } : { $0 > $1 })
     }
     
     /**
      Remove duplicated items from current list
      */
-    func distinct() -> [Evolution] {
-        var result: [Evolution] = []
+    func distinct() -> [Proposal] {
+        var result: [Proposal] = []
         
         for value in self {
             if result.index(of: value) == nil {

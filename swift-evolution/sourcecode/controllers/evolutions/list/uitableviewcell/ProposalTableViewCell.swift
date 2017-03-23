@@ -1,7 +1,7 @@
 import UIKit
 import SwiftRichString
 
-class EvolutionTableViewCell: UITableViewCell {
+class ProposalTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var statusIndicatorView: UIView!
@@ -17,12 +17,12 @@ class EvolutionTableViewCell: UITableViewCell {
     }
     
     // MARK: - Public properties
-    public var proposal: Evolution? {
+    public var proposal: Proposal? {
         didSet {
             self.configureElements()
         }
     }
-
+    
     // MARK: - Layout
     private func configureElements() {
         guard let proposal = self.proposal else {
@@ -79,7 +79,7 @@ class EvolutionTableViewCell: UITableViewCell {
             
             if (proposal.status.state == .activeReview ||
                 proposal.status.state == .scheduledForReview), let period = self.renderReviewPeriod() {
-            
+                
                 details += String.newLine + period
             }
         }
@@ -96,7 +96,7 @@ class EvolutionTableViewCell: UITableViewCell {
 }
 
 // MARK: - Renders && Style
-extension EvolutionTableViewCell {
+extension ProposalTableViewCell {
     
     fileprivate func styles() -> [Style] {
         let id = Style("id", {
@@ -123,7 +123,7 @@ extension EvolutionTableViewCell {
         
         return [id, title, label, value]
     }
-
+    
     fileprivate func renderAuthors() -> String? {
         guard let proposal = self.proposal,
             let authors = proposal.authors,
