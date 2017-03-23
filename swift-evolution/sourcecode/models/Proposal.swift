@@ -1,7 +1,7 @@
 import Unbox
 import Foundation
 
-struct Evolution {
+struct Proposal {
     let id: Int
     let title: String
     let status: Status
@@ -14,7 +14,7 @@ struct Evolution {
     let bugs: [Bug]?
 }
 
-extension Evolution: Unboxable {
+extension Proposal: Unboxable {
     init(unboxer: Unboxer) throws {
         self.status = try unboxer.unbox(key: "status")
         self.summary = unboxer.unbox(key: "summary")
@@ -29,30 +29,30 @@ extension Evolution: Unboxable {
     }
 }
 
-extension Evolution: CustomStringConvertible {
+extension Proposal: CustomStringConvertible {
     var description: String {
         return String(format: "SE-%04i", self.id)
     }
 }
 
-extension Evolution: Comparable {
-    public static func ==(lhs: Evolution, rhs: Evolution) -> Bool {
+extension Proposal: Comparable {
+    public static func ==(lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id == rhs.id
     }
     
-    public static func <(lhs: Evolution, rhs: Evolution) -> Bool {
+    public static func <(lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id < rhs.id
     }
     
-    public static func <=(lhs: Evolution, rhs: Evolution) -> Bool {
+    public static func <=(lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id <= rhs.id
     }
     
-    public static func >=(lhs: Evolution, rhs: Evolution) -> Bool {
+    public static func >=(lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id >= rhs.id
     }
     
-    public static func >(lhs: Evolution, rhs: Evolution) -> Bool {
+    public static func >(lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id > rhs.id
     }
 }

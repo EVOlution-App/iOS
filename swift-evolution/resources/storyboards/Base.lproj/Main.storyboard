@@ -13,7 +13,7 @@
         <scene sceneID="Qxq-bI-Ays">
             <objects>
                 <navigationController id="uUZ-fy-2NM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="r4M-VW-5SC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.93824797869999998" green="0.31846234200000001" blue="0.2183952928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -30,7 +30,7 @@
         <!--Swift Evolution-->
         <scene sceneID="XRC-8N-KTw">
             <objects>
-                <viewController id="alP-NB-bbT" customClass="ListEvolutionsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="alP-NB-bbT" customClass="ListProposalsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ndH-s4-ED8"/>
                         <viewControllerLayoutGuide type="bottom" id="rAt-nJ-6SM"/>

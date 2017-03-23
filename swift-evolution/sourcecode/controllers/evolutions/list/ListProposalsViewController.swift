@@ -1,17 +1,17 @@
 import UIKit
 
-class ListEvolutionsViewController: BaseViewController {
-
+class ListProposalsViewController: BaseViewController {
+    
     // Private IBOutlets
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var footerView: UIView!
     @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
     @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
-
+    
     // Private properties
     fileprivate var timer: Timer = Timer()
-    fileprivate var filteredDataSource: [Evolution] = []
-    fileprivate var dataSource: [Evolution] = []
+    fileprivate var filteredDataSource: [Proposal] = []
+    fileprivate var dataSource: [Proposal] = []
     
     // Filters
     fileprivate var languages: [Version] = []
@@ -27,9 +27,9 @@ class ListEvolutionsViewController: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Register Cell to TableView
-        self.tableView.registerNib(withClass: EvolutionTableViewCell.self)
+        self.tableView.registerNib(withClass: ProposalTableViewCell.self)
         
         self.tableView.estimatedRowHeight = 164
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -44,12 +44,12 @@ class ListEvolutionsViewController: BaseViewController {
         self.filterHeaderView.filteredByButton.addTarget(self, action: #selector(filteredByButtonAction(_:)), for: .touchUpInside)
         
         self.filterHeaderView.filterLevel = .without
-
+        
         
         // Request the Proposes
         self.getProposalList()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,7 +59,7 @@ class ListEvolutionsViewController: BaseViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-
+        
         self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
     }
     
@@ -69,7 +69,7 @@ class ListEvolutionsViewController: BaseViewController {
             self.view.layoutIfNeeded()
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -91,23 +91,23 @@ class ListEvolutionsViewController: BaseViewController {
             destination.proposal = item
         }
     }
-
-
+    
+    
     // MARK: - Requests
     fileprivate func getProposalList() {
-        EvolutionService.listEvolutions { error, proposals in
+        EvolutionService.listProposals { error, proposals in
             guard error == nil, let proposals = proposals else {
                 return
             }
             
             self.dataSource = proposals.filter(by: self.statusOrder)
             self.filteredDataSource = self.dataSource
-
+            
             self.filterHeaderView?.statusSource = self.statusOrder
             
             // Language Versions source
             self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
-
+            
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -146,7 +146,7 @@ class ListEvolutionsViewController: BaseViewController {
     
     func filteredByButtonAction(_ sender: UIButton?) {
         guard let sender = sender else { return }
-
+        
         sender.isSelected = !sender.isSelected
         self.filterHeaderView.filterLevel = sender.isSelected ? .status : .filtered
         
@@ -154,7 +154,7 @@ class ListEvolutionsViewController: BaseViewController {
         if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0 {
             self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
         }
-
+        
         self.layoutFilterHeaderView()
     }
     
@@ -172,14 +172,14 @@ class ListEvolutionsViewController: BaseViewController {
     fileprivate func selected(status: StatusState) -> Bool {
         guard let indexPaths = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems,
             indexPaths.flatMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == status }).count > 0 else {
-            return false
+                return false
         }
         return true
     }
     
     // MARK: - Utils
     
-    fileprivate func updateTableVew(_ filtered: [Evolution]? = nil) {
+    fileprivate func updateTableVew(_ filtered: [Proposal]? = nil) {
         if let filtered = filtered {
             self.filteredDataSource = filtered
         }
@@ -205,7 +205,7 @@ class ListEvolutionsViewController: BaseViewController {
                 self.filteredDataSource.append(contentsOf: implemented)
             }
         }
-
+        
         // Sort in the right order
         self.filteredDataSource = self.filteredDataSource.distinct().filter(by: self.statusOrder)
         
@@ -218,13 +218,13 @@ class ListEvolutionsViewController: BaseViewController {
 
 // MARK: - UITableView DataSource
 
-extension ListEvolutionsViewController: UITableViewDataSource {
+extension ListProposalsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredDataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.cell(forRowAt: indexPath) as EvolutionTableViewCell
+        let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
         cell.proposal = self.filteredDataSource[indexPath.row]
         
         return cell
@@ -233,7 +233,7 @@ extension ListEvolutionsViewController: UITableViewDataSource {
 
 // MARK: - UITableView Delegate
 
-extension ListEvolutionsViewController: UITableViewDelegate {
+extension ListProposalsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Config.Segues.proposalDetail.performSegue(in: self)
     }
@@ -241,7 +241,7 @@ extension ListEvolutionsViewController: UITableViewDelegate {
 
 // MARK: - FilterGenericView Delegate
 
-extension ListEvolutionsViewController: FilterGenericViewDelegate {
+extension ListProposalsViewController: FilterGenericViewDelegate {
     func didSelectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
         switch type {
         case .status:
@@ -255,7 +255,7 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
             if let item: StatusState = view.dataSource[indexPath.item] as? StatusState {
                 self.status.append(item)
             }
-
+            
             self.updateTableVew()
             
             
@@ -286,7 +286,7 @@ extension ListEvolutionsViewController: FilterGenericViewDelegate {
                 self.filterHeaderView.filterLevel = .status
                 self.layoutFilterHeaderView()
             }
-
+            
             
             if let status = item as? StatusState, self.status.remove(status) {
                 self.updateTableVew()
@@ -313,7 +313,7 @@ struct Search {
     let query: String
 }
 
-extension ListEvolutionsViewController: UISearchBarDelegate {
+extension ListProposalsViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
@@ -348,7 +348,7 @@ extension ListEvolutionsViewController: UISearchBarDelegate {
             else {
                 return
         }
-
+        
         let filtered = self.dataSource.filter(by: query)
         self.updateTableVew(filtered)
     }

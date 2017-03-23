@@ -11,7 +11,7 @@ class ProposalDetailViewController: BaseViewController {
     private var downView: DownView? = nil
     
     // MARK: - Public properties
-    var proposal: Evolution? = nil
+    var proposal: Proposal? = nil
     
     // MARK: - Life cycle
     override func viewDidLoad() {
