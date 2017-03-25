@@ -16,6 +16,7 @@ class ListProposalsViewController: BaseViewController {
     // Filters
     fileprivate var languages: [Version] = []
     fileprivate var status: [StatusState] = []
+    fileprivate var totalFilters = 0
     
     // Proposal ordering
     fileprivate lazy var statusOrder: [StatusState] = {
@@ -127,9 +128,11 @@ class ListProposalsViewController: BaseViewController {
         
         if !sender.isSelected {
             self.filterHeaderView.filteredByButton.isSelected = false
+            self.filterHeaderView.filterButton.badgeValue = (self.totalFilters > 0) ? "\(self.totalFilters)" : ""
         }
         else {
             // Open filter until filteredByButton max height
+            self.filterHeaderView.filterButton.badgeValue = ""
             self.filterHeaderView.filterLevel = .filtered
             
             // If have any status selected, open to status list max height, else open to language version max height
@@ -142,7 +145,7 @@ class ListProposalsViewController: BaseViewController {
             }
         }
         
-        self.updateTableVew()
+        self.updateTableView()
         self.layoutFilterHeaderView()
     }
     
@@ -166,7 +169,7 @@ class ListProposalsViewController: BaseViewController {
         }
         
         let filtered = self.dataSource.filter(by: search.query)
-        self.updateTableVew(filtered)
+        self.updateTableView(filtered)
     }
     
     // MARK: - Filters
@@ -181,7 +184,7 @@ class ListProposalsViewController: BaseViewController {
     
     // MARK: - Utils
     
-    fileprivate func updateTableVew(_ filtered: [Proposal]? = nil) {
+    fileprivate func updateTableView(_ filtered: [Proposal]? = nil) {
         if let filtered = filtered {
             self.filteredDataSource = filtered
         }
@@ -189,23 +192,21 @@ class ListProposalsViewController: BaseViewController {
             self.filteredDataSource = self.dataSource
         }
         
-        if self.filterHeaderView.filterButton.isSelected {
             
             // Check if there is at least on status selected
-            if self.status.count > 0 {
-                var expection: [StatusState] = [.implemented]
-                if self.selected(status: .implemented) && self.languages.count == 0 {
-                    expection = []
-                }
-                
-                self.filteredDataSource = self.filteredDataSource.filter(by: self.status, exceptions: expection).sort(.descending)
+        if self.status.count > 0 {
+            var expection: [StatusState] = [.implemented]
+            if self.selected(status: .implemented) && self.languages.count == 0 {
+                expection = []
             }
+                
+            self.filteredDataSource = self.filteredDataSource.filter(by: self.status, exceptions: expection).sort(.descending)
+        }
             
             // Check if the status selected is equal to .implemented and has language versions selected
-            if self.selected(status: .implemented) && self.languages.count > 0 {
-                let implemented = self.dataSource.filter(by: self.languages).filter(status: .implemented)
-                self.filteredDataSource.append(contentsOf: implemented)
-            }
+        if self.selected(status: .implemented) && self.languages.count > 0 {
+            let implemented = self.dataSource.filter(by: self.languages).filter(status: .implemented)
+            self.filteredDataSource.append(contentsOf: implemented)
         }
         
         // Sort in the right order
@@ -268,9 +269,10 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             
             if let item: StatusState = view.dataSource[indexPath.item] as? StatusState {
                 self.status.append(item)
+                
             }
             
-            self.updateTableVew()
+            self.updateTableView()
             
             
             break
@@ -280,13 +282,14 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
                 self.languages.append(version)
             }
             
-            self.updateTableVew()
+            self.updateTableView()
             
             break
             
         default:
             break
         }
+        totalFilters += 1
     }
     
     func didDeselectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
@@ -303,14 +306,14 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             
             
             if let status = item as? StatusState, self.status.remove(status) {
-                self.updateTableVew()
+                self.updateTableView()
             }
             
             break
             
         case .version:
             if self.languages.remove(string: item.description) {
-                self.updateTableVew()
+                self.updateTableView()
             }
             
             break
@@ -318,6 +321,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
         default:
             break
         }
+        totalFilters -= 1
     }
 }
 
@@ -342,7 +346,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
             if #available(iOS 10.0, *) {
                 self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { timer in
                     let filtered = self.dataSource.filter(by: searchText)
-                    self.updateTableVew(filtered)
+                    self.updateTableView(filtered)
                 }
             }
             else {
@@ -364,7 +368,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
         }
         
         let filtered = self.dataSource.filter(by: query)
-        self.updateTableVew(filtered)
+        self.updateTableView(filtered)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -372,7 +376,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         searchBar.text = ""
         
-        self.updateTableVew()
+        self.updateTableView()
     }
 }
 
