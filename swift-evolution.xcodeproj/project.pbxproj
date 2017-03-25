@@ -54,6 +54,7 @@
 		91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150231E6CF37900025B77 /* UICollectionView.swift */; };
 		91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */; };
 		91E1502A1E6D250E00025B77 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150291E6D250E00025B77 /* Array.swift */; };
+		9EE0EEA81E86B8B2000471B3 /* ButtonBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0EEA71E86B8B2000471B3 /* ButtonBadge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		91E150231E6CF37900025B77 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGCollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
 		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		9EE0EEA71E86B8B2000471B3 /* ButtonBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonBadge.swift; path = ../../models/extensions/ButtonBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +398,7 @@
 		9152658B1E67E10500C2AFDA /* designables */ = {
 			isa = PBXGroup;
 			children = (
+				9EE0EEA71E86B8B2000471B3 /* ButtonBadge.swift */,
 				9152658C1E67E12800C2AFDA /* BorderedLabel.swift */,
 				91485DEC1E6902A2008C4715 /* StatusLabel.swift */,
 			);
@@ -642,6 +645,7 @@
 				914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
+				9EE0EEA81E86B8B2000471B3 /* ButtonBadge.swift in Sources */,
 				914A5C231E7F97EF005E653A /* BaseViewController.swift in Sources */,
 				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
 				91D589651E7E441C00FE958D /* Status+Extension.swift in Sources */,
