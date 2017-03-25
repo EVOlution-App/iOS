@@ -126,7 +126,7 @@ class ListProposalsViewController: BaseViewController {
         
         if !sender.isSelected {
             self.filterHeaderView.filteredByButton.isSelected = false
-            self.filterHeaderView.filterButton.badgeValue = "\(self.totalFilters)"
+            self.filterHeaderView.filterButton.badgeValue = (self.totalFilters > 0) ? "\(self.totalFilters)" : ""
         }
         else {
             // Open filter until filteredByButton max height
