@@ -1,11 +1,3 @@
-//
-//  Badge+UIButton.swift
-//  swift-evolution
-//
-//  Created by Rodrigo Reis on 25/03/17.
-//  Copyright © 2017 Holanda Mobile. All rights reserved.
-//
-
 import UIKit
 
 class ButtonBadge : UIButton {
