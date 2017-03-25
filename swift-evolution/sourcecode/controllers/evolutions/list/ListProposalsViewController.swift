@@ -30,8 +30,10 @@ class ListProposalsViewController: BaseViewController {
         
         // Register Cell to TableView
         self.tableView.registerNib(withClass: ProposalTableViewCell.self)
+        self.tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
         
         self.tableView.estimatedRowHeight = 164
+        self.tableView.estimatedSectionHeaderHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         // Filter Header View settings
@@ -236,6 +238,14 @@ extension ListProposalsViewController: UITableViewDataSource {
 extension ListProposalsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Config.Segues.proposalDetail.performSegue(in: self)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
+    
+        headerCell.proposalCount = self.filteredDataSource.count
+        
+        return headerCell.contentView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
