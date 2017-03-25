@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
+		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
+		670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */; };
 		912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* IDFormatter.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
@@ -75,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalListHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProposalListHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* IDFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDFormatter.swift; sourceTree = "<group>"; };
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				915265801E67D7A900C2AFDA /* ProposalTableViewCell.swift */,
+				670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */,
 			);
 			path = uitableviewcell;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				915265811E67D7A900C2AFDA /* ProposalTableViewCell.xib */,
+				670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */,
 			);
 			path = uitableviewcell;
 			sourceTree = "<group>";
@@ -585,6 +591,7 @@
 			files = (
 				915265301E67659A00C2AFDA /* LaunchScreen.storyboard in Resources */,
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
+				670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
 				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
 				915265831E67D7A900C2AFDA /* ProposalTableViewCell.xib in Resources */,
@@ -649,6 +656,7 @@
 				91D5896B1E7E538600FE958D /* State+Extension.swift in Sources */,
 				91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */,
 				912938D31E766EE000D2B2CF /* Sequence.swift in Sources */,
+				670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListProposalsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
