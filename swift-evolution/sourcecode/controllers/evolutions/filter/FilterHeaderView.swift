@@ -61,6 +61,12 @@ class FilterHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "All Statuses"))
+        
+        self.filteredByButton.adjustsImageWhenHighlighted = false
+        self.filteredByButton.setAttributedTitle(text, for: .normal)
+        self.filteredByButton.setAttributedTitle(text, for: .highlighted)
+        
         self.statusFilterView.layoutDelegate = self
         self.languageVersionFilterView.layoutDelegate = self
     }
@@ -70,6 +76,22 @@ class FilterHeaderView: UIView {
         
         self.set(to: .bottom, with: UIColor.Filter.darkGray)
     }
+    
+    func updateFilterButton(status: [StatusState]) {
+        if status.count == 0 {
+           let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "All Statuses"))
+            filteredByButton.setAttributedTitle(text, for: .normal)
+        } else if status.count > 0 && status.count < 3 {
+            let labelFilter = status.flatMap({ $0.description }).joined(separator: ", ")
+           let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: labelFilter))
+            filteredByButton.setAttributedTitle(text, for: .normal)
+        } else {
+           let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "\(status.count) filters"))
+            filteredByButton.setAttributedTitle(text, for: .normal)
+        }
+        
+    }
+    
 }
 
 // MARK: - FilterGenericViewLayout Delegate
@@ -87,8 +109,28 @@ extension FilterHeaderView: FilterGenericViewLayoutDelegate {
             self.languageVersionFilterView.setNeedsUpdateConstraints()
             break
             
-        default:
+        case .none:
+            self.statusFilterViewHeightConstraint.constant = height
+            self.statusFilterView.setNeedsUpdateConstraints()
+            self.languageVersionFilterViewHeightConstraint.constant = height
+            self.languageVersionFilterView.setNeedsUpdateConstraints()
             break
+
         }
+    }
+}
+
+// MARK: - Text and Colors
+
+extension FilterHeaderView {
+    func formatterColor(color: UIColor,text : String) -> NSMutableAttributedString {
+        let color = [NSForegroundColorAttributeName: color, NSFontAttributeName: UIFont.systemFont(ofSize: 14)]
+        return NSMutableAttributedString(string: text, attributes: color)
+    }
+    
+    func concatText(texts: NSAttributedString...) ->  NSAttributedString {
+        let combination = NSMutableAttributedString()
+        texts.forEach({combination.append($0)})
+        return combination
     }
 }
