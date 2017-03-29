@@ -46,6 +46,7 @@ After send your pull request, other developers will make a code review before me
 - Diogo Tridapalli - [Github](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
 - Ricardo Borelli - [Github](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
 - Rodrigo Reis - [Github](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
+- Bruno Guidolim - [Github](https://github.com/bguidolim) / [Twitter](https://twitter.com/bguidolim)
 
 ## License
 
