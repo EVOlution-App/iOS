@@ -78,17 +78,17 @@ class FilterHeaderView: UIView {
     }
     
     func updateFilterButton(status: [StatusState]) {
+        var label = "\(status.count) filters"
+        
         if status.count == 0 {
-           let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "All Statuses"))
-            filteredByButton.setAttributedTitle(text, for: .normal)
+            label = "All Statuses"
+            
         } else if status.count > 0 && status.count < 3 {
-            let labelFilter = status.flatMap({ $0.description }).joined(separator: ", ")
-           let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: labelFilter))
-            filteredByButton.setAttributedTitle(text, for: .normal)
-        } else {
-           let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "\(status.count) filters"))
-            filteredByButton.setAttributedTitle(text, for: .normal)
+            label = status.flatMap({ $0.description }).joined(separator: ", ")
         }
+        
+        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: label))
+        filteredByButton.setAttributedTitle(text, for: .normal)
         
     }
     
