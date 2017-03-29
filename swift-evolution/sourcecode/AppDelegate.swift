@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD
 import Fabric
 import Crashlytics
 
@@ -10,6 +11,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        LoadingMonitor.register()
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setDefaultMaskType(.clear)
         
         let font = UIFont(name: "HelveticaNeue-Thin", size: 25)!
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.Proposal.darkGray]

@@ -1,3 +1,4 @@
+github "SVProgressHUD/SVProgressHUD" "2.1.2"
 github "iwasrobbed/Down" "v0.3.3"
 github "johnsundell/unbox" "2.4.0"
-github "malcommac/SwiftRichString" "0.9.5"
+github "malcommac/SwiftRichString" "0.9.6"

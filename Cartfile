@@ -1,3 +1,4 @@
 github "johnsundell/unbox"
 github "malcommac/SwiftRichString"
 github "iwasrobbed/Down"
+github "SVProgressHUD/SVProgressHUD"
