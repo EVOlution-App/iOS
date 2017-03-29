@@ -41,6 +41,7 @@ After send your pull request, other developers will make a code review before me
 
 ## Contributors 
 
+- Bruno Guidolim - [Github](https://github.com/bguidolim) / [Twitter](https://twitter.com/bguidolim)
 - Bruno Hecktheuer - [Github](https://github.com/bbheck) / [Twitter](https://twitter.com/brunobheck)
 - Diego Ventura - [GitHub](https://github.com/diegoventura) / [Twitter](https://twitter.com/venturadiego)
 - Diogo Tridapalli - [Github](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
