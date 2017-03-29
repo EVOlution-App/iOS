@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
+		408A32A81E8C5678006A870B /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32A71E8C5678006A870B /* SVProgressHUD.framework */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
 		670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */; };
 		912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* IDFormatter.swift */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		408A32A71E8C5678006A870B /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalListHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProposalListHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* IDFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDFormatter.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			files = (
 				914A5C191E7F5701005E653A /* Down.framework in Frameworks */,
 				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
+				408A32A81E8C5678006A870B /* SVProgressHUD.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +344,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				408A32A71E8C5678006A870B /* SVProgressHUD.framework */,
 				914A5C181E7F5701005E653A /* Down.framework */,
 				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 				9152656F1E677D1200C2AFDA /* Unbox.framework */,
@@ -627,6 +631,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Unbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 			);
 			outputPaths = (
 			);

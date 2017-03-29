@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SVProgressHUD
 
 final class LoadingMonitor: URLProtocol {
     
@@ -38,6 +39,7 @@ final class LoadingMonitor: URLProtocol {
 
     override func startLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        SVProgressHUD.show()
     
         guard let mutableRequest = (request as NSURLRequest).mutableCopy() as? NSMutableURLRequest else {
             return
@@ -58,5 +60,6 @@ final class LoadingMonitor: URLProtocol {
     
     override func stopLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        SVProgressHUD.dismiss()
     }
 }
