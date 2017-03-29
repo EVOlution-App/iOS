@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
+		408A32AF1E8C5E0C006A870B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AD1E8C5E0C006A870B /* Crashlytics.framework */; };
+		408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AE1E8C5E0C006A870B /* Fabric.framework */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
 		670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */; };
 		912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* IDFormatter.swift */; };
@@ -77,6 +79,8 @@
 
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		408A32AD1E8C5E0C006A870B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = frameworks/Crashlytics.framework; sourceTree = "<group>"; };
+		408A32AE1E8C5E0C006A870B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = frameworks/Fabric.framework; sourceTree = "<group>"; };
 		670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalListHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProposalListHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* IDFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDFormatter.swift; sourceTree = "<group>"; };
@@ -139,7 +143,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				914A5C191E7F5701005E653A /* Down.framework in Frameworks */,
+				408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */,
 				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
+				408A32AF1E8C5E0C006A870B /* Crashlytics.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +344,8 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				408A32AD1E8C5E0C006A870B /* Crashlytics.framework */,
+				408A32AE1E8C5E0C006A870B /* Fabric.framework */,
 				914A5C181E7F5701005E653A /* Down.framework */,
 				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 				9152656F1E677D1200C2AFDA /* Unbox.framework */,
@@ -629,7 +637,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n./Fabric.framework/run 508dd26ebc3c23fd020a50ca76647802c64ee267 cf12350583ab8cedbb1287b6f6ec30ce0cfe028502427d087379a95ab6487c58";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -833,6 +841,8 @@
 					"$(PROJECT_DIR)/swift-evolution",
 					"$(PROJECT_DIR)/swift-evolution/frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/frameworks",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -856,6 +866,8 @@
 					"$(PROJECT_DIR)/swift-evolution",
 					"$(PROJECT_DIR)/swift-evolution/frameworks",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/frameworks",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

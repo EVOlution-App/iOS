@@ -1,4 +1,6 @@
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let font = UIFont(name: "HelveticaNeue-Thin", size: 25)!
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.Proposal.darkGray]
+        
+        Fabric.with([Crashlytics.self])
         
         return true
     }
