@@ -130,7 +130,7 @@ extension FilterHeaderView {
     
     func concatText(texts: NSAttributedString...) ->  NSAttributedString {
         let combination = NSMutableAttributedString()
-        texts.forEach({combination.append($0)})
+        let _ = texts.map(combination.append)
         return combination
     }
 }
