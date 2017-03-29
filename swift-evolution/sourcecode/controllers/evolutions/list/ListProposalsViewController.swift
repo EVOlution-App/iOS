@@ -142,7 +142,7 @@ class ListProposalsViewController: BaseViewController {
             }
         }
         
-        self.updateTableVew()
+        self.updateTableView()
         self.layoutFilterHeaderView()
     }
     
@@ -153,7 +153,7 @@ class ListProposalsViewController: BaseViewController {
         self.filterHeaderView.filterLevel = sender.isSelected ? .status : .filtered
         
         // If have any status selected, open to status list max height, else open to language version max height
-        if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0 {
+        if let selected = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.count > 0, sender.isSelected {
             self.filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
         }
         
@@ -166,7 +166,7 @@ class ListProposalsViewController: BaseViewController {
         }
         
         let filtered = self.dataSource.filter(by: search.query)
-        self.updateTableVew(filtered)
+        self.updateTableView(filtered)
     }
     
     // MARK: - Filters
@@ -181,7 +181,7 @@ class ListProposalsViewController: BaseViewController {
     
     // MARK: - Utils
     
-    fileprivate func updateTableVew(_ filtered: [Proposal]? = nil) {
+    fileprivate func updateTableView(_ filtered: [Proposal]? = nil) {
         if let filtered = filtered {
             self.filteredDataSource = filtered
         }
@@ -270,7 +270,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
                 self.status.append(item)
             }
             
-            self.updateTableVew()
+            self.updateTableView()
             
             
             break
@@ -280,13 +280,14 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
                 self.languages.append(version)
             }
             
-            self.updateTableVew()
+            self.updateTableView()
             
             break
             
         default:
             break
         }
+        self.filterHeaderView.updateFilterButton(status: self.status)
     }
     
     func didDeselectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
@@ -303,14 +304,14 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             
             
             if let status = item as? StatusState, self.status.remove(status) {
-                self.updateTableVew()
+                self.updateTableView()
             }
             
             break
             
         case .version:
             if self.languages.remove(string: item.description) {
-                self.updateTableVew()
+                self.updateTableView()
             }
             
             break
@@ -318,6 +319,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
         default:
             break
         }
+        self.filterHeaderView.updateFilterButton(status: self.status)
     }
 }
 
@@ -342,7 +344,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
             if #available(iOS 10.0, *) {
                 self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { timer in
                     let filtered = self.dataSource.filter(by: searchText)
-                    self.updateTableVew(filtered)
+                    self.updateTableView(filtered)
                 }
             }
             else {
@@ -364,7 +366,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
         }
         
         let filtered = self.dataSource.filter(by: query)
-        self.updateTableVew(filtered)
+        self.updateTableView(filtered)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -372,7 +374,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
         searchBar.text = ""
         
-        self.updateTableVew()
+        self.updateTableView()
     }
 }
 
