@@ -1,6 +1,7 @@
 import UIKit
 import WebKit
 import Down
+import Crashlytics
 
 class ProposalDetailViewController: BaseViewController {
     
@@ -27,7 +28,6 @@ class ProposalDetailViewController: BaseViewController {
         }
         
         self.getProposalDetail()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,10 +47,19 @@ class ProposalDetailViewController: BaseViewController {
             return
         }
         
-        EvolutionService.detail(proposal: proposal) { error, data in
+        EvolutionService.detail(proposal: proposal) { [unowned self] error, data in
             guard error == nil, let data = data else {
+                if let error = error {
+                    Crashlytics.sharedInstance().recordError(error)
+                }
+
                 return
             }
+            
+            Answers.logContentView(withName: "Proposal Detail",
+                                   contentType: "Load Detail from server",
+                                   contentId: self.proposal?.link,
+                                   customAttributes: nil)
             
             DispatchQueue.main.async {
                 try? self.downView?.update(markdownString: data) {
