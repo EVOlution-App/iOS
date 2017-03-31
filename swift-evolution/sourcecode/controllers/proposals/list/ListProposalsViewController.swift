@@ -1,4 +1,5 @@
 import UIKit
+import Crashlytics
 
 class ListProposalsViewController: BaseViewController {
     
@@ -47,6 +48,10 @@ class ListProposalsViewController: BaseViewController {
         
         self.filterHeaderView.filterLevel = .without
         
+        Answers.logContentView(withName: "Proposal List",
+                               contentType: "Load View",
+                               contentId: nil,
+                               customAttributes: nil)
         
         // Request the Proposes
         self.getProposalList()
@@ -99,8 +104,17 @@ class ListProposalsViewController: BaseViewController {
     fileprivate func getProposalList() {
         EvolutionService.listProposals { error, proposals in
             guard error == nil, let proposals = proposals else {
+                if let error = error {
+                    Crashlytics.sharedInstance().recordError(error)
+                }
+                
                 return
             }
+            
+            Answers.logContentView(withName: "Proposal List",
+                                   contentType: "Load Proposals from server",
+                                   contentId: nil,
+                                   customAttributes: nil)
             
             self.dataSource = proposals.filter(by: self.statusOrder)
             self.filteredDataSource = self.dataSource
@@ -165,6 +179,7 @@ class ListProposalsViewController: BaseViewController {
             return
         }
         
+        Answers.logSearch(withQuery: search.query, customAttributes: ["type": "search", "os-version": "<= ios9"])
         let filtered = self.dataSource.filter(by: search.query)
         self.updateTableView(filtered)
     }
@@ -267,6 +282,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             }
             
             if let item: StatusState = view.dataSource[indexPath.item] as? StatusState {
+                Answers.logSearch(withQuery: item.rawValue.className, customAttributes: ["type": "filter"])
                 self.status.append(item)
             }
             
@@ -277,6 +293,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             
         case .version:
             if let version = view.dataSource[indexPath.item] as? String {
+                Answers.logSearch(withQuery: version, customAttributes: ["type": "filter", "subtype": "language-version"])
                 self.languages.append(version)
             }
             
@@ -343,6 +360,8 @@ extension ListProposalsViewController: UISearchBarDelegate {
             let interval = 0.7
             if #available(iOS 10.0, *) {
                 self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { timer in
+                    Answers.logSearch(withQuery: searchText, customAttributes: ["type": "search", "os-version": ">= ios10"])
+                    
                     let filtered = self.dataSource.filter(by: searchText)
                     self.updateTableView(filtered)
                 }

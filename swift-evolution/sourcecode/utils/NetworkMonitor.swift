@@ -1,11 +1,3 @@
-//
-//  NetworkMonitor.swift
-//  swift-evolution
-//
-//  Created by Bruno Guidolim on 29/03/17.
-//  Copyright © 2017 Holanda Mobile. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import SVProgressHUD
@@ -60,6 +52,6 @@ final class LoadingMonitor: URLProtocol {
     
     override func stopLoading() {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        SVProgressHUD.dismiss()
+        SVProgressHUD.dismiss(withDelay: 0.5)
     }
 }
