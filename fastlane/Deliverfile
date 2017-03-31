@@ -6,5 +6,5 @@
 ###################### Automatically generated ######################
 # Feel free to remove the following line if you use fastlane (which you should)
 
-app_identifier "mobi.holanda.swift-evolution" # The bundle identifier of your app
+app_identifier "io.swift-evolution.app" # The bundle identifier of your app
 username "unnamedd@gmail.com" # your Apple ID user

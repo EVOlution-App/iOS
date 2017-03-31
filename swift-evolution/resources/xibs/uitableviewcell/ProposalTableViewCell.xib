@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProposalTableViewCell" rowHeight="176" id="KGk-i7-Jjw" customClass="ProposalTableViewCell" customModule="swift_evolution" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textView userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Qi-F9-RBA">
+                        <rect key="frame" x="8" y="44" width="359" height="124"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                    </textView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ffn-v4-55F">
+                        <rect key="frame" x="0.0" y="0.0" width="3" height="176"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="3" id="DaV-5s-wFC"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" layoutMarginsFollowReadableWidth="YES" text="Label" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-Ru-ZXx" customClass="StatusLabel" customModule="swift_evolution" customModuleProvider="target">
+                        <rect key="frame" x="14" y="18" width="40" height="26"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="570-Dz-mW2"/>
+                            <constraint firstAttribute="height" constant="26" id="i9a-MF-lZn"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" red="0.81568627449999997" green="0.1333333333" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.81568627449999997" green="0.1333333333" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="9Qi-F9-RBA" firstAttribute="top" secondItem="0uG-Ru-ZXx" secondAttribute="bottom" id="1XH-jX-I8H"/>
+                    <constraint firstItem="Ffn-v4-55F" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="7pU-Mp-bt6"/>
+                    <constraint firstAttribute="topMargin" secondItem="0uG-Ru-ZXx" secondAttribute="top" constant="-10" id="cal-H7-gaL"/>
+                    <constraint firstItem="9Qi-F9-RBA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="fC7-oo-mcp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="9Qi-F9-RBA" secondAttribute="bottom" id="g1z-fQ-1aa"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="9Qi-F9-RBA" secondAttribute="trailing" id="iK4-GR-1Sm"/>
+                    <constraint firstItem="Ffn-v4-55F" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="kzq-gG-RGc"/>
+                    <constraint firstItem="0uG-Ru-ZXx" firstAttribute="leading" secondItem="Ffn-v4-55F" secondAttribute="trailing" constant="11" id="qA9-sB-owk"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Ffn-v4-55F" secondAttribute="bottom" constant="-8.5" id="wlF-yr-6bV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="detailsLabel" destination="9Qi-F9-RBA" id="KS0-aF-ddb"/>
+                <outlet property="statusIndicatorView" destination="Ffn-v4-55F" id="NFO-ID-mZi"/>
+                <outlet property="statusLabel" destination="0uG-Ru-ZXx" id="x4M-Ip-ydv"/>
+                <outlet property="statusLabelWidthConstraint" destination="570-Dz-mW2" id="YYb-jc-KWe"/>
+            </connections>
+            <point key="canvasLocation" x="43.5" y="106"/>
+        </tableViewCell>
+    </objects>
+</document>

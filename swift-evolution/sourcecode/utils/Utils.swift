@@ -4,21 +4,34 @@ struct Config {
     
     struct Date {
         struct Formatter {
-            static var internals: DateFormatter {
+            static var iso8601: DateFormatter {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+                formatter.locale = Locale(identifier: "en_US")
                 
                 return formatter
             }
             
-            static var externals: DateFormatter {
+            static var yearMonthDay: DateFormatter {
                 let formatter = DateFormatter()
-                formatter.dateFormat = "dd 'de' MMMM 'de' YYYY - 'às' HH'h'mm"
-                formatter.locale = Locale(identifier: "pt_BR")
+                formatter.dateFormat = "yyyy-MM-dd"
+                formatter.locale = Locale(identifier: "en_US")
                 
                 return formatter
             }
+
+            static var monthDay: DateFormatter {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMMM dd"
+                formatter.locale = Locale(identifier: "en_US")
+
+                return formatter
+            }
         }
+    }
+    
+    enum Segues: String, SegueRepresentable {
+        case proposalDetail = "ProposalDetailSegue"
     }
     
     struct Nib {
@@ -33,4 +46,28 @@ struct Config {
             return nib
         }
     }
+    
+    struct Common {
+        struct Regex {
+            static var proposalID: String {
+                return "SE-([0-9]+)"
+            }
+            
+            static var bugID: String {
+                return "SR-([0-9]+)"
+            }
+        }
+    }
+    
+    struct Orientation {
+        /**
+         Force the screen back to portrait orientation
+         */
+        static func portrait() {
+            let value = UIInterfaceOrientation.portrait.rawValue
+            UIDevice.current.setValue(value, forKey: "orientation")
+        }
+    }
 }
+
+

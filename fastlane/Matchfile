@@ -2,7 +2,7 @@ git_url "git@github.com:unnamedd/personal-certificates.git"
 
 type "development" # The default type, can be: appstore, adhoc or development
 
-app_identifier "mobi.holanda.swift-evolution"
+app_identifier "io.swift-evolution.app"
 username "unnamedd@gmail.com" # Your Apple Developer Portal username
 
 # For all available options run `fastlane match --help`
