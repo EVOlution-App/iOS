@@ -14,7 +14,7 @@ class Service {
 
         self.request(url: baseURL) { error, data in
             guard error == nil, let data = data else {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 completion(error, nil)
                 
                 return
@@ -40,7 +40,7 @@ class Service {
         
         self.request(url: baseURL) { error, data in
             guard error == nil, let data = data else {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 completion(error, nil)
                 
                 return
@@ -63,7 +63,7 @@ class Service {
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil, let data = data else {
-                print("error=\(error)")
+                print("error=\(String(describing: error))")
                 completion(error, nil)
 
                 return
