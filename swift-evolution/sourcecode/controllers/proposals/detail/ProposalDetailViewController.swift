@@ -25,6 +25,13 @@ class ProposalDetailViewController: BaseViewController {
         
         if let downView = self.downView {
             self.detailView.addSubview(downView)
+            downView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+            downView.topAnchor.constraint(equalTo: self.detailView.topAnchor),
+            downView.bottomAnchor.constraint(equalTo: self.detailView.bottomAnchor),
+            downView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor),
+            downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
+            ])
         }
         
         self.getProposalDetail()
@@ -33,12 +40,6 @@ class ProposalDetailViewController: BaseViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        self.downView?.frame = self.detailView.frame
     }
 
     // MARK: - Networking
