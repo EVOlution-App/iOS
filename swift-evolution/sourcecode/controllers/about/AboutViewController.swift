@@ -75,7 +75,7 @@ class AboutViewController: UITableViewController {
         let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
-        let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nCopyright © 2017 Apple Inc. All rights reserved.\n\nSwift and the Swift logo are trademarks of Apple Inc. For more information about the Swift project, see Swift.org."
+        let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
         let thanks = About(section: .thanks, items: [daniel, danilo, jesse, lisa], footer: copyright)
         about.append(thanks)
         
