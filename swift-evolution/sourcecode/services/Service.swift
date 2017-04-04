@@ -11,9 +11,7 @@ class Service {
             return
         }
         
-        let baseURL = "https://data.swift.org/swift-evolution\(url)"
-
-        self.request(url: baseURL) { error, data in
+        self.request(url: url) { error, data in
             guard error == nil, let data = data else {
                 print("error=\(String(describing: error))")
                 completion(error, nil)
