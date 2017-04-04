@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -290,22 +290,21 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="nKE-aV-2Yb">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="logo-swift-splash" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-Vn-6Wl">
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="logo-evolution-splash" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-Vn-6Wl">
                                     <rect key="frame" x="124" y="32" width="126" height="126"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="126" id="gUD-0L-zG1"/>
                                         <constraint firstAttribute="height" constant="126" id="kmZ-dn-f1w"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
-                                    <rect key="frame" x="8" y="242" width="359" height="134"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="v1.0.1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
+                                    <rect key="frame" x="8" y="242" width="359" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="134" id="78P-to-GH8"/>
                                     </constraints>
-                                    <string key="text">v1.0  We are not part of Apple. This project was made by a group of independent developers to help users follow the proposals from Swift Evolution. </string>
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -336,7 +335,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AboutCellIdentifier" textLabel="g97-K9-KnQ" detailTextLabel="wVb-df-kea" style="IBUITableViewCellStyleSubtitle" id="cZ5-yH-F1U">
-                                <rect key="frame" x="0.0" y="431.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="330.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZ5-yH-F1U" id="5t8-Yn-pJ8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -369,12 +368,12 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JU-pf-9l0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-735"/>
+            <point key="canvasLocation" x="560.79999999999995" y="-735.38230884557731"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon-filter-off" width="23" height="23"/>
         <image name="icon-filter-on" width="23" height="23"/>
-        <image name="logo-swift-splash" width="200" height="200"/>
+        <image name="logo-evolution-splash" width="200" height="200"/>
     </resources>
 </document>
