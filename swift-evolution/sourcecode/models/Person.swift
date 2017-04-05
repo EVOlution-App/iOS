@@ -2,9 +2,15 @@ import UIKit
 import Unbox
 
 struct Person {
+    var id: Int?
     let name: String?
     let link: String?
     let username: String?
+
+    // These properties will not come from server
+    let github: GithubProfile? = nil
+    var asAuthor: [Proposal]? = nil
+    var asManager: [Proposal]? = nil
 }
 
 extension Person: Unboxable {
