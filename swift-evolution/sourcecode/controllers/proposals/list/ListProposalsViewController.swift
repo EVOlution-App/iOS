@@ -13,6 +13,7 @@ class ListProposalsViewController: BaseViewController {
     fileprivate var timer: Timer = Timer()
     fileprivate var filteredDataSource: [Proposal] = []
     fileprivate var dataSource: [Proposal] = []
+    fileprivate var people: [String: Person] = [:]
     
     // Filters
     fileprivate var languages: [Version] = []
@@ -120,6 +121,8 @@ class ListProposalsViewController: BaseViewController {
             self.filteredDataSource = self.dataSource
             
             self.filterHeaderView?.statusSource = self.statusOrder
+            
+            self.buildPeople()
             
             // Language Versions source
             self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
@@ -230,6 +233,38 @@ class ListProposalsViewController: BaseViewController {
         self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         self.tableView.endUpdates()
     }
+    
+    // MARK: - Data Consolidation
+    
+    func buildPeople() {
+        var authors: [String: Person] = [:]
+        
+        self.dataSource.forEach { proposal in
+            proposal.authors?.forEach { person in
+                guard let name = person.name, authors[name] == nil else {
+                    return
+                }
+                authors[name] = person
+            }
+        }
+    
+        var index = 1
+        authors.forEach { key, value in
+            guard let name = value.name, var person = authors[name] else { return }
+            
+            person.id = index
+            person.asAuthor = self.dataSource.filter(author: person)
+            person.asManager = self.dataSource.filter(manager: person)
+            
+            authors[name] = person
+            
+            index += 1
+        }
+
+        self.people = authors
+    }
+    
+    
 }
 
 
