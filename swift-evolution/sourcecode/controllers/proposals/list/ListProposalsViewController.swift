@@ -239,7 +239,6 @@ class ListProposalsViewController: BaseViewController {
     func buildPeople() {
         var authors: [String: Person] = [:]
         
-        var index = 1
         self.dataSource.forEach { proposal in
             proposal.authors?.forEach { person in
                 guard let name = person.name, name != "", authors[name] == nil else { return }
@@ -247,20 +246,16 @@ class ListProposalsViewController: BaseViewController {
                 
                 guard var person = authors[name] else { return }
                 
-                person.id = index
+                person.id = UUID().uuidString
                 person.asAuthor = self.dataSource.filter(author: person)
                 person.asManager = self.dataSource.filter(manager: person)
                 
                 authors[name] = person
-                
-                index += 1
             }
         }
 
         self.people = authors
     }
-    
-    
 }
 
 

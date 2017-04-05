@@ -2,7 +2,7 @@ import UIKit
 import Unbox
 
 struct Person {
-    var id: Int?
+    var id: String?
     let name: String?
     let link: String?
     let username: String?
