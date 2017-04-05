@@ -241,16 +241,25 @@ class ListProposalsViewController: BaseViewController {
         
         self.dataSource.forEach { proposal in
             proposal.authors?.forEach { person in
-                guard let name = person.name, name != "", authors[name] == nil else { return }
+                guard let name = person.name, name != "" else {
+                    return
+                }
+                
+                guard authors[name] == nil else {
+                    return
+                }
+                
                 authors[name] = person
                 
-                guard var person = authors[name] else { return }
+                guard var user = authors[name] else {
+                    return
+                }
                 
-                person.id = UUID().uuidString
-                person.asAuthor = self.dataSource.filter(author: person)
-                person.asManager = self.dataSource.filter(manager: person)
+                user.id = UUID().uuidString
+                user.asAuthor = self.dataSource.filter(author: user)
+                user.asManager = self.dataSource.filter(manager: user)
                 
-                authors[name] = person
+                authors[name] = user
             }
         }
 
