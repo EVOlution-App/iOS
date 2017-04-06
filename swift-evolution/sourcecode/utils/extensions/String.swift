@@ -30,6 +30,20 @@ extension String {
     }
     
     /**
+     Convert few HTML entities to plain text
+     */
+    var convertHTMLEntities: String {
+        var text = self
+        
+        let entities = ["&quot;":"\"", "&apos;":"'", "&lt;":"<", "&gt;":">", " &amp; ": " & "]
+        entities.forEach { key, value in
+            text = text.replacingOccurrences(of: value, with: key)
+        }
+
+        return text
+    }
+    
+    /**
      Wrap the text using tag
      ````
      print("Name:".tag(.title)) 
