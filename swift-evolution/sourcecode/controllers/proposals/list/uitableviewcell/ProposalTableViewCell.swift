@@ -4,9 +4,9 @@ import SwiftRichString
 class ProposalTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
-    @IBOutlet private weak var statusIndicatorView: UIView!
-    @IBOutlet private weak var statusLabel: StatusLabel!
-    @IBOutlet private weak var detailsLabel: UITextView!
+    @IBOutlet fileprivate weak var statusIndicatorView: UIView!
+    @IBOutlet fileprivate weak var statusLabel: StatusLabel!
+    @IBOutlet fileprivate weak var detailsLabel: UITextView!
     
     @IBOutlet private weak var statusLabelWidthConstraint: NSLayoutConstraint!
     
@@ -22,7 +22,7 @@ class ProposalTableViewCell: UITableViewCell {
             self.configureElements()
         }
     }
-    
+
     // MARK: - Layout
     private func configureElements() {
         guard let proposal = self.proposal else {
@@ -89,8 +89,24 @@ class ProposalTableViewCell: UITableViewCell {
             $0.hyphenationFactor = 1.0
         })
         
+        // Convert all styles into text
         if let tagged = try? MarkupString(source: details) {
-            self.detailsLabel.attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
+            var attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
+            self.detailsLabel.attributedText = attributedText
+            
+            guard let details = self.detailsLabel.text else { return }
+            
+            // Authors
+            guard let authors = proposal.authors else { return }
+            attributedText = attributedText.link(authors, text: details)
+            
+            self.detailsLabel.attributedText = attributedText
+            
+            // Review Manager
+            guard let reviewer = proposal.reviewManager else { return }
+            attributedText = attributedText.link(reviewer, text: details)
+            
+            self.detailsLabel.attributedText = attributedText
         }
     }
 }
@@ -151,8 +167,12 @@ extension ProposalTableViewCell {
                 var issue = $0.description
                 issue += " ("
                 issue += assignee == "" ? "Unassigned" : assignee
-                issue += ", "
-                issue += status
+                
+                if status != "" {
+                    issue += ", "
+                    issue += status
+                }
+                
                 issue += ")"
                 
                 return issue
@@ -196,3 +216,47 @@ extension ProposalTableViewCell {
         return details
     }
 }
+
+// MARK: - UITextView Delegate
+
+extension ProposalTableViewCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        print("URL: \(URL)")
+        
+        return false
+    }
+}
+
+// MARK: - NSMutableAttributedString Extension
+fileprivate extension NSMutableAttributedString {
+    
+    fileprivate func add(style: Style, range: NSRange) -> NSMutableAttributedString {
+        self.addAttributes(style.attributes, range: range)
+        return self
+    }
+    
+    fileprivate func link(_ person: Person, text: String) -> NSMutableAttributedString {
+        return self.link([person], text: text)
+    }
+    
+    fileprivate func link(_ people: [Person], text: String) -> NSMutableAttributedString {
+        var attributed = self
+        people.forEach { person in
+            guard let username = person.username, let name = person.name else {
+                return
+            }
+            
+            if let nameRange = text.range(of: name) {
+                let range = text.toNSRange(from: nameRange)
+                let style = Style("url") {
+                    $0.color = UIColor.Proposal.darkGray
+                    $0.linkURL = URL(string: "user://\(username)")
+                }
+                
+                attributed = attributed.add(style: style, range: range)
+            }
+        }
+        
+        return attributed
+    }
+ }
