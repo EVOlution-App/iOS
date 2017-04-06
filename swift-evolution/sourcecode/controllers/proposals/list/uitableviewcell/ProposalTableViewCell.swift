@@ -46,7 +46,10 @@ class ProposalTableViewCell: UITableViewCell {
         
         details += proposal.description.tag(.id)
         details += String.newLine
-        details += proposal.title.trimmingCharacters(in: .whitespacesAndNewlines).tag(.title)
+        
+        let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines).convertHTMLEntities.tag(.title)
+
+        details += title
         
         // Render Authors
         if let authors = self.renderAuthors() {
