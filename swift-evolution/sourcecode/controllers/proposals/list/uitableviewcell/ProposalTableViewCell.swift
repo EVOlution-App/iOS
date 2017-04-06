@@ -99,6 +99,13 @@ class ProposalTableViewCell: UITableViewCell {
             
             guard let details = self.detailsLabel.text else { return }
             
+            // Configure links into textView
+            self.detailsLabel.linkTextAttributes = [
+                NSForegroundColorAttributeName: UIColor.Proposal.darkGray,
+                NSUnderlineColorAttributeName: UIColor.Proposal.darkGray,
+                NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue
+            ]
+            
             // Authors
             guard let authors = proposal.authors else { return }
             attributedText = attributedText.link(authors, text: details)
@@ -207,7 +214,7 @@ extension ProposalTableViewCell {
             details += " - "
             
             if let day = endDC.day, start == end {
-                details += String(day)
+                details += String(format: "%02i", day)
             }
             else {
                 details += Config.Date.Formatter.monthDay.string(from: endDate)
@@ -252,7 +259,6 @@ fileprivate extension NSMutableAttributedString {
             if let nameRange = text.range(of: name) {
                 let range = text.toNSRange(from: nameRange)
                 let style = Style("url") {
-                    $0.color = UIColor.Proposal.darkGray
                     $0.linkURL = URL(string: "user://\(username)")
                 }
                 
