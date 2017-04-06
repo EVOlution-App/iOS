@@ -64,14 +64,10 @@ class FilterListGenericView: UIView {
             return
         }
         
-        let indexPaths: [IndexPath] = dataSource.enumerated().map {
-            IndexPath(item: $0.offset, section: 0)
-        }
         
         DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates({
-                self.collectionView.insertItems(at: indexPaths)
-            }) { finished in
+            self.collectionView.reloadData()
+            self.collectionView.performBatchUpdates(nil) { finished in
                 self.height = self.collectionView.contentSize.height + self.descriptionLabel.bounds.maxY
                 self.layoutDelegate?.didFinishedCalculateHeightToView(type: self.type, height: self.height)
             }
