@@ -45,9 +45,10 @@ After send your pull request, other developers will make a code review before me
 - Bruno Hecktheuer - [Github](https://github.com/bbheck) / [Twitter](https://twitter.com/brunobheck)
 - Diego Ventura - [GitHub](https://github.com/diegoventura) / [Twitter](https://twitter.com/venturadiego)
 - Diogo Tridapalli - [Github](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
+- Gustavo Barbosa - [Github](https://github.com/barbosa) / [Twitter](https://twitter.com/gustavocsb)
 - Ricardo Borelli - [Github](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
 - Rodrigo Reis - [Github](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
 
 ## License
 
-Swift Evolution is available under the MIT license. See the LICENSE file for more info. 
+**Swift Evolution** is available under the MIT license. See the LICENSE file for more info. 

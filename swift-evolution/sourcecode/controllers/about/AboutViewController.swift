@@ -36,10 +36,11 @@ class AboutViewController: UITableViewController {
         let hecktheuer  = Item(text: "Bruno Hecktheuer", type: .github, value: "bbheck")
         let ventura     = Item(text: "Diego Ventura", type: .github, value: "diegoventura")
         let tridapalli  = Item(text: "Diogo Tridapalli", type: .github, value: "diogot")
+        let gustavo     = Item(text: "Gustavo Barbosa", type: .github, value: "barbosa")
         let borelli     = Item(text: "Ricardo Borelli", type: .github, value: "rabc")
         let reis        = Item(text: "Rodrigo Reis", type: .github, value: "digoreis")
         
-        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, borelli, reis], footer: nil)
+        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, borelli, reis], footer: nil)
         about.append(contributors)
         
         // Licenses
