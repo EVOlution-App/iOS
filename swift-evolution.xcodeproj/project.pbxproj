@@ -46,6 +46,9 @@
 		9152658A1E67E01800C2AFDA /* ListProposalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265891E67E01800C2AFDA /* ListProposalsViewController.swift */; };
 		9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658C1E67E12800C2AFDA /* BorderedLabel.swift */; };
 		9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658E1E67E74700C2AFDA /* UIColor.swift */; };
+		9168963E1E93469F00FC6913 /* GithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168963D1E93469F00FC6913 /* GithubService.swift */; };
+		916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896401E935ABD00FC6913 /* ProfileViewController.swift */; };
+		916896431E935ED700FC6913 /* GithubProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896421E935ED700FC6913 /* GithubProfile.swift */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		91D5895E1E7E251200FE958D /* GithubUserFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D5895D1E7E251200FE958D /* GithubUserFormatter.swift */; };
 		91D589611E7E43D300FE958D /* Person+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D589601E7E43D300FE958D /* Person+Extension.swift */; };
@@ -127,6 +130,9 @@
 		915265891E67E01800C2AFDA /* ListProposalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProposalsViewController.swift; sourceTree = "<group>"; };
 		9152658C1E67E12800C2AFDA /* BorderedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		9152658E1E67E74700C2AFDA /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		9168963D1E93469F00FC6913 /* GithubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubService.swift; sourceTree = "<group>"; };
+		916896401E935ABD00FC6913 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		916896421E935ED700FC6913 /* GithubProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubProfile.swift; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		91D5895D1E7E251200FE958D /* GithubUserFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserFormatter.swift; sourceTree = "<group>"; };
 		91D589601E7E43D300FE958D /* Person+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+Extension.swift"; sourceTree = "<group>"; };
@@ -309,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				915265791E67976F00C2AFDA /* EvolutionService.swift */,
+				9168963D1E93469F00FC6913 /* GithubService.swift */,
 				9152655E1E6777B600C2AFDA /* Service.swift */,
 			);
 			path = services;
@@ -319,6 +326,7 @@
 			children = (
 				9192CC521E8CC1AC00953357 /* about */,
 				914A5C211E7F97DC005E653A /* base */,
+				9168963F1E935A9A00FC6913 /* profile */,
 				915265841E67D7D900C2AFDA /* proposals */,
 			);
 			path = controllers;
@@ -336,6 +344,7 @@
 				9152657B1E67A3AD00C2AFDA /* State.swift */,
 				915265661E677A4E00C2AFDA /* Status.swift */,
 				915265641E677A3100C2AFDA /* Warning.swift */,
+				916896421E935ED700FC6913 /* GithubProfile.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -426,6 +435,14 @@
 				91485DEC1E6902A2008C4715 /* StatusLabel.swift */,
 			);
 			path = designables;
+			sourceTree = "<group>";
+		};
+		9168963F1E935A9A00FC6913 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				916896401E935ABD00FC6913 /* ProfileViewController.swift */,
+			);
+			path = profile;
 			sourceTree = "<group>";
 		};
 		9192CC521E8CC1AC00953357 /* about */ = {
@@ -702,11 +719,14 @@
 				91D589691E7E4E4A00FE958D /* Bug+Extension.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
+				916896431E935ED700FC6913 /* GithubProfile.swift in Sources */,
 				9152655F1E6777B600C2AFDA /* Service.swift in Sources */,
 				915265821E67D7A900C2AFDA /* ProposalTableViewCell.swift in Sources */,
 				91D589631E7E43F400FE958D /* Proposal+Extension.swift in Sources */,
 				915265611E67794C00C2AFDA /* Proposal.swift in Sources */,
+				9168963E1E93469F00FC6913 /* GithubService.swift in Sources */,
 				912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */,
+				916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */,
 				9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */,
 				9152657C1E67A3AD00C2AFDA /* State.swift in Sources */,
 			);

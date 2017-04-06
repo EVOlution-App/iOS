@@ -6,8 +6,9 @@ struct EvolutionService {
     typealias CompletionProposals = (_ error: Error?, _ proposals: [Proposal]?) -> Swift.Void
     
     static func listProposals(completion: @escaping CompletionProposals) {
-        
-        Service.requestList("/proposals") { (error, object) in
+        let baseURL = "https://data.swift.org/swift-evolution"
+
+        Service.requestList("\(baseURL)/proposals") { (error, object) in
             guard error == nil else {
                 completion(error, nil)
                 return
