@@ -17,6 +17,7 @@ class ProposalTableViewCell: UITableViewCell {
     }
     
     // MARK: - Public properties
+    weak open var delegate: ProposalDelegate?
     public var proposal: Proposal? {
         didSet {
             self.configureElements()
@@ -237,7 +238,28 @@ extension ProposalTableViewCell {
 
 extension ProposalTableViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        print("URL: \(URL)")
+        
+        guard
+            let proposal = self.proposal,
+            let authors = proposal.authors,
+            let manager = proposal.reviewManager else {
+            return false
+        }
+        
+        let username = URL.lastPathComponent
+        var person: Person?
+        
+        if let author = authors.get(username: username) {
+            person = author
+        }
+        
+        if let reviewer = manager.username, reviewer == username {
+            person = manager
+        }
+        
+        if let person = person, let delegate = self.delegate {
+            delegate.didSelected(person: person)
+        }
         
         return false
     }
@@ -265,7 +287,7 @@ fileprivate extension NSMutableAttributedString {
             if let nameRange = text.range(of: name) {
                 let range = text.toNSRange(from: nameRange)
                 let style = Style("url") {
-                    $0.linkURL = URL(string: "user://\(username)")
+                    $0.linkURL = URL(string: "evo://username/\(username)")
                 }
                 
                 attributed = attributed.add(style: style, range: range)
