@@ -2,11 +2,18 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    fileprivate struct Section {
+        let title: String
+        let proposals: [Proposal]
+    }
+    
     @IBOutlet fileprivate weak var profileView: ProfileView!
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     open var profile: Person?
+    fileprivate var sections: [Section] = []
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +35,8 @@ class ProfileViewController: UIViewController {
         if let profile = self.profile, let username = profile.username {
             self.title = "@\(username)"
         }
+        
+        self.configureSections()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,10 +50,41 @@ class ProfileViewController: UIViewController {
         
         //self.navigationController?.backgroundTransparent()
     }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ProposalDetailViewController,
+            let indexPath = self.tableView.indexPathForSelectedRow,
+            let destination = segue.destination as? ProposalDetailViewController {
+            
+            let section = self.sections[indexPath.section]
+            let proposal = section.proposals[indexPath.row]
+            
+            destination.proposal = proposal
+        }
+    }
 }
 
 // MARK: - Requests
 extension ProfileViewController {
+    fileprivate func configureSections() {
+        guard let profile = self.profile else {
+            return
+        }
+        
+        if let author = profile.asAuthor, author.count > 0 {
+            let section = Section(title: "Author", proposals: author)
+            sections.append(section)
+        }
+        
+        if let manager = profile.asManager, manager.count > 0 {
+            let section = Section(title: "Review Manager", proposals: manager)
+            sections.append(section)
+        }
+        
+        self.tableView.reloadData()
+    }
+    
     fileprivate func requestUserDataFromGithub() {
         guard let profile = self.profile, let username = profile.username else {
             return
@@ -65,44 +105,43 @@ extension ProfileViewController {
 // MARK: - UITableView DataSource
 extension ProfileViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        var sections = 0
+        let sections = self.sections.count
         
-        guard let profile = self.profile else {
-            return sections
+        guard sections > 0 else {
+            return 0
         }
-        
-        if let author = profile.asAuthor, author.count > 0 {
-            sections += 1
-        }
-        
-        if let manager = profile.asManager, manager.count > 0 {
-            sections += 1
-        }
-        
+
         return sections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.countFor(section)
+        return self.sections[section].proposals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
         
-        if let proposal = self.proposalFor(indexPath) {
-            cell.proposal = proposal
-        }
+        let section = self.sections[indexPath.section]
+        let proposal = section.proposals[indexPath.row]
+        
+        cell.proposal = proposal
+        
         return cell
     }
 }
 
 // MARK: - UITableView Delegate
 extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Config.Segues.proposalDetail.performSegue(in: self)
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
         
-        headerCell.header = self.headerFor(section)
-        
+        let section = self.sections[section]
+        headerCell.header = section.title
+
         return headerCell.contentView
     }
     
@@ -112,60 +151,5 @@ extension ProfileViewController: UITableViewDelegate {
 }
 
 
-extension ProfileViewController {
-    func headerFor(_ section: Int) -> String {
-        var title = ""
-        
-        guard let profile = self.profile else {
-            return title
-        }
-        
-        if let author = profile.asAuthor, author.count > 0 {
-            title = "As Author"
-        }
-        
-        if section == 0, let manager = profile.asManager, manager.count > 0 {
-            title = "As Review Manager"
-        }
-        
-        return title
-    }
-    
-    func countFor(_ section: Int) -> Int {
-        var rows = 0
-        
-        guard let profile = self.profile else {
-            return rows
-        }
-        
-        if let author = profile.asAuthor, author.count > 0 {
-            rows = author.count
-        }
-        
-        if section == 0, let manager = profile.asManager, manager.count > 0 {
-            rows = manager.count
-        }
-        
-        return rows
-    }
-    
-    func proposalFor(_ indexPath: IndexPath) -> Proposal? {
-        var proposal: Proposal?
-        
-        guard let profile = self.profile else {
-            return nil
-        }
-        
-        if let author = profile.asAuthor, author.count > 0 {
-            proposal = author[indexPath.row]
-        }
-        
-        if indexPath.section == 0, let manager = profile.asManager, manager.count > 0 {
-            proposal = manager[indexPath.row]
-        }
-        
-        return proposal
-    }
-}
 
 

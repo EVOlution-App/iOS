@@ -368,6 +368,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <connections>
                         <outlet property="profileView" destination="dHm-GO-R55" id="Whk-Os-u6N"/>
                         <outlet property="tableView" destination="4qS-ei-dyF" id="arE-4V-SY5"/>
+                        <segue destination="b40-fX-jN2" kind="show" identifier="ProposalDetailSegue" id="kj6-9X-Zp1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-j0-jer" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -470,4 +471,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="icon-filter-on" width="23" height="23"/>
         <image name="logo-evolution-splash" width="200" height="200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="kj6-9X-Zp1"/>
+    </inferredMetricsTieBreakers>
 </document>
