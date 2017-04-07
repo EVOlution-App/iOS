@@ -8,7 +8,7 @@ struct Person {
     let username: String?
 
     // These properties will not come from server
-    let github: GithubProfile? = nil
+    var github: GithubProfile? = nil
     var asAuthor: [Proposal]? = nil
     var asManager: [Proposal]? = nil
 }
