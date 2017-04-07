@@ -23,4 +23,10 @@ final class ProposalListHeaderTableViewCell: UITableViewCell {
         }
     }
     
+    var header: String? = "" {
+        didSet {
+            proposalsCountLabel.text = header
+        }
+    }
+    
 }

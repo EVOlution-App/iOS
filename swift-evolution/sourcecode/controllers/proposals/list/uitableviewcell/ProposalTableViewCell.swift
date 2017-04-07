@@ -17,6 +17,7 @@ class ProposalTableViewCell: UITableViewCell {
     }
     
     // MARK: - Public properties
+    weak open var delegate: ProposalDelegate?
     public var proposal: Proposal? {
         didSet {
             self.configureElements()
@@ -51,40 +52,46 @@ class ProposalTableViewCell: UITableViewCell {
 
         details += title
         
-        // Render Authors
-        if let authors = self.renderAuthors() {
-            details += String.newLine + String.newLine
-            details += authors
-        }
-        
-        // Render Review Manager
-        if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
-            details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name.tag(.value)
-        }
-        
-        // Render Bugs
-        if let bugs = self.renderBugs() {
-            details += String.newLine + bugs
-        }
-        
-        // Render Implemented Proposal
-        if proposal.status.state == .implemented, let version = proposal.status.version {
-            details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)".tag(.value)
-        }
-        
-        // Render Status
-        if proposal.status.state == .acceptedWithRevisions ||
-            proposal.status.state == .activeReview ||
-            proposal.status.state == .scheduledForReview ||
-            proposal.status.state == .returnedForRevision {
+        if self.delegate != nil {
             
-            details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
-            
-            if (proposal.status.state == .activeReview ||
-                proposal.status.state == .scheduledForReview), let period = self.renderReviewPeriod() {
-                
-                details += String.newLine + period
+            // Render Authors
+            if let authors = self.renderAuthors() {
+                details += String.newLine + String.newLine
+                details += authors
             }
+            
+            // Render Review Manager
+            if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
+                details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name.tag(.value)
+            }
+            
+            // Render Bugs
+            if let bugs = self.renderBugs() {
+                details += String.newLine + bugs
+            }
+            
+            // Render Implemented Proposal
+            if proposal.status.state == .implemented, let version = proposal.status.version {
+                details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)".tag(.value)
+            }
+            
+            // Render Status
+            if proposal.status.state == .acceptedWithRevisions ||
+                proposal.status.state == .activeReview ||
+                proposal.status.state == .scheduledForReview ||
+                proposal.status.state == .returnedForRevision {
+                
+                details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
+                
+                if (proposal.status.state == .activeReview ||
+                    proposal.status.state == .scheduledForReview), let period = self.renderReviewPeriod() {
+                    
+                    details += String.newLine + period
+                }
+            }
+        }
+        else {
+            self.detailsLabel.isUserInteractionEnabled = false
         }
         
         let defaultStyle = Style("defaultStyle", {
@@ -231,7 +238,28 @@ extension ProposalTableViewCell {
 
 extension ProposalTableViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        print("URL: \(URL)")
+        
+        guard
+            let proposal = self.proposal,
+            let authors = proposal.authors,
+            let manager = proposal.reviewManager else {
+            return false
+        }
+        
+        let username = URL.lastPathComponent
+        var person: Person?
+        
+        if let author = authors.get(username: username) {
+            person = author
+        }
+        
+        if let reviewer = manager.username, reviewer == username {
+            person = manager
+        }
+        
+        if let person = person, let delegate = self.delegate {
+            delegate.didSelected(person: person)
+        }
         
         return false
     }
@@ -259,7 +287,7 @@ fileprivate extension NSMutableAttributedString {
             if let nameRange = text.range(of: name) {
                 let range = text.toNSRange(from: nameRange)
                 let style = Style("url") {
-                    $0.linkURL = URL(string: "user://\(username)")
+                    $0.linkURL = URL(string: "evo://username/\(username)")
                 }
                 
                 attributed = attributed.add(style: style, range: range)

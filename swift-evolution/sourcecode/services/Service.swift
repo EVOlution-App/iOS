@@ -3,6 +3,7 @@ import UIKit
 class Service {
     typealias CompletionObject = (_ error: Error?, _ object: Data?) -> Swift.Void
     typealias CompletionString = (_ error: Error?, _ string: String?) -> Swift.Void
+    typealias CompletionImage = (_ error: Error?, _ string: UIImage?) -> Swift.Void
     typealias CompletionKeyValue = (_ error: Error?, _ keyValue: [String: Any]?) -> Swift.Void
     typealias CompletionListKeyValue = (_ error: Error?, _ listKeyValue: [[String: Any]]?) -> Swift.Void
     
@@ -75,6 +76,29 @@ class Service {
         }
     }
     
+    static func requestImage(_ url: String, completion: @escaping CompletionImage) {
+        guard url != "", let URL = URL(string: url) else {
+            return
+        }
+        
+        let task = URLSession.shared.downloadTask(with: URL) { location, response, error in
+            guard error == nil, let location = location else {
+                print("error=\(String(describing: error))")
+                completion(error, nil)
+                
+                return
+            }
+            
+            guard let data = try? Data(contentsOf: location),
+                let image = UIImage(data: data) else {
+                    print("error=Failed to load image from \(location)")
+                    return
+            }
+            completion(nil, image)
+        }
+        
+        task.resume()
+    }
     
     fileprivate static func request(url: String, completion: @escaping CompletionObject) {
         guard let baseURL = URL(string: url) else {

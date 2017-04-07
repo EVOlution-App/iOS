@@ -98,6 +98,12 @@ class ListProposalsViewController: BaseViewController {
             let item = self.filteredDataSource[indexPath.row]
             destination.proposal = item
         }
+        else if segue.destination is ProfileViewController,
+            let destination = segue.destination as? ProfileViewController,
+            sender != nil, sender is Person, let person = sender as? Person {
+            
+            destination.profile = person
+        }
     }
     
     
@@ -277,6 +283,8 @@ extension ListProposalsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
+        
+        cell.delegate = self
         cell.proposal = self.filteredDataSource[indexPath.row]
         
         return cell
@@ -374,6 +382,22 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
         self.filterHeaderView.updateFilterButton(status: self.status)
     }
 }
+
+
+// MARK: -
+
+extension ListProposalsViewController: ProposalDelegate {
+    func didSelected(person: Person) {
+        guard let name = person.name else {
+            return
+        }
+        
+        let profile = self.people[name]
+        
+        Config.Segues.profile.performSegue(in: self, with: profile)
+    }
+}
+
 
 // MARK: - UISearchBar Delegate
 

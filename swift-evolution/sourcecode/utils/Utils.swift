@@ -32,6 +32,7 @@ struct Config {
     
     enum Segues: String, SegueRepresentable {
         case proposalDetail = "ProposalDetailSegue"
+        case profile = "ProfileSegue"
     }
     
     struct Nib {
