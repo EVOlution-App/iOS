@@ -22,6 +22,7 @@ extension ReusableCellIdentifiable where Self: UICollectionViewCell {
 extension UITableViewCell: ReusableCellIdentifiable {}
 extension UICollectionViewCell: ReusableCellIdentifiable {}
 
+
 // MARK: - FilterGenericView Delegate
 protocol FilterGenericViewDelegate: class {
     func didSelectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
@@ -32,8 +33,14 @@ protocol FilterGenericViewLayoutDelegate: class {
     func didFinishedCalculateHeightToView(type: FilterListGenericType, height: CGFloat)
 }
 
-// MARK: - Enum Representable Protocols
 
+// MARK: -
+protocol ProposalDelegate: class {
+    func didSelected(person: Person)
+}
+
+
+// MARK: - Enum Representable Protocols
 protocol SegueRepresentable: RawRepresentable {
     func performSegue(in viewController: UIViewController)
     func performSegue(in viewController: UIViewController, with object: Any?)
