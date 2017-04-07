@@ -51,40 +51,46 @@ class ProposalTableViewCell: UITableViewCell {
 
         details += title
         
-        // Render Authors
-        if let authors = self.renderAuthors() {
-            details += String.newLine + String.newLine
-            details += authors
-        }
-        
-        // Render Review Manager
-        if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
-            details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name.tag(.value)
-        }
-        
-        // Render Bugs
-        if let bugs = self.renderBugs() {
-            details += String.newLine + bugs
-        }
-        
-        // Render Implemented Proposal
-        if proposal.status.state == .implemented, let version = proposal.status.version {
-            details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)".tag(.value)
-        }
-        
-        // Render Status
-        if proposal.status.state == .acceptedWithRevisions ||
-            proposal.status.state == .activeReview ||
-            proposal.status.state == .scheduledForReview ||
-            proposal.status.state == .returnedForRevision {
+        if self.delegate != nil {
             
-            details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
-            
-            if (proposal.status.state == .activeReview ||
-                proposal.status.state == .scheduledForReview), let period = self.renderReviewPeriod() {
-                
-                details += String.newLine + period
+            // Render Authors
+            if let authors = self.renderAuthors() {
+                details += String.newLine + String.newLine
+                details += authors
             }
+            
+            // Render Review Manager
+            if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
+                details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name.tag(.value)
+            }
+            
+            // Render Bugs
+            if let bugs = self.renderBugs() {
+                details += String.newLine + bugs
+            }
+            
+            // Render Implemented Proposal
+            if proposal.status.state == .implemented, let version = proposal.status.version {
+                details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)".tag(.value)
+            }
+            
+            // Render Status
+            if proposal.status.state == .acceptedWithRevisions ||
+                proposal.status.state == .activeReview ||
+                proposal.status.state == .scheduledForReview ||
+                proposal.status.state == .returnedForRevision {
+                
+                details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
+                
+                if (proposal.status.state == .activeReview ||
+                    proposal.status.state == .scheduledForReview), let period = self.renderReviewPeriod() {
+                    
+                    details += String.newLine + period
+                }
+            }
+        }
+        else {
+            self.detailsLabel.isUserInteractionEnabled = false
         }
         
         let defaultStyle = Style("defaultStyle", {
