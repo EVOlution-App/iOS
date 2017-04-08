@@ -65,7 +65,20 @@ fileprivate extension ProfileView {
             let text = name.firstLast.components(separatedBy: .whitespaces).joined(separator: .newLine)
             
             let style = Style("name", {
-                $0.font = FontAttribute(.HelveticaNeue_Bold, size: 40)
+                print("Length: \(name.characters.count)")
+                
+                // Check if the name is too long, and reduce the font size
+                var pointSize: Float = 40.0
+                if name.characters.count > 14 {
+                    pointSize = 30
+                    
+                    if UIScreen.main.bounds.size.width < 375 {
+                        pointSize = 27
+                    }
+                }
+
+                // Configure font properties
+                $0.font = FontAttribute(.HelveticaNeue_Bold, size: pointSize)
                 $0.color = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
             })
             
