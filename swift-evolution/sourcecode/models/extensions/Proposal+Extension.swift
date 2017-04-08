@@ -6,6 +6,14 @@ public enum Sorting {
 }
 
 extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == Proposal {
+    func get(by id: Int) -> Proposal? {
+        guard let index = self.index(where: { $0.id == id }) else {
+            return nil
+        }
+        
+        return self[index]
+    }
+    
     func filter(author: Person) -> [Proposal] {
         var filter: [Proposal] = []
         guard let name = author.name else {
