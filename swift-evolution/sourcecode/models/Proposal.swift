@@ -12,6 +12,19 @@ struct Proposal {
     let reviewManager: Person?
     let sha: String?
     let bugs: [Bug]?
+    
+    init(id: Int, link: String) {
+        self.id = id
+        self.title = ""
+        self.status = Status(version: nil, state: .accepted, start: nil, end: nil)
+        self.summary = nil
+        self.authors = nil
+        self.warnings = nil
+        self.link = link
+        self.reviewManager = nil
+        self.sha = nil
+        self.bugs = nil
+    }
 }
 
 extension Proposal: Unboxable {

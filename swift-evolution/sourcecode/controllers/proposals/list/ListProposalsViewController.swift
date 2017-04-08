@@ -13,7 +13,7 @@ class ListProposalsViewController: BaseViewController {
     fileprivate var timer: Timer = Timer()
     fileprivate var filteredDataSource: [Proposal] = []
     fileprivate var dataSource: [Proposal] = []
-    fileprivate var people: [String: Person] = [:]
+    fileprivate var appDelegate: AppDelegate?
     
     // Filters
     fileprivate var languages: [Version] = []
@@ -29,6 +29,8 @@ class ListProposalsViewController: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
         // Register Cell to TableView
         self.tableView.registerNib(withClass: ProposalTableViewCell.self)
@@ -64,7 +66,6 @@ class ListProposalsViewController: BaseViewController {
     }
     
     // MARK: - Layout
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -89,14 +90,21 @@ class ListProposalsViewController: BaseViewController {
     }
     
     // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
-            let indexPath = self.tableView.indexPathForSelectedRow,
             let destination = segue.destination as? ProposalDetailViewController {
             
-            let item = self.filteredDataSource[indexPath.row]
-            destination.proposal = item
+            var item: Proposal? = nil
+            if sender == nil, let indexPath = self.tableView.indexPathForSelectedRow {
+                item = self.filteredDataSource[indexPath.row]
+            }
+            else if sender != nil, sender is Proposal  {
+                item = sender as? Proposal
+            }
+            
+            if let proposal = item {
+                destination.proposal = proposal
+            }
         }
         else if segue.destination is ProfileViewController,
             let destination = segue.destination as? ProfileViewController,
@@ -269,7 +277,7 @@ class ListProposalsViewController: BaseViewController {
             }
         }
 
-        self.people = authors
+        self.appDelegate?.people = authors
     }
 }
 
@@ -384,17 +392,24 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
 }
 
 
-// MARK: -
+// MARK: - Proposal Delegate
 
 extension ListProposalsViewController: ProposalDelegate {
     func didSelected(person: Person) {
         guard let name = person.name else {
             return
         }
-        
-        let profile = self.people[name]
-        
+
+        let profile = self.appDelegate?.people[name]
         Config.Segues.profile.performSegue(in: self, with: profile)
+    }
+    
+    func didSelected(proposal: Proposal) {
+        guard let proposal = self.dataSource.get(by: proposal.id) else {
+            return
+        }
+        
+        Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
     }
 }
 

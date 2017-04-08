@@ -251,7 +251,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <!--Proposal Detail View Controller-->
         <scene sceneID="Hoh-3i-XTJ">
             <objects>
-                <viewController id="b40-fX-jN2" customClass="ProposalDetailViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProposalDetailStoryboardID" id="b40-fX-jN2" customClass="ProposalDetailViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L4P-6d-O4b"/>
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
@@ -276,11 +276,21 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <navigationItem key="navigationItem" id="gDa-Vo-N0W"/>
                     <connections>
                         <outlet property="detailView" destination="UrU-21-DUf" id="60U-rP-Qzh"/>
+                        <segue destination="3eh-9t-QMu" kind="show" identifier="ProfileSegue" id="3pf-Ye-P5i"/>
+                        <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="rf2-rv-6M0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8D-qN-2aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="211"/>
+            <point key="canvasLocation" x="1449" y="211"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="m8s-tR-L73">
+            <objects>
+                <viewControllerPlaceholder id="xwy-U5-7xI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S50-hb-1j9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2427" y="145"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="fdb-C6-wBp">
@@ -304,7 +314,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                             <constraint firstAttribute="height" constant="124" id="tZ4-Ig-gWF"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5R-EJ-3bF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z5R-EJ-3bF">
                                         <rect key="frame" x="15" y="8" width="213" height="124"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="124" id="JLo-Lm-mSl"/>
@@ -368,12 +378,20 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <connections>
                         <outlet property="profileView" destination="dHm-GO-R55" id="Whk-Os-u6N"/>
                         <outlet property="tableView" destination="4qS-ei-dyF" id="arE-4V-SY5"/>
-                        <segue destination="b40-fX-jN2" kind="show" identifier="ProposalDetailSegue" id="kj6-9X-Zp1"/>
+                        <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="2o2-Fg-V0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-j0-jer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="560.79999999999995" y="982.75862068965523"/>
+            <point key="canvasLocation" x="494" y="975"/>
+        </scene>
+        <!--ProposalDetailStoryboardID-->
+        <scene sceneID="iLc-1L-4vW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="ProposalDetailStoryboardID" id="2X3-i1-g9s" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6br-KN-dWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448" y="974"/>
         </scene>
         <!--About-->
         <scene sceneID="tuR-kd-nQG">
@@ -403,7 +421,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.0.1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
                                     <rect key="frame" x="8" y="212" width="359" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="33" id="78P-to-GH8"/>
@@ -463,7 +481,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JU-pf-9l0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-544"/>
+            <point key="canvasLocation" x="1449" y="-581"/>
         </scene>
     </scenes>
     <resources>
@@ -472,6 +490,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="logo-evolution-splash" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kj6-9X-Zp1"/>
+        <segue reference="3pf-Ye-P5i"/>
+        <segue reference="2o2-Fg-V0b"/>
     </inferredMetricsTieBreakers>
 </document>

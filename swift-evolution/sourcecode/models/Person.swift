@@ -13,7 +13,7 @@ struct Person {
     var asManager: [Proposal]? = nil
 }
 
-extension Person: Unboxable {
+extension Person: Unboxable, Searchable {
     init(unboxer: Unboxer) throws {
         self.name = unboxer.unbox(key: "name")
         self.link = unboxer.unbox(key: "link")
