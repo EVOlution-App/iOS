@@ -6,7 +6,7 @@ struct GithubService {
     
     static func profile(from username: String, completion: @escaping CompletionUserProfile) {
         
-        let url = "https://api.github.com/users/\(username)"
+        let url = "\(Config.Base.URL.githubUser)/\(username)"
         Service.requestKeyValue(url) { (error, object) in
             guard error == nil else {
                 completion(error, nil)

@@ -69,6 +69,22 @@ struct Config {
             UIDevice.current.setValue(value, forKey: "orientation")
         }
     }
+    
+    struct Base {
+        struct URL {
+            static var data: String {
+                return "https://data.swift.org/swift-evolution"
+            }
+            
+            static var proposal: String {
+                return "https://raw.githubusercontent.com/apple/swift-evolution/master/proposals"
+            }
+            
+            static var githubUser: String {
+            return "https://api.github.com/users"
+            }
+        }
+    }
 }
 
 
