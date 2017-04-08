@@ -1,5 +1,8 @@
 import UIKit
 
+// MARK: - Searchable Protocol
+protocol Searchable {}
+
 // MARK: - Reusable Protocol
 protocol ReusableCellIdentifiable {
     static var cellIdentifier: String { get }
@@ -37,6 +40,7 @@ protocol FilterGenericViewLayoutDelegate: class {
 // MARK: -
 protocol ProposalDelegate: class {
     func didSelected(person: Person)
+    func didSelected(proposal: Proposal)
 }
 
 
