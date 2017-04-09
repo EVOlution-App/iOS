@@ -25,7 +25,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrw-Lh-9pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1604" y="211"/>
+            <point key="canvasLocation" x="-831" y="211"/>
         </scene>
         <!--Evolution-->
         <scene sceneID="XRC-8N-KTw">
@@ -246,7 +246,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-460" y="210.94452773613196"/>
+            <point key="canvasLocation" x="41" y="211"/>
         </scene>
         <!--Proposal Detail View Controller-->
         <scene sceneID="Hoh-3i-XTJ">
@@ -273,7 +273,13 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <constraint firstItem="2ZS-ut-GeF" firstAttribute="top" secondItem="UrU-21-DUf" secondAttribute="bottom" id="yjZ-6t-m67"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gDa-Vo-N0W"/>
+                    <navigationItem key="navigationItem" id="gDa-Vo-N0W">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="i00-J5-eaM">
+                            <connections>
+                                <action selector="shareProposal:" destination="b40-fX-jN2" id="6JG-9y-t94"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailView" destination="UrU-21-DUf" id="60U-rP-Qzh"/>
                         <segue destination="3eh-9t-QMu" kind="show" identifier="ProfileSegue" id="3pf-Ye-P5i"/>
@@ -283,14 +289,6 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8D-qN-2aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1449" y="211"/>
-        </scene>
-        <!--Storyboard Reference-->
-        <scene sceneID="m8s-tR-L73">
-            <objects>
-                <viewControllerPlaceholder id="xwy-U5-7xI" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S50-hb-1j9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2427" y="145"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="fdb-C6-wBp">
@@ -383,7 +381,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-j0-jer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="975"/>
+            <point key="canvasLocation" x="764" y="974"/>
         </scene>
         <!--ProposalDetailStoryboardID-->
         <scene sceneID="iLc-1L-4vW">
@@ -481,7 +479,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JU-pf-9l0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="-581"/>
+            <point key="canvasLocation" x="-831" y="974"/>
         </scene>
     </scenes>
     <resources>
@@ -490,7 +488,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="logo-evolution-splash" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="rf2-rv-6M0"/>
         <segue reference="3pf-Ye-P5i"/>
-        <segue reference="2o2-Fg-V0b"/>
     </inferredMetricsTieBreakers>
 </document>
