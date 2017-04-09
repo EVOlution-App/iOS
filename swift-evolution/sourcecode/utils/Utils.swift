@@ -81,10 +81,13 @@ struct Config {
             }
             
             static var githubUser: String {
-            return "https://api.github.com/users"
+                return "https://api.github.com/users"
             }
         }
     }
 }
 
+extension NSNotification.Name {
+    static let URLScheme = NSNotification.Name(rawValue: "URLSchemeActivation")
+}
 

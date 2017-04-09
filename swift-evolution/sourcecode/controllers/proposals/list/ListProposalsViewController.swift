@@ -56,6 +56,9 @@ class ListProposalsViewController: BaseViewController {
                                contentId: nil,
                                customAttributes: nil)
         
+        // Notifications
+        self.registerNotifications()
+        
         // Request the Proposes
         self.getProposalList()
     }
@@ -89,6 +92,27 @@ class ListProposalsViewController: BaseViewController {
         Config.Orientation.portrait()
     }
     
+    deinit {
+        self.removeNotifications()
+    }
+    
+    // MARK: - Notifications
+    func registerNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveNotification(_:)),
+                                               name: NSNotification.Name.URLScheme,
+                                               object: nil)
+    }
+    
+    func removeNotifications() {
+        NotificationCenter.default.removeObserver(NSNotification.Name.URLScheme)
+    }
+    
+    func didReceiveNotification(_ notification: Notification) {
+        guard let info = notification.userInfo else { return }//,
+        self.navigateTo(info["Host"], info["Value"])
+    }
+    
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
@@ -114,6 +138,29 @@ class ListProposalsViewController: BaseViewController {
         }
     }
     
+    func navigateTo(_ host: Any?, _ value: Any?) {
+        guard host is Host, let host = host as? Host,
+            value is String, let value = value as? String else {
+                return
+        }
+        
+        if host == .proposal {
+            let id: Int = value.regex(Config.Common.Regex.proposalID)
+            if let proposal = self.dataSource.get(by: id) {
+                Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+            }
+        }
+        else if host == .profile {
+            if let appDelegate = self.appDelegate,
+                let person = appDelegate.people.get(username: value) {
+                Config.Segues.profile.performSegue(in: self, with: person)
+            }
+        }
+        
+        // Invalidate host and value after use
+        self.appDelegate?.host = nil
+        self.appDelegate?.value = nil
+    }
     
     // MARK: - Requests
     fileprivate func getProposalList() {
@@ -143,6 +190,9 @@ class ListProposalsViewController: BaseViewController {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                
+                // In case of user have come
+                self.navigateTo(self.appDelegate?.host, self.appDelegate?.value)
             }
         }
     }

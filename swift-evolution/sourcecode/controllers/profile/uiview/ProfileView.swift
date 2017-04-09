@@ -65,7 +65,6 @@ fileprivate extension ProfileView {
             let text = name.firstLast.components(separatedBy: .whitespaces).joined(separator: .newLine)
             
             let style = Style("name", {
-                print("Length: \(name.characters.count)")
                 
                 // Check if the name is too long, and reduce the font size
                 var pointSize: Float = 40.0

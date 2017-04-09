@@ -1,5 +1,23 @@
 import Foundation
 
+public enum Host {
+    case proposal
+    case profile
+    
+    init?(_ value: String) {
+        switch value {
+        case "proposal":
+            self = .proposal
+            
+        case "profile":
+            self = .profile
+            
+        default:
+            return nil
+        }
+    }
+}
+
 public typealias CallbackHandler = (_ url: String?, _ value: String?) -> Swift.Void
 
 final class Routes {
