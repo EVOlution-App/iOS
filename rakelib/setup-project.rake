@@ -25,18 +25,18 @@ end
 CARTHAGE_OPTIONS = '--platform iOS --no-use-binaries'
 
 desc 'Install dependencies in Carthage'
-task :carthage_install, [ :dependency ] do |_t, args|
+task :carthage_install, [:dependency] do |_t, args|
   dependency = args[:dependency]
   sh "carthage bootstrap #{CARTHAGE_OPTIONS} #{dependency}"
 end
 
-task :carthage_update, [ :dependency ] do |_t, args|
+task :carthage_update, [:dependency] do |_t, args|
   dependency = args[:dependency]
   sh "carthage update #{CARTHAGE_OPTIONS} #{dependency}"
 end
 
-task :carthage_clean, [ :dependency ] do |_t, args|
-  has_dependency = args[:dependency].to_s.strip.length != 0
+task :carthage_clean, [:dependency] do |_t, args|
+  has_dependency = !args[:dependency].to_s.strip.empty?
   sh 'rm -rf "~/Library/Caches/org.carthage.CarthageKit/"' unless has_dependency
   sh "rm -rf '#{BASE_PATH}/Carthage/'" unless has_dependency
 end
@@ -47,7 +47,7 @@ def brew_update
   sh 'brew update || brew update'
 end
 
-def brew_install( formula )
-  fail 'no formula' if formula.to_s.strip.length == 0
+def brew_install(formula)
+  raise 'no formula' if formula.to_s.strip.empty?
   sh " ( brew list #{formula} ) && ( brew outdated #{formula} || brew upgrade #{formula} ) || ( brew install #{formula} ) "
 end

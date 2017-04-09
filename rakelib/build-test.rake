@@ -104,11 +104,11 @@ def xcode(scheme: '',
   other_options = 'CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY= PROVISIONING_PROFILE=' unless actions.include? 'archive'
   archive_options = archive_path.to_s.strip.empty? ? '-enableCodeCoverage YES' : "-archivePath '#{archive_path}'"
 
-  if WORKSPACE_PATH.nil?
-    project = "-project #{PROJECT_PATH}"
-  else
-    project = "-workspace '#{WORKSPACE_PATH}'"
-  end
+  project = if WORKSPACE_PATH.nil?
+              "-project #{PROJECT_PATH}"
+            else
+              "-workspace '#{WORKSPACE_PATH}'"
+            end
 
   sh "rm -f '#{xcode_log_file}' '#{report_file}'"
   sh "set -o pipefail && xcodebuild #{other_options} #{xcode_configuration} -destination '#{destination}' #{project} -scheme '#{scheme}' #{archive_options} #{actions} | tee '#{xcode_log_file}' | xcpretty --color --no-utf -r junit -o '#{report_file}'"
