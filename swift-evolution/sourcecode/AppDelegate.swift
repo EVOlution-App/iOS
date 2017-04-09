@@ -10,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rotate: Bool = false
     
     open var people: [String: Person] = [:]
+    open var host: Host?
+    open var value: String?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
+        // Register routes to use on URL Scheme
+        let _ = Routes()
+        self.registerSchemes()
+        
         return true
     }
     
@@ -32,6 +38,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return .allButUpsideDown
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        Routes.shared.open(url)
+        
+        return true
+    }
+    
+    func registerSchemes() {
+        let routerHandler: CallbackHandler = { [weak self] host, value in
+            guard let h = host, let host = Host(h), let value = value else {
+                return
+            }
+            
+            self?.host = host
+            self?.value = value
+            NotificationCenter.default.post(name: NSNotification.Name.URLScheme, object: nil, userInfo: ["Host": host, "Value": value])
+        }
+        
+        // Register only URL hosts to Routes. URL example: evo://proposal/SE-0025
+        Routes.shared.add("proposal", routerHandler)
+        Routes.shared.add("profile", routerHandler)
     }
 }
 

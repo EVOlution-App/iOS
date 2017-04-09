@@ -244,11 +244,15 @@ extension ProposalTableViewCell {
 extension ProposalTableViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         
-        guard let proposal = self.proposal, let host = URL.host else {
+        guard let proposal = self.proposal,
+            let urlhost = URL.host,
+            let host = Host(urlhost) else {
             return false
         }
         
-        if host == "user" {
+        
+        
+        if host == .profile {
             let username = URL.lastPathComponent
             var person: Person?
             
@@ -264,7 +268,7 @@ extension ProposalTableViewCell: UITextViewDelegate {
                 delegate.didSelected(person: person)
             }
         }
-        else if host == "proposal", let proposal = self.proposal {
+        else if host == .proposal, let proposal = self.proposal {
             delegate?.didSelected(proposal: proposal)
         }
         
@@ -294,7 +298,7 @@ fileprivate extension NSMutableAttributedString {
             if let nameRange = text.range(of: name) {
                 let range = text.toNSRange(from: nameRange)
                 let style = Style("url") {
-                    $0.linkURL = URL(string: "evo://user/\(username)")
+                    $0.linkURL = URL(string: "evo://profile/\(username)")
                 }
                 
                 attributed = attributed.add(style: style, range: range)
