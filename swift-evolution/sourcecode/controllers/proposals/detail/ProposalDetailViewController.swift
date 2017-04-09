@@ -90,8 +90,24 @@ class ProposalDetailViewController: BaseViewController {
             destination.profile = person
         }
     }
+    
+    // MARK: - Share Proposal
+    @IBAction func shareProposal(_ sender: UIBarButtonItem) {
+        guard let proposal = self.proposal else {
+            return
+        }
+        
+        let content = "Hey, this proposal could be interested to you: \(proposal.title)"
+        let url = "http://share.swift-evolution.io/proposal/\(proposal.description)"
+        
+        let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
+        self.navigationController?.present(activityController, animated: true) {
+            print("completion share")
+        }
+    }
 }
 
+// MARK: - WKNavigation Delegate
 extension ProposalDetailViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
