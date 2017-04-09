@@ -248,7 +248,7 @@ extension ProposalTableViewCell: UITextViewDelegate {
             return false
         }
         
-        if host == "user" {
+        if host == "profile" {
             let username = URL.lastPathComponent
             var person: Person?
             
@@ -294,7 +294,7 @@ fileprivate extension NSMutableAttributedString {
             if let nameRange = text.range(of: name) {
                 let range = text.toNSRange(from: nameRange)
                 let style = Style("url") {
-                    $0.linkURL = URL(string: "evo://user/\(username)")
+                    $0.linkURL = URL(string: "evo://profile/\(username)")
                 }
                 
                 attributed = attributed.add(style: style, range: range)
