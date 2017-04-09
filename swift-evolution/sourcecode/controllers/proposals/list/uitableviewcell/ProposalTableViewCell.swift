@@ -244,11 +244,15 @@ extension ProposalTableViewCell {
 extension ProposalTableViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         
-        guard let proposal = self.proposal, let host = URL.host else {
+        guard let proposal = self.proposal,
+            let urlhost = URL.host,
+            let host = Host(urlhost) else {
             return false
         }
         
-        if host == "profile" {
+        
+        
+        if host == .profile {
             let username = URL.lastPathComponent
             var person: Person?
             
@@ -264,7 +268,7 @@ extension ProposalTableViewCell: UITextViewDelegate {
                 delegate.didSelected(person: person)
             }
         }
-        else if host == "proposal", let proposal = self.proposal {
+        else if host == .proposal, let proposal = self.proposal {
             delegate?.didSelected(proposal: proposal)
         }
         
