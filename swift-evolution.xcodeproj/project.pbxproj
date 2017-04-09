@@ -54,6 +54,7 @@
 		916896431E935ED700FC6913 /* GithubProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896421E935ED700FC6913 /* GithubProfile.swift */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		91B246091E98BF2B00904DE3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B246081E98BF2B00904DE3 /* Dictionary.swift */; };
+		91B2460B1E99BC4100904DE3 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B2460A1E99BC4100904DE3 /* Routes.swift */; };
 		91D5895E1E7E251200FE958D /* GithubUserFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D5895D1E7E251200FE958D /* GithubUserFormatter.swift */; };
 		91D589611E7E43D300FE958D /* Person+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D589601E7E43D300FE958D /* Person+Extension.swift */; };
 		91D589631E7E43F400FE958D /* Proposal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D589621E7E43F400FE958D /* Proposal+Extension.swift */; };
@@ -142,6 +143,7 @@
 		916896421E935ED700FC6913 /* GithubProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubProfile.swift; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		91B246081E98BF2B00904DE3 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		91B2460A1E99BC4100904DE3 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		91D5895D1E7E251200FE958D /* GithubUserFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubUserFormatter.swift; sourceTree = "<group>"; };
 		91D589601E7E43D300FE958D /* Person+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+Extension.swift"; sourceTree = "<group>"; };
 		91D589621E7E43F400FE958D /* Proposal+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Proposal+Extension.swift"; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */,
 				91485DEE1E690A33008C4715 /* Protocols.swift */,
 				915265771E6781EF00C2AFDA /* Utils.swift */,
+				91B2460A1E99BC4100904DE3 /* Routes.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListProposalsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
+				91B2460B1E99BC4100904DE3 /* Routes.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				913AE7051E97418A0097BCA5 /* UIImageView.swift in Sources */,
