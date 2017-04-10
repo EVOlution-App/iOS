@@ -66,7 +66,7 @@ fileprivate extension ProfileView {
             
             let style = Style("name", {
                 
-                // Check if the name is too long, and reduce the font size
+                // Check if name is too long, and reduce the font size
                 var pointSize: Float = 40.0
                 if name.characters.count > 14 {
                     pointSize = 30
@@ -95,7 +95,13 @@ fileprivate extension ProfileView {
             let host = url.host {
             
             let style = Style("link", {
-                $0.font = FontAttribute(.HelveticaNeue_Medium, size: 14)
+                // Check if link is too long, and reduce the font size
+                var pointSize: Float = 14.0
+                if link.characters.count > 14, UIScreen.main.bounds.size.width < 375 {
+                    pointSize = 12
+                }
+                
+                $0.font = FontAttribute(.HelveticaNeue_Medium, size: pointSize)
                 $0.color = UIColor.Proposal.lightGray
             })
 
