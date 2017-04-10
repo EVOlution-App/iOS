@@ -61,8 +61,12 @@ class ProposalTableViewCell: UITableViewCell {
             }
             
             // Render Review Manager
-            if let reviewer = proposal.reviewManager, let name = reviewer.name, name != "" {
-                details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name.tag(.person)
+            if let reviewer = proposal.reviewManager, var name = reviewer.name, name != "" {
+                if name != "TBD", name != "N/A" {
+                    name = name.tag(.person)
+                }
+                
+                details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name
             }
             
             // Render Bugs
