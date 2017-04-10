@@ -68,7 +68,8 @@ class ProposalDetailViewController: BaseViewController {
                                    customAttributes: nil)
             
             DispatchQueue.main.async {
-                try? self.downView?.update(markdownString: data) {
+                
+                try? self.downView?.update(markdownString: data ) {
                     print("Finished")
                 }
             }
@@ -97,13 +98,12 @@ class ProposalDetailViewController: BaseViewController {
             return
         }
         
-        let content = "Hey, this proposal could be interested to you: \(proposal.title)"
-        let url = "http://share.swift-evolution.io/proposal/\(proposal.description)"
+        let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
+        let content = "Hey, this proposal could be interesting to you: \"\(title)\""
+        let url = "http://swift-evolution.io/share/proposal/\(proposal.description)"
         
         let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
-        self.navigationController?.present(activityController, animated: true) {
-            print("completion share")
-        }
+        self.navigationController?.present(activityController, animated: true, completion: nil)
     }
 }
 
