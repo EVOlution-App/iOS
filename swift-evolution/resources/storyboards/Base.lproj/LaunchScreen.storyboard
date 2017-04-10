@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,40 +21,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo-evolution-splash" translatesAutoresizingMaskIntoConstraints="NO" id="0Qo-9X-txp">
-                                <rect key="frame" x="87" y="78" width="200" height="200"/>
+                                <rect key="frame" x="87" y="233" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="bL7-DX-dLw"/>
                                     <constraint firstAttribute="width" constant="200" id="dB9-xN-aGe"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evolution App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gba-71-B8a">
-                                <rect key="frame" x="16" y="334" width="343" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Dql-hQ-82U"/>
-                                    <constraint firstAttribute="width" constant="343" id="ZaO-pW-q4x"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="50"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F4-ng-PDA">
-                                <rect key="frame" x="16" y="604" width="343" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="ybP-eu-9w0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gba-71-B8a" firstAttribute="top" secondItem="0Qo-9X-txp" secondAttribute="bottom" constant="56" id="6dD-Dm-5RU"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="0F4-ng-PDA" secondAttribute="bottom" constant="20" id="8KZ-Pa-t5M"/>
-                            <constraint firstItem="gba-71-B8a" firstAttribute="centerX" secondItem="0Qo-9X-txp" secondAttribute="centerX" id="IcN-TN-liE"/>
-                            <constraint firstItem="0Qo-9X-txp" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="58" id="dpD-nY-RT3"/>
-                            <constraint firstItem="0F4-ng-PDA" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="gJ5-N6-ykx"/>
-                            <constraint firstItem="0F4-ng-PDA" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="tTa-du-V3R"/>
+                            <constraint firstItem="0Qo-9X-txp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="haC-Uo-cHQ"/>
                             <constraint firstItem="0Qo-9X-txp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zUf-3I-Hge"/>
                         </constraints>
                     </view>
