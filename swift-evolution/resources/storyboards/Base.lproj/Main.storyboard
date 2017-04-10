@@ -305,7 +305,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHm-GO-R55" customClass="ProfileView" customModule="swift_evolution" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xvv-1y-4o0">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-photo" translatesAutoresizingMaskIntoConstraints="NO" id="xvv-1y-4o0">
                                         <rect key="frame" x="236" y="8" width="124" height="124"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="eM8-Xt-L2u"/>
@@ -486,6 +486,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="icon-filter-off" width="23" height="23"/>
         <image name="icon-filter-on" width="23" height="23"/>
         <image name="logo-evolution-splash" width="200" height="200"/>
+        <image name="placeholder-photo" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rf2-rv-6M0"/>

@@ -25,7 +25,7 @@ class ProfileView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        self.profileImageView.round(with: UIColor.lightGray.withAlphaComponent(0.5), width: 2)
+        self.profileImageView.round(with: UIColor.clear, width: 0)
         self.profileImageView.backgroundColor = UIColor.Proposal.lightGray.withAlphaComponent(0.5)
     }
  
@@ -46,7 +46,7 @@ class ProfileView: UIView {
     }
     
     func loadProfileImage() {
-        guard let url = self.imageURL else {
+        guard let url = self.imageURL, url != "" else {
             return
         }
         
