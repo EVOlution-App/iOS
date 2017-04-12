@@ -1,7 +1,7 @@
 # Swift Evolution - iOS
+[![Build Status](https://www.bitrise.io/app/e1327785b8df7e9e.svg?token=S2v1wACgSV9zm4F7KG7LBQ&branch=development)](https://www.bitrise.io/app/e1327785b8df7e9e)
 
 The main goal of this project is to recreate as an iOS app, the web page created to [Swift Evolution](https://apple.github.io/swift-evolution).
-At this moment, we do not have any layout so then, use the screenshots from webpage we will.
 
 ![](images/screenshots_base.png)
 
