@@ -9,7 +9,7 @@ The main goal of this project is to recreate as an iOS app, the web page created
 
 ### Ruby
 
-If yon don't have experience with Ruby we recommend [rbenv](https://github.com/rbenv/rbenv):
+If you don't have experience with Ruby we recommend [rbenv](https://github.com/rbenv/rbenv):
 
 ```sh
 brew install rbenv
@@ -64,7 +64,7 @@ rake unit_tests
 ## How to contribute
 
 You need to create an issue and associate a pull request to this issue.
-After send your pull request, other developers will make a code review before merge into _development_ branch.
+After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
 
 
 ## Authors
