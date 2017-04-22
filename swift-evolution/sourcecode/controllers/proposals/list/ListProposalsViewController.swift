@@ -22,7 +22,7 @@ class ListProposalsViewController: BaseViewController {
     // Proposal ordering
     fileprivate lazy var statusOrder: [StatusState] = {
         return [.awaitingReview, .scheduledForReview, .activeReview,
-                .returnedForRevision, .accepted, .implemented,
+                .returnedForRevision, .accepted, .acceptedWithRevisions, .implemented,
                 .deferred, .rejected, .withdrawn]
     }()
     
