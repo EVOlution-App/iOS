@@ -246,10 +246,10 @@
 		915265241E67659900C2AFDA /* swift-evolution */ = {
 			isa = PBXGroup;
 			children = (
-				9114321F1EB963BD00CCC0D0 /* swift-evolution.entitlements */,
 				915265531E676EF900C2AFDA /* resources */,
 				915265541E676EFD00C2AFDA /* sourcecode */,
 				915265551E676F0700C2AFDA /* supportingfiles */,
+				9114321F1EB963BD00CCC0D0 /* swift-evolution.entitlements */,
 			);
 			path = "swift-evolution";
 			sourceTree = "<group>";
@@ -382,8 +382,8 @@
 				91E150251E6D153A00025B77 /* vendor */,
 				402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */,
 				91485DEE1E690A33008C4715 /* Protocols.swift */,
-				915265771E6781EF00C2AFDA /* Utils.swift */,
 				91B2460A1E99BC4100904DE3 /* Routes.swift */,
+				915265771E6781EF00C2AFDA /* Utils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -406,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				91E150291E6D250E00025B77 /* Array.swift */,
+				911432221EB9756500CCC0D0 /* Data.swift */,
 				91B246081E98BF2B00904DE3 /* Dictionary.swift */,
 				914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */,
 				912938D21E766EE000D2B2CF /* Sequence.swift */,
@@ -416,7 +417,6 @@
 				913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */,
 				0BCEEE251E6CC0B100F7D176 /* UITableView.swift */,
 				91E150211E6CCDD300025B77 /* UIView.swift */,
-				911432221EB9756500CCC0D0 /* Data.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
