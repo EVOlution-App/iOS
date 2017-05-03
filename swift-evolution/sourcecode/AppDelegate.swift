@@ -2,28 +2,27 @@ import UIKit
 import SVProgressHUD
 import Fabric
 import Crashlytics
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var rotate: Bool = false
+    open var rotate: Bool = false
     
     open var people: [String: Person] = [:]
     open var host: Host?
     open var value: String?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        LoadingMonitor.register()
-        SVProgressHUD.setDefaultAnimationType(.native)
-        SVProgressHUD.setDefaultMaskType(.clear)
-        
-        let font = UIFont(name: "HelveticaNeue-Thin", size: 25)!
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.Proposal.darkGray]
-        
+        // Register Fabric
         Fabric.with([Crashlytics.self])
+        
+        
+        self.navigationBarAppearance()
+        self.registerNetworkingMonitor()
+        self.registerForPushNotification()
         
         // Register routes to use on URL Scheme
         let _ = Routes()
@@ -46,7 +45,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func registerSchemes() {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map({ String(format: "%02.2hhx", $0)}).joined()
+        print(token)
+    }
+}
+
+// MARK: - Registers
+extension AppDelegate {
+
+    fileprivate func registerNetworkingMonitor() {
+        LoadingMonitor.register()
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setDefaultMaskType(.clear)
+    }
+    
+    fileprivate func navigationBarAppearance() {
+        let font = UIFont(name: "HelveticaNeue-Thin", size: 25)!
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.Proposal.darkGray]
+    }
+    
+    fileprivate func registerForPushNotification() {
+        
+        if #available(iOS 10.0, *) {
+            let notification = UNUserNotificationCenter.current()
+            notification.delegate = self
+            
+            notification.requestAuthorization(options: [.sound, .alert, .badge]) { granted, error in
+                if error == nil {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+        else {
+            let settings = UIUserNotificationSettings(types:  [.sound, .alert, .badge], categories: nil)
+            
+            UIApplication.shared.registerUserNotificationSettings(settings)
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    fileprivate func registerSchemes() {
         let routerHandler: CallbackHandler = { [weak self] host, value in
             guard let h = host, let host = Host(h), let value = value else {
                 return
@@ -60,6 +99,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register only URL hosts to Routes. URL example: evo://proposal/SE-0025
         Routes.shared.add("proposal", routerHandler)
         Routes.shared.add("profile", routerHandler)
+    }
+}
+
+
+// MARK: - Remote Notifications - <= iOS 9
+extension AppDelegate {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("[Remote Notification][Received] iOS 9: \(userInfo)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("[Remote Notification][Failed] iOS 9: \(error.localizedDescription)")
+    }
+}
+
+// MARK: - UNUserNotificationCenter Delegate - >= iOS 10
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("[Remote Notification][Received][Will Present] iOS 10: \(notification.request.content.userInfo)")
+        completionHandler([.sound, .alert, .badge])
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
+        print("[Remote Notification][Received][Received] iOS 10: \(response.notification.request.content.userInfo)")
+        completionHandler()
     }
 }
 
