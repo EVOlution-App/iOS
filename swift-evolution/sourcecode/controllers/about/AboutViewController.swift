@@ -36,10 +36,11 @@ class AboutViewController: UITableViewController {
         let hecktheuer  = Item(text: "Bruno Hecktheuer", type: .github, value: "bbheck")
         let ventura     = Item(text: "Diego Ventura", type: .github, value: "diegoventura")
         let tridapalli  = Item(text: "Diogo Tridapalli", type: .github, value: "diogot")
+        let gustavo     = Item(text: "Gustavo Barbosa", type: .github, value: "barbosa")
         let borelli     = Item(text: "Ricardo Borelli", type: .github, value: "rabc")
         let reis        = Item(text: "Rodrigo Reis", type: .github, value: "digoreis")
         
-        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, borelli, reis], footer: nil)
+        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, borelli, reis], footer: nil)
         about.append(contributors)
         
         // Licenses
@@ -72,11 +73,12 @@ class AboutViewController: UITableViewController {
         // Thanks To
         let daniel  = Item(text: "Daniel Dunbar", type: .twitter, value: "daniel_dunbar")
         let danilo  = Item(text: "Danilo Altheman", type: .twitter, value: "daltheman")
+        let ezeq    = Item(text: "Ezequiel França", type: .twitter, value: "ezefranca")
         let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
-        let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nCopyright © 2017 Apple Inc. All rights reserved.\n\nSwift and the Swift logo are trademarks of Apple Inc. For more information about the Swift project, see Swift.org."
-        let thanks = About(section: .thanks, items: [daniel, danilo, jesse, lisa], footer: copyright)
+        let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
+        let thanks = About(section: .thanks, items: [daniel, danilo, ezeq, jesse, lisa], footer: copyright)
         about.append(thanks)
         
         self.dataSource = about

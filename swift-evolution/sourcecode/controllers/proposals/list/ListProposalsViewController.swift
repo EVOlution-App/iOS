@@ -13,6 +13,7 @@ class ListProposalsViewController: BaseViewController {
     fileprivate var timer: Timer = Timer()
     fileprivate var filteredDataSource: [Proposal] = []
     fileprivate var dataSource: [Proposal] = []
+    fileprivate var appDelegate: AppDelegate?
     
     // Filters
     fileprivate var languages: [Version] = []
@@ -28,6 +29,8 @@ class ListProposalsViewController: BaseViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
         // Register Cell to TableView
         self.tableView.registerNib(withClass: ProposalTableViewCell.self)
@@ -53,6 +56,9 @@ class ListProposalsViewController: BaseViewController {
                                contentId: nil,
                                customAttributes: nil)
         
+        // Notifications
+        self.registerNotifications()
+        
         // Request the Proposes
         self.getProposalList()
     }
@@ -63,7 +69,6 @@ class ListProposalsViewController: BaseViewController {
     }
     
     // MARK: - Layout
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -87,18 +92,75 @@ class ListProposalsViewController: BaseViewController {
         Config.Orientation.portrait()
     }
     
-    // MARK: - Navigation
+    deinit {
+        self.removeNotifications()
+    }
     
+    // MARK: - Notifications
+    func registerNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveNotification(_:)),
+                                               name: NSNotification.Name.URLScheme,
+                                               object: nil)
+    }
+    
+    func removeNotifications() {
+        NotificationCenter.default.removeObserver(NSNotification.Name.URLScheme)
+    }
+    
+    func didReceiveNotification(_ notification: Notification) {
+        guard let info = notification.userInfo else { return }//,
+        self.navigateTo(info["Host"], info["Value"])
+    }
+    
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
-            let indexPath = self.tableView.indexPathForSelectedRow,
             let destination = segue.destination as? ProposalDetailViewController {
             
-            let item = self.filteredDataSource[indexPath.row]
-            destination.proposal = item
+            var item: Proposal? = nil
+            if sender == nil, let indexPath = self.tableView.indexPathForSelectedRow {
+                item = self.filteredDataSource[indexPath.row]
+            }
+            else if sender != nil, sender is Proposal  {
+                item = sender as? Proposal
+            }
+            
+            if let proposal = item {
+                destination.proposal = proposal
+            }
+        }
+        else if segue.destination is ProfileViewController,
+            let destination = segue.destination as? ProfileViewController,
+            sender != nil, sender is Person, let person = sender as? Person {
+            
+            destination.profile = person
         }
     }
     
+    func navigateTo(_ host: Any?, _ value: Any?) {
+        guard host is Host, let host = host as? Host,
+            value is String, let value = value as? String else {
+                return
+        }
+        
+        if host == .proposal {
+            let id: Int = value.regex(Config.Common.Regex.proposalID)
+            if let proposal = self.dataSource.get(by: id) {
+                Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+            }
+        }
+        else if host == .profile {
+            if let appDelegate = self.appDelegate,
+                let person = appDelegate.people.get(username: value) {
+                Config.Segues.profile.performSegue(in: self, with: person)
+            }
+        }
+        
+        // Invalidate host and value after use
+        self.appDelegate?.host = nil
+        self.appDelegate?.value = nil
+    }
     
     // MARK: - Requests
     fileprivate func getProposalList() {
@@ -121,11 +183,16 @@ class ListProposalsViewController: BaseViewController {
             
             self.filterHeaderView?.statusSource = self.statusOrder
             
+            self.buildPeople()
+            
             // Language Versions source
             self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                
+                // In case of user have come
+                self.navigateTo(self.appDelegate?.host, self.appDelegate?.value)
             }
         }
     }
@@ -230,6 +297,38 @@ class ListProposalsViewController: BaseViewController {
         self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         self.tableView.endUpdates()
     }
+    
+    // MARK: - Data Consolidation
+    
+    func buildPeople() {
+        var authors: [String: Person] = [:]
+        
+        self.dataSource.forEach { proposal in
+            proposal.authors?.forEach { person in
+                guard let name = person.name, name != "" else {
+                    return
+                }
+                
+                guard authors[name] == nil else {
+                    return
+                }
+                
+                authors[name] = person
+                
+                guard var user = authors[name] else {
+                    return
+                }
+                
+                user.id = UUID().uuidString
+                user.asAuthor = self.dataSource.filter(author: user)
+                user.asManager = self.dataSource.filter(manager: user)
+                
+                authors[name] = user
+            }
+        }
+
+        self.appDelegate?.people = authors
+    }
 }
 
 
@@ -242,6 +341,8 @@ extension ListProposalsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
+        
+        cell.delegate = self
         cell.proposal = self.filteredDataSource[indexPath.row]
         
         return cell
@@ -339,6 +440,29 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
         self.filterHeaderView.updateFilterButton(status: self.status)
     }
 }
+
+
+// MARK: - Proposal Delegate
+
+extension ListProposalsViewController: ProposalDelegate {
+    func didSelected(person: Person) {
+        guard let name = person.name else {
+            return
+        }
+
+        let profile = self.appDelegate?.people[name]
+        Config.Segues.profile.performSegue(in: self, with: profile)
+    }
+    
+    func didSelected(proposal: Proposal) {
+        guard let proposal = self.dataSource.get(by: proposal.id) else {
+            return
+        }
+        
+        Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+    }
+}
+
 
 // MARK: - UISearchBar Delegate
 

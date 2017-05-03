@@ -7,6 +7,7 @@ enum Tag: String {
     case label = "label"
     case value = "value"
     case id = "id"
+    case person = "person"
     
     func wrap(string: String) -> String {
         return "<\(self.rawValue)>\(string)</\(self.rawValue)>"
@@ -27,6 +28,20 @@ extension String {
     */
     static var doubleSpace: String {
         return "  "
+    }
+    
+    /**
+     Convert few HTML entities to plain text
+     */
+    var convertHTMLEntities: String {
+        var text = self
+        
+        let entities = ["&quot;":"\"", "&apos;":"'", "&lt;":"<", "&gt;":">", " &amp; ": " & "]
+        entities.forEach { key, value in
+            text = text.replacingOccurrences(of: value, with: key)
+        }
+
+        return text
     }
     
     /**
@@ -96,5 +111,55 @@ extension String {
         return []
     }
 
+    /**
+     Return first and last words from string
+     */
+    var firstLast: String {
+        let list = self.components(separatedBy: .whitespaces)
+        
+        var name = ""
+        
+        if let first = list.first, let last = list.last, list.count > 1 {
+            name = "\(first) \(last)"
+        }
+        else if let first = list.first, list.count == 1 {
+            name = first
+        }
+        
+        return name
+    }
     
+    /**
+     Return only initials from first and last word from string.
+     
+     **Best for:** _initials from name_
+     ```
+     let name = "Swift Evolution"
+     print(name.initials) // Optional("SE")
+     ```
+     */
+    var initials: String? {
+        guard self.firstLast.characters.count > 0 else {
+            return nil
+        }
+        
+        var initials: String?
+        let list = self.components(separatedBy: .whitespaces)
+
+        if let first = list.first, let last = list.last, list.count > 1 {
+            let findex = first.index(after: first.startIndex)
+            let lindex = last.index(after: last.startIndex)
+            
+            let first = first.substring(to: findex)
+            let last = last.substring(to: lindex)
+
+            initials = first + last
+        }
+        else if let item = list.first, list.count == 1 {
+            let index = item.index(after: item.startIndex)
+            initials = item.substring(to: index)
+        }
+        
+        return initials
+    }
 }

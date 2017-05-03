@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,7 +16,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.93824797869999998" green="0.31846234200000001" blue="0.2183952928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.058823529411764705" green="0.043137254901960784" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
@@ -25,9 +25,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrw-Lh-9pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1604" y="211"/>
+            <point key="canvasLocation" x="-831" y="211"/>
         </scene>
-        <!--Swift Evolution-->
+        <!--Evolution-->
         <scene sceneID="XRC-8N-KTw">
             <objects>
                 <viewController id="alP-NB-bbT" customClass="ListProposalsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
@@ -206,7 +206,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Swift Evolution" id="7ao-nW-5Ea">
+                    <navigationItem key="navigationItem" title="Evolution" id="7ao-nW-5Ea">
                         <barButtonItem key="rightBarButtonItem" title="About" id="gkZ-u1-nTj">
                             <connections>
                                 <segue destination="fHh-kc-l7X" kind="show" id="P2E-97-59c"/>
@@ -219,6 +219,7 @@
                         <outlet property="footerView" destination="J6Y-q1-3ee" id="ejk-HT-wtf"/>
                         <outlet property="tableView" destination="wrl-Y8-uLB" id="BXF-tf-kVq"/>
                         <segue destination="b40-fX-jN2" kind="show" identifier="ProposalDetailSegue" id="sHa-dI-MgD"/>
+                        <segue destination="3eh-9t-QMu" kind="show" identifier="ProfileSegue" id="XKc-wh-heR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Els-ho-mf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -245,12 +246,12 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-460" y="210.94452773613196"/>
+            <point key="canvasLocation" x="41" y="211"/>
         </scene>
         <!--Proposal Detail View Controller-->
         <scene sceneID="Hoh-3i-XTJ">
             <objects>
-                <viewController id="b40-fX-jN2" customClass="ProposalDetailViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProposalDetailStoryboardID" id="b40-fX-jN2" customClass="ProposalDetailViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L4P-6d-O4b"/>
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
@@ -272,14 +273,123 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <constraint firstItem="2ZS-ut-GeF" firstAttribute="top" secondItem="UrU-21-DUf" secondAttribute="bottom" id="yjZ-6t-m67"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gDa-Vo-N0W"/>
+                    <navigationItem key="navigationItem" id="gDa-Vo-N0W">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="i00-J5-eaM">
+                            <connections>
+                                <action selector="shareProposal:" destination="b40-fX-jN2" id="6JG-9y-t94"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailView" destination="UrU-21-DUf" id="60U-rP-Qzh"/>
+                        <segue destination="3eh-9t-QMu" kind="show" identifier="ProfileSegue" id="3pf-Ye-P5i"/>
+                        <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="rf2-rv-6M0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8D-qN-2aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="211"/>
+            <point key="canvasLocation" x="1449" y="211"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="fdb-C6-wBp">
+            <objects>
+                <viewController id="3eh-9t-QMu" customClass="ProfileViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZT6-7y-7fB"/>
+                        <viewControllerLayoutGuide type="bottom" id="mug-0m-6CO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jfJ-d2-sQG">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHm-GO-R55" customClass="ProfileView" customModule="swift_evolution" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-photo" translatesAutoresizingMaskIntoConstraints="NO" id="xvv-1y-4o0">
+                                        <rect key="frame" x="236" y="8" width="124" height="124"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="124" id="eM8-Xt-L2u"/>
+                                            <constraint firstAttribute="height" constant="124" id="tZ4-Ig-gWF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z5R-EJ-3bF">
+                                        <rect key="frame" x="15" y="8" width="213" height="124"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="124" id="JLo-Lm-mSl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.33342915773391724" green="0.33341541886329651" blue="0.33342477679252625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iFC-f8-Q5k">
+                                        <rect key="frame" x="15" y="140" width="345" height="28"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="RXb-XQ-C3j"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xvv-1y-4o0" secondAttribute="trailing" constant="15" id="0uV-NC-dao"/>
+                                    <constraint firstAttribute="trailing" secondItem="iFC-f8-Q5k" secondAttribute="trailing" constant="15" id="Ek6-KB-qJb"/>
+                                    <constraint firstItem="xvv-1y-4o0" firstAttribute="top" secondItem="dHm-GO-R55" secondAttribute="top" constant="8" id="FyG-BH-LRd"/>
+                                    <constraint firstAttribute="height" constant="176" id="H5P-6a-Vi4"/>
+                                    <constraint firstItem="iFC-f8-Q5k" firstAttribute="top" secondItem="z5R-EJ-3bF" secondAttribute="bottom" constant="8" id="N8j-Kp-44V"/>
+                                    <constraint firstItem="iFC-f8-Q5k" firstAttribute="leading" secondItem="dHm-GO-R55" secondAttribute="leading" constant="15" id="VtY-fP-AUl"/>
+                                    <constraint firstItem="z5R-EJ-3bF" firstAttribute="top" secondItem="dHm-GO-R55" secondAttribute="top" constant="8" id="bTU-aP-Rzt"/>
+                                    <constraint firstItem="xvv-1y-4o0" firstAttribute="leading" secondItem="z5R-EJ-3bF" secondAttribute="trailing" constant="8" id="hRI-Sj-XRJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="iFC-f8-Q5k" secondAttribute="bottom" constant="8" id="oXC-2v-XPs"/>
+                                    <constraint firstItem="z5R-EJ-3bF" firstAttribute="leading" secondItem="dHm-GO-R55" secondAttribute="leading" constant="15" id="r95-rI-CoY"/>
+                                    <constraint firstItem="iFC-f8-Q5k" firstAttribute="top" secondItem="xvv-1y-4o0" secondAttribute="bottom" constant="8" id="yOy-DQ-ByT"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="detailsLabel" destination="z5R-EJ-3bF" id="hFZ-vz-rVj"/>
+                                    <outlet property="profileImageView" destination="xvv-1y-4o0" id="M17-ny-l6M"/>
+                                    <outlet property="statisticsLabel" destination="iFC-f8-Q5k" id="JH8-cE-Ayc"/>
+                                </connections>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4qS-ei-dyF">
+                                <rect key="frame" x="0.0" y="176" width="375" height="427"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="3eh-9t-QMu" id="Il6-Fn-YJr"/>
+                                    <outlet property="delegate" destination="3eh-9t-QMu" id="gzN-Ny-LEH"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4qS-ei-dyF" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leadingMargin" constant="-16" id="RiB-oS-7ye"/>
+                            <constraint firstItem="4qS-ei-dyF" firstAttribute="top" secondItem="dHm-GO-R55" secondAttribute="bottom" id="XWq-gd-WM5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dHm-GO-R55" secondAttribute="trailing" constant="-16" id="ZhG-9S-vs5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4qS-ei-dyF" secondAttribute="trailing" constant="-16" id="heW-B3-2IW"/>
+                            <constraint firstItem="mug-0m-6CO" firstAttribute="top" secondItem="4qS-ei-dyF" secondAttribute="bottom" id="nX7-P0-OAO"/>
+                            <constraint firstItem="dHm-GO-R55" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leadingMargin" constant="-16" id="scj-1X-KD1"/>
+                            <constraint firstItem="dHm-GO-R55" firstAttribute="top" secondItem="ZT6-7y-7fB" secondAttribute="bottom" id="vld-NY-mTh"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="profileView" destination="dHm-GO-R55" id="Whk-Os-u6N"/>
+                        <outlet property="tableView" destination="4qS-ei-dyF" id="arE-4V-SY5"/>
+                        <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="2o2-Fg-V0b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-j0-jer" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="974"/>
+        </scene>
+        <!--ProposalDetailStoryboardID-->
+        <scene sceneID="iLc-1L-4vW">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="ProposalDetailStoryboardID" id="2X3-i1-g9s" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6br-KN-dWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448" y="974"/>
         </scene>
         <!--About-->
         <scene sceneID="tuR-kd-nQG">
@@ -290,28 +400,18 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="nKE-aV-2Yb">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="376"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="logo-swift-splash" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-Vn-6Wl">
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="logo-evolution-splash" translatesAutoresizingMaskIntoConstraints="NO" id="NtM-Vn-6Wl">
                                     <rect key="frame" x="124" y="32" width="126" height="126"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="126" id="gUD-0L-zG1"/>
                                         <constraint firstAttribute="height" constant="126" id="kmZ-dn-f1w"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
-                                    <rect key="frame" x="8" y="242" width="359" height="134"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="134" id="78P-to-GH8"/>
-                                    </constraints>
-                                    <string key="text">v1.0  We are not part of Apple. This project was made by a group of independent developers to help users follow the proposals from Swift Evolution. </string>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift Evolution App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-HC-Zq2">
-                                    <rect key="frame" x="8" y="198" width="359" height="40"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evolution App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hz-HC-Zq2">
+                                    <rect key="frame" x="8" y="168" width="359" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="SJs-gS-D7J"/>
                                     </constraints>
@@ -319,15 +419,25 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
+                                    <rect key="frame" x="8" y="212" width="359" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="33" id="78P-to-GH8"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="centerX" secondItem="nKE-aV-2Yb" secondAttribute="centerX" id="3KG-0E-H0D"/>
+                                <constraint firstAttribute="bottom" secondItem="Jz5-jz-6IP" secondAttribute="bottom" id="7hs-l7-Nk3"/>
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="centerX" secondItem="NtM-Vn-6Wl" secondAttribute="centerX" id="9q0-wf-O1P"/>
                                 <constraint firstAttribute="trailing" secondItem="7hz-HC-Zq2" secondAttribute="trailing" constant="8" id="FHt-sL-6k4"/>
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="centerX" secondItem="NtM-Vn-6Wl" secondAttribute="centerX" id="Hg4-y3-Cm7"/>
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="top" secondItem="7hz-HC-Zq2" secondAttribute="bottom" constant="4" id="Jie-b9-vhr"/>
-                                <constraint firstItem="7hz-HC-Zq2" firstAttribute="top" secondItem="NtM-Vn-6Wl" secondAttribute="bottom" constant="40" id="ObK-Ag-0l2"/>
+                                <constraint firstItem="7hz-HC-Zq2" firstAttribute="top" secondItem="NtM-Vn-6Wl" secondAttribute="bottom" constant="10" id="ObK-Ag-0l2"/>
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="leading" secondItem="nKE-aV-2Yb" secondAttribute="leading" constant="8" id="R7L-dL-c0M"/>
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="leading" secondItem="nKE-aV-2Yb" secondAttribute="leading" constant="8" id="WvL-SJ-Yw4"/>
                                 <constraint firstAttribute="trailing" secondItem="Jz5-jz-6IP" secondAttribute="trailing" constant="8" id="g6d-EX-BWM"/>
@@ -336,7 +446,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AboutCellIdentifier" textLabel="g97-K9-KnQ" detailTextLabel="wVb-df-kea" style="IBUITableViewCellStyleSubtitle" id="cZ5-yH-F1U">
-                                <rect key="frame" x="0.0" y="431.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="300.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZ5-yH-F1U" id="5t8-Yn-pJ8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -369,12 +479,17 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JU-pf-9l0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="561" y="-735"/>
+            <point key="canvasLocation" x="-831" y="974"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon-filter-off" width="23" height="23"/>
         <image name="icon-filter-on" width="23" height="23"/>
-        <image name="logo-swift-splash" width="200" height="200"/>
+        <image name="logo-evolution-splash" width="200" height="200"/>
+        <image name="placeholder-photo" width="150" height="150"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="rf2-rv-6M0"/>
+        <segue reference="3pf-Ye-P5i"/>
+    </inferredMetricsTieBreakers>
 </document>
