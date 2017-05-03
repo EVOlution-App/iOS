@@ -61,6 +61,10 @@ class ListProposalsViewController: BaseViewController {
         
         // Request the Proposes
         self.getProposalList()
+        
+        if let title = Environment.title, title != "" {
+            self.title = title
+        }
     }
     
     override func didReceiveMemoryWarning() {
