@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -185,7 +185,7 @@
                                     <outlet property="statusFilterViewHeightConstraint" destination="tGu-yD-oE6" id="g4y-Vr-A9m"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
                                 <rect key="frame" x="0.0" y="355" width="375" height="248"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -196,13 +196,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xy9-CI-bMR" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leadingMargin" constant="-16" id="91V-Wp-60q"/>
+                            <constraint firstItem="Xy9-CI-bMR" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leading" id="91V-Wp-60q"/>
                             <constraint firstItem="Xy9-CI-bMR" firstAttribute="top" secondItem="ndH-s4-ED8" secondAttribute="bottom" id="9qH-ov-ZfC"/>
                             <constraint firstItem="rAt-nJ-6SM" firstAttribute="top" secondItem="wrl-Y8-uLB" secondAttribute="bottom" id="CSf-We-hW3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wrl-Y8-uLB" secondAttribute="trailing" constant="-16" id="POP-vO-ngg"/>
+                            <constraint firstAttribute="trailing" secondItem="wrl-Y8-uLB" secondAttribute="trailing" id="POP-vO-ngg"/>
                             <constraint firstItem="wrl-Y8-uLB" firstAttribute="top" secondItem="Xy9-CI-bMR" secondAttribute="bottom" id="V4m-wd-KRg"/>
-                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leadingMargin" constant="-16" id="nlW-5J-gcF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Xy9-CI-bMR" secondAttribute="trailing" constant="-16" id="pyb-EP-kdI"/>
+                            <constraint firstItem="wrl-Y8-uLB" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leading" id="nlW-5J-gcF"/>
+                            <constraint firstAttribute="trailing" secondItem="Xy9-CI-bMR" secondAttribute="trailing" id="pyb-EP-kdI"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -246,7 +246,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="41" y="211"/>
+            <point key="canvasLocation" x="40.799999999999997" y="210.94452773613196"/>
         </scene>
         <!--Proposal Detail View Controller-->
         <scene sceneID="Hoh-3i-XTJ">
@@ -398,7 +398,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xZz-Rr-h0Z">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="nKE-aV-2Yb">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -419,7 +419,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.1.1" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz5-jz-6IP">
                                     <rect key="frame" x="8" y="212" width="359" height="33"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="33" id="78P-to-GH8"/>
@@ -476,6 +476,9 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <outlet property="delegate" destination="fHh-kc-l7X" id="RQm-tA-mE2"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="versionLabel" destination="Jz5-jz-6IP" id="YKW-Rg-4KZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JU-pf-9l0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -489,7 +492,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="placeholder-photo" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="XKc-wh-heR"/>
         <segue reference="rf2-rv-6M0"/>
-        <segue reference="3pf-Ye-P5i"/>
     </inferredMetricsTieBreakers>
 </document>
