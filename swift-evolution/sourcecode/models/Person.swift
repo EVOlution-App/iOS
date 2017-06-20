@@ -2,12 +2,18 @@ import UIKit
 import Unbox
 
 struct Person {
+    var id: String?
     let name: String?
     let link: String?
     let username: String?
+
+    // These properties will not come from server
+    var github: GithubProfile? = nil
+    var asAuthor: [Proposal]? = nil
+    var asManager: [Proposal]? = nil
 }
 
-extension Person: Unboxable {
+extension Person: Unboxable, Searchable {
     init(unboxer: Unboxer) throws {
         self.name = unboxer.unbox(key: "name")
         self.link = unboxer.unbox(key: "link")

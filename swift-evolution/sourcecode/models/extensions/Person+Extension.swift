@@ -24,4 +24,45 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
         
         return filter
     }
+    
+    func get(username: String) -> Person? {
+        guard let index = self.index(where: {
+            guard let user = $0.username, username != "" else {
+                return false
+            }
+            return user == username
+        }) else {
+            return nil
+        }
+
+        return self[index]
+    }
+    
+    func get(name: String) -> Person? {
+        guard let index = self.index(where: {
+            guard let user = $0.name, name != "" else {
+                return false
+            }
+            return user == name
+        }) else {
+            return nil
+        }
+        
+        return self[index]
+    }
+    
+    func get(id: String) -> Person? {
+        guard let index = self.index(where: {
+            guard let user = $0.id, id != "" else {
+                return false
+            }
+            return user == id
+        }) else {
+            return nil
+        }
+        
+        return self[index]
+    }
+
+
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,54 +20,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo-swift-splash" translatesAutoresizingMaskIntoConstraints="NO" id="0Qo-9X-txp">
-                                <rect key="frame" x="87" y="78" width="200" height="200"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo-evolution-splash" translatesAutoresizingMaskIntoConstraints="NO" id="0Qo-9X-txp">
+                                <rect key="frame" x="87" y="233" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="bL7-DX-dLw"/>
                                     <constraint firstAttribute="width" constant="200" id="dB9-xN-aGe"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swift Evolution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gba-71-B8a">
-                                <rect key="frame" x="16" y="334" width="343" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Dql-hQ-82U"/>
-                                    <constraint firstAttribute="width" constant="343" id="ZaO-pW-q4x"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="50"/>
-                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0RV-lX-uJZ">
-                                <rect key="frame" x="0.0" y="563" width="375" height="104"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hA8-X7-dfA">
-                                        <rect key="frame" x="8" y="8" width="359" height="88"/>
-                                        <string key="text">Copyright © 2017 Apple Inc. All rights reserved.
-
-Swift and the Swift logo are trademarks of Apple Inc. For more information about the Swift project, see Swift.org.</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="hA8-X7-dfA" secondAttribute="bottom" constant="8" id="K1X-Dn-SfA"/>
-                                    <constraint firstItem="hA8-X7-dfA" firstAttribute="leading" secondItem="0RV-lX-uJZ" secondAttribute="leading" constant="8" id="KcP-Wa-8XK"/>
-                                    <constraint firstItem="hA8-X7-dfA" firstAttribute="top" secondItem="0RV-lX-uJZ" secondAttribute="top" constant="8" id="PCx-Pz-e0i"/>
-                                    <constraint firstAttribute="trailing" secondItem="hA8-X7-dfA" secondAttribute="trailing" constant="8" id="abY-6N-MZa"/>
-                                    <constraint firstAttribute="height" constant="104" id="lFy-0Y-uJm"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="0RV-lX-uJZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-16" id="0kh-Cd-ePF"/>
-                            <constraint firstItem="gba-71-B8a" firstAttribute="top" secondItem="0Qo-9X-txp" secondAttribute="bottom" constant="56" id="6dD-Dm-5RU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="0RV-lX-uJZ" secondAttribute="trailing" constant="-16" id="C4w-eg-8yE"/>
-                            <constraint firstItem="gba-71-B8a" firstAttribute="centerX" secondItem="0Qo-9X-txp" secondAttribute="centerX" id="IcN-TN-liE"/>
-                            <constraint firstItem="0Qo-9X-txp" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="58" id="dpD-nY-RT3"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="0RV-lX-uJZ" secondAttribute="bottom" id="w56-uf-d1Y"/>
+                            <constraint firstItem="0Qo-9X-txp" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="haC-Uo-cHQ"/>
                             <constraint firstItem="0Qo-9X-txp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zUf-3I-Hge"/>
                         </constraints>
                     </view>
@@ -79,6 +41,6 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         </scene>
     </scenes>
     <resources>
-        <image name="logo-swift-splash" width="200" height="200"/>
+        <image name="logo-evolution-splash" width="200" height="200"/>
     </resources>
 </document>

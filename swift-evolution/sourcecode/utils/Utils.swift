@@ -32,6 +32,7 @@ struct Config {
     
     enum Segues: String, SegueRepresentable {
         case proposalDetail = "ProposalDetailSegue"
+        case profile = "ProfileSegue"
     }
     
     struct Nib {
@@ -68,6 +69,21 @@ struct Config {
             UIDevice.current.setValue(value, forKey: "orientation")
         }
     }
+    
+    struct Base {
+        struct URL {
+            static var data: String {
+                return "https://data.swift-evolution.io"
+            }
+            
+            static var githubUser: String {
+                return "https://api.github.com/users"
+            }
+        }
+    }
 }
 
+extension NSNotification.Name {
+    static let URLScheme = NSNotification.Name(rawValue: "URLSchemeActivation")
+}
 
