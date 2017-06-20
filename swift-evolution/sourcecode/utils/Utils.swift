@@ -73,11 +73,7 @@ struct Config {
     struct Base {
         struct URL {
             static var data: String {
-                return "https://data.swift.org/swift-evolution"
-            }
-            
-            static var proposal: String {
-                return "https://raw.githubusercontent.com/apple/swift-evolution/master/proposals"
+                return "https://data.swift-evolution.io"
             }
             
             static var githubUser: String {
