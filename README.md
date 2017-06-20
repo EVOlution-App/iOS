@@ -81,7 +81,6 @@ After you send your pull request, other developers will make a code review befor
 - Gustavo Barbosa - [Github](https://github.com/barbosa) / [Twitter](https://twitter.com/gustavocsb)
 - Ricardo Borelli - [Github](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
 - Rodrigo Reis - [Github](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
-- Bruno Guidolim - [Github](https://github.com/bguidolim) / [Twitter](https://twitter.com/bguidolim)
 
 ## License
 
