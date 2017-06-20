@@ -224,6 +224,8 @@ class ListProposalsViewController: BaseViewController {
                 if self.selected(status: .implemented) {
                     self.filterHeaderView.filterLevel = .version
                 }
+                
+                self.filterHeaderView.filteredByButton.isSelected = true
             }
         }
         
@@ -480,6 +482,11 @@ extension ListProposalsViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText != "" else {
+            self.updateTableView()
+            return
+        }
+        
         if self.timer.isValid {
             self.timer.invalidate()
         }
