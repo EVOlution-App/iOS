@@ -30,7 +30,13 @@ class AboutViewController: UITableViewController {
         let mainDeveloper = About(section: .mainDeveloper, items: [thiago], footer: nil)
         about.append(mainDeveloper)
         
-        // Contributors
+        // Backend - Contributors
+        let ricardo     = Item(text: "Ricardo Olivieri", type: .github, value: "rolivieri")
+        let taylor      = Item(text: "Taylor Franklin", type: .github, value: "tfrank64")
+        let backend     = About(section: .backend, items: [ricardo, taylor, thiago], footer: nil)
+        about.append(backend)
+
+        // iOS - Contributors
         let bilescky    = Item(text: "Bruno Bilescky", type: .github, value: "brunogb")
         let guidolim    = Item(text: "Bruno Guidolim", type: .github, value: "bguidolim")
         let hecktheuer  = Item(text: "Bruno Hecktheuer", type: .github, value: "bbheck")
@@ -73,12 +79,13 @@ class AboutViewController: UITableViewController {
         // Thanks To
         let daniel  = Item(text: "Daniel Dunbar", type: .twitter, value: "daniel_dunbar")
         let danilo  = Item(text: "Danilo Altheman", type: .twitter, value: "daltheman")
+        let john    = Item(text: "John Calistro", type: .twitter, value: "johncalistro")
         let ezeq    = Item(text: "Ezequiel França", type: .twitter, value: "ezefranca")
         let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
         let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
-        let thanks = About(section: .thanks, items: [daniel, danilo, ezeq, jesse, lisa], footer: copyright)
+        let thanks = About(section: .thanks, items: [daniel, danilo, ezeq, jesse, john, lisa], footer: copyright)
         about.append(thanks)
         
         self.dataSource = about
@@ -178,7 +185,7 @@ extension AboutViewController {
                                                 message: message,
                                                 preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let openAction = UIAlertAction(title: "Open", style: .default) { [unowned self] _ in
             let about = self.dataSource[indexPath.row]
             
