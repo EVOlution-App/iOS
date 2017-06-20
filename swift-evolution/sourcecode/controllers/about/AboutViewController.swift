@@ -3,11 +3,19 @@ import Crashlytics
 
 class AboutViewController: UITableViewController {
 
+    
     fileprivate var dataSource: [About] = []
+    @IBOutlet private var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        if let version = Environment.Release.version,
+            let build = Environment.Release.build {
+            
+            self.versionLabel.text = "v\(version) (\(build))"
+        }
+        
         self.buildAboutData()
         self.tableView.reloadData()
         
