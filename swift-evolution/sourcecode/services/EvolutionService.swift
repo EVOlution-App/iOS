@@ -20,11 +20,7 @@ struct EvolutionService {
     }
     
     static func detail(proposal: Proposal, completion: @escaping CompletionDetail) {
-        guard let markdown = proposal.link else {
-            return
-        }
-        
-        let url = "\(Config.Base.URL.proposal)/\(markdown)"
+        let url = "\(Config.Base.URL.data)/proposal/\(proposal.id)"
         
         Service.requestText(url) { error, text in
             guard error == nil else {
