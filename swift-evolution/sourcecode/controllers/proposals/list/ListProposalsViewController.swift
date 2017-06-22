@@ -86,16 +86,6 @@ class ListProposalsViewController: BaseViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Disable Rotation
-        self.rotate = false
-        
-        // Force rotation back to portrait
-        Config.Orientation.portrait()
-    }
-    
     deinit {
         self.removeNotifications()
     }

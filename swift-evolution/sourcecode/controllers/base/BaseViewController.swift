@@ -7,12 +7,14 @@ class BaseViewController: UIViewController {
             (UIApplication.shared.delegate as? AppDelegate)?.rotate = rotate
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Disable Rotation
+        self.rotate = false
+        
+        // Force rotation back to portrait
+        Config.Orientation.portrait()
     }
-
-
 }

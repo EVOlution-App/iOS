@@ -1,6 +1,6 @@
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
 
     fileprivate struct Section {
         let title: String
@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
         
         self.configureSections()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

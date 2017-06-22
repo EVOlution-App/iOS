@@ -22,7 +22,7 @@ class ProposalDetailViewController: BaseViewController {
 
         self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
-        self.rotate = true
+        // Configure title using Proposal ID, e.g: SE-0172
         self.title = proposal?.description
         
         self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "")
@@ -40,6 +40,13 @@ class ProposalDetailViewController: BaseViewController {
         }
         
         self.getProposalDetail()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Allow rotation
+        self.rotate = true
     }
     
     override func didReceiveMemoryWarning() {
