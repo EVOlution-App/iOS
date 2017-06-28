@@ -100,4 +100,21 @@ extension UIView {
             break
         }
     }
+    
+    public static func fromNib<T: UIView>(nibName: String? = nil) -> T? {
+        var name: String? = nibName
+        
+        if name == nil {
+            name = String(describing: T.self)
+        }
+        
+        if let nib = Config.Nib.loadNib(name: name),
+            let nibViews = nib.instantiate(withOwner: self, options: nil) as? [T],
+            let view = nibViews.first {
+            
+            return view
+        }
+        
+        return nil
+    }
 }
