@@ -18,11 +18,32 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+
   end
 
   desc "Runs all the tests"
   lane :test do
     scan
+  end
+
+  desc "Register new device"
+  lane :register_new_device do  |options|
+      device_name = prompt(text: "Enter the device name: ")
+      device_udid = prompt(text: "Enter the device UDID: ")
+      device_hash = {}
+      device_hash[device_name] = device_udid
+      register_devices(devices: device_hash)
+
+      match(type: "development", force_for_new_devices: true)
+  end
+
+  desc "Get provisionings to development schema"
+  lane :match_dev do
+    match(
+      type: "development",
+      app_identifier: "io.swift-evolution.app.development",
+      force_for_new_devices: true
+    )
   end
 
   desc "Submit a new Beta Build to Apple TestFlight"
