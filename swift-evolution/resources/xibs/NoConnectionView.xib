@@ -33,9 +33,6 @@
                                 <constraint firstAttribute="width" constant="187" id="V44-10-7CM"/>
                             </constraints>
                             <state key="normal" title="Try again"/>
-                            <connections>
-                                <action selector="retryAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Eqh-Hq-8xp"/>
-                            </connections>
                         </button>
                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bird-no-connection" translatesAutoresizingMaskIntoConstraints="NO" id="gg4-xG-FJ3">
                             <rect key="frame" x="115" y="0.0" width="90" height="81"/>
