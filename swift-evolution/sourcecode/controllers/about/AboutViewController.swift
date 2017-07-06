@@ -1,9 +1,9 @@
 import UIKit
 import Crashlytics
+import StoreKit
 
 class AboutViewController: UITableViewController {
 
-    
     fileprivate var dataSource: [About] = []
     @IBOutlet private var versionLabel: UILabel!
     
@@ -23,6 +23,11 @@ class AboutViewController: UITableViewController {
                                contentType: "Load View",
                                contentId: nil,
                                customAttributes: nil)
+        
+        // Ask for review
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,8 +85,9 @@ class AboutViewController: UITableViewController {
         let web         = Item(text: "Web", type: .url, value: "https://apple.github.io/swift-evolution")
         let proposals   = Item(text: "Proposals Repo", type: .github, value: "apple/swift-evolution")
         let mailing     = Item(text: "Mailing list", type: .url, value: "https://lists.swift.org/mailman/listinfo/swift-evolution")
+        let backendRepo = Item(text: "App - Backend", type: .github, value: "unnamedd/swift-evolution-backend")
         
-        let more = About(section: .moreData, items: [web, proposals, mailing], footer: nil)
+        let more = About(section: .moreData, items: [backendRepo, web, proposals, mailing], footer: nil)
         about.append(more)
         
         // Thanks To
