@@ -11,7 +11,10 @@ class ProfileViewController: BaseViewController {
     @IBOutlet fileprivate weak var tableView: UITableView!
     
     open var profile: Person?
-    fileprivate var sections: [Section] = []
+    fileprivate lazy var sections: [Section] = {
+        return []
+    }()
+
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -27,8 +30,9 @@ class ProfileViewController: BaseViewController {
         
         
         // Settings
+        self.showNoConnection = false
         self.profileView.profile = profile
-        self.requestUserDataFromGithub()
+        self.getUserDataFromGithub()
         self.tableView.reloadData()
         
         // Title
@@ -37,6 +41,13 @@ class ProfileViewController: BaseViewController {
         }
         
         self.configureSections()
+        
+        // Configure reachability closures
+        self.reachability?.whenReachable = { [unowned self] reachability in
+            if self.profileView.imageURL == nil {
+                self.getUserDataFromGithub()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,18 +90,20 @@ extension ProfileViewController {
         self.tableView.reloadData()
     }
     
-    fileprivate func requestUserDataFromGithub() {
+    fileprivate func getUserDataFromGithub() {
         guard let profile = self.profile, let username = profile.username else {
             return
         }
         
-        GithubService.profile(from: username) { [weak self] error, github in
-            guard let github = github, error == nil else {
-                return
+        if let reachability = self.reachability, reachability.isReachable {
+            GithubService.profile(from: username) { [weak self] error, github in
+                guard let github = github, error == nil else {
+                    return
+                }
+                
+                self?.profile?.github = github
+                self?.profileView.imageURL = github.avatar
             }
-            
-            self?.profile?.github = github
-            self?.profileView.imageURL = github.avatar
         }
     }
 }
