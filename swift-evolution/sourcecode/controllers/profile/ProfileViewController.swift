@@ -1,4 +1,5 @@
 import UIKit
+import Crashlytics
 
 class ProfileViewController: BaseViewController {
 
@@ -38,6 +39,11 @@ class ProfileViewController: BaseViewController {
         // Title
         if let profile = self.profile, let username = profile.username {
             self.title = "@\(username)"
+            
+            Answers.logContentView(withName: "Profile Screen",
+                                   contentType: "Profile",
+                                   contentId: profile.name,
+                                   customAttributes: nil)
         }
         
         self.configureSections()
