@@ -10,6 +10,7 @@ class ProposalDetailViewController: BaseViewController {
     @IBOutlet private weak var detailView: UIView!
     
     // MARK: - Private properties
+    private var proposalMarkdown: String?
     private var downView: DownView? = nil
     fileprivate var appDelegate: AppDelegate?
     
@@ -38,8 +39,21 @@ class ProposalDetailViewController: BaseViewController {
                 downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
             ])
         }
-        
+        // Request the Proposes
         self.getProposalDetail()
+        
+        // Configure reachability closures
+        self.reachability?.whenReachable = { [unowned self] reachability in
+            if self.proposalMarkdown == nil {
+                self.getProposalDetail()
+            }
+        }
+        
+        self.reachability?.whenUnreachable = { [unowned self] reachability in
+            if self.proposalMarkdown == nil {
+                self.showNoConnection = true
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +67,13 @@ class ProposalDetailViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Reachability Retry Action
+    override func retryButtonAction(_ sender: UIButton) {
+        super.retryButtonAction(sender)
+        
+        self.getProposalDetail()
+    }
 
     // MARK: - Networking
     fileprivate func getProposalDetail() {
@@ -60,26 +81,33 @@ class ProposalDetailViewController: BaseViewController {
             return
         }
         
-        EvolutionService.detail(proposal: proposal) { [unowned self] error, data in
-            guard error == nil, let data = data else {
-                if let error = error {
-                    Crashlytics.sharedInstance().recordError(error)
+        if let reachability = self.reachability, reachability.isReachable {
+            // Hide No Connection View
+            self.showNoConnection = false
+            
+            
+            EvolutionService.detail(proposal: proposal) { [unowned self] error, data in
+                guard error == nil, let data = data else {
+                    if let error = error {
+                        Crashlytics.sharedInstance().recordError(error)
+                    }
+                    
+                    return
                 }
-
-                return
-            }
-            
-            Answers.logContentView(withName: "Proposal Detail",
-                                   contentType: "Load Detail from server",
-                                   contentId: self.proposal?.link,
-                                   customAttributes: nil)
-            
-            DispatchQueue.main.async {
                 
-                try? self.downView?.update(markdownString: data ) {
-                    print("Finished")
+                Answers.logContentView(withName: "Proposal Detail",
+                                       contentType: "Load Detail from server",
+                                       contentId: self.proposal?.link,
+                                       customAttributes: nil)
+                
+                self.proposalMarkdown = data
+                DispatchQueue.main.async {
+                    try? self.downView?.update(markdownString: data)
                 }
             }
+        }
+        else {
+            self.showNoConnection = true
         }
     }
     
@@ -107,7 +135,7 @@ class ProposalDetailViewController: BaseViewController {
         
         let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
         let content = "Hey, this proposal could be interesting to you: \"\(title)\""
-        let url = "http://swift-evolution.io/share/proposal/\(proposal.description)"
+        let url = "https://swift-evolution.io/proposal/\(proposal.description)"
         
         let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
         self.navigationController?.present(activityController, animated: true, completion: nil)
