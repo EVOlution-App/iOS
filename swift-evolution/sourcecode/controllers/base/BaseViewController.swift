@@ -2,9 +2,16 @@ import UIKit
 import Reachability
 
 class BaseViewController: UIViewController {
+    // MARK: - Public properties
+    
+    public var rotate: Bool = false {
+        didSet {
+            (UIApplication.shared.delegate as? AppDelegate)?.rotate = rotate
+        }
+    }
     public var reachability: Reachability?
     
-    lazy var noConnectionView: NoConnectionView? = {
+    public lazy var noConnectionView: NoConnectionView? = {
         guard
             let view: NoConnectionView = NoConnectionView.fromNib()
             else {
@@ -14,16 +21,24 @@ class BaseViewController: UIViewController {
         return view
     }()
     
-    public var rotate: Bool = false {
+    public var showNoConnection: Bool = false {
         didSet {
-            (UIApplication.shared.delegate as? AppDelegate)?.rotate = rotate
+            DispatchQueue.main.async { [unowned self] in
+                self.noConnectionView?.isHidden = !self.showNoConnection
+                
+                if self.showNoConnection {
+                    self.noConnectionView?.bringSubview(toFront: self.view)
+                }
+                else {
+                    self.noConnectionView?.sendSubview(toBack: self.view)
+                }
+            }
         }
     }
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
 
         self.setupReachability()
     }
@@ -45,42 +60,10 @@ class BaseViewController: UIViewController {
     // MARK: - Reachability
     private func setupReachability() {
         if let reachability = Reachability(hostname: "swift-evolution.io") {
+            self.configureReachabilityView()
+            self.noConnectionView?.retryButton.addTarget(self, action: #selector(retryButtonAction(_:)), for: .touchUpInside)
+            
             self.reachability = reachability
-            
-            reachability.whenReachable = { reachability in
-                if reachability.isReachableViaWiFi {
-                    print("Reachable via WiFi")
-                }
-                else if reachability.isReachableViaWWAN {
-                   print("Reachable via WWAN")
-                }
-                else {
-                    print("Reachable via Cellular")
-                }
-                
-                DispatchQueue.main.async {
-                    self.noConnectionView?.removeFromSuperview()
-                }
-            }
-            
-            reachability.whenUnreachable = { reachability in
-                print("Network not reachable")
-                
-                if let noConnectionView = self.noConnectionView {
-                    self.view.addSubview(noConnectionView)
-                    
-                    DispatchQueue.main.async {
-                        noConnectionView.translatesAutoresizingMaskIntoConstraints = false
-                        NSLayoutConstraint.activate([
-                            noConnectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                            noConnectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                            noConnectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                            noConnectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-                            ])
-                    }
-                }
-            }
-            
             self.startNotifier()
         }
     }
@@ -88,12 +71,31 @@ class BaseViewController: UIViewController {
     private func startNotifier() {
         do {
             try self.reachability?.startNotifier()
-        } catch {
+        }
+        catch {
             print("Unable to start notifier")
         }
     }
     
     private func stopNotifier() {
         self.reachability?.stopNotifier()
+    }
+    
+    private func configureReachabilityView() {
+        if let noConnectionView = self.noConnectionView {
+            self.view.addSubview(noConnectionView)
+
+            noConnectionView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                noConnectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                noConnectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                noConnectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                noConnectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+                ])
+        }
+    }
+    
+    // MARK: - Reachability Retry Action
+    open func retryButtonAction(_ sender: UIButton) {
     }
 }

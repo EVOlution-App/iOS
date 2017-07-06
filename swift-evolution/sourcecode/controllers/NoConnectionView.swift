@@ -3,19 +3,13 @@ import UIKit
 class NoConnectionView: UIView {
     
     @IBOutlet private var noConnectionLabel: UILabel!
-    @IBOutlet private var retryButton: UIButton!
+    @IBOutlet open var retryButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-    }
-    
-    @IBAction func retryAction(_ sender: UIButton) {
-        print("retry action")
     }
 }
