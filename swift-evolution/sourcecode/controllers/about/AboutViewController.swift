@@ -59,22 +59,21 @@ class AboutViewController: UITableViewController {
         
         // Licenses
         let down            = Item(text: "Down", type: .github, value: "iwasrobbed/Down")
-        let swiftrichstring = Item(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString")
-        let unbox           = Item(text: "Unbox", type: .github, value: "JohnSundell/Unbox")
         let reachability    = Item(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift")
+        let unbox           = Item(text: "Unbox", type: .github, value: "JohnSundell/Unbox")
         let svprogresshud   = Item(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD")
+        let swiftrichstring = Item(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString")
         
-        let licenses = About(section: .licenses, items: [down, swiftrichstring, unbox, reachability, svprogresshud], footer: nil)
+        let licenses = About(section: .licenses, items: [down, reachability, unbox, svprogresshud, swiftrichstring], footer: nil)
         about.append(licenses)
         
         // Contacts
         let swiftlang   = Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang")
         let twitterApp  = Item(text: "App - Twitter", type: .twitter, value: "swift_evolution")
-        let emailApp    = Item(text: "App - Email", type: .email, value: "contact@swift-evolution.io")
         let feedbackApp = Item(text: "App - Feedback", type: .email, value: "feedback@swift-evolution.io")
         
         let feedback = "If you have any criticals, suggestions or want to contribute any way, please, get in touch with us."
-        let contacts = About(section: .contacts, items: [swiftlang, twitterApp, emailApp, feedbackApp], footer: feedback)
+        let contacts = About(section: .contacts, items: [swiftlang, twitterApp, feedbackApp], footer: feedback)
         about.append(contacts)
         
         // More Data
@@ -89,13 +88,13 @@ class AboutViewController: UITableViewController {
         let chris   = Item(text: "Chris Bailey", type: .twitter, value: "Chris__Bailey")
         let daniel  = Item(text: "Daniel Dunbar", type: .twitter, value: "daniel_dunbar")
         let danilo  = Item(text: "Danilo Altheman", type: .twitter, value: "daltheman")
-        let john    = Item(text: "John Calistro", type: .twitter, value: "johncalistro")
         let ezeq    = Item(text: "Ezequiel França", type: .twitter, value: "ezefranca")
+        let john    = Item(text: "John Calistro", type: .twitter, value: "johncalistro")
         let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
         let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
-        let thanks = About(section: .thanks, items: [chris, daniel, danilo, ezeq, jesse, john, lisa], footer: copyright)
+        let thanks = About(section: .thanks, items: [chris, daniel, danilo, ezeq, john, jesse, lisa], footer: copyright)
         about.append(thanks)
         
         self.dataSource = about
