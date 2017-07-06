@@ -114,6 +114,10 @@
 		9152658A1E67E01800C2AFDA /* ListProposalsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265891E67E01800C2AFDA /* ListProposalsViewController.swift */; };
 		9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658C1E67E12800C2AFDA /* BorderedLabel.swift */; };
 		9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658E1E67E74700C2AFDA /* UIColor.swift */; };
+		915F7DE21F0382C4001B298D /* NoConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915F7DE11F0382C4001B298D /* NoConnectionView.xib */; };
+		915F7DE31F0382C4001B298D /* NoConnectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915F7DE11F0382C4001B298D /* NoConnectionView.xib */; };
+		915F7DE61F038322001B298D /* NoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F7DE51F038322001B298D /* NoConnectionView.swift */; };
+		915F7DE71F038322001B298D /* NoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F7DE51F038322001B298D /* NoConnectionView.swift */; };
 		9168963E1E93469F00FC6913 /* GithubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168963D1E93469F00FC6913 /* GithubService.swift */; };
 		916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896401E935ABD00FC6913 /* ProfileViewController.swift */; };
 		916896431E935ED700FC6913 /* GithubProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896421E935ED700FC6913 /* GithubProfile.swift */; };
@@ -137,6 +141,7 @@
 		91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150231E6CF37900025B77 /* UICollectionView.swift */; };
 		91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */; };
 		91E1502A1E6D250E00025B77 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150291E6D250E00025B77 /* Array.swift */; };
+		91F05E641F034F78002738F4 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F05E631F034F78002738F4 /* Reachability.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +214,8 @@
 		915265891E67E01800C2AFDA /* ListProposalsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProposalsViewController.swift; sourceTree = "<group>"; };
 		9152658C1E67E12800C2AFDA /* BorderedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		9152658E1E67E74700C2AFDA /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		915F7DE11F0382C4001B298D /* NoConnectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoConnectionView.xib; sourceTree = "<group>"; };
+		915F7DE51F038322001B298D /* NoConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoConnectionView.swift; sourceTree = "<group>"; };
 		9168963D1E93469F00FC6913 /* GithubService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubService.swift; sourceTree = "<group>"; };
 		916896401E935ABD00FC6913 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		916896421E935ED700FC6913 /* GithubProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GithubProfile.swift; sourceTree = "<group>"; };
@@ -231,6 +238,8 @@
 		91E150231E6CF37900025B77 /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGCollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
 		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		91F05E611F034992002738F4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		91F05E631F034F78002738F4 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F05E641F034F78002738F4 /* Reachability.framework in Frameworks */,
 				911432211EB96E2D00CCC0D0 /* UserNotifications.framework in Frameworks */,
 				914A5C191E7F5701005E653A /* Down.framework in Frameworks */,
 				408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */,
@@ -404,6 +414,7 @@
 		915265581E676F2D00C2AFDA /* xibs */ = {
 			isa = PBXGroup;
 			children = (
+				915F7DE01F03828A001B298D /* uiview */,
 				91E150191E6BBCD900025B77 /* uicollectionviewcell */,
 				91E150181E6BBCCF00025B77 /* uitableviewcell */,
 			);
@@ -431,6 +442,7 @@
 		9152655B1E676F3E00C2AFDA /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				915F7DE41F0382FD001B298D /* noconnection */,
 				9192CC521E8CC1AC00953357 /* about */,
 				914A5C211E7F97DC005E653A /* base */,
 				9168963F1E935A9A00FC6913 /* profile */,
@@ -474,6 +486,8 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91F05E631F034F78002738F4 /* Reachability.framework */,
+				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
 				911432201EB96E2D00CCC0D0 /* UserNotifications.framework */,
 				408A32A71E8C5678006A870B /* SVProgressHUD.framework */,
 				408A32AD1E8C5E0C006A870B /* Crashlytics.framework */,
@@ -549,6 +563,22 @@
 				91485DEC1E6902A2008C4715 /* StatusLabel.swift */,
 			);
 			path = designables;
+			sourceTree = "<group>";
+		};
+		915F7DE01F03828A001B298D /* uiview */ = {
+			isa = PBXGroup;
+			children = (
+				915F7DE11F0382C4001B298D /* NoConnectionView.xib */,
+			);
+			name = uiview;
+			sourceTree = "<group>";
+		};
+		915F7DE41F0382FD001B298D /* noconnection */ = {
+			isa = PBXGroup;
+			children = (
+				915F7DE51F038322001B298D /* NoConnectionView.swift */,
+			);
+			name = noconnection;
 			sourceTree = "<group>";
 		};
 		9168963F1E935A9A00FC6913 /* profile */ = {
@@ -784,6 +814,7 @@
 				9114326A1EB9870C00CCC0D0 /* Assets.xcassets in Resources */,
 				9114326B1EB9870C00CCC0D0 /* ProposalListHeaderTableViewCell.xib in Resources */,
 				9114326C1EB9870C00CCC0D0 /* Main.storyboard in Resources */,
+				915F7DE31F0382C4001B298D /* NoConnectionView.xib in Resources */,
 				9114326D1EB9870C00CCC0D0 /* FilterCollectionViewCell.xib in Resources */,
 				9114326E1EB9870C00CCC0D0 /* ProposalTableViewCell.xib in Resources */,
 			);
@@ -797,6 +828,7 @@
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
 				670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
+				915F7DE21F0382C4001B298D /* NoConnectionView.xib in Resources */,
 				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
 				915265831E67D7A900C2AFDA /* ProposalTableViewCell.xib in Resources */,
 			);
@@ -846,6 +878,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			outputPaths = (
 			);
@@ -909,6 +942,7 @@
 				9114325B1EB9870C00CCC0D0 /* GithubService.swift in Sources */,
 				9114325C1EB9870C00CCC0D0 /* IDFormatter.swift in Sources */,
 				9114325D1EB9870C00CCC0D0 /* ProfileViewController.swift in Sources */,
+				915F7DE71F038322001B298D /* NoConnectionView.swift in Sources */,
 				9114325E1EB9870C00CCC0D0 /* AboutViewController.swift in Sources */,
 				9114325F1EB9870C00CCC0D0 /* State.swift in Sources */,
 			);
@@ -967,6 +1001,7 @@
 				9168963E1E93469F00FC6913 /* GithubService.swift in Sources */,
 				912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */,
 				916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */,
+				915F7DE61F038322001B298D /* NoConnectionView.swift in Sources */,
 				9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */,
 				9152657C1E67A3AD00C2AFDA /* State.swift in Sources */,
 			);

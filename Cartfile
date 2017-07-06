@@ -2,3 +2,4 @@ github "johnsundell/unbox"
 github "malcommac/SwiftRichString"
 github "iwasrobbed/Down"
 github "SVProgressHUD/SVProgressHUD"
+github "ashleymills/Reachability.swift" ~> 3.0
