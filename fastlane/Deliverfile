@@ -7,3 +7,4 @@
 
 app_identifier "io.swift-evolution.app" # The bundle identifier of your app
 username "unnamedd@gmail.com" # your Apple ID user
+itc_team_name "Thiago Holanda"
