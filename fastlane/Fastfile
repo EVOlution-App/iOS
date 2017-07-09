@@ -46,20 +46,20 @@ platform :ios do
     )
   end
 
-  private_lane :increment do |option|
-    if !option.empty? && !option[:increment].nil?
+  lane :increment do |option|
+    if !option.empty? && !option[:in].nil?
       puts option
-      if option[:increment] == 'minor'
+      if option[:in] == 'minor'
         increment_version_number(
           bump_type: 'minor'
         )
 
-      elsif option[:increment] == 'patch'
+      elsif option[:in] == 'patch'
         # the default value for 'bump_type' is 'patch',
         # this is the main reason to not inform here
         increment_version_number
 
-      elsif option[:increment] == 'build'
+      elsif option[:in] == 'build'
         increment_build_number
       end
     end
@@ -99,12 +99,12 @@ platform :ios do
     precheck
     
      # will increment the build version
-    increment(increment: 'build')
+    increment(in: 'build')
 
     # Build your app - more options available
     gym(scheme: "swift-evolution",
-        include_bitcode: false,
-        include_symbols: false)
+        include_bitcode: true,
+        include_symbols: true)
 
     # Commit all changes and push it to remote repo
     commit_changes
