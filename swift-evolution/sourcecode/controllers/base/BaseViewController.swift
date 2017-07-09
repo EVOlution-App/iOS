@@ -25,13 +25,6 @@ class BaseViewController: UIViewController {
         didSet {
             DispatchQueue.main.async { [unowned self] in
                 self.noConnectionView?.isHidden = !self.showNoConnection
-                
-                if self.showNoConnection {
-                    self.noConnectionView?.bringSubview(toFront: self.view)
-                }
-                else {
-                    self.noConnectionView?.sendSubview(toBack: self.view)
-                }
             }
         }
     }
@@ -84,6 +77,7 @@ class BaseViewController: UIViewController {
     private func configureReachabilityView() {
         if let noConnectionView = self.noConnectionView {
             self.view.addSubview(noConnectionView)
+            noConnectionView.isHidden = true
 
             noConnectionView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
