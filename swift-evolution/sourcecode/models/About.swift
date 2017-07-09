@@ -1,9 +1,11 @@
 enum Section: String {
     case mainDeveloper = "Main Developer"
-    case backend = "Backend Developers"
+    case backend = "Backend"
     case contributors = "Contributors"
     case licenses = "Licenses"
     case contacts = "Contacts"
+    case sourceCode = "Source code"
+    case cloudtools = "Cloud Tools"
     case moreData = "More Data"
     case thanks = "Thanks to"
 }

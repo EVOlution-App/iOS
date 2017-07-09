@@ -44,10 +44,10 @@ class AboutViewController: UITableViewController {
         about.append(mainDeveloper)
         
         // Backend - Contributors
-        let ricardo     = Item(text: "Ricardo Olivieri", type: .github, value: "rolivieri")
-        let taylor      = Item(text: "Taylor Franklin", type: .github, value: "tfrank64")
-        let backend     = About(section: .backend, items: [ricardo, taylor, thiago], footer: nil)
-        about.append(backend)
+        let ricardo         = Item(text: "Ricardo Olivieri", type: .github, value: "rolivieri")
+        let taylor          = Item(text: "Taylor Franklin", type: .github, value: "tfrank64")
+        let backendSection  = About(section: .backend, items: [ricardo, taylor], footer: nil)
+        about.append(backendSection)
 
         // iOS - Contributors
         let bilescky    = Item(text: "Bruno Bilescky", type: .github, value: "brunogb")
@@ -72,6 +72,22 @@ class AboutViewController: UITableViewController {
         let licenses = About(section: .licenses, items: [down, reachability, unbox, svprogresshud, swiftrichstring], footer: nil)
         about.append(licenses)
         
+        // Cloud Tools
+        let autoScaling = Item(text: "Auto Scaling", type: .url, value: "https://console.bluemix.net/docs/services/Auto-Scaling/index.html")
+        let continuousDelivery = Item(text: "Continuous Delivery", type: .url, value: "https://console.bluemix.net/docs/services/ContinuousDelivery/toolchains_working.html#toolchains_getting_started")
+        let bluemix = Item(text: "IBM Bluemix", type: .url, value: "https://www.ibm.com/cloud-computing/bluemix/")
+        let kitura = Item(text: "Kitura web framework", type: .url, value: "http://www.kitura.io/")
+        
+        let cloudTools = About(section: .cloudtools, items: [autoScaling, continuousDelivery, bluemix, kitura], footer: nil)
+        about.append(cloudTools)
+        
+        // Source code repositories
+        //let app = Item(text: "iOS App", type: .github, value: "unnamedd/swift-evolution")
+        let backend = Item(text: "Backend", type: .github, value: "unnamedd/swift-evolution-backend")
+        
+        let repositories = About(section: .sourceCode, items: [backend], footer: nil)
+        about.append(repositories)
+        
         // Contacts
         let swiftlang   = Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang")
         let twitterApp  = Item(text: "App - Twitter", type: .twitter, value: "swift_evolution")
@@ -85,9 +101,8 @@ class AboutViewController: UITableViewController {
         let web         = Item(text: "Web", type: .url, value: "https://apple.github.io/swift-evolution")
         let proposals   = Item(text: "Proposals Repo", type: .github, value: "apple/swift-evolution")
         let mailing     = Item(text: "Mailing list", type: .url, value: "https://lists.swift.org/mailman/listinfo/swift-evolution")
-        let backendRepo = Item(text: "App - Backend", type: .github, value: "unnamedd/swift-evolution-backend")
         
-        let more = About(section: .moreData, items: [backendRepo, web, proposals, mailing], footer: nil)
+        let more = About(section: .moreData, items: [web, proposals, mailing], footer: nil)
         about.append(more)
         
         // Thanks To
