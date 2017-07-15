@@ -697,7 +697,8 @@
 				9152651E1E67659900C2AFDA /* Sources */,
 				9152651F1E67659900C2AFDA /* Frameworks */,
 				915265201E67659900C2AFDA /* Resources */,
-				915265711E677D2C00C2AFDA /* ShellScript */,
+				91BBA17E1F19E943008A7DDD /* SwiftLint Script */,
+				915265711E677D2C00C2AFDA /* Carthage Script */,
 			);
 			buildRules = (
 			);
@@ -868,7 +869,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n./frameworks/Fabric.framework/run 508dd26ebc3c23fd020a50ca76647802c64ee267 cf12350583ab8cedbb1287b6f6ec30ce0cfe028502427d087379a95ab6487c58";
 		};
-		915265711E677D2C00C2AFDA /* ShellScript */ = {
+		915265711E677D2C00C2AFDA /* Carthage Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -880,11 +881,26 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
+			name = "Carthage Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n./frameworks/Fabric.framework/run 508dd26ebc3c23fd020a50ca76647802c64ee267 cf12350583ab8cedbb1287b6f6ec30ce0cfe028502427d087379a95ab6487c58";
+		};
+		91BBA17E1F19E943008A7DDD /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
