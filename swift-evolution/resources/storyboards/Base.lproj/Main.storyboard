@@ -363,12 +363,12 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4qS-ei-dyF" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leadingMargin" constant="-16" id="RiB-oS-7ye"/>
+                            <constraint firstItem="4qS-ei-dyF" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leading" id="RiB-oS-7ye"/>
                             <constraint firstItem="4qS-ei-dyF" firstAttribute="top" secondItem="dHm-GO-R55" secondAttribute="bottom" id="XWq-gd-WM5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dHm-GO-R55" secondAttribute="trailing" constant="-16" id="ZhG-9S-vs5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="4qS-ei-dyF" secondAttribute="trailing" constant="-16" id="heW-B3-2IW"/>
+                            <constraint firstAttribute="trailing" secondItem="dHm-GO-R55" secondAttribute="trailing" id="ZhG-9S-vs5"/>
+                            <constraint firstAttribute="trailing" secondItem="4qS-ei-dyF" secondAttribute="trailing" id="heW-B3-2IW"/>
                             <constraint firstItem="mug-0m-6CO" firstAttribute="top" secondItem="4qS-ei-dyF" secondAttribute="bottom" id="nX7-P0-OAO"/>
-                            <constraint firstItem="dHm-GO-R55" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leadingMargin" constant="-16" id="scj-1X-KD1"/>
+                            <constraint firstItem="dHm-GO-R55" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leading" id="scj-1X-KD1"/>
                             <constraint firstItem="dHm-GO-R55" firstAttribute="top" secondItem="ZT6-7y-7fB" secondAttribute="bottom" id="vld-NY-mTh"/>
                         </constraints>
                     </view>
@@ -446,7 +446,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AboutCellIdentifier" textLabel="g97-K9-KnQ" detailTextLabel="wVb-df-kea" style="IBUITableViewCellStyleSubtitle" id="cZ5-yH-F1U">
-                                <rect key="frame" x="0.0" y="300.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="301" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZ5-yH-F1U" id="5t8-Yn-pJ8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -493,6 +493,6 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="XKc-wh-heR"/>
-        <segue reference="rf2-rv-6M0"/>
+        <segue reference="2o2-Fg-V0b"/>
     </inferredMetricsTieBreakers>
 </document>
