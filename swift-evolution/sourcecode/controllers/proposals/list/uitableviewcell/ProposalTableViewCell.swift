@@ -109,7 +109,7 @@ class ProposalTableViewCell: UITableViewCell {
         })
         
         // Convert all styles into text
-        if let tagged = try? MarkupString(source: details) {
+        if let tagged = MarkupString(source: details) {
             var attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
             let details = attributedText.string
             
