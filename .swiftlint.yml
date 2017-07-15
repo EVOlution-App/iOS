@@ -1,0 +1,45 @@
+disabled_rules:
+  - line_length
+  - cyclomatic_complexity
+  - force_unwrapping
+  - force_cast
+  - identifier_name
+  - statement_position
+  - nesting
+
+opt_in_rules:
+  - closure_spacing
+  - closure_end_indentation
+  - explicit_init
+  - switch_case_on_newline
+  - redundant_nil_coalescing
+  - prohibited_super_call
+  - overridden_super_call
+  - nimble_operator
+
+file_length:
+  warning: 800
+  error: 1200
+
+function_body_length:
+  warning: 500
+  error: 1200
+
+type_body_length:
+  warning: 500
+  error: 1200
+
+trailing_whitespace:
+  ignores_empty_lines: true
+  ignores_comments: true
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+identifier_name:
+  excluded:
+    - id
+    - up
+
+excluded:
+  - Carthage
