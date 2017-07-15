@@ -1,7 +1,7 @@
 # Swift Evolution - iOS
+[![Build Status](https://www.bitrise.io/app/e1327785b8df7e9e.svg?token=S2v1wACgSV9zm4F7KG7LBQ&branch=development)](https://www.bitrise.io/app/e1327785b8df7e9e)
 
 The main goal of this project is to recreate as an iOS app, the web page created to [Swift Evolution](https://apple.github.io/swift-evolution).
-At this moment, we do not have any layout so then, use the screenshots from webpage we will.
 
 ![](images/screenshots_base.png)
 
@@ -9,7 +9,7 @@ At this moment, we do not have any layout so then, use the screenshots from webp
 
 ### Ruby
 
-If yon don't have experience with Ruby we recommend [rbenv](https://github.com/rbenv/rbenv):
+If you don't have experience with Ruby we recommend [rbenv](https://github.com/rbenv/rbenv):
 
 ```sh
 brew install rbenv
@@ -64,7 +64,7 @@ rake unit_tests
 ## How to contribute
 
 You need to create an issue and associate a pull request to this issue.
-After send your pull request, other developers will make a code review before merge into _development_ branch.
+After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
 
 
 ## Authors

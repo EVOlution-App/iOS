@@ -17,7 +17,8 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+
   end
 
   desc "Runs all the tests"
@@ -25,15 +26,91 @@ platform :ios do
     scan
   end
 
+  desc "Register new device"
+  lane :register_new_device do  |options|
+      device_name = prompt(text: "Enter the device name: ")
+      device_udid = prompt(text: "Enter the device UDID: ")
+      device_hash = {}
+      device_hash[device_name] = device_udid
+      register_devices(devices: device_hash)
+
+      match(type: "development", force_for_new_devices: true)
+  end
+
+  desc "Get provisionings to development schema"
+  lane :match_dev do
+    match(
+      type: "development",
+      app_identifier: "io.swift-evolution.app.development",
+      force_for_new_devices: true
+    )
+  end
+
+  lane :increment do |option|
+    if !option.empty? && !option[:in].nil?
+      puts option
+      if option[:in] == 'minor'
+        increment_version_number(
+          bump_type: 'minor'
+        )
+
+      elsif option[:in] == 'patch'
+        # the default value for 'bump_type' is 'patch',
+        # this is the main reason to not inform here
+        increment_version_number
+
+      elsif option[:in] == 'build'
+        increment_build_number
+      end
+    end
+  end
+
+  private_lane :commit_changes do
+    get_build_number
+    get_version_number
+
+    version = Actions.lane_context[Actions::SharedValues::VERSION_NUMBER]
+    build = Actions.lane_context[Actions::SharedValues::BUILD_NUMBER]
+
+    # Ensure that all files will be add and commited
+    git_commit(
+      path: ".",
+      message: "release #{version} build #{build}"
+    )
+
+    add_git_tag(
+      tag: "release/#{version}/#{build}"
+    )
+    
+    push_to_git_remote(
+      tags: true,
+      local_branch: git_branch,
+      remote_branch: git_branch
+    )
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-    gym(scheme: "swift-evolution") # Build your app - more options available
-    pilot
+    # Download certificates and provisionings
+    match(type: "appstore") # more information: https://codesigning.guide
+    
+    # check if project is okay to AppStore
+    precheck
+    
+     # will increment the build version
+    increment(in: 'build')
 
-    # sh "your_script.sh"
-    # You can also use other beta testing services here (run `fastlane actions`)
+    # Build your app - more options available
+    gym(scheme: "swift-evolution",
+        include_bitcode: true,
+        include_symbols: true)
+
+    # Commit all changes and push it to remote repo
+    commit_changes
+
+    # Send release to TestFlight
+    pilot
   end
 
   desc "Deploy a new version to the App Store"
@@ -56,10 +133,10 @@ platform :ios do
   end
 
   error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+    slack(
+      message: exception.message,
+      success: false
+    )
   end
 end
 

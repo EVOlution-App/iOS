@@ -68,8 +68,8 @@ fileprivate extension ProfileView {
                 
                 // Check if name is too long, and reduce the font size
                 var pointSize: Float = 40.0
-                if name.characters.count > 14 {
-                    pointSize = 30
+                if name.characters.count > 10 {
+                    pointSize = 34
                     
                     if UIScreen.main.bounds.size.width < 375 {
                         pointSize = 27

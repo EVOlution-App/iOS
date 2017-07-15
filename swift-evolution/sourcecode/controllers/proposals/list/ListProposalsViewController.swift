@@ -11,8 +11,14 @@ class ListProposalsViewController: BaseViewController {
     
     // Private properties
     fileprivate var timer: Timer = Timer()
-    fileprivate var filteredDataSource: [Proposal] = []
-    fileprivate var dataSource: [Proposal] = []
+    fileprivate lazy var filteredDataSource: [Proposal] = {
+        return []
+    }()
+    
+    fileprivate var dataSource: [Proposal] = {
+       return []
+    }()
+    
     fileprivate var appDelegate: AppDelegate?
     
     // Filters
@@ -22,7 +28,7 @@ class ListProposalsViewController: BaseViewController {
     // Proposal ordering
     fileprivate lazy var statusOrder: [StatusState] = {
         return [.awaitingReview, .scheduledForReview, .activeReview,
-                .returnedForRevision, .accepted, .implemented,
+                .returnedForRevision, .accepted, .acceptedWithRevisions, .implemented,
                 .deferred, .rejected, .withdrawn]
     }()
     
@@ -61,6 +67,23 @@ class ListProposalsViewController: BaseViewController {
         
         // Request the Proposes
         self.getProposalList()
+        
+        // Configure reachability closures
+        self.reachability?.whenReachable = { [unowned self] reachability in
+            if self.dataSource.count == 0 {
+                self.getProposalList()
+            }
+        }
+        
+        self.reachability?.whenUnreachable = { [unowned self] reachability in
+            if self.dataSource.count == 0 {
+                self.showNoConnection = true
+            }
+        }
+        
+        if let title = Environment.title, title != "" {
+            self.title = title
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,18 +105,15 @@ class ListProposalsViewController: BaseViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Disable Rotation
-        self.rotate = false
-        
-        // Force rotation back to portrait
-        Config.Orientation.portrait()
-    }
-    
     deinit {
         self.removeNotifications()
+    }
+    
+    // MARK: - Reachability Retry Action
+    override func retryButtonAction(_ sender: UIButton) {
+        super.retryButtonAction(sender)
+
+        self.getProposalList()
     }
     
     // MARK: - Notifications
@@ -164,36 +184,44 @@ class ListProposalsViewController: BaseViewController {
     
     // MARK: - Requests
     fileprivate func getProposalList() {
-        EvolutionService.listProposals { error, proposals in
-            guard error == nil, let proposals = proposals else {
-                if let error = error {
-                    Crashlytics.sharedInstance().recordError(error)
+        if let reachability = self.reachability, reachability.isReachable {
+            // Hide No Connection View
+            self.showNoConnection = false
+
+            EvolutionService.listProposals { [unowned self] error, proposals in
+                guard error == nil, let proposals = proposals else {
+                    if let error = error {
+                        Crashlytics.sharedInstance().recordError(error)
+                    }
+                    
+                    return
                 }
                 
-                return
-            }
-            
-            Answers.logContentView(withName: "Proposal List",
-                                   contentType: "Load Proposals from server",
-                                   contentId: nil,
-                                   customAttributes: nil)
-            
-            self.dataSource = proposals.filter(by: self.statusOrder)
-            self.filteredDataSource = self.dataSource
-            
-            self.filterHeaderView?.statusSource = self.statusOrder
-            
-            self.buildPeople()
-            
-            // Language Versions source
-            self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+                Answers.logContentView(withName: "Proposal List",
+                                       contentType: "Load Proposals from server",
+                                       contentId: nil,
+                                       customAttributes: nil)
                 
-                // In case of user have come
-                self.navigateTo(self.appDelegate?.host, self.appDelegate?.value)
+                self.dataSource = proposals.filter(by: self.statusOrder)
+                self.filteredDataSource = self.dataSource
+                
+                self.filterHeaderView?.statusSource = self.statusOrder
+                
+                self.buildPeople()
+                
+                // Language Versions source
+                self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    
+                    // In case of user have come
+                    self.navigateTo(self.appDelegate?.host, self.appDelegate?.value)
+                }
             }
+        }
+        else {
+            self.showNoConnection = true
         }
     }
     
@@ -220,6 +248,8 @@ class ListProposalsViewController: BaseViewController {
                 if self.selected(status: .implemented) {
                     self.filterHeaderView.filterLevel = .version
                 }
+                
+                self.filterHeaderView.filteredByButton.isSelected = true
             }
         }
         
@@ -476,6 +506,11 @@ extension ListProposalsViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText != "" else {
+            self.updateTableView()
+            return
+        }
+        
         if self.timer.isValid {
             self.timer.invalidate()
         }

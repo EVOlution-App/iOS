@@ -13,7 +13,15 @@ class ProposalTableViewCell: UITableViewCell {
     // MARK: - Initialization
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
+        // Configure links into textView
+        self.detailsLabel.linkTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.Proposal.darkGray
+        ]
     }
     
     // MARK: - Public properties
@@ -40,11 +48,8 @@ class ProposalTableViewCell: UITableViewCell {
         let statusWidth = state.shortName.contraint(height: self.statusLabel.bounds.size.height,
                                                     font: self.statusLabel.font)
         self.statusLabelWidthConstraint.constant = statusWidth + 20
-        self.statusLabel.setNeedsUpdateConstraints()
-        self.statusLabel.layoutIfNeeded()
         
         var details = ""
-        
         details += proposal.description.tag(.id)
         details += String.newLine
         
@@ -106,24 +111,21 @@ class ProposalTableViewCell: UITableViewCell {
         // Convert all styles into text
         if let tagged = try? MarkupString(source: details) {
             var attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
-            self.detailsLabel.attributedText = attributedText
-            
-            guard let details = self.detailsLabel.text else { return }
-            
-            // Configure links into textView
-            self.detailsLabel.linkTextAttributes = [
-                NSForegroundColorAttributeName: UIColor.Proposal.darkGray
-            ]
+            let details = attributedText.string
             
             // Authors
-            guard let authors = proposal.authors else { return }
+            guard let authors = proposal.authors else {
+                self.detailsLabel.attributedText = attributedText
+                return
+            }
             attributedText = attributedText.link(authors, text: details)
-            self.detailsLabel.attributedText = attributedText
             
             // Review Manager
-            guard let reviewer = proposal.reviewManager else { return }
+            guard let reviewer = proposal.reviewManager else {
+                self.detailsLabel.attributedText = attributedText
+                return
+            }
             attributedText = attributedText.link(reviewer, text: details)
-            self.detailsLabel.attributedText = attributedText
             
             // Title
             attributedText = attributedText.link(title: proposal, text: details)

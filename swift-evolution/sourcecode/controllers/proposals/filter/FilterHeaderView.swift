@@ -82,13 +82,20 @@ class FilterHeaderView: UIView {
         
         if status.count == 0 {
             label = "All Statuses"
+        }
+        else if status.count == 1, let filter = status.first, filter == .implemented,
+            let versionIndexPaths = self.languageVersionFilterView.indexPathsForSelectedItems, versionIndexPaths.count > 0 {
             
-        } else if status.count > 0 && status.count < 3 {
+            let versions: [String] = versionIndexPaths.map { self.languageVersionSource[$0.item] }
+            label = "\(filter.description) (\(versions.joined(separator: ", ")))"
+        }
+        else if status.count > 0 && status.count < 3 {
             label = status.flatMap({ $0.description }).joined(separator: ", ")
         }
         
         let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: label))
         filteredByButton.setAttributedTitle(text, for: .normal)
+        filteredByButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
     }
     
