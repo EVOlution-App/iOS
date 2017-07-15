@@ -17,6 +17,7 @@ task configure: %i[carthage_install clean_artifacts]
 
 task :install_dependencies do
   brew_update
+  brew_install 'swiftlint'
   brew_install 'carthage'
 end
 
