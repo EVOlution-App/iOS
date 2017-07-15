@@ -1,7 +1,7 @@
 import XCTest
 @testable import swift_evolution
 
-class swift_evolutionTests: XCTestCase {
+class SwiftEvolutionTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

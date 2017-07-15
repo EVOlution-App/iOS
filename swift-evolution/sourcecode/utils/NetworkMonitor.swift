@@ -39,7 +39,7 @@ final class LoadingMonitor: URLProtocol {
         
         LoadingMonitor.setProperty(true, forKey: LoadingMonitor.NetworkMonitorHandlerKey, in: mutableRequest)
         
-        let task = URLSession.shared.dataTask(with: mutableRequest as URLRequest) { data, response, error in
+        let task = URLSession.shared.dataTask(with: mutableRequest as URLRequest) { data, _, error in
             guard error == nil, let data = data else {
                 self.client?.urlProtocol(self, didFailWithError: error!)
                 return

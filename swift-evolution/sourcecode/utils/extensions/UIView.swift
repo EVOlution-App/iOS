@@ -3,7 +3,7 @@ import UIKit
 extension UIView {
     private class UIViewNamed: UIView {
         var name: String
-        var thickness: CGFloat? = nil
+        var thickness: CGFloat?
         required init(frame: CGRect = CGRect.zero, name: String) {
             self.name = name
             

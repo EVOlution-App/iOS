@@ -22,6 +22,8 @@ class FilterCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
+        
         self.isSelected = false
         self.statusLabel.selected = false
     }

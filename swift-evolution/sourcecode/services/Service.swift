@@ -79,7 +79,7 @@ class Service {
             return
         }
         
-        let task = URLSession.shared.downloadTask(with: URL) { location, response, error in
+        let task = URLSession.shared.downloadTask(with: URL) { location, _, error in
             guard error == nil, let location = location else {
                 print("error=\(String(describing: error))")
                 completion(error, nil)
@@ -103,10 +103,10 @@ class Service {
             return
         }
         
-        var request: URLRequest = URLRequest(url: baseURL);
+        var request: URLRequest = URLRequest(url: baseURL)
         request.httpMethod = "GET"
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard error == nil, let data = data else {
                 print("error=\(String(describing: error))")
                 completion(error, nil)
@@ -120,5 +120,3 @@ class Service {
         task.resume()
     }
 }
-
-

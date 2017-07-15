@@ -49,23 +49,23 @@ extension Proposal: CustomStringConvertible {
 }
 
 extension Proposal: Comparable {
-    public static func ==(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func == (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id == rhs.id
     }
     
-    public static func <(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func < (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id < rhs.id
     }
     
-    public static func <=(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func <= (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id <= rhs.id
     }
     
-    public static func >=(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func >= (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id >= rhs.id
     }
     
-    public static func >(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func > (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id > rhs.id
     }
 }

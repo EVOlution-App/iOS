@@ -86,4 +86,3 @@ struct Config {
 extension NSNotification.Name {
     static let URLScheme = NSNotification.Name(rawValue: "URLSchemeActivation")
 }
-

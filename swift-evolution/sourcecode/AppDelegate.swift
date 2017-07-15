@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registerForPushNotification()
         
         // Register routes to use on URL Scheme
-        let _ = Routes()
+        _ = Routes()
         self.registerSchemes()
         
         return true
@@ -70,7 +70,7 @@ extension AppDelegate {
             let notification = UNUserNotificationCenter.current()
             notification.delegate = self
             
-            notification.requestAuthorization(options: [.sound, .alert, .badge]) { granted, error in
+            notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
                 if error == nil {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
@@ -127,4 +127,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-

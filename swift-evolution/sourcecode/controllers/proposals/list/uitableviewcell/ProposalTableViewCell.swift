@@ -256,8 +256,6 @@ extension ProposalTableViewCell: UITextViewDelegate {
             return false
         }
         
-        
-        
         if host == .profile {
             let username = URL.lastPathComponent
             var person: Person?

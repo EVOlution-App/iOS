@@ -19,7 +19,7 @@ class ListProposalsViewController: BaseViewController {
        return []
     }()
     
-    fileprivate var appDelegate: AppDelegate?
+    fileprivate weak var appDelegate: AppDelegate?
     
     // Filters
     fileprivate var languages: [Version] = []
@@ -142,7 +142,7 @@ class ListProposalsViewController: BaseViewController {
             if sender == nil, let indexPath = self.tableView.indexPathForSelectedRow {
                 item = self.filteredDataSource[indexPath.row]
             }
-            else if sender != nil, sender is Proposal  {
+            else if sender != nil, sender is Proposal {
                 item = sender as? Proposal
             }
             
@@ -518,7 +518,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
         if searchText.characters.count > 3 {
             let interval = 0.7
             if #available(iOS 10.0, *) {
-                self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { timer in
+                self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in
                     Answers.logSearch(withQuery: searchText, customAttributes: ["type": "search", "os-version": ">= ios10"])
                     
                     let filtered = self.dataSource.filter(by: searchText)
@@ -555,4 +555,3 @@ extension ListProposalsViewController: UISearchBarDelegate {
         self.updateTableView()
     }
 }
-

@@ -8,9 +8,9 @@ struct Person {
     let username: String?
 
     // These properties will not come from server
-    var github: GithubProfile? = nil
-    var asAuthor: [Proposal]? = nil
-    var asManager: [Proposal]? = nil
+    var github: GithubProfile?
+    var asAuthor: [Proposal]?
+    var asManager: [Proposal]?
 }
 
 extension Person: Unboxable, Searchable {

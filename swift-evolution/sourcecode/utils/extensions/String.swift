@@ -2,12 +2,12 @@ import UIKit
 
 // MARK: - Enum Tag
 enum Tag: String {
-    case content = "content"
-    case title = "title"
-    case label = "label"
-    case value = "value"
-    case id = "id"
-    case person = "person"
+    case content
+    case title
+    case label
+    case value
+    case id
+    case person
     
     func wrap(string: String) -> String {
         return "<\(self.rawValue)>\(string)</\(self.rawValue)>"
@@ -36,7 +36,7 @@ extension String {
     var convertHTMLEntities: String {
         var text = self
         
-        let entities = ["&quot;":"\"", "&apos;":"'", "&lt;":"<", "&gt;":">", " &amp; ": " & "]
+        let entities = ["&quot;": "\"", "&apos;": "'", "&lt;": "<", "&gt;": ">", " &amp; ": " & "]
         entities.forEach { key, value in
             text = text.replacingOccurrences(of: value, with: key)
         }

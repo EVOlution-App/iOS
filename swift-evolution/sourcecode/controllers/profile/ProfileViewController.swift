@@ -162,7 +162,3 @@ extension ProfileViewController: UITableViewDelegate {
         return 0.01
     }
 }
-
-
-
-
