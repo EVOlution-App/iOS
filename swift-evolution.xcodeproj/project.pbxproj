@@ -1146,7 +1146,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0447bae9-abe3-48f6-9857-1c98a77a8771";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app.development";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Development;
 		};
@@ -1388,7 +1388,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ba2a5e0c-a942-4def-a0d8-87f2fae07216";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1416,7 +1416,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "305af9fb-8789-4515-9425-f65ceb70c860";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.swift-evolution.app";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = AppStore;
 		};
