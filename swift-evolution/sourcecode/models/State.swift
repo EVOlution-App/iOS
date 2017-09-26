@@ -1,4 +1,3 @@
-import Unbox
 import UIKit
 
 public struct State {
@@ -37,6 +36,7 @@ public enum StatusState {
     case rejected
     case implemented
     case error
+    
 }
 
 extension StatusState: RawRepresentable {

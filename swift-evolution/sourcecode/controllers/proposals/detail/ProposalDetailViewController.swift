@@ -86,12 +86,11 @@ class ProposalDetailViewController: BaseViewController {
             self.showNoConnection = false
             
             
-            EvolutionService.detail(proposal: proposal) { [unowned self] error, data in
-                guard error == nil, let data = data else {
-                    if let error = error {
+            EvolutionService.detail(proposal: proposal) { [unowned self] result in
+                guard let data = result.value else {
+                    if let error = result.error {
                         Crashlytics.sharedInstance().recordError(error)
                     }
-                    
                     return
                 }
                 

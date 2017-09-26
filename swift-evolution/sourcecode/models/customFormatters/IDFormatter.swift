@@ -1,17 +1,15 @@
-import Unbox
+import Foundation
 
-struct ProposalIDFormatter: UnboxFormatter {
-    func format(unboxedValue: String) -> Int? {
+struct ProposalIDFormatter {
+    static func format(unboxedValue: String) -> Int {
         let id: Int = unboxedValue.regex(Config.Common.Regex.proposalID)
-        
         return id
     }
 }
 
-struct BugIDFormatter: UnboxFormatter {
-    func format(unboxedValue: String) -> Int? {
+struct BugIDFormatter {
+    static func format(unboxedValue: String) -> Int {
         let id: Int = unboxedValue.regex(Config.Common.Regex.bugID)
-        
         return id
     }
 }

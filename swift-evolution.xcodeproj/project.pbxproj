@@ -14,6 +14,9 @@
 		408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AE1E8C5E0C006A870B /* Fabric.framework */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
 		670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */; };
+		8748C79D1F7A97D00030DADF /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C79A1F7A97B80030DADF /* Down.framework */; };
+		87DE00651F7AAF59007C374A /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C79A1F7A97B80030DADF /* Down.framework */; };
+		87DE00661F7AAF59007C374A /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C79A1F7A97B80030DADF /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		911432211EB96E2D00CCC0D0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
 		911432231EB9756500CCC0D0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911432221EB9756500CCC0D0 /* Data.swift */; };
 		9114322E1EB9870C00CCC0D0 /* Person+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D589601E7E43D300FE958D /* Person+Extension.swift */; };
@@ -67,9 +70,7 @@
 		9114325E1EB9870C00CCC0D0 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		9114325F1EB9870C00CCC0D0 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152657B1E67A3AD00C2AFDA /* State.swift */; };
 		911432611EB9870C00CCC0D0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
-		911432621EB9870C00CCC0D0 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914A5C181E7F5701005E653A /* Down.framework */; };
 		911432631EB9870C00CCC0D0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AE1E8C5E0C006A870B /* Fabric.framework */; };
-		911432641EB9870C00CCC0D0 /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152656F1E677D1200C2AFDA /* Unbox.framework */; };
 		911432651EB9870C00CCC0D0 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32A71E8C5678006A870B /* SVProgressHUD.framework */; };
 		911432661EB9870C00CCC0D0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AD1E8C5E0C006A870B /* Crashlytics.framework */; };
 		911432671EB9870C00CCC0D0 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
@@ -88,7 +89,6 @@
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEC1E6902A2008C4715 /* StatusLabel.swift */; };
 		91485DEF1E690A33008C4715 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEE1E690A33008C4715 /* Protocols.swift */; };
-		914A5C191E7F5701005E653A /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 914A5C181E7F5701005E653A /* Down.framework */; };
 		914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5C1B1E7F5794005E653A /* ProposalDetailViewController.swift */; };
 		914A5C1E1E7F710C005E653A /* SegueRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */; };
 		914A5C231E7F97EF005E653A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5C221E7F97EF005E653A /* BaseViewController.swift */; };
@@ -103,7 +103,6 @@
 		915265631E6779F500C2AFDA /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265621E6779F500C2AFDA /* Person.swift */; };
 		915265651E677A3100C2AFDA /* Warning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265641E677A3100C2AFDA /* Warning.swift */; };
 		915265671E677A4F00C2AFDA /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265661E677A4E00C2AFDA /* Status.swift */; };
-		915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9152656F1E677D1200C2AFDA /* Unbox.framework */; };
 		915265731E677E1900C2AFDA /* Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265721E677E1900C2AFDA /* Bug.swift */; };
 		915265781E6781EF00C2AFDA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265771E6781EF00C2AFDA /* Utils.swift */; };
 		9152657A1E67976F00C2AFDA /* EvolutionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915265791E67976F00C2AFDA /* EvolutionService.swift */; };
@@ -145,6 +144,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8748C7991F7A97B80030DADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8748C7941F7A97B80030DADF /* Down.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8A569F401E6B3E50008BE2AC;
+			remoteInfo = Down;
+		};
+		8748C79B1F7A97B80030DADF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8748C7941F7A97B80030DADF /* Down.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8AFAEAFB1E6E32E900E09B68;
+			remoteInfo = DownTests;
+		};
+		87DE00671F7AAF59007C374A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8748C7941F7A97B80030DADF /* Down.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A569F3F1E6B3E50008BE2AC;
+			remoteInfo = Down;
+		};
 		915265371E67659A00C2AFDA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9152651A1E67659900C2AFDA /* Project object */;
@@ -161,6 +181,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		87DE00691F7AAF59007C374A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				87DE00661F7AAF59007C374A /* Down.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -169,6 +203,7 @@
 		408A32AE1E8C5E0C006A870B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = frameworks/Fabric.framework; sourceTree = "<group>"; };
 		670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalListHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProposalListHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		8748C7941F7A97B80030DADF /* Down.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Down.xcodeproj; path = Carthage/Checkouts/Down/Down.xcodeproj; sourceTree = "<group>"; };
 		9114321F1EB963BD00CCC0D0 /* swift-evolution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "swift-evolution.entitlements"; sourceTree = "<group>"; };
 		911432201EB96E2D00CCC0D0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		911432221EB9756500CCC0D0 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -182,7 +217,6 @@
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		914A5C181E7F5701005E653A /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
 		914A5C1B1E7F5794005E653A /* ProposalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalDetailViewController.swift; sourceTree = "<group>"; };
 		914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueRepresentable.swift; sourceTree = "<group>"; };
 		914A5C221E7F97EF005E653A /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -203,7 +237,6 @@
 		915265621E6779F500C2AFDA /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		915265641E677A3100C2AFDA /* Warning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Warning.swift; sourceTree = "<group>"; };
 		915265661E677A4E00C2AFDA /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
-		9152656F1E677D1200C2AFDA /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Unbox.framework; path = Carthage/Build/iOS/Unbox.framework; sourceTree = "<group>"; };
 		915265721E677E1900C2AFDA /* Bug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bug.swift; sourceTree = "<group>"; };
 		915265771E6781EF00C2AFDA /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		915265791E67976F00C2AFDA /* EvolutionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvolutionService.swift; sourceTree = "<group>"; };
@@ -248,9 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				911432611EB9870C00CCC0D0 /* UserNotifications.framework in Frameworks */,
-				911432621EB9870C00CCC0D0 /* Down.framework in Frameworks */,
 				911432631EB9870C00CCC0D0 /* Fabric.framework in Frameworks */,
-				911432641EB9870C00CCC0D0 /* Unbox.framework in Frameworks */,
 				911432651EB9870C00CCC0D0 /* SVProgressHUD.framework in Frameworks */,
 				911432661EB9870C00CCC0D0 /* Crashlytics.framework in Frameworks */,
 				911432671EB9870C00CCC0D0 /* SwiftRichString.framework in Frameworks */,
@@ -261,11 +292,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8748C79D1F7A97D00030DADF /* Down.framework in Frameworks */,
 				91F05E641F034F78002738F4 /* Reachability.framework in Frameworks */,
+				87DE00651F7AAF59007C374A /* Down.framework in Frameworks */,
 				911432211EB96E2D00CCC0D0 /* UserNotifications.framework in Frameworks */,
-				914A5C191E7F5701005E653A /* Down.framework in Frameworks */,
 				408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */,
-				915265701E677D1200C2AFDA /* Unbox.framework in Frameworks */,
 				408A32A81E8C5678006A870B /* SVProgressHUD.framework in Frameworks */,
 				408A32AF1E8C5E0C006A870B /* Crashlytics.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
@@ -289,6 +320,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8748C7951F7A97B80030DADF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8748C79A1F7A97B80030DADF /* Down.framework */,
+				8748C79C1F7A97B80030DADF /* DownTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		913AE7011E9739D80097BCA5 /* uiview */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,15 +526,14 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8748C7941F7A97B80030DADF /* Down.xcodeproj */,
 				91F05E631F034F78002738F4 /* Reachability.framework */,
 				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
 				911432201EB96E2D00CCC0D0 /* UserNotifications.framework */,
 				408A32A71E8C5678006A870B /* SVProgressHUD.framework */,
 				408A32AD1E8C5E0C006A870B /* Crashlytics.framework */,
 				408A32AE1E8C5E0C006A870B /* Fabric.framework */,
-				914A5C181E7F5701005E653A /* Down.framework */,
 				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
-				9152656F1E677D1200C2AFDA /* Unbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,10 +738,13 @@
 				915265201E67659900C2AFDA /* Resources */,
 				91BBA17E1F19E943008A7DDD /* SwiftLint Script */,
 				915265711E677D2C00C2AFDA /* Carthage Script */,
+				87DE006A1F7AAFEF007C374A /* Fabric Run */,
+				87DE00691F7AAF59007C374A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				87DE00681F7AAF59007C374A /* PBXTargetDependency */,
 			);
 			name = "swift-evolution";
 			productName = "swift-evolution";
@@ -752,7 +794,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Holanda Mobile";
 				TargetAttributes = {
 					9114322C1EB9870C00CCC0D0 = {
@@ -760,8 +802,8 @@
 					};
 					915265211E67659900C2AFDA = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 56DQ8B5T2R;
-						ProvisioningStyle = Manual;
+                        DevelopmentTeam = 56DQ8B5T2R;
+                        ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -796,6 +838,12 @@
 			mainGroup = 915265191E67659900C2AFDA;
 			productRefGroup = 915265231E67659900C2AFDA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8748C7951F7A97B80030DADF /* Products */;
+					ProjectRef = 8748C7941F7A97B80030DADF /* Down.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				915265211E67659900C2AFDA /* swift-evolution */,
@@ -805,6 +853,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8748C79A1F7A97B80030DADF /* Down.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Down.framework;
+			remoteRef = 8748C7991F7A97B80030DADF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8748C79C1F7A97B80030DADF /* DownTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DownTests.xctest;
+			remoteRef = 8748C79B1F7A97B80030DADF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		911432681EB9870C00CCC0D0 /* Resources */ = {
@@ -852,6 +917,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		87DE006A1F7AAFEF007C374A /* Fabric Run */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric Run";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./frameworks/Fabric.framework/run 508dd26ebc3c23fd020a50ca76647802c64ee267 cf12350583ab8cedbb1287b6f6ec30ce0cfe028502427d087379a95ab6487c58";
+		};
 		9114326F1EB9870C00CCC0D0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,7 +956,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Unbox.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
@@ -886,7 +964,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n./frameworks/Fabric.framework/run 508dd26ebc3c23fd020a50ca76647802c64ee267 cf12350583ab8cedbb1287b6f6ec30ce0cfe028502427d087379a95ab6487c58";
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		91BBA17E1F19E943008A7DDD /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1042,6 +1120,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		87DE00681F7AAF59007C374A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Down;
+			targetProxy = 87DE00671F7AAF59007C374A /* PBXContainerItemProxy */;
+		};
 		915265381E67659A00C2AFDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 915265211E67659900C2AFDA /* swift-evolution */;
@@ -1087,7 +1170,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1095,7 +1180,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1105,6 +1194,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1115,6 +1205,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -1125,13 +1216,14 @@
 		911432251EB97FE900CCC0D0 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
 				APP_ENVIRONMENT_TITLE = Development;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 56DQ8B5T2R;
+                DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
@@ -1142,10 +1234,10 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app.development";
+                PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app.development";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0447bae9-abe3-48f6-9857-1c98a77a8771";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app.development";
+                PROVISIONING_PROFILE = "0447bae9-abe3-48f6-9857-1c98a77a8771";
+                PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app.development";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Development;
@@ -1161,7 +1253,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swift-evolution.app/swift-evolution";
 			};
 			name = Development;
@@ -1176,7 +1268,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "swift-evolution";
 			};
 			name = Development;
@@ -1276,7 +1368,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1284,7 +1378,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1329,7 +1427,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1337,7 +1437,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1367,13 +1471,14 @@
 		9152654B1E67659A00C2AFDA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
 				APP_ENVIRONMENT_TITLE = Evolution;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
 				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 56DQ8B5T2R;
+                DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
@@ -1384,10 +1489,10 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
+                PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba2a5e0c-a942-4def-a0d8-87f2fae07216";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
+                PROVISIONING_PROFILE = "ba2a5e0c-a942-4def-a0d8-87f2fae07216";
+                PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1395,13 +1500,14 @@
 		9152654C1E67659A00C2AFDA /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
 				APP_ENVIRONMENT_TITLE = Evolution;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+                "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 56DQ8B5T2R;
+                DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
@@ -1412,10 +1518,10 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
+                PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "305af9fb-8789-4515-9425-f65ceb70c860";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.swift-evolution.app";
+                PROVISIONING_PROFILE = "305af9fb-8789-4515-9425-f65ceb70c860";
+                PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.swift-evolution.app";
 				SWIFT_VERSION = 4.0;
 			};
 			name = AppStore;
@@ -1431,7 +1537,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swift-evolution.app/swift-evolution";
 			};
 			name = Debug;
@@ -1447,7 +1553,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swift-evolution.app/swift-evolution";
 			};
 			name = AppStore;
@@ -1462,7 +1568,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "swift-evolution";
 			};
 			name = Debug;
@@ -1477,7 +1583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "swift-evolution";
 			};
 			name = AppStore;

@@ -1,34 +1,19 @@
-import Unbox
+import Foundation
 
 struct EvolutionService {
     
-    typealias CompletionDetail = (_ error: Error?, _ proposal: String?) -> Swift.Void
-    typealias CompletionProposals = (_ error: Error?, _ proposals: [Proposal]?) -> Swift.Void
+    typealias CompletionDetail = (ServiceResult<String>) -> Void
+    typealias CompletionProposals = (ServiceResult<[Proposal]>) -> Void
     
     static func listProposals(completion: @escaping CompletionProposals) {
-        Service.requestList("\(Config.Base.URL.data)/proposals") { (error, object) in
-            guard error == nil else {
-                completion(error, nil)
-                return
-            }
-            
-            if let list = object {
-                let proposals: [Proposal] = list.flatMap({ try? unbox(dictionary: $0) })
-                completion(nil, proposals)
-            }
+        Service.request(url: "\(Config.Base.URL.data)/proposals") { (result) in
+            let newResult = result.flatMap { try JSONDecoder().decode([Proposal].self, from: $0) }
+            completion(newResult)
         }
     }
     
     static func detail(proposal: Proposal, completion: @escaping CompletionDetail) {
         let url = "\(Config.Base.URL.data)/proposal/\(proposal.description)/markdown"
-        
-        Service.requestText(url) { error, text in
-            guard error == nil else {
-                completion(error, nil)
-                return
-            }
-            
-            completion(nil, text)
-        }
+        Service.requestText(url, completion: completion)
     }
 }

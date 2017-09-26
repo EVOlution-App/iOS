@@ -4,9 +4,9 @@ import SwiftRichString
 class ProposalTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
-    @IBOutlet fileprivate weak var statusIndicatorView: UIView!
-    @IBOutlet fileprivate weak var statusLabel: StatusLabel!
-    @IBOutlet fileprivate weak var detailsLabel: UITextView!
+    @IBOutlet private weak var statusIndicatorView: UIView!
+    @IBOutlet private weak var statusLabel: StatusLabel!
+    @IBOutlet private weak var detailsLabel: UITextView!
     
     @IBOutlet private weak var statusLabelWidthConstraint: NSLayoutConstraint!
     
@@ -17,10 +17,10 @@ class ProposalTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.detailsLabel.delegate = self
         // Configure links into textView
         self.detailsLabel.linkTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.Proposal.darkGray
+            NSAttributedStringKey.foregroundColor.rawValue: UIColor.Proposal.darkGray
         ]
     }
     
@@ -248,6 +248,11 @@ extension ProposalTableViewCell {
 
 // MARK: - UITextView Delegate
 extension ProposalTableViewCell: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return self.textView(textView, shouldInteractWith: URL, in: characterRange)
+    }
+    
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         
         guard let proposal = self.proposal,
@@ -300,7 +305,7 @@ fileprivate extension NSMutableAttributedString {
             }
             
             if let nameRange = text.range(of: name) {
-                let range = text.toNSRange(from: nameRange)
+                let range = text.nsRange(from: nameRange)
                 let style = Style("url") {
                     $0.linkURL = URL(string: "evo://profile/\(username)")
                 }
@@ -317,7 +322,7 @@ fileprivate extension NSMutableAttributedString {
         
         let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
         if let titleRange = text.range(of: title) {
-            let range = text.toNSRange(from: titleRange)
+            let range = text.nsRange(from: titleRange)
             let style = Style("url") {
                 $0.linkURL = URL(string: "evo://proposal/\(proposal.description)")
             }

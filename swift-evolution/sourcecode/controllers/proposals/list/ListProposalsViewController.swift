@@ -128,7 +128,7 @@ class ListProposalsViewController: BaseViewController {
         NotificationCenter.default.removeObserver(NSNotification.Name.URLScheme)
     }
     
-    func didReceiveNotification(_ notification: Notification) {
+    @objc func didReceiveNotification(_ notification: Notification) {
         guard let info = notification.userInfo else { return }//,
         self.navigateTo(info["Host"], info["Value"])
     }
@@ -188,12 +188,12 @@ class ListProposalsViewController: BaseViewController {
             // Hide No Connection View
             self.showNoConnection = false
 
-            EvolutionService.listProposals { [unowned self] error, proposals in
-                guard error == nil, let proposals = proposals else {
-                    if let error = error {
+            EvolutionService.listProposals { [unowned self] result in
+                guard let proposals = result.value else {
+                    if let error = result.error {
+                        print("Error: \(error)")
                         Crashlytics.sharedInstance().recordError(error)
                     }
-                    
                     return
                 }
                 
@@ -226,7 +226,7 @@ class ListProposalsViewController: BaseViewController {
     }
     
     // MARK: - Actions
-    func filterButtonAction(_ sender: UIButton?) {
+    @objc func filterButtonAction(_ sender: UIButton?) {
         guard let sender = sender else {
             return
         }
@@ -257,7 +257,7 @@ class ListProposalsViewController: BaseViewController {
         self.layoutFilterHeaderView()
     }
     
-    func filteredByButtonAction(_ sender: UIButton?) {
+    @objc func filteredByButtonAction(_ sender: UIButton?) {
         guard let sender = sender else { return }
         
         sender.isSelected = !sender.isSelected
@@ -271,7 +271,7 @@ class ListProposalsViewController: BaseViewController {
         self.layoutFilterHeaderView()
     }
     
-    func fireSearch(_ timer: Timer) {
+    @objc func fireSearch(_ timer: Timer) {
         guard let search = timer.userInfo as? Search else {
             return
         }

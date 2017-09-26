@@ -61,7 +61,7 @@ extension AppDelegate {
     
     fileprivate func navigationBarAppearance() {
         let font = UIFont(name: "HelveticaNeue", size: 25)!
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.Proposal.darkGray]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.Proposal.darkGray]
     }
     
     fileprivate func registerForPushNotification() {
@@ -72,7 +72,9 @@ extension AppDelegate {
             
             notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
                 if error == nil {
-                    UIApplication.shared.registerForRemoteNotifications()
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
             }
         }
