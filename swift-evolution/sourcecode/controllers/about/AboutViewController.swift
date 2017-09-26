@@ -65,11 +65,10 @@ class AboutViewController: UITableViewController {
         // Licenses
         let down            = Item(text: "Down", type: .github, value: "iwasrobbed/Down")
         let reachability    = Item(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift")
-        let unbox           = Item(text: "Unbox", type: .github, value: "JohnSundell/Unbox")
         let svprogresshud   = Item(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD")
         let swiftrichstring = Item(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString")
         
-        let licenses = About(section: .licenses, items: [down, reachability, unbox, svprogresshud, swiftrichstring], footer: nil)
+        let licenses = About(section: .licenses, items: [down, reachability, svprogresshud, swiftrichstring], footer: nil)
         about.append(licenses)
         
         // Cloud Tools
