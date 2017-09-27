@@ -1,6 +1,6 @@
 # Gemfile
 
-ruby '2.4.0'
+ruby '2.4.1'
 
 source 'https://rubygems.org'
 
