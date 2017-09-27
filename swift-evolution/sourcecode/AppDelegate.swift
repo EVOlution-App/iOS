@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registerForPushNotification()
         
         // Register routes to use on URL Scheme
-        let _ = Routes()
+        _ = Routes()
         self.registerSchemes()
         
         return true
@@ -61,7 +61,7 @@ extension AppDelegate {
     
     fileprivate func navigationBarAppearance() {
         let font = UIFont(name: "HelveticaNeue", size: 25)!
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.Proposal.darkGray]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.Proposal.darkGray]
     }
     
     fileprivate func registerForPushNotification() {
@@ -70,9 +70,11 @@ extension AppDelegate {
             let notification = UNUserNotificationCenter.current()
             notification.delegate = self
             
-            notification.requestAuthorization(options: [.sound, .alert, .badge]) { granted, error in
+            notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
                 if error == nil {
-                    UIApplication.shared.registerForRemoteNotifications()
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
             }
         }
@@ -127,4 +129,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-

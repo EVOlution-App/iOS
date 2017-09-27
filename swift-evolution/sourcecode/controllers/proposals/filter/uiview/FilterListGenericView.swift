@@ -18,9 +18,7 @@ class FilterListGenericView: UIView {
     open var type: FilterListGenericType = .none
     open var selectedItems: [IndexPath] = []
     open var indexPathsForSelectedItems: [IndexPath]? {
-        get {
-            return self.collectionView.indexPathsForSelectedItems
-        }
+        return self.collectionView.indexPathsForSelectedItems
     }
     
     var dataSource: [CustomStringConvertible] = [] {
@@ -35,6 +33,8 @@ class FilterListGenericView: UIView {
     }
     
     override func awakeFromNib() {
+        super.awakeFromNib()
+
         self.collectionView.registerNib(withClass: FilterCollectionViewCell.self)
         self.collectionView.collectionViewLayout = DGCollectionViewLeftAlignFlowLayout()
         self.collectionView.allowsMultipleSelection = true
@@ -67,7 +67,7 @@ class FilterListGenericView: UIView {
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
-            self.collectionView.performBatchUpdates(nil) { finished in
+            self.collectionView.performBatchUpdates(nil) { _ in
                 self.height = self.collectionView.contentSize.height + self.descriptionLabel.bounds.maxY
                 self.layoutDelegate?.didFinishedCalculateHeightToView(type: self.type, height: self.height)
             }

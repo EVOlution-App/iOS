@@ -90,6 +90,6 @@ class BaseViewController: UIViewController {
     }
     
     // MARK: - Reachability Retry Action
-    open func retryButtonAction(_ sender: UIButton) {
+    @objc open func retryButtonAction(_ sender: UIButton) {
     }
 }

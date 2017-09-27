@@ -61,7 +61,7 @@ class FilterHeaderView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "),formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "All Statuses"))
+        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "All Statuses"))
         
         self.filteredByButton.adjustsImageWhenHighlighted = false
         self.filteredByButton.setAttributedTitle(text, for: .normal)
@@ -130,14 +130,14 @@ extension FilterHeaderView: FilterGenericViewLayoutDelegate {
 // MARK: - Text and Colors
 
 extension FilterHeaderView {
-    func formatterColor(color: UIColor,text : String) -> NSMutableAttributedString {
-        let color = [NSForegroundColorAttributeName: color, NSFontAttributeName: UIFont.systemFont(ofSize: 14)]
+    func formatterColor(color: UIColor, text: String) -> NSMutableAttributedString {
+        let color = [NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
         return NSMutableAttributedString(string: text, attributes: color)
     }
     
-    func concatText(texts: NSAttributedString...) ->  NSAttributedString {
+    func concatText(texts: NSAttributedString...) -> NSAttributedString {
         let combination = NSMutableAttributedString()
-        let _ = texts.map(combination.append)
+        _ = texts.map(combination.append)
         return combination
     }
 }

@@ -136,7 +136,7 @@ fileprivate extension ProfileView {
         }
         
         // as Review Manager
-        if let list = manager, list.count > 0  {
+        if let list = manager, list.count > 0 {
             let space = attributedStrings.length > 0 ? .doubleSpace + .doubleSpace : ""
             
             var text = space + "\(list.count)"

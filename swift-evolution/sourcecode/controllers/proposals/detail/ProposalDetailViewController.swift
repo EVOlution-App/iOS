@@ -11,11 +11,11 @@ class ProposalDetailViewController: BaseViewController {
     
     // MARK: - Private properties
     private var proposalMarkdown: String?
-    private var downView: DownView? = nil
-    fileprivate var appDelegate: AppDelegate?
+    private var downView: DownView?
+    fileprivate weak var appDelegate: AppDelegate?
     
     // MARK: - Public properties
-    var proposal: Proposal? = nil
+    var proposal: Proposal?
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -86,12 +86,11 @@ class ProposalDetailViewController: BaseViewController {
             self.showNoConnection = false
             
             
-            EvolutionService.detail(proposal: proposal) { [unowned self] error, data in
-                guard error == nil, let data = data else {
-                    if let error = error {
+            EvolutionService.detail(proposal: proposal) { [unowned self] result in
+                guard let data = result.value else {
+                    if let error = result.error {
                         Crashlytics.sharedInstance().recordError(error)
                     }
-                    
                     return
                 }
                 
@@ -115,10 +114,10 @@ class ProposalDetailViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
             let destination = segue.destination as? ProposalDetailViewController,
-            sender != nil, let item = sender as? Proposal  {
+            sender != nil, let item = sender as? Proposal {
 
             destination.proposal = item
-        }   
+        }
         else if segue.destination is ProfileViewController,
             let destination = segue.destination as? ProfileViewController,
             sender != nil, sender is Person, let person = sender as? Person {

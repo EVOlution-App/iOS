@@ -20,11 +20,8 @@ extension UIImageView {
             return
         }
         
-        Service.requestImage(url) { [weak self] error, image in
-            guard let image = image, error == nil else {
-                return
-            }
-            
+        Service.requestImage(url) { [weak self] result in
+            guard let image = result.value else { return }
             DispatchQueue.main.async {
                 self?.image = image
             }

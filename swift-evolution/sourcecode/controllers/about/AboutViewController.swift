@@ -65,11 +65,10 @@ class AboutViewController: UITableViewController {
         // Licenses
         let down            = Item(text: "Down", type: .github, value: "iwasrobbed/Down")
         let reachability    = Item(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift")
-        let unbox           = Item(text: "Unbox", type: .github, value: "JohnSundell/Unbox")
         let svprogresshud   = Item(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD")
         let swiftrichstring = Item(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString")
         
-        let licenses = About(section: .licenses, items: [down, reachability, unbox, svprogresshud, swiftrichstring], footer: nil)
+        let licenses = About(section: .licenses, items: [down, reachability, svprogresshud, swiftrichstring], footer: nil)
         about.append(licenses)
         
         // Cloud Tools
@@ -172,7 +171,7 @@ extension AboutViewController {
     // MARK: - UITableView Delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = self.dataSource[indexPath.section].items[indexPath.row];
+        let item = self.dataSource[indexPath.section].items[indexPath.row]
         
         var title = "Open Safari ?"
         var value = ""
@@ -221,7 +220,7 @@ extension AboutViewController {
             
             if let url = URL(string: value) {
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [UIApplicationOpenURLOptionUniversalLinksOnly : false]) { success in
+                    UIApplication.shared.open(url, options: [UIApplicationOpenURLOptionUniversalLinksOnly: false]) { _ in
                         Answers.logCustomEvent(withName: message, customAttributes: ["type": item.type.rawValue, "section": about.section.rawValue])
                     }
                 }

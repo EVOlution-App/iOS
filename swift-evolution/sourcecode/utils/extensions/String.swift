@@ -2,12 +2,12 @@ import UIKit
 
 // MARK: - Enum Tag
 enum Tag: String {
-    case content = "content"
-    case title = "title"
-    case label = "label"
-    case value = "value"
-    case id = "id"
-    case person = "person"
+    case content
+    case title
+    case label
+    case value
+    case id
+    case person
     
     func wrap(string: String) -> String {
         return "<\(self.rawValue)>\(string)</\(self.rawValue)>"
@@ -36,7 +36,7 @@ extension String {
     var convertHTMLEntities: String {
         var text = self
         
-        let entities = ["&quot;":"\"", "&apos;":"'", "&lt;":"<", "&gt;":">", " &amp; ": " & "]
+        let entities = ["&quot;": "\"", "&apos;": "'", "&lt;": "<", "&gt;": ">", " &amp; ": " & "]
         entities.forEach { key, value in
             text = text.replacingOccurrences(of: value, with: key)
         }
@@ -69,7 +69,7 @@ extension String {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect,
                                             options: .usesLineFragmentOrigin,
-                                            attributes: [NSFontAttributeName: font],
+                                            attributes: [NSAttributedStringKey.font: font],
                                             context: nil)
         return boundingBox.width
     }
@@ -101,7 +101,7 @@ extension String {
             let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.characters.count))
             
             let contents: [Int] = results.flatMap({
-                let value = (self as NSString).substring(with: $0.rangeAt(1))
+                let value = (self as NSString).substring(with: $0.range(at: 1))
                 return Int(value)
             })
             

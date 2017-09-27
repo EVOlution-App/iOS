@@ -102,11 +102,10 @@ extension ProfileViewController {
         }
         
         if let reachability = self.reachability, reachability.isReachable {
-            GithubService.profile(from: username) { [weak self] error, github in
-                guard let github = github, error == nil else {
+            GithubService.profile(from: username) { [weak self] result in
+                guard let github = result.value else {
                     return
                 }
-                
                 self?.profile?.github = github
                 self?.profileView.imageURL = github.avatar
             }
@@ -162,7 +161,3 @@ extension ProfileViewController: UITableViewDelegate {
         return 0.01
     }
 }
-
-
-
-

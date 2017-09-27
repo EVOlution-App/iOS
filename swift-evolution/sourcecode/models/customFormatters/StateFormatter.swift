@@ -1,5 +1,6 @@
-import Unbox
+import Foundation
 
+/*
 struct StateFormatter: UnboxFormatter {
     func format(unboxedValue: String) -> StatusState? {
         let state = State(unboxedValue)
@@ -10,3 +11,4 @@ struct StateFormatter: UnboxFormatter {
         return nil
     }
 }
+ */

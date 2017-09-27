@@ -3,10 +3,10 @@ import UIKit
 class StatusLabel: BorderedLabel {
 
     @IBInspectable
-    var selectedColor: UIColor? = nil
+    var selectedColor: UIColor?
     
     @IBInspectable
-    var normalColor: UIColor? = nil
+    var normalColor: UIColor?
     
     @IBInspectable
     var selected: Bool = false {

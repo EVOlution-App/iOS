@@ -11,7 +11,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: Searchable {
     func get(username: String) -> Person? {
         var item: Person? = nil
         
-        self.forEach { key, value in
+        self.forEach { _, value in
             if value is Person, let person = value as? Person,
                 person.username == username {
                 item = person

@@ -1,7 +1,6 @@
 import UIKit
-import Unbox
 
-struct Bug {
+struct Bug: Codable {
     let id: Int
     let status: String?
     let updated: Date?
@@ -10,19 +9,41 @@ struct Bug {
     let radar: String?
     let assignee: String?
     let resolution: String?
+    
+    enum Keys: String, CodingKey {
+        case id
+        case status
+        case title
+        case link
+        case radar
+        case resolution
+        case assignee
+        case updated
+    }
+    
 }
 
-extension Bug: Unboxable {
-    init(unboxer: Unboxer) throws {
-        self.id         = try unboxer.unbox(key: "id", formatter: BugIDFormatter())
-        self.status     = unboxer.unbox(key: "status")
-        self.title      = unboxer.unbox(key: "title")
-        self.link       = unboxer.unbox(key: "link")
-        self.radar      = unboxer.unbox(key: "radar")
-        self.resolution = unboxer.unbox(key: "resolution")
-        self.assignee   = unboxer.unbox(key: "assignee")
-        self.updated    = unboxer.unbox(key: "updated", formatter: Config.Date.Formatter.iso8601)
+extension Bug {
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.link = try container.decodeIfPresent(String.self, forKey: .link)
+        self.radar = try container.decodeIfPresent(String.self, forKey: .radar)
+        self.assignee = try container.decodeIfPresent(String.self, forKey: .assignee)
+        self.resolution = try container.decodeIfPresent(String.self, forKey: .resolution)
+        let idString = try container.decode(String.self, forKey: .id)
+        self.id = BugIDFormatter.format(unboxedValue: idString)
+        if let dateString = try container.decodeIfPresent(String.self, forKey: .updated) {
+            let dateFormatter = Config.Date.Formatter.iso8601
+            self.updated = dateFormatter.date(from: dateString)
+        }
+        else {
+            self.updated = nil
+        }
     }
+    
 }
 
 extension Bug: CustomStringConvertible {

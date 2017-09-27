@@ -59,7 +59,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
     
     func filter(language version: Version) -> [Proposal] {
-        return self.filter { $0.status.version == version}
+        return self.filter { $0.status.version == version }
     }
     
     func filter(by value: String) -> [Proposal] {

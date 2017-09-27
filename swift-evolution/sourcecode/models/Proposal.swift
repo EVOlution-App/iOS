@@ -1,7 +1,6 @@
-import Unbox
 import Foundation
 
-struct Proposal {
+struct Proposal: Decodable {
     let id: Int
     let title: String
     let status: Status
@@ -12,6 +11,19 @@ struct Proposal {
     let reviewManager: Person?
     let sha: String?
     let bugs: [Bug]?
+    
+    enum Keys: String, CodingKey {
+        case status
+        case summary
+        case authors
+        case id
+        case title
+        case warnings
+        case link
+        case reviewManager
+        case sha
+        case trackingBugs
+    }
     
     init(id: Int, link: String) {
         self.id = id
@@ -25,21 +37,26 @@ struct Proposal {
         self.sha = nil
         self.bugs = nil
     }
+    
 }
 
-extension Proposal: Unboxable {
-    init(unboxer: Unboxer) throws {
-        self.status = try unboxer.unbox(key: "status")
-        self.summary = unboxer.unbox(key: "summary")
-        self.authors = unboxer.unbox(key: "authors")
-        self.id = try unboxer.unbox(key: "id", formatter: ProposalIDFormatter())
-        self.title = try unboxer.unbox(key: "title")
-        self.warnings = unboxer.unbox(key: "warnings")
-        self.link = unboxer.unbox(key: "link")
-        self.reviewManager = unboxer.unbox(key: "reviewManager")
-        self.sha = unboxer.unbox(key: "sha")
-        self.bugs = unboxer.unbox(key: "trackingBugs")
+extension Proposal {
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.status = try container.decode(Status.self, forKey: .status)
+        self.summary = try container.decodeIfPresent(String.self, forKey: .summary)
+        self.authors = try container.decodeIfPresent([Person].self, forKey: .authors)
+        self.warnings = try container.decodeIfPresent([Warning].self, forKey: .warnings)
+        self.link = try container.decodeIfPresent(String.self, forKey: .link)
+        self.reviewManager = try container.decodeIfPresent(Person.self, forKey: .reviewManager)
+        self.sha = try container.decodeIfPresent(String.self, forKey: .sha)
+        self.bugs = try container.decodeIfPresent([Bug].self, forKey: .trackingBugs)
+        let idString = try container.decode(String.self, forKey: .id)
+        self.id = ProposalIDFormatter.format(unboxedValue: idString)
     }
+    
 }
 
 extension Proposal: CustomStringConvertible {
@@ -49,23 +66,23 @@ extension Proposal: CustomStringConvertible {
 }
 
 extension Proposal: Comparable {
-    public static func ==(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func == (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id == rhs.id
     }
     
-    public static func <(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func < (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id < rhs.id
     }
     
-    public static func <=(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func <= (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id <= rhs.id
     }
     
-    public static func >=(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func >= (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id >= rhs.id
     }
     
-    public static func >(lhs: Proposal, rhs: Proposal) -> Bool {
+    public static func > (lhs: Proposal, rhs: Proposal) -> Bool {
         return lhs.id > rhs.id
     }
 }
