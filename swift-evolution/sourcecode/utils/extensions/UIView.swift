@@ -64,7 +64,6 @@ extension UIView {
                                                                options: [],
                                                                metrics: nil,
                                                                views: ["top": view]))
-            break
             
         case .right:
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[right(==thickness)]-(0)-|",
@@ -75,7 +74,6 @@ extension UIView {
                                                                options: [],
                                                                metrics: nil,
                                                                views: ["right": view]))
-            break
             
         case .bottom:
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[bottom(==thickness)]-(0)-|",
@@ -86,7 +84,6 @@ extension UIView {
                                                                options: [],
                                                                metrics: nil,
                                                                views: ["bottom": view]))
-            break
             
         case .left:
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[left(==thickness)]",
@@ -97,7 +94,6 @@ extension UIView {
                                                                options: [],
                                                                metrics: nil,
                                                                views: ["left": view]))
-            break
         }
     }
     

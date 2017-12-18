@@ -98,7 +98,7 @@ extension String {
     func regex(_ pattern: String) -> [Int] {
         
         if let expression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
-            let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.characters.count))
+            let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.count))
             
             let contents: [Int] = results.flatMap({
                 let value = (self as NSString).substring(with: $0.range(at: 1))

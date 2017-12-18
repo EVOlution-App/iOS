@@ -190,20 +190,14 @@ extension AboutViewController {
                 message = value
             }
             
-            break
-            
         case .github:
             value = "https://\(item.type.rawValue)/\(item.value)"
             message = value
-            
-            break
             
         case .email:
             title = "Open Mail ?"
             value = "mailto:\(item.value)"
             message = item.value
-            
-            break
             
         default:
             value = item.value

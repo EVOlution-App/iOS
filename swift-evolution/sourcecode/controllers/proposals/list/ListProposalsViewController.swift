@@ -419,9 +419,6 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             
             self.updateTableView()
             
-            
-            break
-            
         case .version:
             if let version = view.dataSource[indexPath.item] as? String {
                 Answers.logSearch(withQuery: version, customAttributes: ["type": "filter", "subtype": "language-version"])
@@ -429,8 +426,6 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             }
             
             self.updateTableView()
-            
-            break
             
         default:
             break
@@ -455,14 +450,10 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
                 self.updateTableView()
             }
             
-            break
-            
         case .version:
             if self.languages.remove(string: item.description) {
                 self.updateTableView()
             }
-            
-            break
             
         default:
             break
@@ -515,7 +506,7 @@ extension ListProposalsViewController: UISearchBarDelegate {
             self.timer.invalidate()
         }
         
-        if searchText.characters.count > 3 {
+        if searchText.count > 3 {
             let interval = 0.7
             if #available(iOS 10.0, *) {
                 self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in

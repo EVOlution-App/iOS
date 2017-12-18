@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return .allButUpsideDown
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         Routes.shared.open(url)
         
         return true
@@ -79,7 +79,7 @@ extension AppDelegate {
             }
         }
         else {
-            let settings = UIUserNotificationSettings(types:  [.sound, .alert, .badge], categories: nil)
+            let settings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil)
             
             UIApplication.shared.registerUserNotificationSettings(settings)
             UIApplication.shared.registerForRemoteNotifications()
@@ -106,7 +106,7 @@ extension AppDelegate {
 
 // MARK: - Remote Notifications - <= iOS 9
 extension AppDelegate {
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("[Remote Notification][Received] iOS 9: \(userInfo)")
     }
     
