@@ -41,18 +41,15 @@ class FilterHeaderView: UIView {
 
         case .without:
             maxy = searchBar.frame.maxY
-            break
             
         case .filtered:
             maxy = self.filteredByButton.frame.maxY
-            break
             
         case .status:
             maxy = self.statusFilterView.frame.maxY
-            break
+            
         case .version:
             maxy = self.languageVersionFilterView.frame.maxY
-            break
         }
         
         return maxy + 10
@@ -109,19 +106,15 @@ extension FilterHeaderView: FilterGenericViewLayoutDelegate {
             self.statusFilterViewHeightConstraint.constant = height
             self.statusFilterView.setNeedsUpdateConstraints()
             
-            break
-            
         case .version:
             self.languageVersionFilterViewHeightConstraint.constant = height
             self.languageVersionFilterView.setNeedsUpdateConstraints()
-            break
             
         case .none:
             self.statusFilterViewHeightConstraint.constant = height
             self.statusFilterView.setNeedsUpdateConstraints()
             self.languageVersionFilterViewHeightConstraint.constant = height
             self.languageVersionFilterView.setNeedsUpdateConstraints()
-            break
 
         }
     }

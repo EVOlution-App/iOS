@@ -68,7 +68,7 @@ fileprivate extension ProfileView {
                 
                 // Check if name is too long, and reduce the font size
                 var pointSize: Float = 40.0
-                if name.characters.count > 10 {
+                if name.count > 10 {
                     pointSize = 34
                     
                     if UIScreen.main.bounds.size.width < 375 {
@@ -97,7 +97,7 @@ fileprivate extension ProfileView {
             let style = Style("link", {
                 // Check if link is too long, and reduce the font size
                 var pointSize: Float = 14.0
-                if link.characters.count > 14, UIScreen.main.bounds.size.width < 375 {
+                if link.count > 14, UIScreen.main.bounds.size.width < 375 {
                     pointSize = 12
                 }
                 
