@@ -454,9 +454,9 @@
 		915265581E676F2D00C2AFDA /* xibs */ = {
 			isa = PBXGroup;
 			children = (
-				915F7DE01F03828A001B298D /* uiview */,
 				91E150191E6BBCD900025B77 /* uicollectionviewcell */,
 				91E150181E6BBCCF00025B77 /* uitableviewcell */,
+				915F7DE01F03828A001B298D /* uiview */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -482,9 +482,9 @@
 		9152655B1E676F3E00C2AFDA /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9192CC521E8CC1AC00953357 /* about */,
 				914A5C211E7F97DC005E653A /* base */,
 				915F7DE41F0382FD001B298D /* noconnection */,
-				9192CC521E8CC1AC00953357 /* about */,
 				9168963F1E935A9A00FC6913 /* profile */,
 				915265841E67D7D900C2AFDA /* proposals */,
 			);
@@ -514,11 +514,11 @@
 				9152658B1E67E10500C2AFDA /* designables */,
 				915265741E67811B00C2AFDA /* extensions */,
 				91E150251E6D153A00025B77 /* vendor */,
+				91A454861EB99B6C00098A6B /* Environment.swift */,
 				402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */,
 				91485DEE1E690A33008C4715 /* Protocols.swift */,
 				91B2460A1E99BC4100904DE3 /* Routes.swift */,
 				915265771E6781EF00C2AFDA /* Utils.swift */,
-				91A454861EB99B6C00098A6B /* Environment.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -610,6 +610,7 @@
 				915F7DE11F0382C4001B298D /* NoConnectionView.xib */,
 			);
 			name = uiview;
+			path = uiview;
 			sourceTree = "<group>";
 		};
 		915F7DE41F0382FD001B298D /* noconnection */ = {
@@ -618,6 +619,7 @@
 				915F7DE51F038322001B298D /* NoConnectionView.swift */,
 			);
 			name = noconnection;
+			path = noconnection;
 			sourceTree = "<group>";
 		};
 		9168963F1E935A9A00FC6913 /* profile */ = {

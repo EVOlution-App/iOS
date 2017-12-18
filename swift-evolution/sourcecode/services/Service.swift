@@ -58,7 +58,7 @@ class Service {
     typealias JSONDictionary = [String: Any]
     
     @discardableResult
-    static func requestList(_ url: String, completion: @escaping (ServiceResult<[JSONDictionary]>) -> Void)-> URLSessionDataTask? {
+    static func requestList(_ url: String, completion: @escaping (ServiceResult<[JSONDictionary]>) -> Void) -> URLSessionDataTask? {
         let task = self.request(url: url) { (result) in
             let newResult = result.flatMap { data in
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [JSONDictionary]
@@ -69,7 +69,7 @@ class Service {
     }
     
     @discardableResult
-    static func requestKeyValue(_ url: String, completion: @escaping (ServiceResult<JSONDictionary>) -> Void)-> URLSessionDataTask? {
+    static func requestKeyValue(_ url: String, completion: @escaping (ServiceResult<JSONDictionary>) -> Void) -> URLSessionDataTask? {
         let task = self.request(url: url) { result in
             let newResult = result.flatMap { data in
                 return try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary
@@ -80,7 +80,7 @@ class Service {
     }
     
     @discardableResult
-    static func requestText(_ url: String, completion: @escaping (ServiceResult<String>) -> Void)-> URLSessionDataTask? {
+    static func requestText(_ url: String, completion: @escaping (ServiceResult<String>) -> Void) -> URLSessionDataTask? {
         let task = self.request(url: url) { (result) in
             let newResult = result.flatMap { String(data: $0, encoding: .utf8) }
             completion(newResult)
@@ -89,7 +89,7 @@ class Service {
     }
     
     @discardableResult
-    static func requestImage(_ url: String, completion: @escaping (ServiceResult<UIImage>) -> Void)-> URLSessionDownloadTask? {
+    static func requestImage(_ url: String, completion: @escaping (ServiceResult<UIImage>) -> Void) -> URLSessionDownloadTask? {
         guard let URL = URL(string: url) else {
             completion(.failure(ServiceError.invalidURL(url)))
             return nil
@@ -111,7 +111,7 @@ class Service {
     }
     
     @discardableResult
-    static func request(url: String, completion: @escaping (ServiceResult<Data>) -> Void)-> URLSessionDataTask? {
+    static func request(url: String, completion: @escaping (ServiceResult<Data>) -> Void) -> URLSessionDataTask? {
         guard let baseURL = URL(string: url) else {
             completion(.failure(ServiceError.invalidURL(url)))
             return nil
