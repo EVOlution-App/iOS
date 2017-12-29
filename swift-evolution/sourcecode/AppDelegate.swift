@@ -8,7 +8,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    open var rotate: Bool = false
+    private var rotate: Bool = true
     
     open var people: [String: Person] = [:]
     open var host: Host?
@@ -27,11 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register routes to use on URL Scheme
         _ = Routes()
         self.registerSchemes()
+
+        self.disableRotationIfNeeded()
         
         return true
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        
         guard self.rotate else {
             return .portrait
         }
@@ -101,6 +104,20 @@ extension AppDelegate {
         Routes.shared.add("proposal", routerHandler)
         Routes.shared.add("profile", routerHandler)
     }
+
+}
+
+// MARK: - Rotation
+extension AppDelegate {
+
+    func allowRotation() {
+        self.rotate = true
+    }
+
+    func disableRotationIfNeeded() {
+        self.rotate = UIDevice.current.userInterfaceIdiom == .pad
+    }
+
 }
 
 

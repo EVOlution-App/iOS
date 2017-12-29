@@ -60,7 +60,7 @@ class ProposalDetailViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         // Allow rotation
-        self.rotate = true
+        (UIApplication.shared.delegate as? AppDelegate)?.allowRotation()
     }
     
     override func didReceiveMemoryWarning() {

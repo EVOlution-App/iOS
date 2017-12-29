@@ -65,7 +65,10 @@ struct Config {
          Force the screen back to portrait orientation
          */
         static func portrait() {
-            let value = UIInterfaceOrientation.portrait.rawValue
+            let isPad = UIDevice.current.userInterfaceIdiom == .pad
+            let value = !isPad
+                ? UIInterfaceOrientation.portrait.rawValue
+                : UIDevice.current.orientation.rawValue
             UIDevice.current.setValue(value, forKey: "orientation")
         }
     }
