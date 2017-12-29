@@ -6,9 +6,12 @@ class AboutViewController: UITableViewController {
 
     fileprivate var dataSource: [About] = []
     @IBOutlet private var versionLabel: UILabel!
-    
+    @IBOutlet var closeButton: UIButton?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        closeButton?.isHidden = UIDevice.current.userInterfaceIdiom != .pad
 
         if let version = Environment.Release.version,
             let build = Environment.Release.build {
@@ -33,6 +36,10 @@ class AboutViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+
+    @IBAction func closeAction(_ sender: Any) {
+        dismiss(animated: true)
     }
 
     func buildAboutData() {

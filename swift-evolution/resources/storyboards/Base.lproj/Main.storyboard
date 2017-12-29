@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uUZ-fy-2NM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="czz-pU-pLJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,7 +22,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Qxq-bI-Ays">
             <objects>
-                <navigationController id="uUZ-fy-2NM" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ListNavigationStoryboardID" id="uUZ-fy-2NM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -35,12 +35,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrw-Lh-9pb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-831" y="211"/>
+            <point key="canvasLocation" x="327" y="-702"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="mbJ-Z2-1Cc">
+            <objects>
+                <splitViewController storyboardIdentifier="SplitStoryboardID" id="czz-pU-pLJ" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="uUZ-fy-2NM" kind="relationship" relationship="masterViewController" id="4dZ-Er-Qt7"/>
+                        <segue destination="2o8-m5-GfY" kind="relationship" relationship="detailViewController" id="L5X-Ld-mKZ"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Az-t2-His" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="698" y="-1698"/>
         </scene>
         <!--Evolution-->
         <scene sceneID="XRC-8N-KTw">
             <objects>
-                <viewController id="alP-NB-bbT" customClass="ListProposalsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListProposalsStoryboardID" id="alP-NB-bbT" customClass="ListProposalsViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ndH-s4-ED8"/>
                         <viewControllerLayoutGuide type="bottom" id="rAt-nJ-6SM"/>
@@ -216,7 +229,7 @@
                     <navigationItem key="navigationItem" title="Evolution" id="7ao-nW-5Ea">
                         <barButtonItem key="rightBarButtonItem" title="About" id="gkZ-u1-nTj">
                             <connections>
-                                <segue destination="fHh-kc-l7X" kind="show" id="P2E-97-59c"/>
+                                <action selector="about" destination="alP-NB-bbT" id="aOC-Ti-87l"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -255,7 +268,24 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             </objects>
             <point key="canvasLocation" x="40.799999999999997" y="210.94452773613196"/>
         </scene>
-        <!--Proposal Detail View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="nln-xh-qP7">
+            <objects>
+                <navigationController storyboardIdentifier="DetailsNavigationStoryboardID" id="2o8-m5-GfY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Bl-Sv-RBi">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.058823529411764705" green="0.043137254901960784" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="b40-fX-jN2" kind="relationship" relationship="rootViewController" id="4IH-mQ-5Xa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MnZ-lD-J1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1092" y="-702"/>
+        </scene>
+        <!--Details-->
         <scene sceneID="Hoh-3i-XTJ">
             <objects>
                 <viewController storyboardIdentifier="ProposalDetailStoryboardID" id="b40-fX-jN2" customClass="ProposalDetailViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
@@ -264,23 +294,34 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EqY-9D-y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Selected Proposal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-xW-YFk">
+                                <rect key="frame" x="140.5" y="295" width="94" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="Aoo-b9-Z6D"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.40919921874999998" green="0.40919921874999998" blue="0.40919921874999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="PVc-xW-YFk" firstAttribute="centerX" secondItem="EqY-9D-y2h" secondAttribute="centerX" id="FZD-mV-Wew"/>
                             <constraint firstItem="UrU-21-DUf" firstAttribute="top" secondItem="L4P-6d-O4b" secondAttribute="bottom" id="dGt-mE-WGw"/>
                             <constraint firstItem="UrU-21-DUf" firstAttribute="leading" secondItem="EqY-9D-y2h" secondAttribute="leadingMargin" constant="-16" id="fj5-jK-z6P"/>
+                            <constraint firstItem="PVc-xW-YFk" firstAttribute="centerY" secondItem="EqY-9D-y2h" secondAttribute="centerY" id="p66-QK-ZPm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UrU-21-DUf" secondAttribute="trailing" constant="-16" id="wzd-Le-y1F"/>
                             <constraint firstAttribute="bottom" secondItem="UrU-21-DUf" secondAttribute="bottom" id="yjZ-6t-m67"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gDa-Vo-N0W">
+                    <navigationItem key="navigationItem" title="Details" id="gDa-Vo-N0W">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="i00-J5-eaM">
                             <connections>
                                 <action selector="shareProposal:" destination="b40-fX-jN2" id="6JG-9y-t94"/>
@@ -289,18 +330,19 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     </navigationItem>
                     <connections>
                         <outlet property="detailView" destination="UrU-21-DUf" id="60U-rP-Qzh"/>
+                        <outlet property="noSelectedProposalLabel" destination="PVc-xW-YFk" id="FeB-qZ-vOj"/>
                         <segue destination="3eh-9t-QMu" kind="show" identifier="ProfileSegue" id="3pf-Ye-P5i"/>
                         <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="rf2-rv-6M0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H8D-qN-2aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="211"/>
+            <point key="canvasLocation" x="1448.4375" y="210.9375"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="fdb-C6-wBp">
             <objects>
-                <viewController id="3eh-9t-QMu" customClass="ProfileViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileStoryboardID" id="3eh-9t-QMu" customClass="ProfileViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZT6-7y-7fB"/>
                         <viewControllerLayoutGuide type="bottom" id="mug-0m-6CO"/>
@@ -309,8 +351,20 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UhO-0b-yld">
+                                <rect key="frame" x="-1" y="0.0" width="376" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="IQs-1c-ai1"/>
+                                    <barButtonItem title="Close" id="Mz0-3d-He9">
+                                        <connections>
+                                            <action selector="closeAction:" destination="3eh-9t-QMu" id="Zy7-n7-iXQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="0.058823529409999999" green="0.043137254899999998" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHm-GO-R55" customClass="ProfileView" customModule="swift_evolution" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="176"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-photo" translatesAutoresizingMaskIntoConstraints="NO" id="xvv-1y-4o0">
                                         <rect key="frame" x="236" y="8" width="124" height="124"/>
@@ -360,7 +414,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4qS-ei-dyF">
-                                <rect key="frame" x="0.0" y="176" width="375" height="427"/>
+                                <rect key="frame" x="0.0" y="220" width="375" height="383"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="3eh-9t-QMu" id="Il6-Fn-YJr"/>
@@ -370,19 +424,23 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dHm-GO-R55" firstAttribute="top" secondItem="UhO-0b-yld" secondAttribute="bottom" id="6E1-oo-Q5y"/>
+                            <constraint firstItem="UhO-0b-yld" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leading" constant="-1" id="ALB-Mw-pwV"/>
+                            <constraint firstAttribute="trailing" secondItem="UhO-0b-yld" secondAttribute="trailing" id="OaX-Ob-l1H"/>
+                            <constraint firstItem="UhO-0b-yld" firstAttribute="top" secondItem="ZT6-7y-7fB" secondAttribute="bottom" id="PRz-5f-j2V"/>
                             <constraint firstItem="4qS-ei-dyF" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leading" id="RiB-oS-7ye"/>
                             <constraint firstItem="4qS-ei-dyF" firstAttribute="top" secondItem="dHm-GO-R55" secondAttribute="bottom" id="XWq-gd-WM5"/>
                             <constraint firstAttribute="trailing" secondItem="dHm-GO-R55" secondAttribute="trailing" id="ZhG-9S-vs5"/>
                             <constraint firstAttribute="trailing" secondItem="4qS-ei-dyF" secondAttribute="trailing" id="heW-B3-2IW"/>
                             <constraint firstAttribute="bottom" secondItem="4qS-ei-dyF" secondAttribute="bottom" id="nX7-P0-OAO"/>
                             <constraint firstItem="dHm-GO-R55" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leading" id="scj-1X-KD1"/>
-                            <constraint firstItem="dHm-GO-R55" firstAttribute="top" secondItem="ZT6-7y-7fB" secondAttribute="bottom" id="vld-NY-mTh"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="profileView" destination="dHm-GO-R55" id="Whk-Os-u6N"/>
                         <outlet property="tableView" destination="4qS-ei-dyF" id="arE-4V-SY5"/>
+                        <outlet property="toolbar" destination="UhO-0b-yld" id="0ye-u8-68J"/>
                         <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="2o2-Fg-V0b"/>
                     </connections>
                 </viewController>
@@ -401,9 +459,9 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <!--About-->
         <scene sceneID="tuR-kd-nQG">
             <objects>
-                <tableViewController title="About" id="fHh-kc-l7X" customClass="AboutViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AboutStoryboardID" title="About" id="fHh-kc-l7X" customClass="AboutViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xZz-Rr-h0Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="nKE-aV-2Yb">
@@ -435,6 +493,15 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AuG-q4-7Dc">
+                                    <rect key="frame" x="311" y="15" width="44" height="33"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="tintColor" red="0.058823529409999999" green="0.043137254899999998" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="Close"/>
+                                    <connections>
+                                        <action selector="closeAction:" destination="fHh-kc-l7X" eventType="touchUpInside" id="l7l-v2-bET"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -444,8 +511,11 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="centerX" secondItem="NtM-Vn-6Wl" secondAttribute="centerX" id="Hg4-y3-Cm7"/>
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="top" secondItem="7hz-HC-Zq2" secondAttribute="bottom" constant="4" id="Jie-b9-vhr"/>
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="leading" secondItem="nKE-aV-2Yb" secondAttribute="leading" constant="8" id="WvL-SJ-Yw4"/>
+                                <constraint firstAttribute="trailing" secondItem="AuG-q4-7Dc" secondAttribute="trailing" constant="20" id="fTJ-lM-mm9"/>
                                 <constraint firstAttribute="trailing" secondItem="Jz5-jz-6IP" secondAttribute="trailing" constant="8" id="g6d-EX-BWM"/>
+                                <constraint firstItem="AuG-q4-7Dc" firstAttribute="top" secondItem="nKE-aV-2Yb" secondAttribute="top" constant="15" id="mbQ-Ji-lqA"/>
                                 <constraint firstItem="NtM-Vn-6Wl" firstAttribute="top" secondItem="nKE-aV-2Yb" secondAttribute="top" constant="32" id="uMu-t9-qkT"/>
+                                <constraint firstItem="AuG-q4-7Dc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nKE-aV-2Yb" secondAttribute="leading" constant="20" symbolic="YES" id="x98-TA-42y"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -481,6 +551,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="closeButton" destination="AuG-q4-7Dc" id="ZM4-8c-Mb1"/>
                         <outlet property="versionLabel" destination="Jz5-jz-6IP" id="YKW-Rg-4KZ"/>
                     </connections>
                 </tableViewController>
@@ -497,6 +568,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2o2-Fg-V0b"/>
-        <segue reference="XKc-wh-heR"/>
+        <segue reference="3pf-Ye-P5i"/>
+        <segue reference="4IH-mQ-5Xa"/>
     </inferredMetricsTieBreakers>
 </document>

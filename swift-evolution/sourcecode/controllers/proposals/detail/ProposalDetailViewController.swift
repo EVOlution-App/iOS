@@ -8,7 +8,8 @@ class ProposalDetailViewController: BaseViewController {
     
     // MARK: - IBOutlet connections
     @IBOutlet private weak var detailView: UIView!
-    
+    @IBOutlet private var noSelectedProposalLabel: UILabel?
+
     // MARK: - Private properties
     private var proposalMarkdown: String?
     private var downView: DownView?
@@ -22,6 +23,8 @@ class ProposalDetailViewController: BaseViewController {
         super.viewDidLoad()
 
         self.appDelegate = UIApplication.shared.delegate as? AppDelegate
+
+        noSelectedProposalLabel?.isHidden = proposal?.description != nil
         
         // Configure title using Proposal ID, e.g: SE-0172
         self.title = proposal?.description
@@ -54,6 +57,9 @@ class ProposalDetailViewController: BaseViewController {
                 self.showNoConnection = true
             }
         }
+
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -178,7 +184,7 @@ extension ProposalDetailViewController: WKNavigationDelegate {
             else if let host = url.host, host.contains("github.com"),
                 let person = self.appDelegate?.people.get(username: lastPathComponent) {
 
-                Config.Segues.profile.performSegue(in: self, with: person)
+                Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
             }
                 
             // The last step is check only if the url "appears" to be correct, before try to send it to safari

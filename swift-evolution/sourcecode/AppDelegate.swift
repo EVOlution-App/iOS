@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register Fabric
         Fabric.with([Crashlytics.self])
         
-        
+        self.configSplitViewController()
         self.navigationBarAppearance()
         self.registerNetworkingMonitor()
         self.registerForPushNotification()
@@ -145,4 +145,34 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("[Remote Notification][Received][Received] iOS 10: \(response.notification.request.content.userInfo)")
         completionHandler()
     }
+}
+
+// MARK: - UISplitViewControllerDelegate
+extension AppDelegate: UISplitViewControllerDelegate {
+
+    func configSplitViewController() {
+        guard
+            let splitController = window?.rootViewController as? UISplitViewController,
+            let navController = splitController.viewControllers.last as? UINavigationController,
+            let topViewController = navController.topViewController
+            else { return }
+        topViewController.navigationItem.leftBarButtonItem = splitController.displayModeButtonItem
+        splitController.delegate = self
+        splitController.preferredDisplayMode = .allVisible
+    }
+
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
+
+        guard
+            let secondaryAsNavController = secondaryViewController as? UINavigationController,
+            let detailController = secondaryAsNavController.topViewController as? ProposalDetailViewController
+            else { return false }
+        if detailController.proposal == nil {
+            return true
+        }
+        return false
+    }
+
 }

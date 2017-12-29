@@ -84,6 +84,10 @@ class ListProposalsViewController: BaseViewController {
         if let title = Environment.title, title != "" {
             self.title = title
         }
+
+        ProfileViewController.dismissCallback = { object in
+            Config.Segues.proposalDetail.performSegue(in: self.splitViewController, with: object, split: true)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -159,6 +163,9 @@ class ListProposalsViewController: BaseViewController {
     }
     
     func navigateTo(_ host: Any?, _ value: Any?) {
+
+        let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
+
         guard host is Host, let host = host as? Host,
             value is String, let value = value as? String else {
                 return
@@ -167,13 +174,13 @@ class ListProposalsViewController: BaseViewController {
         if host == .proposal {
             let id: Int = value.regex(Config.Common.Regex.proposalID)
             if let proposal = self.dataSource.get(by: id) {
-                Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+                Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
             }
         }
         else if host == .profile {
             if let appDelegate = self.appDelegate,
                 let person = appDelegate.people.get(username: value) {
-                Config.Segues.profile.performSegue(in: self, with: person)
+                Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
             }
         }
         
@@ -359,6 +366,19 @@ class ListProposalsViewController: BaseViewController {
 
         self.appDelegate?.people = authors
     }
+
+    // MARK: - IBActions
+    @IBAction func about() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "AboutStoryboardID")
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            controller.modalPresentationStyle = .formSheet
+            present(controller, animated: true)
+        } else {
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+
 }
 
 
@@ -383,7 +403,8 @@ extension ListProposalsViewController: UITableViewDataSource {
 
 extension ListProposalsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Config.Segues.proposalDetail.performSegue(in: self)
+        let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
+        Config.Segues.proposalDetail.performSegue(in: sourceViewController, split: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -472,15 +493,16 @@ extension ListProposalsViewController: ProposalDelegate {
         }
 
         let profile = self.appDelegate?.people[name]
-        Config.Segues.profile.performSegue(in: self, with: profile)
+        Config.Segues.profile.performSegue(in: self, with: profile, formSheet: true)
     }
     
     func didSelected(proposal: Proposal) {
         guard let proposal = self.dataSource.get(by: proposal.id) else {
             return
         }
-        
-        Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+
+        let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
+        Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
     }
 }
 

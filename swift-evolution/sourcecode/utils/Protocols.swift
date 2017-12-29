@@ -44,6 +44,6 @@ protocol ProposalDelegate: class {
 
 // MARK: - Enum Representable Protocols
 protocol SegueRepresentable: RawRepresentable {
-    func performSegue(in viewController: UIViewController)
-    func performSegue(in viewController: UIViewController, with object: Any?)
+    func performSegue(in viewController: UIViewController?, split: Bool, formSheet: Bool)
+    func performSegue(in viewController: UIViewController?, with object: Any?, split: Bool, formSheet: Bool)
 }
