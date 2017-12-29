@@ -127,16 +127,13 @@
                                         <rect key="frame" x="16" y="217" width="343" height="128"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language Version" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEm-Gc-vcB">
-                                                <rect key="frame" x="0.0" y="24" width="343" height="27"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="27" id="ouI-MY-PM6"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="24" width="343" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Wj9-L6-Nr6">
-                                                <rect key="frame" x="0.0" y="51" width="343" height="77"/>
+                                                <rect key="frame" x="0.0" y="40.5" width="343" height="87.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pRd-IR-8ln">
                                                     <size key="itemSize" width="169" height="28"/>
@@ -409,7 +406,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="nKE-aV-2Yb">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="nKE-aV-2Yb">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -444,11 +441,8 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="centerX" secondItem="nKE-aV-2Yb" secondAttribute="centerX" id="3KG-0E-H0D"/>
                                 <constraint firstAttribute="bottom" secondItem="Jz5-jz-6IP" secondAttribute="bottom" id="7hs-l7-Nk3"/>
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="centerX" secondItem="NtM-Vn-6Wl" secondAttribute="centerX" id="9q0-wf-O1P"/>
-                                <constraint firstAttribute="trailing" secondItem="7hz-HC-Zq2" secondAttribute="trailing" constant="8" id="FHt-sL-6k4"/>
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="centerX" secondItem="NtM-Vn-6Wl" secondAttribute="centerX" id="Hg4-y3-Cm7"/>
                                 <constraint firstItem="Jz5-jz-6IP" firstAttribute="top" secondItem="7hz-HC-Zq2" secondAttribute="bottom" constant="4" id="Jie-b9-vhr"/>
-                                <constraint firstItem="7hz-HC-Zq2" firstAttribute="top" secondItem="NtM-Vn-6Wl" secondAttribute="bottom" constant="10" id="ObK-Ag-0l2"/>
-                                <constraint firstItem="Jz5-jz-6IP" firstAttribute="leading" secondItem="nKE-aV-2Yb" secondAttribute="leading" constant="8" id="R7L-dL-c0M"/>
                                 <constraint firstItem="7hz-HC-Zq2" firstAttribute="leading" secondItem="nKE-aV-2Yb" secondAttribute="leading" constant="8" id="WvL-SJ-Yw4"/>
                                 <constraint firstAttribute="trailing" secondItem="Jz5-jz-6IP" secondAttribute="trailing" constant="8" id="g6d-EX-BWM"/>
                                 <constraint firstItem="NtM-Vn-6Wl" firstAttribute="top" secondItem="nKE-aV-2Yb" secondAttribute="top" constant="32" id="uMu-t9-qkT"/>
@@ -503,6 +497,6 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="2o2-Fg-V0b"/>
-        <segue reference="3pf-Ye-P5i"/>
+        <segue reference="XKc-wh-heR"/>
     </inferredMetricsTieBreakers>
 </document>
