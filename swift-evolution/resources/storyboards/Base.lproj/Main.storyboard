@@ -234,6 +234,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="aboutBarButtonItem" destination="gkZ-u1-nTj" id="MtH-Qv-cpc"/>
                         <outlet property="filterHeaderView" destination="Xy9-CI-bMR" id="ALD-ZF-bPv"/>
                         <outlet property="filterHeaderViewHeightConstraint" destination="irg-z7-87c" id="PVk-u8-tXk"/>
                         <outlet property="footerView" destination="J6Y-q1-3ee" id="ejk-HT-wtf"/>
@@ -294,7 +295,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EqY-9D-y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
@@ -321,13 +322,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <constraint firstAttribute="bottom" secondItem="UrU-21-DUf" secondAttribute="bottom" id="yjZ-6t-m67"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" id="gDa-Vo-N0W">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="i00-J5-eaM">
-                            <connections>
-                                <action selector="shareProposal:" destination="b40-fX-jN2" id="6JG-9y-t94"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Details" id="gDa-Vo-N0W"/>
                     <connections>
                         <outlet property="detailView" destination="UrU-21-DUf" id="60U-rP-Qzh"/>
                         <outlet property="noSelectedProposalLabel" destination="PVc-xW-YFk" id="FeB-qZ-vOj"/>
@@ -567,8 +562,8 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="placeholder-photo" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2o2-Fg-V0b"/>
-        <segue reference="3pf-Ye-P5i"/>
-        <segue reference="4IH-mQ-5Xa"/>
+        <segue reference="rf2-rv-6M0"/>
+        <segue reference="XKc-wh-heR"/>
+        <segue reference="sHa-dI-MgD"/>
     </inferredMetricsTieBreakers>
 </document>

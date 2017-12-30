@@ -14,7 +14,8 @@ class ProposalDetailViewController: BaseViewController {
     private var proposalMarkdown: String?
     private var downView: DownView?
     fileprivate weak var appDelegate: AppDelegate?
-    
+    private var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
+
     // MARK: - Public properties
     var proposal: Proposal?
     
@@ -40,7 +41,7 @@ class ProposalDetailViewController: BaseViewController {
                 downView.bottomAnchor.constraint(equalTo: self.detailView.bottomAnchor),
                 downView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor),
                 downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
-            ])
+                ])
         }
         // Request the Proposes
         self.getProposalDetail()
@@ -108,7 +109,9 @@ class ProposalDetailViewController: BaseViewController {
                 self.proposalMarkdown = data
                 DispatchQueue.main.async {
                     try? self.downView?.update(markdownString: data)
+                    self.showHideNavigationButtons()
                 }
+
             }
         }
         else {
@@ -145,6 +148,10 @@ class ProposalDetailViewController: BaseViewController {
         let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
         self.navigationController?.present(activityController, animated: true, completion: nil)
     }
+
+    private func showHideNavigationButtons() {
+        navigationController?.navigationBar.topItem?.setRightBarButton(proposal?.description != nil ? shareButton : nil, animated: true)
+    }
 }
 
 // MARK: - WKNavigation Delegate
@@ -173,21 +180,21 @@ extension ProposalDetailViewController: WKNavigationDelegate {
                     }
                 }
                     
-                // In case of url lastPathComponent has .md suffix and it isn't a proposal
+                    // In case of url lastPathComponent has .md suffix and it isn't a proposal
                 else {
                     let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
                     self.present(safariViewController, animated: true)
                 }
             }
-            
-            // Check if the link is an author/review manager, if yes, send user to profile screen
+
+                // Check if the link is an author/review manager, if yes, send user to profile screen
             else if let host = url.host, host.contains("github.com"),
                 let person = self.appDelegate?.people.get(username: lastPathComponent) {
 
                 Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
             }
                 
-            // The last step is check only if the url "appears" to be correct, before try to send it to safari
+                // The last step is check only if the url "appears" to be correct, before try to send it to safari
             else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
                 let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
                 self.present(safariViewController, animated: true)

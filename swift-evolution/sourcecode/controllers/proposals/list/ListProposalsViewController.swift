@@ -8,7 +8,8 @@ class ListProposalsViewController: BaseViewController {
     @IBOutlet private weak var footerView: UIView!
     @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
     @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
-    
+    @IBOutlet var aboutBarButtonItem: UIBarButtonItem?
+
     // Private properties
     fileprivate var timer: Timer = Timer()
     fileprivate lazy var filteredDataSource: [Proposal] = {
@@ -87,6 +88,13 @@ class ListProposalsViewController: BaseViewController {
 
         ProfileViewController.dismissCallback = { object in
             Config.Segues.proposalDetail.performSegue(in: self.splitViewController, with: object, split: true)
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.navigationController?.navigationBar.topItem?.setRightBarButton(self.aboutBarButtonItem, animated: true)
         }
     }
     

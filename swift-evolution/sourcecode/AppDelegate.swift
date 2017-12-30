@@ -169,10 +169,7 @@ extension AppDelegate: UISplitViewControllerDelegate {
             let secondaryAsNavController = secondaryViewController as? UINavigationController,
             let detailController = secondaryAsNavController.topViewController as? ProposalDetailViewController
             else { return false }
-        if detailController.proposal == nil {
-            return true
-        }
-        return false
+        return detailController.proposal == nil
     }
 
 }
