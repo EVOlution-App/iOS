@@ -7,10 +7,13 @@ class ProfileViewController: BaseViewController {
         let title: String
         let proposals: [Proposal]
     }
+
+    static var dismissCallback: ((Any?) -> Void)?
     
     @IBOutlet fileprivate weak var profileView: ProfileView!
     @IBOutlet fileprivate weak var tableView: UITableView!
-    
+    @IBOutlet var toolbar: UIToolbar?
+
     open var profile: Person?
     fileprivate lazy var sections: [Section] = {
         return []
@@ -28,8 +31,9 @@ class ProfileViewController: BaseViewController {
         self.tableView.estimatedRowHeight = 164
         self.tableView.estimatedSectionHeaderHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
-        
+
+        UIDevice.current.userInterfaceIdiom != .pad ? toolbar?.items?.removeAll() : ()
+
         // Settings
         self.showNoConnection = false
         self.profileView.profile = profile
@@ -74,6 +78,11 @@ class ProfileViewController: BaseViewController {
             destination.proposal = proposal
         }
     }
+
+    @IBAction func closeAction(_ sender: Any) {
+        dismiss(animated: true)
+    }
+
 }
 
 // MARK: - Requests
@@ -145,7 +154,18 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: - UITableView Delegate
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Config.Segues.proposalDetail.performSegue(in: self)
+
+        let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
+
+        if modalPresentationStyle == .formSheet {
+            dismiss(animated: true,
+                    completion: {
+                        ProfileViewController.dismissCallback?(self.sections[indexPath.section].proposals[indexPath.row])
+            })
+        } else {
+            Config.Segues.proposalDetail.performSegue(in: sourceViewController, split: true)
+        }
+        
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

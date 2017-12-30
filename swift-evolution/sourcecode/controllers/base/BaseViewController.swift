@@ -3,12 +3,7 @@ import Reachability
 
 class BaseViewController: UIViewController {
     // MARK: - Public properties
-    
-    public var rotate: Bool = false {
-        didSet {
-            (UIApplication.shared.delegate as? AppDelegate)?.rotate = rotate
-        }
-    }
+
     public var reachability: Reachability?
     
     public lazy var noConnectionView: NoConnectionView? = {
@@ -39,8 +34,8 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Disable Rotation
-        self.rotate = false
+        // Disable Rotation for iPhones only
+        (UIApplication.shared.delegate as? AppDelegate)?.disableRotationIfNeeded()
         
         // Force rotation back to portrait
         Config.Orientation.portrait()

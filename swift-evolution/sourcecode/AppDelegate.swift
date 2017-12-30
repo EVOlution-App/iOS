@@ -8,7 +8,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    open var rotate: Bool = false
+    private var rotate: Bool = true
     
     open var people: [String: Person] = [:]
     open var host: Host?
@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register Fabric
         Fabric.with([Crashlytics.self])
         
-        
+        self.configSplitViewController()
         self.navigationBarAppearance()
         self.registerNetworkingMonitor()
         self.registerForPushNotification()
@@ -27,11 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register routes to use on URL Scheme
         _ = Routes()
         self.registerSchemes()
+
+        self.disableRotationIfNeeded()
         
         return true
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        
         guard self.rotate else {
             return .portrait
         }
@@ -101,6 +104,20 @@ extension AppDelegate {
         Routes.shared.add("proposal", routerHandler)
         Routes.shared.add("profile", routerHandler)
     }
+
+}
+
+// MARK: - Rotation
+extension AppDelegate {
+
+    func allowRotation() {
+        self.rotate = true
+    }
+
+    func disableRotationIfNeeded() {
+        self.rotate = UIDevice.current.userInterfaceIdiom == .pad
+    }
+
 }
 
 
@@ -128,4 +145,31 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         print("[Remote Notification][Received][Received] iOS 10: \(response.notification.request.content.userInfo)")
         completionHandler()
     }
+}
+
+// MARK: - UISplitViewControllerDelegate
+extension AppDelegate: UISplitViewControllerDelegate {
+
+    func configSplitViewController() {
+        guard
+            let splitController = window?.rootViewController as? UISplitViewController,
+            let navController = splitController.viewControllers.last as? UINavigationController,
+            let topViewController = navController.topViewController
+            else { return }
+        topViewController.navigationItem.leftBarButtonItem = splitController.displayModeButtonItem
+        splitController.delegate = self
+        splitController.preferredDisplayMode = .allVisible
+    }
+
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
+
+        guard
+            let secondaryAsNavController = secondaryViewController as? UINavigationController,
+            let detailController = secondaryAsNavController.topViewController as? ProposalDetailViewController
+            else { return false }
+        return detailController.proposal == nil
+    }
+
 }
