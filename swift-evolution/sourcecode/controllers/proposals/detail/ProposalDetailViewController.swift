@@ -14,7 +14,7 @@ class ProposalDetailViewController: BaseViewController {
     private var proposalMarkdown: String?
     private var downView: DownView?
     fileprivate weak var appDelegate: AppDelegate?
-    private var shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
+    private var shareButton: UIBarButtonItem?
 
     // MARK: - Public properties
     var proposal: Proposal?
@@ -136,7 +136,7 @@ class ProposalDetailViewController: BaseViewController {
     }
     
     // MARK: - Share Proposal
-    @IBAction func shareProposal(_ sender: UIBarButtonItem) {
+    @objc private func shareProposal() {
         guard let proposal = self.proposal else {
             return
         }
@@ -146,11 +146,23 @@ class ProposalDetailViewController: BaseViewController {
         let url = "https://swift-evolution.io/proposal/\(proposal.description)"
         
         let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
-        self.navigationController?.present(activityController, animated: true, completion: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad, let sourceView = shareButton?.value(forKey: "view") as? UIView {
+            activityController.modalPresentationStyle = .popover
+            if let popoverPresentationController = activityController.popoverPresentationController {
+                popoverPresentationController.sourceView = sourceView
+                var bounds = sourceView.bounds
+                bounds.origin.x = 10
+                popoverPresentationController.sourceRect = bounds
+            }
+            self.navigationController?.present(activityController, animated: true, completion: nil)
+        } else {
+            self.navigationController?.present(activityController, animated: true, completion: nil)
+        }
     }
 
     private func showHideNavigationButtons() {
-        navigationController?.navigationBar.topItem?.setRightBarButton(proposal?.description != nil ? shareButton : nil, animated: true)
+        shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
+        navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
     }
 }
 
