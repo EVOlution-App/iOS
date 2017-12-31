@@ -8,5 +8,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Features planned for initial version
 
-[Unreleased]: https://github.com/unnamedd/swift-evolution/compare/master...development
+[Unreleased]: https://github.com/swift-evolution/ios/compare/master...development
 
