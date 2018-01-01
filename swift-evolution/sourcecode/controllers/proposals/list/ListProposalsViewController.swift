@@ -538,21 +538,11 @@ extension ListProposalsViewController: UISearchBarDelegate {
         
         if searchText.count > 3 {
             let interval = 0.7
-            if #available(iOS 10.0, *) {
-                self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in
-                    Answers.logSearch(withQuery: searchText, customAttributes: ["type": "search", "os-version": ">= ios10"])
-                    
-                    let filtered = self.dataSource.filter(by: searchText)
-                    self.updateTableView(filtered)
-                }
-            }
-            else {
-                let search = Search(query: searchText)
-                self.timer = Timer.scheduledTimer(timeInterval: interval,
-                                                  target: self,
-                                                  selector: #selector(fireSearch(_:)),
-                                                  userInfo: search,
-                                                  repeats: false)
+            self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in
+                Answers.logSearch(withQuery: searchText, customAttributes: ["type": "search", "os-version": ">= ios10"])
+                
+                let filtered = self.dataSource.filter(by: searchText)
+                self.updateTableView(filtered)
             }
         }
     }

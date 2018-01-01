@@ -28,9 +28,7 @@ class AboutViewController: UITableViewController {
                                customAttributes: nil)
         
         // Ask for review
-        if #available(iOS 10.3, *) {
-            SKStoreReviewController.requestReview()
-        }
+        SKStoreReviewController.requestReview()
     }
 
     override func didReceiveMemoryWarning() {
@@ -220,14 +218,8 @@ extension AboutViewController {
             let about = self.dataSource[indexPath.row]
             
             if let url = URL(string: value) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [UIApplicationOpenURLOptionUniversalLinksOnly: false]) { _ in
-                        Answers.logCustomEvent(withName: message, customAttributes: ["type": item.type.rawValue, "section": about.section.rawValue])
-                    }
-                }
-                else {
+                UIApplication.shared.open(url, options: [UIApplicationOpenURLOptionUniversalLinksOnly: false]) { _ in
                     Answers.logCustomEvent(withName: message, customAttributes: ["type": item.type.rawValue, "section": about.section.rawValue])
-                    UIApplication.shared.openURL(url)
                 }
             }
         }

@@ -68,24 +68,15 @@ extension AppDelegate {
     }
     
     fileprivate func registerForPushNotification() {
+        let notification = UNUserNotificationCenter.current()
+        notification.delegate = self
         
-        if #available(iOS 10.0, *) {
-            let notification = UNUserNotificationCenter.current()
-            notification.delegate = self
-            
-            notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
+        notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
+            if error == nil {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
                 }
             }
-        }
-        else {
-            let settings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil)
-            
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            UIApplication.shared.registerForRemoteNotifications()
         }
     }
     
@@ -120,27 +111,12 @@ extension AppDelegate {
 
 }
 
-
-// MARK: - Remote Notifications - <= iOS 9
-extension AppDelegate {
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("[Remote Notification][Received] iOS 9: \(userInfo)")
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("[Remote Notification][Failed] iOS 9: \(error.localizedDescription)")
-    }
-}
-
-// MARK: - UNUserNotificationCenter Delegate - >= iOS 10
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("[Remote Notification][Received][Will Present] iOS 10: \(notification.request.content.userInfo)")
         completionHandler([.sound, .alert, .badge])
     }
     
-    @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
         print("[Remote Notification][Received][Received] iOS 10: \(response.notification.request.content.userInfo)")
         completionHandler()
