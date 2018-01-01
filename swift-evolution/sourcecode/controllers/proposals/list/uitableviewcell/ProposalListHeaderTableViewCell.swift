@@ -1,11 +1,3 @@
-//
-//  ProposalListHeaderTableViewCell.swift
-//  swift-evolution
-//
-//  Created by Diego Ventura on 25/03/2017.
-//  Copyright © 2017 Holanda Mobile. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
