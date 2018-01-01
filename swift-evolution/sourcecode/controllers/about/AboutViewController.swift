@@ -86,10 +86,10 @@ class AboutViewController: UITableViewController {
         about.append(cloudTools)
         
         // Source code repositories
-        //let app = Item(text: "iOS App", type: .github, value: "unnamedd/swift-evolution")
-        let backend = Item(text: "Backend", type: .github, value: "unnamedd/swift-evolution-backend")
+        let app = Item(text: "iOS App", type: .github, value: "swift-evolution/ios")
+        let backend = Item(text: "Backend", type: .github, value: "swift-evolution/backend")
         
-        let repositories = About(section: .sourceCode, items: [backend], footer: nil)
+        let repositories = About(section: .sourceCode, items: [app, backend], footer: nil)
         about.append(repositories)
         
         // Contacts
@@ -178,7 +178,7 @@ extension AboutViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = self.dataSource[indexPath.section].items[indexPath.row]
         
-        var title = "Open Safari ?"
+        var title = "Open Safari?"
         var value = ""
         var message = ""
         
@@ -227,6 +227,8 @@ extension AboutViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(openAction)
         
-        self.present(alertController, animated: false, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
