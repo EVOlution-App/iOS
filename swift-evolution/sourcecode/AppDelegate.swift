@@ -68,24 +68,15 @@ extension AppDelegate {
     }
     
     fileprivate func registerForPushNotification() {
+        let notification = UNUserNotificationCenter.current()
+        notification.delegate = self
         
-        if #available(iOS 10.0, *) {
-            let notification = UNUserNotificationCenter.current()
-            notification.delegate = self
-            
-            notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
-                if error == nil {
-                    DispatchQueue.main.async {
-                        UIApplication.shared.registerForRemoteNotifications()
-                    }
+        notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
+            if error == nil {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
                 }
             }
-        }
-        else {
-            let settings = UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil)
-            
-            UIApplication.shared.registerUserNotificationSettings(settings)
-            UIApplication.shared.registerForRemoteNotifications()
         }
     }
     
