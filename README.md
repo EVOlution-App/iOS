@@ -63,7 +63,7 @@ rake unit_tests
 
 ## How to contribute
 
-You need to create an issue and associate a pull request to this issue.
+You need to create an issue and associate a pull request to this issue. Your pull request, needs to have some description on title about the issue that you are trying to solve. 
 After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
 
 
@@ -79,6 +79,8 @@ After you send your pull request, other developers will make a code review befor
 - Diego Ventura - [GitHub](https://github.com/diegoventura) / [Twitter](https://twitter.com/venturadiego)
 - Diogo Tridapalli - [Github](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
 - Gustavo Barbosa - [Github](https://github.com/barbosa) / [Twitter](https://twitter.com/gustavocsb)
+- Guilherme Rambo - [Github](https://github.com/insidegui) / [Twitter](https://twitter.com/insidegui)
+- Leonardo Cardoso - [Github](https://github.com/leonardocardoso) / [Twitter](https://twitter.com/leocardz)
 - Ricardo Borelli - [Github](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
 - Rodrigo Reis - [Github](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
 

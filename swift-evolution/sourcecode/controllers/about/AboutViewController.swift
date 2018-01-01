@@ -61,10 +61,12 @@ class AboutViewController: UITableViewController {
         let ventura     = Item(text: "Diego Ventura", type: .github, value: "diegoventura")
         let tridapalli  = Item(text: "Diogo Tridapalli", type: .github, value: "diogot")
         let gustavo     = Item(text: "Gustavo Barbosa", type: .github, value: "barbosa")
+        let rambo       = Item(text: "Guilherme Rambo", type: .github, value: "insidegui")
+        let leocardoso  = Item(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso")
         let borelli     = Item(text: "Ricardo Borelli", type: .github, value: "rabc")
         let reis        = Item(text: "Rodrigo Reis", type: .github, value: "digoreis")
         
-        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, borelli, reis], footer: nil)
+        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, rambo, leocardoso, borelli, reis], footer: nil)
         about.append(contributors)
         
         // Licenses
@@ -104,9 +106,9 @@ class AboutViewController: UITableViewController {
         // More Data
         let web         = Item(text: "Web", type: .url, value: "https://apple.github.io/swift-evolution")
         let proposals   = Item(text: "Proposals Repo", type: .github, value: "apple/swift-evolution")
-        let mailing     = Item(text: "Mailing list", type: .url, value: "https://lists.swift.org/mailman/listinfo/swift-evolution")
+        let forum       = Item(text: "Swift Evolution Forum", type: .url, value: "https://forums.swift.org/c/evolution")
         
-        let more = About(section: .moreData, items: [web, proposals, mailing], footer: nil)
+        let more = About(section: .moreData, items: [web, proposals, forum], footer: nil)
         about.append(more)
         
         // Thanks To
@@ -118,7 +120,7 @@ class AboutViewController: UITableViewController {
         let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
-        let copyright = "Copyright (c) 2017 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
+        let copyright = "Copyright (c) 2018 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
         let thanks = About(section: .thanks, items: [chris, daniel, danilo, ezeq, john, jesse, lisa], footer: copyright)
         about.append(thanks)
         
