@@ -17,8 +17,17 @@ class ListProposalsViewController: BaseViewController {
     }()
     
     fileprivate var dataSource: [Proposal] = {
-       return []
-    }()
+        return []
+        }() {
+        didSet {
+            guard
+                oldValue.isEmpty,
+                let proposal = dataSource.first,
+                UIDevice.current.userInterfaceIdiom == .pad
+                else { return }
+            DispatchQueue.main.async { self.didSelected(proposal: proposal) }
+        }
+    }
     
     fileprivate weak var appDelegate: AppDelegate?
     
@@ -417,7 +426,7 @@ extension ListProposalsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
-    
+
         headerCell.proposalCount = self.filteredDataSource.count
         
         return headerCell.contentView
