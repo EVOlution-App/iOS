@@ -1,0 +1,41 @@
+app_name: swift-evolution
+workspace_path: null
+project_path: swift-evolution.xcodeproj
+
+setup:
+  bundler:
+    enabled: true
+    path: # optional, primarly taken from ENV['BUNDLER_PATH'] then here
+  brew:
+    enabled: true
+    formulas:
+      - swiftlint
+      - carthage
+  submodules:
+    enabled: false
+  cocoapods:
+    enabled: false
+  carthage:
+    enabled: true
+
+swiftgen:
+  strings:
+    enabled: false
+    path: Pods/SwiftGen/bin/swiftgen
+    template: template-name
+    strings:
+      'example-file.strings': 'L10n-example.swift'
+
+xcode:
+  version: 9.2*
+  build_path: build # primarly taken from ENV['ARTIFACTS_PATH'] then here
+  reports_path: reports # primarly taken from ENV['TEST_REPORTS_PATH'] then here
+  tests:
+    scheme: swift-evolution
+    destinations:
+      - 'platform=iOS Simulator,OS=11.2,name=iPhone SE'
+  release:
+    prod:
+      scheme: swift-evolution
+      configuration: Release
+      output: swift-evolution
