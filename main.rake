@@ -33,6 +33,9 @@ class Path
   # @param file of relative to the project root
   # @param fail_when_missing if true raise an exception if file don't exists
   def self.of(file, fail_when_missing: true)
+    if file.nil?
+      return nil
+    end
     path = File.expand_path(file, File.dirname(__FILE__) + '/../')
     raise "File '#{path}' not found" if fail_when_missing && !File.exist?(path)
     path
