@@ -425,6 +425,10 @@ extension ListProposalsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard !dataSource.isEmpty else {
+            return nil
+        }
+        
         let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
 
         headerCell.proposalCount = self.filteredDataSource.count
