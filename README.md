@@ -58,7 +58,7 @@ rake setup
 ## Running the tests
 
 ```sh
-rake unit_tests
+rake xcode:tests
 ```
 
 ## How to contribute
