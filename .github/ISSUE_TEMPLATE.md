@@ -1,6 +1,6 @@
 ### Checklist
 
-- [ ] I have searched [existing issues](https://github.com/swift-evolution/ios/issues) and this is not a duplicate
+- [ ] I have searched [existing issues](https://github.com/evolution-app/ios/issues) and this is not a duplicate
 
 ### Information
 

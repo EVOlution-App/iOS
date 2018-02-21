@@ -43,6 +43,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Subfilter "Language Version" when status "Implemented" is selected
 - About screen
 
-[Unreleased]: https://github.com/swift-evolution/ios/compare/master...development
-[1.1.1]: https://github.com/swift-evolution/ios/compare/v1.1...v1.1.1
-[1.1]: https://github.com/swift-evolution/ios/compare/v1.0...v1.1
+[Unreleased]: https://github.com/evolution-app/ios/compare/master...development
+[1.1.1]: https://github.com/evolution-app/ios/compare/v1.1...v1.1.1
+[1.1]: https://github.com/evolution-app/ios/compare/v1.0...v1.1
