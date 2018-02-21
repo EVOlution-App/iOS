@@ -65,8 +65,10 @@ class AboutViewController: UITableViewController {
         let rambo       = Item(text: "Guilherme Rambo", type: .github, value: "insidegui")
         let leocardoso  = Item(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso")
         let borelli     = Item(text: "Ricardo Borelli", type: .github, value: "rabc")
+        let hudson      = Item(text: "Rob Hudson", type: .github, value: "robtimp")
+        let xaver       = Item(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller")
         
-        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, rambo, leocardoso, borelli], footer: nil)
+        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, rambo, leocardoso, borelli, hudson, xaver], footer: nil)
         about.append(contributors)
         
         // Licenses
@@ -115,11 +117,10 @@ class AboutViewController: UITableViewController {
         let danilo  = Item(text: "Danilo Altheman", type: .twitter, value: "daltheman")
         let ezeq    = Item(text: "Ezequiel França", type: .twitter, value: "ezefranca")
         let john    = Item(text: "John Calistro", type: .twitter, value: "johncalistro")
-        let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
         let copyright = "Copyright (c) 2017-2018 Thiago Holanda (thiago@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
-        let thanks = About(section: .thanks, items: [chris, daniel, danilo, ezeq, john, jesse, lisa], footer: copyright)
+        let thanks = About(section: .thanks, items: [chris, daniel, danilo, ezeq, john, lisa], footer: copyright)
         about.append(thanks)
         
         self.dataSource = about
