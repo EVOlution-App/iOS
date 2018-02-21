@@ -50,8 +50,9 @@ class AboutViewController: UITableViewController {
         
         // Backend - Contributors
         let ricardo         = Item(text: "Ricardo Olivieri", type: .github, value: "rolivieri")
+        let reis            = Item(text: "Rodrigo Reis", type: .github, value: "digoreis")
         let taylor          = Item(text: "Taylor Franklin", type: .github, value: "tfrank64")
-        let backendSection  = About(section: .backend, items: [ricardo, taylor], footer: nil)
+        let backendSection  = About(section: .backend, items: [ricardo, reis, taylor], footer: nil)
         about.append(backendSection)
 
         // iOS - Contributors
@@ -64,9 +65,8 @@ class AboutViewController: UITableViewController {
         let rambo       = Item(text: "Guilherme Rambo", type: .github, value: "insidegui")
         let leocardoso  = Item(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso")
         let borelli     = Item(text: "Ricardo Borelli", type: .github, value: "rabc")
-        let reis        = Item(text: "Rodrigo Reis", type: .github, value: "digoreis")
         
-        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, rambo, leocardoso, borelli, reis], footer: nil)
+        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, gustavo, rambo, leocardoso, borelli], footer: nil)
         about.append(contributors)
         
         // Licenses
@@ -79,24 +79,22 @@ class AboutViewController: UITableViewController {
         about.append(licenses)
         
         // Cloud Tools
-        let autoScaling = Item(text: "Auto Scaling", type: .url, value: "https://console.bluemix.net/docs/services/Auto-Scaling/index.html")
-        let continuousDelivery = Item(text: "Continuous Delivery", type: .url, value: "https://console.bluemix.net/docs/services/ContinuousDelivery/toolchains_working.html#toolchains_getting_started")
-        let bluemix = Item(text: "IBM Bluemix", type: .url, value: "https://www.ibm.com/cloud-computing/bluemix/")
-        let kitura = Item(text: "Kitura web framework", type: .url, value: "http://www.kitura.io/")
+        let bluemix = Item(text: "IBM Cloud", type: .url, value: "https://ibm.cloud")
+        let kitura = Item(text: "Kitura Web Framework", type: .url, value: "http://www.kitura.io/")
         
-        let cloudTools = About(section: .cloudtools, items: [autoScaling, continuousDelivery, bluemix, kitura], footer: nil)
+        let cloudTools = About(section: .cloudtools, items: [bluemix, kitura], footer: nil)
         about.append(cloudTools)
         
         // Source code repositories
-        let app = Item(text: "iOS App", type: .github, value: "swift-evolution/ios")
-        let backend = Item(text: "Backend", type: .github, value: "swift-evolution/backend")
+        let app = Item(text: "iOS App", type: .github, value: "evolution-app/ios")
+        let backend = Item(text: "Backend", type: .github, value: "evolution-app/backend")
         
         let repositories = About(section: .sourceCode, items: [app, backend], footer: nil)
         about.append(repositories)
         
         // Contacts
         let swiftlang   = Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang")
-        let twitterApp  = Item(text: "App - Twitter", type: .twitter, value: "swift_evolution")
+        let twitterApp  = Item(text: "App - Twitter", type: .twitter, value: "evoapp_io")
         let feedbackApp = Item(text: "App - Feedback", type: .email, value: "feedback@swift-evolution.io")
         
         let feedback = "If you have any criticals, suggestions or want to contribute any way, please, get in touch with us."
@@ -120,7 +118,7 @@ class AboutViewController: UITableViewController {
         let jesse   = Item(text: "Jesse Squires", type: .twitter, value: "jesse_squires")
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
-        let copyright = "Copyright (c) 2018 Thiago Holanda (thiago@swift-evolution.io), Bruno Bilescky (bruno@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
+        let copyright = "Copyright (c) 2017-2018 Thiago Holanda (thiago@swift-evolution.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
         let thanks = About(section: .thanks, items: [chris, daniel, danilo, ezeq, john, jesse, lisa], footer: copyright)
         about.append(thanks)
         
