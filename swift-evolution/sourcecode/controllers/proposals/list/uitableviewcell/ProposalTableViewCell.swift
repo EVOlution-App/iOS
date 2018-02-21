@@ -68,7 +68,7 @@ class ProposalTableViewCell: UITableViewCell {
             // Render Review Manager
             if let reviewer = proposal.reviewManager, var name = reviewer.name, name != "" {
                 if name != "TBD", name != "N/A" {
-                    name = name.tag(.person)
+                    name = name.tag(.anchor)
                 }
                 
                 details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name
@@ -97,6 +97,11 @@ class ProposalTableViewCell: UITableViewCell {
                     
                     details += String.newLine + period
                 }
+            }
+            
+            // Render Implementations
+            if let implementations = renderImplementations() {
+                details += String.newLine + implementations
             }
         }
         else {
@@ -160,13 +165,13 @@ extension ProposalTableViewCell {
             $0.font = FontAttribute(.HelveticaNeue, size: 14)
         })
         
-        let person = Style("person", {
+        let anchor = Style("anchor", {
             $0.color = UIColor.Proposal.darkGray
             $0.font = FontAttribute(.HelveticaNeue, size: 14)
             $0.underline = UnderlineAttribute(color: UIColor.Proposal.darkGray, style: NSUnderlineStyle.styleSingle)
         })
         
-        return [id, title, label, value, person]
+        return [id, title, label, value, anchor]
     }
     
     fileprivate func renderAuthors() -> String? {
@@ -179,7 +184,7 @@ extension ProposalTableViewCell {
         let names: [String] = authors.flatMap({ $0.name })
         
         var detail = names.count > 1 ? "Authors" : "Author"
-        detail = "\(detail):".tag(.label) + String.doubleSpace + names.map({ $0.tag(.person) }).joined(separator: ", ")
+        detail = "\(detail):".tag(.label) + String.doubleSpace + names.map({ $0.tag(.anchor) }).joined(separator: ", ")
         
         return detail
     }
@@ -243,6 +248,19 @@ extension ProposalTableViewCell {
         details = "Scheduled:".tag(.label) + String.doubleSpace + details.tag(.value)
         
         return details
+    }
+    
+    fileprivate func renderImplementations() -> String? {
+        guard let proposal = self.proposal,
+            let implementations = proposal.implementations,
+            implementations.count > 0 else {
+                return nil
+        }
+        
+        var detail = implementations.count > 1 ? "Implementations" : "Implementation"
+        detail = "\(detail):".tag(.label) + String.doubleSpace + implementations.map({ $0.description.tag(.anchor) }).joined(separator: ", ")
+        
+        return detail
     }
 }
 
