@@ -7,7 +7,7 @@ enum Tag: String {
     case label
     case value
     case id
-    case person
+    case anchor
     
     func wrap(string: String) -> String {
         return "<\(self.rawValue)>\(string)</\(self.rawValue)>"
