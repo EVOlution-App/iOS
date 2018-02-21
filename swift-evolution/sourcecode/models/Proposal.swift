@@ -24,7 +24,7 @@ struct Proposal: Decodable {
         case reviewManager
         case sha
         case trackingBugs
-        case implementations
+        case implementation
     }
     
     init(id: Int, link: String) {
@@ -60,7 +60,7 @@ extension Proposal {
         self.reviewManager      = try container.decodeIfPresent(Person.self, forKey: .reviewManager)
         self.sha                = try container.decodeIfPresent(String.self, forKey: .sha)
         self.bugs               = try container.decodeIfPresent([Bug].self, forKey: .trackingBugs)
-        self.implementations    = try container.decodeIfPresent([Implementation].self, forKey: .implementations)
+        self.implementations    = try container.decodeIfPresent([Implementation].self, forKey: .implementation)
     }
     
 }
