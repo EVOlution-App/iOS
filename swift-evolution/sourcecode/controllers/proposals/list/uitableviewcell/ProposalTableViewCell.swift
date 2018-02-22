@@ -118,29 +118,26 @@ class ProposalTableViewCell: UITableViewCell {
             var attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
             let details = attributedText.string
             
-            // Authors
-            guard let authors = proposal.authors else {
-                self.detailsLabel.attributedText = attributedText
-                return
-            }
-            attributedText = attributedText.link(authors, text: details)
-            
-            // Review Manager
-            guard let reviewer = proposal.reviewManager else {
-                self.detailsLabel.attributedText = attributedText
-                return
-            }
-            attributedText = attributedText.link(reviewer, text: details)
-            
-            // Implementations
-            guard let implementations = proposal.implementations else {
-                self.detailsLabel.attributedText = attributedText
-                return
-            }
-            attributedText = attributedText.link(implementations, text: details)
-            
             // Title
             attributedText = attributedText.link(title: proposal, text: details)
+            
+            // Authors
+            if let authors = proposal.authors {
+                attributedText = attributedText.link(authors, text: details)
+                detailsLabel.attributedText = attributedText
+            }
+            
+            // Review Manager
+            if let reviewer = proposal.reviewManager {
+                attributedText = attributedText.link(reviewer, text: details)
+                detailsLabel.attributedText = attributedText
+            }
+            
+            // Implementations
+            if let implementations = proposal.implementations {
+                attributedText = attributedText.link(implementations, text: details)
+            }
+            
             self.detailsLabel.attributedText = attributedText
         }
     }
