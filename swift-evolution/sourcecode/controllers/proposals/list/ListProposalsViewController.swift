@@ -525,6 +525,11 @@ extension ListProposalsViewController: ProposalDelegate {
         let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
         Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
     }
+    
+    func didSelect(implementation: Implementation) {
+        let url = "\(Config.Base.URL.github)/\(implementation.path)"
+        print("Implementation: \(url)")
+    }
 }
 
 

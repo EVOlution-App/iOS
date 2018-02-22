@@ -21,10 +21,12 @@
 		9116263C1E8DD16100E8DB77 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9116263B1E8DD16100E8DB77 /* About.swift */; };
 		912938D11E762C3000D2B2CF /* IDFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* IDFormatter.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
+		91356A38203E656C00E5C625 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91356A37203E656C00E5C625 /* URL.swift */; };
 		913AE7001E9725BA0097BCA5 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */; };
 		913AE7031E9739F50097BCA5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE7021E9739F50097BCA5 /* ProfileView.swift */; };
 		913AE7051E97418A0097BCA5 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE7041E97418A0097BCA5 /* UIImageView.swift */; };
 		913B711A203E2175007FE04B /* Implementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913B7119203E2175007FE04B /* Implementation.swift */; };
+		913B711D203E5F52007FE04B /* Implementation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913B711C203E5F52007FE04B /* Implementation+Extension.swift */; };
 		91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEC1E6902A2008C4715 /* StatusLabel.swift */; };
 		91485DEF1E690A33008C4715 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91485DEE1E690A33008C4715 /* Protocols.swift */; };
@@ -146,10 +148,12 @@
 		9116263B1E8DD16100E8DB77 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* IDFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDFormatter.swift; sourceTree = "<group>"; };
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		91356A37203E656C00E5C625 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		913AE7021E9739F50097BCA5 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		913AE7041E97418A0097BCA5 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		913B7119203E2175007FE04B /* Implementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Implementation.swift; sourceTree = "<group>"; };
+		913B711C203E5F52007FE04B /* Implementation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Implementation+Extension.swift"; sourceTree = "<group>"; };
 		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 				913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */,
 				0BCEEE251E6CC0B100F7D176 /* UITableView.swift */,
 				91E150211E6CCDD300025B77 /* UIView.swift */,
+				91356A37203E656C00E5C625 /* URL.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				91D589621E7E43F400FE958D /* Proposal+Extension.swift */,
 				91D5896A1E7E538600FE958D /* State+Extension.swift */,
 				91D589641E7E441C00FE958D /* Status+Extension.swift */,
+				913B711C203E5F52007FE04B /* Implementation+Extension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -696,6 +702,7 @@
 				TargetAttributes = {
 					915265211E67659900C2AFDA = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 56DQ8B5T2R;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -872,6 +879,7 @@
 				9152658A1E67E01800C2AFDA /* ListProposalsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				91B2460B1E99BC4100904DE3 /* Routes.swift in Sources */,
+				91356A38203E656C00E5C625 /* URL.swift in Sources */,
 				9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */,
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				913AE7051E97418A0097BCA5 /* UIImageView.swift in Sources */,
@@ -888,6 +896,7 @@
 				91D589691E7E4E4A00FE958D /* Bug+Extension.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
+				913B711D203E5F52007FE04B /* Implementation+Extension.swift in Sources */,
 				916896431E935ED700FC6913 /* GithubProfile.swift in Sources */,
 				9152655F1E6777B600C2AFDA /* Service.swift in Sources */,
 				915265821E67D7A900C2AFDA /* ProposalTableViewCell.swift in Sources */,
@@ -1023,10 +1032,11 @@
 				APP_ENVIRONMENT_TITLE = Development;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
@@ -1039,7 +1049,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1195,11 +1205,12 @@
 				APP_ENVIRONMENT_TITLE = Evolution;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
@@ -1212,7 +1223,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1226,10 +1237,11 @@
 				APP_ENVIRONMENT_TITLE = Evolution;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
@@ -1242,7 +1254,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.swift-evolution.app";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
