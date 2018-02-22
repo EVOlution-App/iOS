@@ -1,51 +1,15 @@
 import UIKit
 
-enum TypeOfImplementation: String {
+enum ImplementationType: String, Codable {
     case commit
     case pull
 }
 
-extension TypeOfImplementation: RawRepresentable {
-    public init(rawValue: RawValue) {
-        switch rawValue {
-        case "commit":
-            self = .commit
-        
-        case "pull":
-            self = .pull
-            
-        default:
-            self = .pull
-        }
-    }
-}
-
 struct Implementation: Decodable {
-    let type: TypeOfImplementation
+    let type: ImplementationType
     let id: String
     let repository: String
     let account: String
-    
-    enum Keys: String, CodingKey {
-        case type
-        case id
-        case repository
-        case account
-    }
-}
-
-extension Implementation {
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Keys.self)
-        
-        let type = try container.decode(String.self, forKey: .type)
-        self.type = TypeOfImplementation(rawValue: type)
-        
-        id          = try container.decode(String.self, forKey: .id)
-        repository  = try container.decode(String.self, forKey: .repository)
-        account     = try container.decode(String.self, forKey: .account)
-    }
 }
 
 extension Implementation: CustomStringConvertible {
