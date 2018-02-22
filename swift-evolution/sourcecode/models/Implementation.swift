@@ -68,5 +68,8 @@ extension Implementation: CustomStringConvertible {
     
     var url: String {
         return "\(account)/\(repository)/\(type)/\(id)"
+    var path: String {
+        return "\(account)/\(repository)/\(type.rawValue)/\(id)"
+    }
     }
 }
