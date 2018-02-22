@@ -103,9 +103,7 @@ class ListProposalsViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.navigationController?.navigationBar.topItem?.setRightBarButton(self.aboutBarButtonItem, animated: true)
-        }
+        self.navigationController?.navigationBar.topItem?.setRightBarButton(self.aboutBarButtonItem, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
