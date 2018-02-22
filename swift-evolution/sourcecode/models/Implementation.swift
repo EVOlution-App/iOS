@@ -66,10 +66,13 @@ extension Implementation: CustomStringConvertible {
         return content
     }
     
-    var url: String {
-        return "\(account)/\(repository)/\(type)/\(id)"
     var path: String {
         return "\(account)/\(repository)/\(type.rawValue)/\(id)"
     }
+}
+
+extension Implementation: Equatable {
+    public static func == (lhs: Implementation, rhs: Implementation) -> Bool {
+        return lhs.path == rhs.path
     }
 }
