@@ -132,6 +132,13 @@ class ProposalTableViewCell: UITableViewCell {
             }
             attributedText = attributedText.link(reviewer, text: details)
             
+            // Implementations
+            guard let implementations = proposal.implementations else {
+                self.detailsLabel.attributedText = attributedText
+                return
+            }
+            attributedText = attributedText.link(implementations, text: details)
+            
             // Title
             attributedText = attributedText.link(title: proposal, text: details)
             self.detailsLabel.attributedText = attributedText
@@ -298,6 +305,13 @@ extension ProposalTableViewCell: UITextViewDelegate {
         else if host == .proposal, let proposal = self.proposal {
             delegate?.didSelect(proposal: proposal)
         }
+        else if host == .implementation, let proposal = self.proposal, let implementations = proposal.implementations {
+            guard let path = URL["path"], let value = implementations.get(by: path)  else {
+                return false
+            }
+            
+            delegate?.didSelect(implementation: value)
+        }
         
         return false
     }
@@ -317,6 +331,7 @@ fileprivate extension NSMutableAttributedString {
     
     fileprivate func link(_ people: [Person], text: String) -> NSMutableAttributedString {
         var attributed = self
+        
         people.forEach { person in
             guard let username = person.username, let name = person.name else {
                 return
@@ -346,6 +361,23 @@ fileprivate extension NSMutableAttributedString {
             }
             
             attributed = attributed.add(style: style, range: range)
+        }
+        
+        return attributed
+    }
+    
+    fileprivate func link(_ implementations: [Implementation], text: String) -> NSMutableAttributedString {
+        var attributed = self
+        
+        implementations.forEach { implementation in
+            if let textRange = text.range(of: implementation.description) {
+                let range = text.nsRange(from: textRange)
+                let style = Style("url") {
+                    $0.linkURL = URL(string: "evo://implementation?path=\(implementation.path)")
+                }
+                
+                attributed = attributed.add(style: style, range: range)
+            }
         }
         
         return attributed
