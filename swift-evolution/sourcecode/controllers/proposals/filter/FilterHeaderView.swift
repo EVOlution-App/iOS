@@ -100,7 +100,7 @@ class FilterHeaderView: UIView {
 
 // MARK: - FilterGenericViewLayout Delegate
 extension FilterHeaderView: FilterGenericViewLayoutDelegate {
-    func didFinishedCalculateHeightToView(type: FilterListGenericType, height: CGFloat) {
+    func didFinishCalculateHeightToView(type: FilterListGenericType, height: CGFloat) {
         switch type {
         case .status:
             self.statusFilterViewHeightConstraint.constant = height

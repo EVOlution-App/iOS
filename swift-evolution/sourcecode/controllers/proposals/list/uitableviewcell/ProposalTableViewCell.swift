@@ -292,11 +292,11 @@ extension ProposalTableViewCell: UITextViewDelegate {
             }
             
             if let person = person, let delegate = self.delegate {
-                delegate.didSelected(person: person)
+                delegate.didSelect(person: person)
             }
         }
         else if host == .proposal, let proposal = self.proposal {
-            delegate?.didSelected(proposal: proposal)
+            delegate?.didSelect(proposal: proposal)
         }
         
         return false

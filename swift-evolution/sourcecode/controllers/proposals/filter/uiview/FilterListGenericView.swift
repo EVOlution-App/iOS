@@ -56,7 +56,7 @@ class FilterListGenericView: UIView {
         super.layoutSubviews()
         
         self.height = self.collectionView.contentSize.height + self.descriptionLabel.frame.maxY
-        self.layoutDelegate?.didFinishedCalculateHeightToView(type: self.type, height: self.height)
+        self.layoutDelegate?.didFinishCalculateHeightToView(type: self.type, height: self.height)
     }
     
     private func reloadData() {
@@ -69,7 +69,7 @@ class FilterListGenericView: UIView {
             self.collectionView.reloadData()
             self.collectionView.performBatchUpdates(nil) { _ in
                 self.height = self.collectionView.contentSize.height + self.descriptionLabel.bounds.maxY
-                self.layoutDelegate?.didFinishedCalculateHeightToView(type: self.type, height: self.height)
+                self.layoutDelegate?.didFinishCalculateHeightToView(type: self.type, height: self.height)
             }
         }
     }
@@ -97,11 +97,11 @@ extension FilterListGenericView: UICollectionViewDataSource {
 extension FilterListGenericView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.didSelectedFilter(self, type: self.type, indexPath: indexPath)
+        self.delegate?.didSelectFilter(self, type: self.type, indexPath: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        self.delegate?.didDeselectedFilter(self, type: self.type, indexPath: indexPath)
+        self.delegate?.didDeselectFilter(self, type: self.type, indexPath: indexPath)
     }
 
 }
