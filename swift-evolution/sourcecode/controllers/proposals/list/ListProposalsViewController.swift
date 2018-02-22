@@ -1,5 +1,6 @@
 import UIKit
 import Crashlytics
+import SafariServices
 
 class ListProposalsViewController: BaseViewController {
     
@@ -527,8 +528,10 @@ extension ListProposalsViewController: ProposalDelegate {
     }
     
     func didSelect(implementation: Implementation) {
-        let url = "\(Config.Base.URL.github)/\(implementation.path)"
-        print("Implementation: \(url)")
+        if let url = URL(string: "\(Config.Base.URL.github)/\(implementation.path)") {
+            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
+            self.present(safariViewController, animated: true)
+        }
     }
 }
 
