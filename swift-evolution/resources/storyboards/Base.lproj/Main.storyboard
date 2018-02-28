@@ -299,11 +299,11 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Selected Proposal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-xW-YFk">
-                                <rect key="frame" x="140.5" y="263" width="94" height="77"/>
+                                <rect key="frame" x="140.5" y="295" width="94" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="Aoo-b9-Z6D"/>
                                 </constraints>
@@ -563,7 +563,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rf2-rv-6M0"/>
-        <segue reference="3pf-Ye-P5i"/>
+        <segue reference="XKc-wh-heR"/>
         <segue reference="sHa-dI-MgD"/>
     </inferredMetricsTieBreakers>
 </document>
