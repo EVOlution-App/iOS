@@ -64,13 +64,4 @@ class ProposalDetailViewControllerTests: XCTestCase {
     func testInstanceofDownView() {
          XCTAssertNotNil(self.proposalDetailViewController.downView)
     }
-    
-//    func testWKNavigationDelegate () {
-//        self.proposalDetailViewController.downView?.navigationDelegate = mockWebView
-//        self.proposalDetailViewController.downView?.reload()
-//        self.proposalDetailViewController.downView?.load(mockRequest)
-//        try? self.proposalDetailViewController.downView?.update(markdownString: "**markdown**", didLoadSuccessfully: {
-//        })
-//        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
-//    }
 }
