@@ -12,7 +12,7 @@ class ProposalDetailViewController: BaseViewController {
 
     // MARK: - Private properties
     private var proposalMarkdown: String?
-    private var downView: DownView?
+    public private(set) var downView: DownView?
     fileprivate weak var appDelegate: AppDelegate?
     private var shareButton: UIBarButtonItem?
 

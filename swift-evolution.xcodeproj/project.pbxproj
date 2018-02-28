@@ -79,6 +79,7 @@
 		91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */; };
 		91E1502A1E6D250E00025B77 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150291E6D250E00025B77 /* Array.swift */; };
 		91F05E641F034F78002738F4 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F05E631F034F78002738F4 /* Reachability.framework */; };
+		A2B7B61C2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,7 @@
 		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		91F05E611F034992002738F4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		91F05E631F034F78002738F4 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposalDetailViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +317,7 @@
 		915265391E67659A00C2AFDA /* swift-evolutionTests */ = {
 			isa = PBXGroup;
 			children = (
+				A2B7B6192046F6D20022FA74 /* controllers */,
 				9152653C1E67659A00C2AFDA /* Info.plist */,
 				9152653A1E67659A00C2AFDA /* swift_evolutionTests.swift */,
 			);
@@ -629,6 +632,14 @@
 			path = DGCollectionViewLeftAlignFlowLayout;
 			sourceTree = "<group>";
 		};
+		A2B7B6192046F6D20022FA74 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -917,6 +928,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9152653B1E67659A00C2AFDA /* swift_evolutionTests.swift in Sources */,
+				A2B7B61C2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
