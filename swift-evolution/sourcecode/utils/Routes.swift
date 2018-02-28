@@ -3,6 +3,7 @@ import Foundation
 public enum Host {
     case proposal
     case profile
+    case implementation
     
     init?(_ value: String) {
         switch value {
@@ -11,6 +12,9 @@ public enum Host {
             
         case "profile":
             self = .profile
+            
+        case "implementation":
+            self = .implementation
             
         default:
             return nil

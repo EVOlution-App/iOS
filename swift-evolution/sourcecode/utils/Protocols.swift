@@ -26,19 +26,20 @@ extension UICollectionViewCell: ReusableCellIdentifiable {}
 
 // MARK: - FilterGenericView Delegate
 protocol FilterGenericViewDelegate: class {
-    func didSelectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
-    func didDeselectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
+    func didSelectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
+    func didDeselectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
 }
 
 protocol FilterGenericViewLayoutDelegate: class {
-    func didFinishedCalculateHeightToView(type: FilterListGenericType, height: CGFloat)
+    func didFinishCalculateHeightToView(type: FilterListGenericType, height: CGFloat)
 }
 
 
 // MARK: -
 protocol ProposalDelegate: class {
-    func didSelected(person: Person)
-    func didSelected(proposal: Proposal)
+    func didSelect(person: Person)
+    func didSelect(proposal: Proposal)
+    func didSelect(implementation: Implementation)
 }
 
 

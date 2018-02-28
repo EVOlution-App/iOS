@@ -1,5 +1,6 @@
 import UIKit
 import Crashlytics
+import SafariServices
 
 class ListProposalsViewController: BaseViewController {
     
@@ -25,7 +26,7 @@ class ListProposalsViewController: BaseViewController {
                 let proposal = dataSource.first,
                 UIDevice.current.userInterfaceIdiom == .pad
                 else { return }
-            DispatchQueue.main.async { self.didSelected(proposal: proposal) }
+            DispatchQueue.main.async { self.didSelect(proposal: proposal) }
         }
     }
     
@@ -102,9 +103,7 @@ class ListProposalsViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.navigationController?.navigationBar.topItem?.setRightBarButton(self.aboutBarButtonItem, animated: true)
-        }
+        self.navigationController?.navigationBar.topItem?.setRightBarButton(self.aboutBarButtonItem, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -444,7 +443,7 @@ extension ListProposalsViewController: UITableViewDelegate {
 // MARK: - FilterGenericView Delegate
 
 extension ListProposalsViewController: FilterGenericViewDelegate {
-    func didSelectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
+    func didSelectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
         switch type {
         case .status:
             if self.filterHeaderView.statusSource[indexPath.item] == .implemented {
@@ -475,7 +474,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
         self.filterHeaderView.updateFilterButton(status: self.status)
     }
     
-    func didDeselectedFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
+    func didDeselectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
         let item = view.dataSource[indexPath.item]
         
         switch type {
@@ -508,7 +507,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
 // MARK: - Proposal Delegate
 
 extension ListProposalsViewController: ProposalDelegate {
-    func didSelected(person: Person) {
+    func didSelect(person: Person) {
         guard let name = person.name else {
             return
         }
@@ -517,13 +516,20 @@ extension ListProposalsViewController: ProposalDelegate {
         Config.Segues.profile.performSegue(in: self, with: profile, formSheet: true)
     }
     
-    func didSelected(proposal: Proposal) {
+    func didSelect(proposal: Proposal) {
         guard let proposal = self.dataSource.get(by: proposal.id) else {
             return
         }
 
         let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
         Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
+    }
+    
+    func didSelect(implementation: Implementation) {
+        if let url = URL(string: "\(Config.Base.URL.github)/\(implementation.path)") {
+            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
+            self.present(safariViewController, animated: true)
+        }
     }
 }
 

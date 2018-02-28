@@ -14,17 +14,21 @@ struct Status: Decodable {
         case start
         case end
     }
-    
 }
 
 extension Status {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: StatusKeys.self)
+        
         version = try container.decodeIfPresent(String.self, forKey: .version)
+        
         let stateString = try container.decode(String.self, forKey: .state)
         let desiredState = State(stateString)
-        guard let validState = StatusState(rawValue: desiredState) else { throw ServiceError.invalidResponse }
+        
+        guard let validState = StatusState(rawValue: desiredState) else {
+            throw ServiceError.invalidResponse
+        }
         state = validState
         
         let dateFormatter = Config.Date.Formatter.yearMonthDay
@@ -34,6 +38,7 @@ extension Status {
         else {
             start = nil
         }
+        
         if let endDate = try container.decodeIfPresent(String.self, forKey: .end) {
             end = dateFormatter.date(from: endDate)
         }

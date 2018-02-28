@@ -82,6 +82,10 @@ struct Config {
             static var githubUser: String {
                 return "https://api.github.com/users"
             }
+            
+            static var github: String {
+                return "https://github.com"
+            }
         }
     }
 }

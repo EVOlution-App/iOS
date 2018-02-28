@@ -143,7 +143,7 @@ class ProposalDetailViewController: BaseViewController {
         
         let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
         let content = "Hey, this proposal could be interesting to you: \"\(title)\""
-        let url = "https://swift-evolution.io/proposal/\(proposal.description)"
+        let url = "https://evoapp.io/proposal/\(proposal.description)"
         
         let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad, let sourceView = shareButton?.value(forKey: "view") as? UIView {

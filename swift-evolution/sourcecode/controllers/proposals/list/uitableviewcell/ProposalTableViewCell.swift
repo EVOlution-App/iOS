@@ -68,7 +68,7 @@ class ProposalTableViewCell: UITableViewCell {
             // Render Review Manager
             if let reviewer = proposal.reviewManager, var name = reviewer.name, name != "" {
                 if name != "TBD", name != "N/A" {
-                    name = name.tag(.person)
+                    name = name.tag(.anchor)
                 }
                 
                 details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name
@@ -98,6 +98,11 @@ class ProposalTableViewCell: UITableViewCell {
                     details += String.newLine + period
                 }
             }
+            
+            // Render Implementations
+            if let implementations = renderImplementations() {
+                details += String.newLine + implementations
+            }
         }
         else {
             self.detailsLabel.isUserInteractionEnabled = false
@@ -113,22 +118,26 @@ class ProposalTableViewCell: UITableViewCell {
             var attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
             let details = attributedText.string
             
-            // Authors
-            guard let authors = proposal.authors else {
-                self.detailsLabel.attributedText = attributedText
-                return
-            }
-            attributedText = attributedText.link(authors, text: details)
-            
-            // Review Manager
-            guard let reviewer = proposal.reviewManager else {
-                self.detailsLabel.attributedText = attributedText
-                return
-            }
-            attributedText = attributedText.link(reviewer, text: details)
-            
             // Title
             attributedText = attributedText.link(title: proposal, text: details)
+            
+            // Authors
+            if let authors = proposal.authors {
+                attributedText = attributedText.link(authors, text: details)
+                detailsLabel.attributedText = attributedText
+            }
+            
+            // Review Manager
+            if let reviewer = proposal.reviewManager {
+                attributedText = attributedText.link(reviewer, text: details)
+                detailsLabel.attributedText = attributedText
+            }
+            
+            // Implementations
+            if let implementations = proposal.implementations {
+                attributedText = attributedText.link(implementations, text: details)
+            }
+            
             self.detailsLabel.attributedText = attributedText
         }
     }
@@ -160,13 +169,13 @@ extension ProposalTableViewCell {
             $0.font = FontAttribute(.HelveticaNeue, size: 14)
         })
         
-        let person = Style("person", {
+        let anchor = Style("anchor", {
             $0.color = UIColor.Proposal.darkGray
             $0.font = FontAttribute(.HelveticaNeue, size: 14)
             $0.underline = UnderlineAttribute(color: UIColor.Proposal.darkGray, style: NSUnderlineStyle.styleSingle)
         })
         
-        return [id, title, label, value, person]
+        return [id, title, label, value, anchor]
     }
     
     fileprivate func renderAuthors() -> String? {
@@ -179,7 +188,7 @@ extension ProposalTableViewCell {
         let names: [String] = authors.flatMap({ $0.name })
         
         var detail = names.count > 1 ? "Authors" : "Author"
-        detail = "\(detail):".tag(.label) + String.doubleSpace + names.map({ $0.tag(.person) }).joined(separator: ", ")
+        detail = "\(detail):".tag(.label) + String.doubleSpace + names.map({ $0.tag(.anchor) }).joined(separator: ", ")
         
         return detail
     }
@@ -244,6 +253,19 @@ extension ProposalTableViewCell {
         
         return details
     }
+    
+    fileprivate func renderImplementations() -> String? {
+        guard let proposal = self.proposal,
+            let implementations = proposal.implementations,
+            implementations.count > 0 else {
+                return nil
+        }
+        
+        var detail = implementations.count > 1 ? "Implementations" : "Implementation"
+        detail = "\(detail):".tag(.label) + String.doubleSpace + implementations.map({ $0.description.tag(.anchor) }).joined(separator: ", ")
+        
+        return detail
+    }
 }
 
 // MARK: - UITextView Delegate
@@ -274,11 +296,18 @@ extension ProposalTableViewCell: UITextViewDelegate {
             }
             
             if let person = person, let delegate = self.delegate {
-                delegate.didSelected(person: person)
+                delegate.didSelect(person: person)
             }
         }
         else if host == .proposal, let proposal = self.proposal {
-            delegate?.didSelected(proposal: proposal)
+            delegate?.didSelect(proposal: proposal)
+        }
+        else if host == .implementation, let proposal = self.proposal, let implementations = proposal.implementations {
+            guard let path = URL["path"], let value = implementations.get(by: path)  else {
+                return false
+            }
+            
+            delegate?.didSelect(implementation: value)
         }
         
         return false
@@ -299,6 +328,7 @@ fileprivate extension NSMutableAttributedString {
     
     fileprivate func link(_ people: [Person], text: String) -> NSMutableAttributedString {
         var attributed = self
+        
         people.forEach { person in
             guard let username = person.username, let name = person.name else {
                 return
@@ -328,6 +358,23 @@ fileprivate extension NSMutableAttributedString {
             }
             
             attributed = attributed.add(style: style, range: range)
+        }
+        
+        return attributed
+    }
+    
+    fileprivate func link(_ implementations: [Implementation], text: String) -> NSMutableAttributedString {
+        var attributed = self
+        
+        implementations.forEach { implementation in
+            if let textRange = text.range(of: implementation.description) {
+                let range = text.nsRange(from: textRange)
+                let style = Style("url") {
+                    $0.linkURL = URL(string: "evo://implementation?path=\(implementation.path)")
+                }
+                
+                attributed = attributed.add(style: style, range: range)
+            }
         }
         
         return attributed

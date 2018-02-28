@@ -47,7 +47,7 @@ class BaseViewController: UIViewController {
     
     // MARK: - Reachability
     private func setupReachability() {
-        if let reachability = Reachability(hostname: "swift-evolution.io") {
+        if let reachability = Reachability(hostname: "google.com") {
             self.configureReachabilityView()
             self.noConnectionView?.retryButton.addTarget(self, action: #selector(retryButtonAction(_:)), for: .touchUpInside)
             
