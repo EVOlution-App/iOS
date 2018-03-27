@@ -53,7 +53,7 @@ class ListProposalsViewController: BaseViewController {
         self.tableView.registerNib(withClass: ProposalTableViewCell.self)
         self.tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
         
-        self.tableView.estimatedRowHeight = 164
+        self.tableView.estimatedRowHeight = 220
         self.tableView.estimatedSectionHeaderHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
