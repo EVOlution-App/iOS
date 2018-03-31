@@ -46,6 +46,79 @@ platform :ios do
     )
   end
 
+  desc 'Generate Push Notification certificates for EVO'
+  desc 'Available parameters:'
+  desc '- force [boolean]'
+  desc '     description: create a new push certificate'
+  desc '     - values: true | false'
+  desc ''
+  desc '- development [boolean]'
+  desc '     description: generate the development certificate for the environment selected'
+  desc '     - values: true | false'
+  desc ''
+  desc 'Example: '
+  desc '$ bundle exec fastlane generate_pem environment:internal force:true development:true'
+  lane :generate_pem do |option|
+
+    bundle_id = 'io.swift-evolution.app'
+    development = false
+    force = false
+
+    if !option[:force].nil? && option[:force] == true
+      force = true
+    end
+
+    if !option[:development].nil? && option[:development] == true
+      ENV['PEM_DEVELOPMENT'] = 'true'
+      development = true
+    end
+
+
+    # Select environment
+    environment = UI.select("Select the environment: ", ['development', 'production', 'internal'])
+    if environment == 'development'
+      development = true
+    elsif environment == 'internal'
+      bundle_id = "#{bundle_id}.development"
+    end
+
+    # Password
+    p12_password = UI.password("Enter P12 password: ")
+    if !p12_password.empty?
+      ENV['PEM_P12_PASSWORD'] = p12_password
+    end
+
+    # PEM name
+    development_env = ''
+    if development
+      development_env = '-development'
+    end
+
+    pem_name_suggestion = "#{bundle_id}#{development_env}.pem"
+    ENV['PEM_FILE_NAME'] = pem_name_suggestion
+
+    pem_name = UI.input "Enter PEM name [#{pem_name_suggestion}?]: "
+    if !pem_name.empty?
+      ENV['PEM_FILE_NAME'] = pem_name  
+    end
+
+    # Output Path
+    output_path_suggestion = '~/.'
+    pem_output_path = UI.input "Enter PEM output path [#{output_path_suggestion}]: "
+    if !pem_output_path.empty?
+      ENV['PEM_OUTPUT_PATH'] = pem_output_path
+    end
+
+    # Generate PEM
+    get_push_certificate(
+      force: force,
+      app_identifier: bundle_id,
+      save_private_key: true,
+      generate_p12: true
+    )
+    puts 'It\'s the end of the world as we know it :D'
+  end
+
   lane :increment do |option|
     if !option.empty? && !option[:in].nil?
       puts option
@@ -133,10 +206,10 @@ platform :ios do
   end
 
   error do |lane, exception|
-    slack(
-      message: exception.message,
-      success: false
-    )
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
   end
 end
 
