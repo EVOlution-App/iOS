@@ -47,10 +47,6 @@ class AboutViewController: UITableViewController {
         let thiago = Item(text: "Thiago Holanda", type: .github, value: "unnamedd")
         let mainDeveloper = About(section: .mainDeveloper, items: [thiago], footer: nil)
         about.append(mainDeveloper)
-        
-//        // Backend - Contributors
-//        let backendSection  = About(section: .backend, items: [ricardo, reis, taylor], footer: nil)
-//        about.append(backendSection)
 
         // Contributors
         let bilescky    = Item(text: "Bruno Bilescky", type: .github, value: "brunogb")
