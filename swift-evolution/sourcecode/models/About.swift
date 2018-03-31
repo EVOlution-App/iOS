@@ -1,6 +1,5 @@
 enum Section: String {
     case mainDeveloper = "Main Developer"
-    case backend = "Backend"
     case contributors = "Contributors"
     case licenses = "Licenses"
     case contacts = "Contacts"

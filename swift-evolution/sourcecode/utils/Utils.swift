@@ -76,7 +76,7 @@ struct Config {
     struct Base {
         struct URL {
             static var data: String {
-                return "https://data.swift-evolution.io"
+                return "https://data.evoapp.io"
             }
             
             static var githubUser: String {
