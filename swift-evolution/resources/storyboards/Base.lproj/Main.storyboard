@@ -299,11 +299,11 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Selected Proposal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-xW-YFk">
-                                <rect key="frame" x="140.5" y="295" width="94" height="77"/>
+                                <rect key="frame" x="140.5" y="263" width="94" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="Aoo-b9-Z6D"/>
                                 </constraints>
@@ -436,6 +436,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <outlet property="profileView" destination="dHm-GO-R55" id="Whk-Os-u6N"/>
                         <outlet property="tableView" destination="4qS-ei-dyF" id="arE-4V-SY5"/>
                         <outlet property="toolbar" destination="UhO-0b-yld" id="0ye-u8-68J"/>
+                        <outlet property="toolbarTopYConstraint" destination="PRz-5f-j2V" id="0Pg-nl-Pos"/>
                         <segue destination="2X3-i1-g9s" kind="show" identifier="ProposalDetailSegue" id="2o2-Fg-V0b"/>
                     </connections>
                 </viewController>
@@ -562,7 +563,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="placeholder-photo" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rf2-rv-6M0"/>
+        <segue reference="2o2-Fg-V0b"/>
         <segue reference="XKc-wh-heR"/>
         <segue reference="sHa-dI-MgD"/>
     </inferredMetricsTieBreakers>

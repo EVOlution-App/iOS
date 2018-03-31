@@ -10,9 +10,10 @@ class ProfileViewController: BaseViewController {
 
     static var dismissCallback: ((Any?) -> Void)?
     
-    @IBOutlet fileprivate weak var profileView: ProfileView!
-    @IBOutlet fileprivate weak var tableView: UITableView!
-    @IBOutlet var toolbar: UIToolbar?
+    @IBOutlet private weak var profileView: ProfileView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var toolbar: UIToolbar!
+    @IBOutlet private weak var toolbarTopYConstraint: NSLayoutConstraint!
 
     open var profile: Person?
     fileprivate lazy var sections: [Section] = {
@@ -32,7 +33,11 @@ class ProfileViewController: BaseViewController {
         self.tableView.estimatedSectionHeaderHeight = 44.0
         self.tableView.rowHeight = UITableViewAutomaticDimension
 
-        UIDevice.current.userInterfaceIdiom != .pad ? toolbar?.items?.removeAll() : ()
+        if UIDevice.current.userInterfaceIdiom != .pad {
+            toolbar?.items?.removeAll()
+            toolbarTopYConstraint.constant = -44
+            view.layoutIfNeeded()
+        }
 
         // Settings
         self.showNoConnection = false
