@@ -982,7 +982,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		911432241EB97FE900CCC0D0 /* Development */ = {
+		911432241EB97FE900CCC0D0 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1034,15 +1034,15 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = Development;
+			name = Internal;
 		};
-		911432251EB97FE900CCC0D0 /* Development */ = {
+		911432251EB97FE900CCC0D0 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
-				APP_ENVIRONMENT_TITLE = Development;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_ENVIRONMENT_TITLE = Internal;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.development;
 				CODE_SIGN_ENTITLEMENTS = "swift-evolution/swift-evolution.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1058,16 +1058,16 @@
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app.development";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.swift-evolution.app.development";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Development;
+			name = Internal;
 		};
-		911432261EB97FE900CCC0D0 /* Development */ = {
+		911432261EB97FE900CCC0D0 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1081,9 +1081,9 @@
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/swift-evolution.app/swift-evolution";
 			};
-			name = Development;
+			name = Internal;
 		};
-		911432271EB97FE900CCC0D0 /* Development */ = {
+		911432271EB97FE900CCC0D0 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1096,7 +1096,7 @@
 				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = "swift-evolution";
 			};
-			name = Development;
+			name = Internal;
 		};
 		915265481E67659A00C2AFDA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1342,7 +1342,7 @@
 			buildConfigurations = (
 				915265481E67659A00C2AFDA /* Debug */,
 				915265491E67659A00C2AFDA /* AppStore */,
-				911432241EB97FE900CCC0D0 /* Development */,
+				911432241EB97FE900CCC0D0 /* Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = AppStore;
@@ -1352,7 +1352,7 @@
 			buildConfigurations = (
 				9152654B1E67659A00C2AFDA /* Debug */,
 				9152654C1E67659A00C2AFDA /* AppStore */,
-				911432251EB97FE900CCC0D0 /* Development */,
+				911432251EB97FE900CCC0D0 /* Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = AppStore;
@@ -1362,7 +1362,7 @@
 			buildConfigurations = (
 				9152654E1E67659A00C2AFDA /* Debug */,
 				9152654F1E67659A00C2AFDA /* AppStore */,
-				911432261EB97FE900CCC0D0 /* Development */,
+				911432261EB97FE900CCC0D0 /* Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = AppStore;
@@ -1372,7 +1372,7 @@
 			buildConfigurations = (
 				915265511E67659A00C2AFDA /* Debug */,
 				915265521E67659A00C2AFDA /* AppStore */,
-				911432271EB97FE900CCC0D0 /* Development */,
+				911432271EB97FE900CCC0D0 /* Internal */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = AppStore;
