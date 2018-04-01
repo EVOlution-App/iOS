@@ -15,7 +15,6 @@ struct GithubProfile: Codable {
         case gravatar_url
         case bio
     }
-    
 }
 
 extension GithubProfile {
