@@ -99,11 +99,10 @@ extension String {
         
         if let expression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
             let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.count))
-            
-            let contents: [Int] = results.flatMap({
-                let value = (self as NSString).substring(with: $0.range(at: 1))
-                return Int(value)
-            })
+
+            let contents: [Int] = results.compactMap {_ in
+                Int(String(self.unicodeScalars.filter(CharacterSet.decimalDigits.contains)))
+            }
             
             return contents
         }

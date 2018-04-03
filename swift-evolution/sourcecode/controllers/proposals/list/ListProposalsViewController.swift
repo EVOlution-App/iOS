@@ -233,7 +233,7 @@ class ListProposalsViewController: BaseViewController {
                 self.buildPeople()
                 
                 // Language Versions source
-                self.filterHeaderView?.languageVersionSource = proposals.flatMap({ $0.status.version }).removeDuplicates().sorted()
+                self.filterHeaderView?.languageVersionSource = proposals.compactMap({ $0.status.version }).removeDuplicates().sorted()
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -308,7 +308,7 @@ class ListProposalsViewController: BaseViewController {
     
     fileprivate func selected(status: StatusState) -> Bool {
         guard let indexPaths = self.filterHeaderView.statusFilterView.indexPathsForSelectedItems,
-            indexPaths.flatMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == status }).count > 0 else {
+            indexPaths.compactMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == status }).count > 0 else {
                 return false
         }
         return true
@@ -480,7 +480,7 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
         switch type {
         case .status:
             if let indexPaths = view.indexPathsForSelectedItems,
-                indexPaths.flatMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == .implemented }).count == 0 {
+                indexPaths.compactMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == .implemented }).count == 0 {
                 
                 self.filterHeaderView.filterLevel = .status
                 self.layoutFilterHeaderView()
