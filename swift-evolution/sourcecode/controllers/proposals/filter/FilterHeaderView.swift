@@ -87,7 +87,7 @@ class FilterHeaderView: UIView {
             label = "\(filter.description) (\(versions.joined(separator: ", ")))"
         }
         else if status.count > 0 && status.count < 3 {
-            label = status.flatMap({ $0.description }).joined(separator: ", ")
+            label = status.compactMap({ $0.description }).joined(separator: ", ")
         }
         
         let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: label))
