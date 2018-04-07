@@ -75,16 +75,42 @@ struct Config {
     
     struct Base {
         struct URL {
-            static var data: String {
-                return "https://data.evoapp.io"
+            struct Evolution {
+                static var base: String {
+                    return "https://data.evoapp.io"
+                }
+                
+                static var proposals: String {
+                    return "\(base)/proposals"
+                }
+                
+                static func markdown(for id: String) -> String {
+                    return "\(base)/proposals/\(id)/markdown"
+                }
             }
             
-            static var githubUser: String {
-                return "https://api.github.com/users"
+            struct GitHub {
+                static var users: String {
+                    return "https://api.github.com/users"
+                }
+                
+                static var base: String {
+                    return "https://github.com"
+                }
             }
             
-            static var github: String {
-                return "https://github.com"
+            struct Notification {
+                static var base: String {
+                    return "https://notifications.evoapp.io"
+                }
+                
+                static var add: String {
+                    return "\(base)/device"
+                }
+                
+                static func track(notification id: String) -> String {
+                    return "\(base)/track"
+                }
             }
         }
     }
