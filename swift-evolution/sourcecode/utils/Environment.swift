@@ -23,6 +23,19 @@ public struct Environment {
         return title
     }
 
+    struct Keys {
+        static var notification: String? {
+            guard
+                let settings = Environment.settings,
+                let key = settings["Notification"] as? String,
+                key != "" else {
+                    return nil
+            }
+            
+            return key
+        }
+    }
+    
     public struct Release {
         public static var name: String? {
             guard
