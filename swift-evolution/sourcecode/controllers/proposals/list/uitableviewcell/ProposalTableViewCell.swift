@@ -185,7 +185,7 @@ extension ProposalTableViewCell {
                 return nil
         }
         
-        let names: [String] = authors.flatMap({ $0.name })
+        let names: [String] = authors.compactMap({ $0.name })
         
         var detail = names.count > 1 ? "Authors" : "Author"
         detail = "\(detail):".tag(.label) + String.doubleSpace + names.map({ $0.tag(.anchor) }).joined(separator: ", ")
@@ -200,7 +200,7 @@ extension ProposalTableViewCell {
                 return nil
         }
         
-        let names: [String] = bugs.flatMap({
+        let names: [String] = bugs.compactMap({
             if let assignee = $0.assignee, let status = $0.status {
                 var issue = $0.description
                 issue += " ("

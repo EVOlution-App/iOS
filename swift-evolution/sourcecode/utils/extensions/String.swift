@@ -100,7 +100,7 @@ extension String {
         if let expression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
             let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.count))
             
-            let contents: [Int] = results.flatMap({
+            let contents: [Int] = results.compactMap({
                 let value = (self as NSString).substring(with: $0.range(at: 1))
                 return Int(value)
             })
