@@ -19,16 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Register Fabric
         Fabric.with([Crashlytics.self])
         
-        self.configSplitViewController()
-        self.navigationBarAppearance()
-        self.registerNetworkingMonitor()
-        self.registerForPushNotification()
+        // Register Push Notifications
+        registerForPushNotification()
+        
+        // Network monitor
+        registerNetworkingMonitor()
+
+        configSplitViewController()
+        navigationBarAppearance()
         
         // Register routes to use on URL Scheme
-        _ = Routes()
-        self.registerSchemes()
+        registerSchemes()
 
-        self.disableRotationIfNeeded()
+        disableRotationIfNeeded()
         
         return true
     }
@@ -49,38 +52,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //print(deviceToken.hexString)
+        guard let vendor = UIDevice.current.identifierForVendor else {
+            return
+        }
+
+        guard let languageCode = Locale.current.languageCode else {
+            return
+        }
+
+        let modelIdentifier = UIDevice.current.modelIdentifier()
+        let systemVersion = UIDevice.current.systemVersion
+        
+        let device = Device(
+            identifier: deviceToken.hexString,
+            vendor: vendor.uuidString,
+            test: true,
+            subscribed: true,
+            os: systemVersion,
+            model: modelIdentifier,
+            tags: [["proposal": "created"], ["proposal": "changed"]],
+            language: languageCode
+        )
+        
+        NotificationService.add(device) { result in
+            switch result {
+            case .success:
+                print("[EVO Notification] [Add Device] Registration complete")
+
+            case .failure(let error):
+                print("[EVO Notification] [Add Device] Error: \(error.localizedDescription)")
+            }
+        }
     }
 }
 
 // MARK: - Registers
 extension AppDelegate {
 
-    fileprivate func registerNetworkingMonitor() {
+    private func registerNetworkingMonitor() {
         LoadingMonitor.register()
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.setDefaultMaskType(.clear)
     }
     
-    fileprivate func navigationBarAppearance() {
+    private func navigationBarAppearance() {
         let font = UIFont(name: "HelveticaNeue", size: 25)!
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.Proposal.darkGray]
     }
     
-    fileprivate func registerForPushNotification() {
+    private func registerForPushNotification() {
         let notification = UNUserNotificationCenter.current()
         notification.delegate = self
         
         notification.requestAuthorization(options: [.sound, .alert, .badge]) { _, error in
-            if error == nil {
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
+            guard error == nil else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
     }
     
-    fileprivate func registerSchemes() {
+    private func registerSchemes() {
         let routerHandler: CallbackHandler = { [weak self] host, value in
             guard let h = host, let host = Host(h), let value = value else {
                 return
@@ -95,7 +130,6 @@ extension AppDelegate {
         Routes.shared.add("proposal", routerHandler)
         Routes.shared.add("profile", routerHandler)
     }
-
 }
 
 // MARK: - Rotation
@@ -111,6 +145,7 @@ extension AppDelegate {
 
 }
 
+// MARK: - User Notification Delegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("[Remote Notification][Received][Will Present] iOS 10: \(notification.request.content.userInfo)")

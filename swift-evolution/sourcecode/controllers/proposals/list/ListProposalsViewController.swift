@@ -526,7 +526,7 @@ extension ListProposalsViewController: ProposalDelegate {
     }
     
     func didSelect(implementation: Implementation) {
-        if let url = URL(string: "\(Config.Base.URL.github)/\(implementation.path)") {
+        if let url = URL(string: "\(Config.Base.URL.GitHub.base)/\(implementation.path)") {
             let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
             self.present(safariViewController, animated: true)
         }
