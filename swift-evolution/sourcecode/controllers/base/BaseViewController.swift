@@ -35,7 +35,9 @@ class BaseViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // Disable Rotation for iPhones only
-        (UIApplication.shared.delegate as? AppDelegate)?.disableRotationIfNeeded()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.disableRotationIfNeeded()
+        }
         
         // Force rotation back to portrait
         Config.Orientation.portrait()
