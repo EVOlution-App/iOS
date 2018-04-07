@@ -1,5 +1,13 @@
 import UIKit
 
+protocol RequestProtocol {
+    var url: String { get }
+    var method: ServiceMethod { get }
+    var headers: [Header: String]? { get }
+    var params: [String: Any]? { get }
+}
+
+// MARK: - Service Result
 enum ServiceResult<T> {
     case failure(Error)
     case success(T)
@@ -43,6 +51,7 @@ enum ServiceResult<T> {
     }
 }
 
+// MARK: - Errors
 enum ServiceError: Error {
     case unknownState
     case invalidURL(String)
@@ -54,12 +63,22 @@ enum ServiceError: Error {
     }
 }
 
+// MARK: - Method
+enum ServiceMethod: String {
+    case get
+    case post
+    case put
+}
+
+// MARK: -
 class Service {
     typealias JSONDictionary = [String: Any]
     
     @discardableResult
     static func requestList(_ url: String, completion: @escaping (ServiceResult<[JSONDictionary]>) -> Void) -> URLSessionDataTask? {
-        let task = self.request(url: url) { (result) in
+        let request = RequestSettings(url)
+        
+        let task = dispatch(request) { (result) in
             let newResult = result.flatMap { data in
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [JSONDictionary]
             }
@@ -70,7 +89,9 @@ class Service {
     
     @discardableResult
     static func requestKeyValue(_ url: String, completion: @escaping (ServiceResult<JSONDictionary>) -> Void) -> URLSessionDataTask? {
-        let task = self.request(url: url) { result in
+        let request = RequestSettings(url)
+        
+        let task = dispatch(request) { (result) in
             let newResult = result.flatMap { data in
                 return try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary
             }
@@ -81,7 +102,9 @@ class Service {
     
     @discardableResult
     static func requestText(_ url: String, completion: @escaping (ServiceResult<String>) -> Void) -> URLSessionDataTask? {
-        let task = self.request(url: url) { (result) in
+        let request = RequestSettings(url, headers: [.contentType: MimeType.textPlain.rawValue])
+        
+        let task = dispatch(request) { (result) in
             let newResult = result.flatMap { String(data: $0, encoding: .utf8) }
             completion(newResult)
         }
@@ -95,7 +118,8 @@ class Service {
             return nil
         }
         
-        let task = URLSession.shared.downloadTask(with: URL) { url, _, error in
+        let session = URLSession(configuration: .default)
+        let task = session.downloadTask(with: URL) { url, _, error in
             if let error = error {
                 completion(.failure(error))
             }
@@ -110,15 +134,43 @@ class Service {
         return task
     }
     
+    // MARK: - Base Request
+    
     @discardableResult
-    static func request(url: String, completion: @escaping (ServiceResult<Data>) -> Void) -> URLSessionDataTask? {
-        guard let baseURL = URL(string: url) else {
-            completion(.failure(ServiceError.invalidURL(url)))
+    static func dispatch(_ settings: RequestProtocol, completion: @escaping (ServiceResult<Data>) -> Void) -> URLSessionDataTask? {
+        guard let baseURL = URL(string: settings.url) else {
+            completion(.failure(ServiceError.invalidURL(settings.url)))
             return nil
         }
+        
         var request: URLRequest = URLRequest(url: baseURL)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        request.httpMethod = settings.method.rawValue.uppercased()
+        
+        // Configure body based on method
+        switch settings.method {
+        case .post, .put:
+            if let parameters = settings.params {
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                    request.httpBody = data
+                }
+                catch let error {
+                    print("[Request URL] Error: \(error.localizedDescription)")
+                }
+            }
+        default:
+            break
+        }
+        
+        // Configure Headers
+        if let headers = settings.headers {
+            headers.forEach { (arg: (key: Header, value: String)) in
+                request.addValue(arg.value, forHTTPHeaderField: arg.key.rawValue)
+            }
+        }
+        
+        let session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) { data, _, error in
             if let error = error {
                 completion(.failure(error))
             }
