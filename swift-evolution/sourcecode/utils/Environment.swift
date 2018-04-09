@@ -22,6 +22,16 @@ public struct Environment {
         
         return title
     }
+    
+    public static var bundleID: String? {
+        guard
+            let dict = Bundle.main.infoDictionary,
+            let identifier = dict["CFBundleIdentifier"] as? String else {
+                return nil
+        }
+        
+        return identifier
+    }
 
     struct Keys {
         static var notification: String? {
