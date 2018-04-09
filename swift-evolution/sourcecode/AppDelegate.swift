@@ -6,21 +6,23 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
+    
+    // MARK: Private properties
     private var rotate: Bool = true
     
+    // MARK: - Open properties
+    var window: UIWindow?
     open var people: [String: Person] = [:]
     open var host: Host?
     open var value: String?
-
+    
+    // MARK: - AppDelegate Life Cycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         // Register Fabric
         Fabric.with([Crashlytics.self])
         
-        // Register Push Notifications
-        registerForPushNotification()
+        // Register User
+        registerUser()
         
         // Network monitor
         registerNetworkingMonitor()
@@ -52,37 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        guard let vendor = UIDevice.current.identifierForVendor else {
-            return
-        }
+       register(deviceToken)
+    }
+}
 
-        guard let languageCode = Locale.current.languageCode else {
-            return
-        }
-
-        let modelIdentifier = UIDevice.current.modelIdentifier()
-        let systemVersion = UIDevice.current.systemVersion
-        
-        let device = Device(
-            identifier: deviceToken.hexString,
-            vendor: vendor.uuidString,
-            test: true,
-            subscribed: true,
-            os: systemVersion,
-            model: modelIdentifier,
-            tags: [["proposal": "created"], ["proposal": "changed"]],
-            language: languageCode
-        )
-        
-        NotificationService.add(device) { result in
-            switch result {
-            case .success:
-                print("[EVO Notification] [Add Device] Registration complete")
-
-            case .failure(let error):
-                print("[EVO Notification] [Add Device] Error: \(error.localizedDescription)")
-            }
-        }
+// MARK: - Appearance
+extension AppDelegate {
+    private func navigationBarAppearance() {
+        let font = UIFont(name: "HelveticaNeue", size: 25)!
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.Proposal.darkGray]
     }
 }
 
@@ -93,11 +73,6 @@ extension AppDelegate {
         LoadingMonitor.register()
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.setDefaultMaskType(.clear)
-    }
-    
-    private func navigationBarAppearance() {
-        let font = UIFont(name: "HelveticaNeue", size: 25)!
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.Proposal.darkGray]
     }
     
     private func registerForPushNotification() {
@@ -129,6 +104,52 @@ extension AppDelegate {
         // Register only URL hosts to Routes. URL example: evo://proposal/SE-0025
         Routes.shared.add("proposal", routerHandler)
         Routes.shared.add("profile", routerHandler)
+    }
+    
+    private func registerUser() {
+        CloudKitService.user { [weak self] result in
+            switch result {
+            case .success:
+                self?.registerForPushNotification()
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func register(_ deviceToken: Data) {
+        guard let user = User.current else {
+            return
+        }
+        
+        guard let languageCode = Locale.current.languageCode else {
+            return
+        }
+        
+        let modelIdentifier = UIDevice.current.modelIdentifier()
+        let systemVersion = UIDevice.current.systemVersion
+        
+        let device = Device(
+            identifier: deviceToken.hexString,
+            vendor: user.id,
+            test: true,
+            subscribed: true,
+            os: systemVersion,
+            model: modelIdentifier,
+            tags: [["proposal": "created"], ["proposal": "changed"]],
+            language: languageCode
+        )
+        
+        NotificationService.add(device) { result in
+            switch result {
+            case .success:
+                print("[EVO Notification] [Add Device] Registration complete")
+                
+            case .failure(let error):
+                print("[EVO Notification] [Add Device] Error: \(error.localizedDescription)")
+            }
+        }
     }
 }
 
