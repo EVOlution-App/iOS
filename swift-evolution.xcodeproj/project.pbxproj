@@ -66,6 +66,9 @@
 		919A1D3E2076D7A50042A13B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D3C2076D7A50042A13B /* Track.swift */; };
 		919A1D3F2076D7A50042A13B /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D3D2076D7A50042A13B /* Device.swift */; };
 		91A454871EB99B6C00098A6B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A454861EB99B6C00098A6B /* Environment.swift */; };
+		91B1005D207AB9F200B65E02 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B1005C207AB9F200B65E02 /* CloudKit.framework */; };
+		91B1006A207ADCA300B65E02 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B10069207ADCA300B65E02 /* User.swift */; };
+		91B1006C207ADDAB00B65E02 /* Service+CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1006B207ADDAB00B65E02 /* Service+CloudKit.swift */; };
 		91B246091E98BF2B00904DE3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B246081E98BF2B00904DE3 /* Dictionary.swift */; };
 		91B2460B1E99BC4100904DE3 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B2460A1E99BC4100904DE3 /* Routes.swift */; };
 		91D5895E1E7E251200FE958D /* Formatter+GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D5895D1E7E251200FE958D /* Formatter+GithubUser.swift */; };
@@ -206,6 +209,9 @@
 		919A1D3C2076D7A50042A13B /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		919A1D3D2076D7A50042A13B /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		91A454861EB99B6C00098A6B /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		91B1005C207AB9F200B65E02 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		91B10069207ADCA300B65E02 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		91B1006B207ADDAB00B65E02 /* Service+CloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+CloudKit.swift"; sourceTree = "<group>"; };
 		91B246081E98BF2B00904DE3 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		91B2460A1E99BC4100904DE3 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		91D5895D1E7E251200FE958D /* Formatter+GithubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+GithubUser.swift"; sourceTree = "<group>"; };
@@ -239,6 +245,7 @@
 				911432211EB96E2D00CCC0D0 /* UserNotifications.framework in Frameworks */,
 				408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */,
 				408A32A81E8C5678006A870B /* SVProgressHUD.framework in Frameworks */,
+				91B1005D207AB9F200B65E02 /* CloudKit.framework in Frameworks */,
 				408A32AF1E8C5E0C006A870B /* Crashlytics.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,
 			);
@@ -410,6 +417,7 @@
 				9152655E1E6777B600C2AFDA /* Service.swift */,
 				919A1D392076D70C0042A13B /* Service+Notification.swift */,
 				91DEBB162076F5C7000BB6A9 /* RequestSettings.swift */,
+				91B1006B207ADDAB00B65E02 /* Service+CloudKit.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -441,6 +449,7 @@
 				915265661E677A4E00C2AFDA /* Status.swift */,
 				915265641E677A3100C2AFDA /* Warning.swift */,
 				913B7119203E2175007FE04B /* Implementation.swift */,
+				91B10069207ADCA300B65E02 /* User.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -463,6 +472,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
 				8748C7941F7A97B80030DADF /* Down.xcodeproj */,
 				91F05E631F034F78002738F4 /* Reachability.framework */,
 				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
@@ -745,7 +755,16 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -862,6 +881,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -895,6 +915,7 @@
 				91D5895E1E7E251200FE958D /* Formatter+GithubUser.swift in Sources */,
 				91E1500D1E6A758100025B77 /* String.swift in Sources */,
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
+				91B1006A207ADCA300B65E02 /* User.swift in Sources */,
 				91E150221E6CCDD300025B77 /* UIView.swift in Sources */,
 				91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* Formatter+State.swift in Sources */,
@@ -935,6 +956,7 @@
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				91D589691E7E4E4A00FE958D /* Bug+Extension.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
+				91B1006C207ADDAB00B65E02 /* Service+CloudKit.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
 				913B711D203E5F52007FE04B /* Implementation+Extension.swift in Sources */,
 				916896431E935ED700FC6913 /* Github+Profile.swift in Sources */,
@@ -1096,7 +1118,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				NOTIFICATION_APP_KEY = "";
+				NOTIFICATION_APP_KEY = "C595EF95-2944-4AEB-998D-0D27D17535FB";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app.development";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1280,6 +1302,7 @@
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NOTIFICATION_APP_KEY = "C595EF95-2944-4AEB-998D-0D27D17535FB";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1311,6 +1334,7 @@
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				NOTIFICATION_APP_KEY = "C595EF95-2944-4AEB-998D-0D27D17535FB";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
