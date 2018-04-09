@@ -132,7 +132,7 @@ extension AppDelegate {
         
         let device = Device(
             identifier: deviceToken.hexString,
-            vendor: user.id,
+            owner: user.id,
             test: true,
             subscribed: true,
             os: systemVersion,

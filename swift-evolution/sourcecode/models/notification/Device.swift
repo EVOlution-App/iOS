@@ -2,7 +2,7 @@ import Foundation
 
 struct Device: Codable {
     let identifier: String
-    let vendor: String
+    let owner: String
     let test: Bool?
     let subscribed: Bool?
     let os: String?
