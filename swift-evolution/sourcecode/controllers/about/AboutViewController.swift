@@ -73,8 +73,9 @@ class AboutViewController: UITableViewController {
         let reachability    = Item(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift")
         let svprogresshud   = Item(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD")
         let swiftrichstring = Item(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString")
+        let keychainAccess  = Item(text: "KeychainAccess", type: .github, value: "kishikawakatsumi/KeychainAccess")
         
-        let licenses = About(section: .licenses, items: [down, reachability, svprogresshud, swiftrichstring], footer: nil)
+        let licenses = About(section: .licenses, items: [down, keychainAccess, reachability, svprogresshud, swiftrichstring], footer: nil)
         about.append(licenses)
         
         // Cloud Tools
