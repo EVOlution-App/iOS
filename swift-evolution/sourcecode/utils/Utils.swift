@@ -85,7 +85,7 @@ struct Config {
                 }
                 
                 static func markdown(for id: String) -> String {
-                    return "\(base)/proposals/\(id)/markdown"
+                    return "\(base)/proposal/\(id)/markdown"
                 }
             }
             
