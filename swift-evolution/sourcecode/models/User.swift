@@ -3,9 +3,23 @@ import KeychainAccess
 
 struct User: Codable {
     let id: String
+    let tags: [Notifications.Tag]?
+    let createdAt: Date?
+    let updatedAt: Date?
+    
     
     enum Keys: String, CodingKey {
-        case id = "userID"
+        case id = "ckID"
+        case tags
+        case createdAt
+        case updatedAt
+    }
+    
+    init(id: String, tags: [Notifications.Tag]? = nil) {
+        self.id = id
+        self.tags = tags
+        self.createdAt = nil
+        self.updatedAt = nil
     }
 }
 
