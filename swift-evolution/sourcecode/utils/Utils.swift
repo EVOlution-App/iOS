@@ -115,8 +115,12 @@ struct Config {
                     return "\(base)/device"
                 }
                 
-                static func track(notification id: String) -> String {
+                static var track: String {
                     return "\(base)/track"
+                }
+                
+                static func user(id: String) -> String {
+                    return "\(base)/user/\(id)"
                 }
             }
         }
