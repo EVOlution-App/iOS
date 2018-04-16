@@ -99,9 +99,16 @@ struct Config {
                 }
             }
             
-            struct Notification {
+            struct Notifications {
                 static var base: String {
-                    return "https://notifications.evoapp.io"
+                    guard
+                        let settings = Environment.settings,
+                        let key = settings["NotificationURL"] as? String,
+                        key != "" else {
+                            fatalError("Notification URL should be defined on Info.plist")
+                    }
+                    
+                    return key
                 }
                 
                 static var add: String {

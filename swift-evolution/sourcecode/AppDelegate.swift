@@ -130,18 +130,16 @@ extension AppDelegate {
         let modelIdentifier = UIDevice.current.modelIdentifier()
         let systemVersion = UIDevice.current.systemVersion
         
-        let device = Device(
-            identifier: deviceToken.hexString,
-            owner: user.id,
+        let device = Notifications.Device(
+            token: deviceToken.hexString,
+            user: user.id,
             test: true,
-            subscribed: true,
             os: systemVersion,
             model: modelIdentifier,
-            tags: [["proposal": "created"], ["proposal": "changed"]],
             language: languageCode
         )
         
-        NotificationService.add(device) { result in
+        NotificationsService.add(device) { result in
             switch result {
             case .success:
                 print("[EVO Notification] [Add Device] Registration complete")

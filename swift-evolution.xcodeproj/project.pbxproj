@@ -21,6 +21,8 @@
 		9116263C1E8DD16100E8DB77 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9116263B1E8DD16100E8DB77 /* About.swift */; };
 		912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* Formatter+ID.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
+		912B15052085534B008EC81F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B15042085534B008EC81F /* Tag.swift */; };
+		912B1508208553B3008EC81F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B1507208553B3008EC81F /* Notifications.swift */; };
 		91356A38203E656C00E5C625 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91356A37203E656C00E5C625 /* URL.swift */; };
 		913AE7001E9725BA0097BCA5 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */; };
 		913AE7031E9739F50097BCA5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE7021E9739F50097BCA5 /* ProfileView.swift */; };
@@ -158,6 +160,8 @@
 		9116263B1E8DD16100E8DB77 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* Formatter+ID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ID.swift"; sourceTree = "<group>"; };
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		912B15042085534B008EC81F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		912B1507208553B3008EC81F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		91356A37203E656C00E5C625 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		913AE7021E9739F50097BCA5 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -437,7 +441,7 @@
 		9152655C1E6775AE00C2AFDA /* models */ = {
 			isa = PBXGroup;
 			children = (
-				919A1D3B2076D7A50042A13B /* notification */,
+				919A1D3B2076D7A50042A13B /* notifications */,
 				9152657D1E67C63B00C2AFDA /* customFormatters */,
 				91D5895F1E7E42FE00FE958D /* extensions */,
 				9116263B1E8DD16100E8DB77 /* About.swift */,
@@ -587,13 +591,15 @@
 			path = about;
 			sourceTree = "<group>";
 		};
-		919A1D3B2076D7A50042A13B /* notification */ = {
+		919A1D3B2076D7A50042A13B /* notifications */ = {
 			isa = PBXGroup;
 			children = (
+				912B1507208553B3008EC81F /* Notifications.swift */,
 				919A1D3C2076D7A50042A13B /* Track.swift */,
 				919A1D3D2076D7A50042A13B /* Device.swift */,
+				912B15042085534B008EC81F /* Tag.swift */,
 			);
-			path = notification;
+			path = notifications;
 			sourceTree = "<group>";
 		};
 		91D5895F1E7E42FE00FE958D /* extensions */ = {
@@ -911,6 +917,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				912B15052085534B008EC81F /* Tag.swift in Sources */,
 				91D589611E7E43D300FE958D /* Person+Extension.swift in Sources */,
 				91D5895E1E7E251200FE958D /* Formatter+GithubUser.swift in Sources */,
 				91E1500D1E6A758100025B77 /* String.swift in Sources */,
@@ -956,6 +963,7 @@
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				91D589691E7E4E4A00FE958D /* Bug+Extension.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
+				912B1508208553B3008EC81F /* Notifications.swift in Sources */,
 				91B1006C207ADDAB00B65E02 /* Service+CloudKit.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
 				913B711D203E5F52007FE04B /* Implementation+Extension.swift in Sources */,
@@ -1085,6 +1093,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				NOTIFICATION_APP_KEY = "";
+				NOTIFICATION_APP_URL = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1119,6 +1128,7 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NOTIFICATION_APP_KEY = "C595EF95-2944-4AEB-998D-0D27D17535FB";
+				NOTIFICATION_APP_URL = "http://evodev.ignorelist.com:8080";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app.development";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1214,6 +1224,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				NOTIFICATION_APP_KEY = "";
+				NOTIFICATION_APP_URL = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1271,6 +1282,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				NOTIFICATION_APP_KEY = "";
+				NOTIFICATION_APP_URL = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
@@ -1303,6 +1315,7 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NOTIFICATION_APP_KEY = "C595EF95-2944-4AEB-998D-0D27D17535FB";
+				NOTIFICATION_APP_URL = "https://notifications.evoapp.io";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1335,6 +1348,7 @@
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				NOTIFICATION_APP_KEY = "C595EF95-2944-4AEB-998D-0D27D17535FB";
+				NOTIFICATION_APP_URL = "https://notifications.evoapp.io";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

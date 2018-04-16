@@ -37,6 +37,8 @@
 	<dict>
 		<key>Notification</key>
 		<string>$(NOTIFICATION_APP_KEY)</string>
+		<key>NotificationURL</key>
+		<string>$(NOTIFICATION_APP_URL)</string>
 		<key>Title</key>
 		<string>$(APP_ENVIRONMENT_TITLE)</string>
 	</dict>
@@ -68,6 +70,23 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>evodev.ignorelist.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
