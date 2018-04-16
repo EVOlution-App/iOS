@@ -1,9 +1,7 @@
 import Foundation
 
-public struct Environment {
-    
-    
-    private static var settings: [String: Any]? {
+struct Environment {
+    static var settings: [String: Any]? {
         guard
             let dict = Bundle.main.infoDictionary,
             let settings = dict["EnvironmentSettings"] as? [String: Any] else {
@@ -13,7 +11,7 @@ public struct Environment {
         return settings
     }
     
-    public static var title: String? {
+    static var title: String? {
         guard
             let settings = self.settings,
             let title = settings["Title"] as? String else {
@@ -23,7 +21,7 @@ public struct Environment {
         return title
     }
     
-    public static var bundleID: String? {
+    static var bundleID: String? {
         guard
             let dict = Bundle.main.infoDictionary,
             let identifier = dict["CFBundleIdentifier"] as? String else {
@@ -32,7 +30,7 @@ public struct Environment {
         
         return identifier
     }
-
+    
     struct Keys {
         static var notification: String? {
             guard
@@ -46,8 +44,8 @@ public struct Environment {
         }
     }
     
-    public struct Release {
-        public static var name: String? {
+    struct Release {
+        static var name: String? {
             guard
                 let dict = Bundle.main.infoDictionary,
                 let name = dict["CFBundleDisplayName"] as? String else {
@@ -57,7 +55,7 @@ public struct Environment {
             return name
         }
         
-        public static var version: String? {
+        static var version: String? {
             guard
                 let dict = Bundle.main.infoDictionary,
                 let name = dict["CFBundleShortVersionString"] as? String else {
@@ -67,7 +65,7 @@ public struct Environment {
             return name
         }
         
-        public static var build: String? {
+        static var build: String? {
             guard
                 let dict = Bundle.main.infoDictionary,
                 let name = dict["CFBundleVersion"] as? String else {
