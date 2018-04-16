@@ -133,7 +133,7 @@ extension AppDelegate {
         let device = Notifications.Device(
             token: deviceToken.hexString,
             user: user.id,
-            test: true,
+            test: false,
             os: systemVersion,
             model: modelIdentifier,
             language: languageCode
