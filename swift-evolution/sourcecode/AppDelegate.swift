@@ -129,12 +129,14 @@ extension AppDelegate {
         
         let modelIdentifier = UIDevice.current.modelIdentifier()
         let systemVersion = UIDevice.current.systemVersion
+        let appVersion = Environment.Release.version
         
         let device = Notifications.Device(
             token: deviceToken.hexString,
             user: user.id,
             test: false,
             os: systemVersion,
+            appVersion: appVersion,
             model: modelIdentifier,
             language: languageCode
         )
