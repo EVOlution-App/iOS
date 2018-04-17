@@ -6,6 +6,7 @@ extension Notifications {
         let user: String
         let test: Bool?
         let os: String?
+        let appVersion: String?
         let model: String?
         let language: String?
         let createdAt: Date? = nil
