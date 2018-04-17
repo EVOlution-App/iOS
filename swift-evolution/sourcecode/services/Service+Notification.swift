@@ -3,6 +3,8 @@ import Foundation
 struct NotificationsService {
     typealias AddSuccessClosure = (ServiceResult<Notifications.Device>) -> Swift.Void
     typealias UpdateTagsClosure = (ServiceResult<User>) -> Swift.Void
+    typealias TrackingClosure = (ServiceResult<Response>) -> Swift.Void
+    
     static var authorizationHeader: [Header: String] {
         let key = Environment.Keys.notification ?? ""
         return [.authorization: key, .contentType: MimeType.applicationJSON.rawValue]
@@ -42,6 +44,26 @@ struct NotificationsService {
         
         let task = Service.dispatch(request) { result in
             let value = result.flatMap { try JSONDecoder().decode(User.self, from: $0) }
+            completion(value)
+        }
+        
+        return task
+    }
+    
+    @discardableResult
+    static func track(_ track: Notifications.Track, completion: @escaping TrackingClosure) -> URLSessionDataTask? {
+        guard let params = track.asDictionary() else {
+            return nil
+        }
+        
+        let url = Config.Base.URL.Notifications.track
+        let request = RequestSettings(url,
+                                      method: .post,
+                                      params: params,
+                                      headers: NotificationsService.authorizationHeader)
+        
+        let task = Service.dispatch(request) { result in
+            let value = result.flatMap { try JSONDecoder().decode(Response.self, from: $0) }
             completion(value)
         }
         
