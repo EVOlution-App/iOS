@@ -131,10 +131,15 @@ extension AppDelegate {
         let systemVersion = UIDevice.current.systemVersion
         let appVersion = Environment.Release.version
         
+        var deviceTest = false
+        #if INTERNAL
+            deviceTest = true
+        #endif
+        
         let device = Notifications.Device(
             token: deviceToken.hexString,
             user: user.id,
-            test: false,
+            test: deviceTest,
             os: systemVersion,
             appVersion: appVersion,
             model: modelIdentifier,

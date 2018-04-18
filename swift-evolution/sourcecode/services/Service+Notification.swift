@@ -12,10 +12,11 @@ struct NotificationsService {
     
     @discardableResult
     static func add(_ device: Notifications.Device, completion: @escaping AddSuccessClosure) -> URLSessionDataTask? {
-        guard let params = device.asDictionary() else {
+        guard var params = device.asDictionary() else {
             return nil
         }
         
+        params["platform"] = "ios"
         let url = Config.Base.URL.Notifications.add
         let request = RequestSettings(url,
                                       method: .post,
