@@ -122,6 +122,10 @@ struct Config {
                 static func user(id: String) -> String {
                     return "\(base)/user/\(id)"
                 }
+                
+                static var tags: String {
+                    return "\(base)/tags"
+                }
             }
         }
     }
