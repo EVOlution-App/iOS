@@ -12,4 +12,13 @@ extension Array where Element: Equatable {
         
         return result
     }
+    
+    func shuffle() -> [Element] {
+        var list = self
+        list.sort { (_, _) in
+            arc4random() < arc4random()
+        }
+        
+        return list
+    }
 }
