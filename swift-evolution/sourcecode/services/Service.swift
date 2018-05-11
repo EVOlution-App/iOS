@@ -118,20 +118,37 @@ class Service {
             return nil
         }
         
-        let session = URLSession(configuration: .default)
-        let task = session.downloadTask(with: URL) { url, _, error in
-            if let error = error {
-                completion(.failure(error))
-            }
-            else if let validURL = url, let data = try? Data(contentsOf: validURL), let image = UIImage(data: data) {
-                completion(.success(image))
-            }
-            else {
-                ServiceError.fail(completion)
-            }
+        let cache = URLCache.shared
+        let request = URLRequest(url: URL)
+        
+        if let cachedResponse = cache.cachedResponse(for: request),
+            let image = UIImage(data: cachedResponse.data) {
+            completion(.success(image))
         }
-        task.resume()
-        return task
+        else {
+            let session = URLSession(configuration: .default)
+            let task = session.downloadTask(with: URL) { url, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                }
+                else if let validURL = url,
+                    let response = response,
+                    let data = try? Data(contentsOf: validURL),
+                    let image = UIImage(data: data) {
+                    
+                    let cachedData = CachedURLResponse(response: response, data: data)
+                    cache.storeCachedResponse(cachedData, for: request)
+                    completion(.success(image))
+                }
+                else {
+                    ServiceError.fail(completion)
+                }
+            }
+            task.resume()
+            return task
+        }
+        
+        return nil
     }
     
     // MARK: - Base Request
