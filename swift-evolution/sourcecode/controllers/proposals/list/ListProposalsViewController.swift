@@ -386,17 +386,22 @@ class ListProposalsViewController: BaseViewController {
     }
 
     // MARK: - IBActions
-    @IBAction func about() {
+    @IBAction private func openAbout() {
+        openViewController(of: "AboutStoryboardID")
+    }
+
+    private func openViewController(of storyboardID: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "AboutStoryboardID")
+        let controller = storyboard.instantiateViewController(withIdentifier: storyboardID)
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             controller.modalPresentationStyle = .formSheet
             present(controller, animated: true)
-        } else {
+        }
+        else {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
-
 }
 
 

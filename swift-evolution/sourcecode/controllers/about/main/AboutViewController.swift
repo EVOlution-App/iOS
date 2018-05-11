@@ -30,7 +30,7 @@ final class AboutViewController: UITableViewController {
                                customAttributes: nil)
         
         // Ask for review
-        //SKStoreReviewController.requestReview()
+        SKStoreReviewController.requestReview()
     }
 
     override func didReceiveMemoryWarning() {
