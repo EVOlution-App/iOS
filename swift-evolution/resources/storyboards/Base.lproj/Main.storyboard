@@ -560,7 +560,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <connections>
                         <outlet property="closeButton" destination="AuG-q4-7Dc" id="ZM4-8c-Mb1"/>
                         <outlet property="versionLabel" destination="Jz5-jz-6IP" id="YKW-Rg-4KZ"/>
-                        <segue destination="d3c-lM-9bo" kind="show" identifier="GroupedItemsSegue" id="ckA-rp-h1w"/>
+                        <segue destination="d3c-lM-9bo" kind="show" identifier="AboutDetailsItemsSegue" id="ckA-rp-h1w"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6JU-pf-9l0" userLabel="First Responder" sceneMemberID="firstResponder"/>
