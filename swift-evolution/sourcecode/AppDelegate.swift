@@ -35,6 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         disableRotationIfNeeded()
         
+        URLCache.shared = {
+            let memoryCapacity = 50 * 1024 * 1024
+            let diskCapacity = 50 * 1024 * 1024
+            return URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: nil)
+        }()
+        
         return true
     }
     
