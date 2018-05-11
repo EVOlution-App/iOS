@@ -1,4 +1,3 @@
-
 enum Section: String {
     case mainDeveloper = "Main Developer"
     case contributors = "Contributors"
@@ -6,13 +5,6 @@ enum Section: String {
     case evolution = "Evolution App"
     case swiftEvolution = "Swift Evolution"
     case thanks = "Thanks to"
-}
-
-// MARK: - Section Extension
-extension Section: CustomStringConvertible {
-    var description: String {
-        return self.rawValue
-    }
 }
 
 // MARK: -
@@ -23,19 +15,35 @@ enum Type: String {
     case email
 }
 
-// MARK: -
-typealias Contributor = Item
-typealias License = Item
-struct Item {
-    let text: String
-    let type: Type
-    let value: String
+// MARK: - ItemProtocols
+protocol ItemProtocol {
+    var text: String { get set }
+    var type: Type { get  set }
+    var value: String { get set }
+}
+
+struct Contributor: ItemProtocol {
+    var text: String
+    var type: Type
+    var value: String
+}
+
+struct License: ItemProtocol {
+    var text: String
+    var type: Type
+    var value: String
+}
+
+struct Item: ItemProtocol {
+    var text: String
+    var type: Type
+    var value: String
 }
 
 // MARK: -
 struct About {
     let section: Section
-    let items: [Item]
+    let items: [ItemProtocol]
     let footer: String?
     let grouped: Bool
 }

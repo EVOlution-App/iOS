@@ -6,9 +6,3 @@ extension Contributor {
         return "https://avatars.githubusercontent.com/\(self.value)?size=\(width)"
     }
 }
-// MARK: - Equatable
-extension Contributor: Equatable {
-    static func == (lhs: Contributor, rhs: Contributor) -> Bool {
-        return lhs.text == rhs.text
-    }
-}

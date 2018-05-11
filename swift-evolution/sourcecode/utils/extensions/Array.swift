@@ -12,7 +12,9 @@ extension Array where Element: Equatable {
         
         return result
     }
-    
+}
+
+extension Array {
     func shuffle() -> [Element] {
         var list = self
         list.sort { (_, _) in
