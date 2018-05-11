@@ -17,5 +17,3 @@ extension ItemProtocol where Self: Equatable {
         return lhs.text == rhs.text
     }
 }
-
-

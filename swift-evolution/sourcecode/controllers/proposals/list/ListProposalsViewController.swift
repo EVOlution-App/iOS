@@ -395,8 +395,9 @@ class ListProposalsViewController: BaseViewController {
         let controller = storyboard.instantiateViewController(withIdentifier: storyboardID)
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            controller.modalPresentationStyle = .formSheet
-            present(controller, animated: true)
+            let navigationController = UINavigationController(rootViewController: controller)
+            navigationController.modalPresentationStyle = .formSheet
+            present(navigationController, animated: true)
         }
         else {
             navigationController?.pushViewController(controller, animated: true)

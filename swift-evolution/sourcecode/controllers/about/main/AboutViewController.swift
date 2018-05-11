@@ -86,9 +86,8 @@ final class AboutViewController: UITableViewController {
         let backend     = Item(text: "Backend", type: .github, value: "evolution-app/backend")
         let twitterApp  = Item(text: "Twitter", type: .twitter, value: "evoapp_io")
         let feedbackApp = Item(text: "Feedback", type: .email, value: "feedback@evoapp.io")
-        
-        let feedback = "If you have any critics, suggestions or want to contribute any way, please, get in touch with us."
-        let contacts = About(section: .evolution, items: [app, backend, twitterApp, feedbackApp], footer: feedback, grouped: false)
+
+        let contacts = About(section: .evolution, items: [app, backend, twitterApp, feedbackApp], footer: nil, grouped: false)
         about.append(contacts)
         
         // Swift Evolution
