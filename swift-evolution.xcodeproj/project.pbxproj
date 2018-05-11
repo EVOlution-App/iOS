@@ -69,7 +69,7 @@
 		9168963E1E93469F00FC6913 /* Service+Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168963D1E93469F00FC6913 /* Service+Github.swift */; };
 		916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896401E935ABD00FC6913 /* ProfileViewController.swift */; };
 		916896431E935ED700FC6913 /* Github+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896421E935ED700FC6913 /* Github+Profile.swift */; };
-		91881775209BD76700562119 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91881773209BD76700562119 /* NotificationTableViewCell.xib */; };
+		917E4C3120A63C1600846C87 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C3020A63C1600846C87 /* UIAlertController.swift */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		919A1D372076D6390042A13B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D342076D6380042A13B /* Encodable.swift */; };
 		919A1D382076D6390042A13B /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D362076D6390042A13B /* UIDevice.swift */; };
@@ -223,7 +223,7 @@
 		9168963D1E93469F00FC6913 /* Service+Github.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+Github.swift"; sourceTree = "<group>"; };
 		916896401E935ABD00FC6913 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		916896421E935ED700FC6913 /* Github+Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Github+Profile.swift"; sourceTree = "<group>"; };
-		91881773209BD76700562119 /* NotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTableViewCell.xib; sourceTree = "<group>"; };
+		917E4C3020A63C1600846C87 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		919A1D342076D6380042A13B /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		919A1D362076D6390042A13B /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -535,6 +535,7 @@
 				91E150211E6CCDD300025B77 /* UIView.swift */,
 				91356A37203E656C00E5C625 /* URL.swift */,
 				9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */,
+				917E4C3020A63C1600846C87 /* UIAlertController.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -686,7 +687,6 @@
 		91E150181E6BBCCF00025B77 /* uitableviewcell */ = {
 			isa = PBXGroup;
 			children = (
-				91881773209BD76700562119 /* NotificationTableViewCell.xib */,
 				670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */,
 				915265811E67D7A900C2AFDA /* ProposalTableViewCell.xib */,
 			);
@@ -895,7 +895,6 @@
 				915F7DE21F0382C4001B298D /* NoConnectionView.xib in Resources */,
 				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
 				915265831E67D7A900C2AFDA /* ProposalTableViewCell.xib in Resources */,
-				91881775209BD76700562119 /* NotificationTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,6 +980,7 @@
 				9152657F1E67C64D00C2AFDA /* Formatter+State.swift in Sources */,
 				915A883620A51DB900184F6E /* About+Extension.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
+				917E4C3120A63C1600846C87 /* UIAlertController.swift in Sources */,
 				914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
