@@ -5,11 +5,13 @@ import SafariServices
 class ListProposalsViewController: BaseViewController {
     
     // Private IBOutlets
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var footerView: UIView!
-    @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
-    @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var aboutBarButtonItem: UIBarButtonItem?
+    @IBOutlet private(set) weak var tableView: UITableView!
+    @IBOutlet private(set) weak var footerView: UIView!
+    @IBOutlet private(set) weak var filterHeaderView: FilterHeaderView!
+    @IBOutlet private(set) weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet private(set) weak var settingsBarButtonItem: UIBarButtonItem?
+    @IBOutlet private(set) weak var aboutBarButtonItem: UIBarButtonItem?
 
     // Private properties
     fileprivate var timer: Timer = Timer()
@@ -384,17 +386,22 @@ class ListProposalsViewController: BaseViewController {
     }
 
     // MARK: - IBActions
-    @IBAction func about() {
+    @IBAction private func openAbout() {
+        openViewController(of: "AboutStoryboardID")
+    }
+
+    private func openViewController(of storyboardID: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "AboutStoryboardID")
+        let controller = storyboard.instantiateViewController(withIdentifier: storyboardID)
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             controller.modalPresentationStyle = .formSheet
             present(controller, animated: true)
-        } else {
+        }
+        else {
             navigationController?.pushViewController(controller, animated: true)
         }
     }
-
 }
 
 

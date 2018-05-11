@@ -4,12 +4,14 @@ struct NotificationsService {
     typealias AddSuccessClosure = (ServiceResult<Notifications.Device>) -> Swift.Void
     typealias UpdateTagsClosure = (ServiceResult<User>) -> Swift.Void
     typealias TrackingClosure = (ServiceResult<Response>) -> Swift.Void
+    typealias ListTagsClosure = (ServiceResult<[Notifications.Tag]>) -> Swift.Void
     
     static var authorizationHeader: [Header: String] {
         let key = Environment.Keys.notification ?? ""
         return [.authorization: key, .contentType: MimeType.applicationJSON.rawValue]
     }
     
+    // MARK: - Device
     @discardableResult
     static func add(_ device: Notifications.Device, completion: @escaping AddSuccessClosure) -> URLSessionDataTask? {
         guard var params = device.asDictionary() else {
@@ -25,6 +27,38 @@ struct NotificationsService {
         
         let task = Service.dispatch(request) { result in
             let value = result.flatMap { try JSONDecoder().decode(Notifications.Device.self, from: $0) }
+            completion(value)
+        }
+        
+        return task
+    }
+    
+    // MARK: - User
+    @discardableResult
+    static func getDetails(from user: User, completion: @escaping UpdateTagsClosure) -> URLSessionDataTask? {
+        let request = RequestSettings(Config.Base.URL.Notifications.user(id: user.id),
+                                      method: .get,
+                                      params: nil,
+                                      headers: NotificationsService.authorizationHeader)
+        
+        let task = Service.dispatch(request) { result in
+            let value = result.flatMap { try JSONDecoder().decode(User.self, from: $0) }
+            completion(value)
+        }
+        
+        return task
+    }
+    
+    // MARK: - Tags
+    @discardableResult
+    static func listTags(completion: @escaping ListTagsClosure) -> URLSessionDataTask? {
+        let request = RequestSettings(Config.Base.URL.Notifications.tags,
+                                      method: .put,
+                                      params: nil,
+                                      headers: NotificationsService.authorizationHeader)
+        
+        let task = Service.dispatch(request) { result in
+            let value = result.flatMap { try JSONDecoder().decode([Notifications.Tag].self, from: $0) }
             completion(value)
         }
         
@@ -51,6 +85,7 @@ struct NotificationsService {
         return task
     }
     
+    // MARK: - Tracking
     @discardableResult
     static func track(_ track: Notifications.Track, completion: @escaping TrackingClosure) -> URLSessionDataTask? {
         guard let params = track.asDictionary() else {

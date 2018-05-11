@@ -33,6 +33,7 @@ struct Config {
     enum Segues: String, SegueRepresentable {
         case proposalDetail = "ProposalDetailSegue"
         case profile = "ProfileSegue"
+        case aboutDetails = "AboutDetailsItemsSegue"
     }
     
     struct Nib {
@@ -121,6 +122,10 @@ struct Config {
                 
                 static func user(id: String) -> String {
                     return "\(base)/user/\(id)"
+                }
+                
+                static var tags: String {
+                    return "\(base)/tags"
                 }
             }
         }
