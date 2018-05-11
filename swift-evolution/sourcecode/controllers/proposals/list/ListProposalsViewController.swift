@@ -5,11 +5,13 @@ import SafariServices
 class ListProposalsViewController: BaseViewController {
     
     // Private IBOutlets
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var footerView: UIView!
-    @IBOutlet fileprivate weak var filterHeaderView: FilterHeaderView!
-    @IBOutlet fileprivate weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var aboutBarButtonItem: UIBarButtonItem?
+    @IBOutlet private(set) weak var tableView: UITableView!
+    @IBOutlet private(set) weak var footerView: UIView!
+    @IBOutlet private(set) weak var filterHeaderView: FilterHeaderView!
+    @IBOutlet private(set) weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet private(set) weak var settingsBarButtonItem: UIBarButtonItem?
+    @IBOutlet private(set) weak var aboutBarButtonItem: UIBarButtonItem?
 
     // Private properties
     fileprivate var timer: Timer = Timer()

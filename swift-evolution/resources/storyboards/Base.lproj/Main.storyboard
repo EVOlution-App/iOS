@@ -221,11 +221,6 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Evolution" id="7ao-nW-5Ea">
-                        <barButtonItem key="leftBarButtonItem" title="Notifications" id="6TD-Sk-Wum">
-                            <connections>
-                                <action selector="openSettings" destination="alP-NB-bbT" id="1uz-K7-OHf"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="About" id="gkZ-u1-nTj">
                             <connections>
                                 <action selector="openAbout" destination="alP-NB-bbT" id="Zp0-Xy-fiY"/>
@@ -237,7 +232,6 @@
                         <outlet property="filterHeaderView" destination="Xy9-CI-bMR" id="ALD-ZF-bPv"/>
                         <outlet property="filterHeaderViewHeightConstraint" destination="irg-z7-87c" id="PVk-u8-tXk"/>
                         <outlet property="footerView" destination="J6Y-q1-3ee" id="ejk-HT-wtf"/>
-                        <outlet property="settingsBarButtonItem" destination="6TD-Sk-Wum" id="cTV-tq-Sd8"/>
                         <outlet property="tableView" destination="wrl-Y8-uLB" id="BXF-tf-kVq"/>
                         <segue destination="b40-fX-jN2" kind="show" identifier="ProposalDetailSegue" id="sHa-dI-MgD"/>
                         <segue destination="3eh-9t-QMu" kind="show" identifier="ProfileSegue" id="XKc-wh-heR"/>
