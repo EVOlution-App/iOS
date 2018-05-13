@@ -1,6 +1,6 @@
 import Foundation
 
-extension About {
+extension Section {
     subscript(index: Int) -> ItemProtocol? {
         guard items.count > 0 else {
             return nil

@@ -1,6 +1,6 @@
 import Foundation
 
-extension Section: CustomStringConvertible {
+extension SectionType: CustomStringConvertible {
     var description: String {
         return self.rawValue
     }

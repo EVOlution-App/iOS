@@ -4,24 +4,19 @@ import StoreKit
 
 final class AboutViewController: UITableViewController {
 
-    fileprivate var dataSource: [About] = []
+    // MARK: - Private properties
+    private lazy var dataSource: [Section] = {
+        return sectionsData()
+    }()
+    
+    // MARK: - IBOutlets
     @IBOutlet private var versionLabel: UILabel!
     @IBOutlet private var closeButton: UIButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        closeButton?.isHidden = UIDevice.current.userInterfaceIdiom != .pad
-
-        if let version = Environment.Release.version,
-            let build = Environment.Release.build {
-            
-            self.versionLabel.text = "v\(version) (\(build))"
-        }
         
         tableView.register(CustomSubtitleTableViewCell.self, forCellReuseIdentifier: "AboutCellIdentifier")
-        
-        buildData()
         tableView.reloadData()
         
         Answers.logContentView(withName: "About this app",
@@ -30,7 +25,9 @@ final class AboutViewController: UITableViewController {
                                customAttributes: nil)
         
         // Ask for review
-        SKStoreReviewController.requestReview()
+        DispatchQueue.global(qos: .background).async {
+            SKStoreReviewController.requestReview()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,47 +35,47 @@ final class AboutViewController: UITableViewController {
         
     }
 
-    @IBAction func closeAction(_ sender: Any) {
-        dismiss(animated: true)
-    }
-
-    func buildData() {
-        var about: [About] = []
+    func sectionsData() -> [Section] {
+        var about: [Section] = []
         
         // Main Developer
         let thiago = Contributor(text: "Thiago Holanda", type: .github, value: "unnamedd")
-        let mainDeveloper = About(section: .mainDeveloper, items: [thiago], footer: nil, grouped: false)
+        let mainDeveloper = Section(section: .mainDeveloper, items: [thiago], footer: nil, grouped: false)
         about.append(mainDeveloper)
 
         // Contributors
-        let bilescky    = Contributor(text: "Bruno Bilescky", type: .github, value: "brunogb")
-        let guidolim    = Contributor(text: "Bruno Guidolim", type: .github, value: "bguidolim")
-        let hecktheuer  = Contributor(text: "Bruno Hecktheuer", type: .github, value: "bbheck")
-        let ventura     = Contributor(text: "Diego Ventura", type: .github, value: "diegoventura")
-        let tridapalli  = Contributor(text: "Diogo Tridapalli", type: .github, value: "diogot")
-        let ezeq        = Contributor(text: "Ezequiel França", type: .github, value: "ezefranca")
-        let gustavo     = Contributor(text: "Gustavo Barbosa", type: .github, value: "barbosa")
-        let rambo       = Contributor(text: "Guilherme Rambo", type: .github, value: "insidegui")
-        let leocardoso  = Contributor(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso")
-        let borelli     = Contributor(text: "Ricardo Borelli", type: .github, value: "rabc")
-        let ricardo     = Contributor(text: "Ricardo Olivieri", type: .github, value: "rolivieri")
-        let hudson      = Contributor(text: "Rob Hudson", type: .github, value: "robtimp")
-        let reis        = Contributor(text: "Rodrigo Reis", type: .github, value: "digoreis")
-        let taylor      = Contributor(text: "Taylor Franklin", type: .github, value: "tfrank64")
-        let xaver       = Contributor(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller")
+        let contributorsMembers = [
+            Contributor(text: "Bruno Bilescky", type: .github, value: "brunogb"),
+            Contributor(text: "Bruno Guidolim", type: .github, value: "bguidolim"),
+            Contributor(text: "Bruno Hecktheuer", type: .github, value: "bbheck"),
+            Contributor(text: "Diego Ventura", type: .github, value: "diegoventura"),
+            Contributor(text: "Diogo Tridapalli", type: .github, value: "diogot"),
+            Contributor(text: "Ezequiel França", type: .github, value: "ezefranca"),
+            Contributor(text: "Gustavo Barbosa", type: .github, value: "barbosa"),
+            Contributor(text: "Guilherme Rambo", type: .github, value: "insidegui"),
+            Contributor(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso"),
+            Contributor(text: "Ricardo Borelli", type: .github, value: "rabc"),
+            Contributor(text: "Ricardo Olivieri", type: .github, value: "rolivieri"),
+            Contributor(text: "Rob Hudson", type: .github, value: "robtimp"),
+            Contributor(text: "Rodrigo Reis", type: .github, value: "digoreis"),
+            Contributor(text: "Taylor Franklin", type: .github, value: "tfrank64"),
+            Contributor(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller")
+        ]
         
-        let contributors = About(section: .contributors, items: [bilescky, guidolim, hecktheuer, ventura, tridapalli, ezeq, gustavo, rambo, leocardoso, borelli, ricardo, hudson, reis, taylor, xaver], footer: nil, grouped: true)
+        let contributors = Section(section: .contributors, items: contributorsMembers, footer: nil, grouped: true)
         about.append(contributors)
         
         // Licenses
-        let down            = License(text: "Down", type: .github, value: "iwasrobbed/Down")
-        let reachability    = License(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift")
-        let svprogresshud   = License(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD")
-        let swiftrichstring = License(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString")
-        let keychainAccess  = License(text: "KeychainAccess", type: .github, value: "kishikawakatsumi/KeychainAccess")
-        let kitura          = License(text: "Kitura Web Framework", type: .url, value: "http://www.kitura.io/")
+        let licensesItems = [
+            License(text: "Down", type: .github, value: "iwasrobbed/Down"),
+            License(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift"),
+            License(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD"),
+            License(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString"),
+            License(text: "KeychainAccess", type: .github, value: "kishikawakatsumi/KeychainAccess"),
+            License(text: "Kitura Web Framework", type: .url, value: "http://www.kitura.io/")
+        ]
         
-        let licenses = About(section: .licenses, items: [down, keychainAccess, kitura, reachability, svprogresshud, swiftrichstring], footer: nil, grouped: true)
+        let licenses = Section(section: .licenses, items: licensesItems, footer: nil, grouped: true)
         about.append(licenses)
         
         // Evolution App
@@ -87,7 +84,7 @@ final class AboutViewController: UITableViewController {
         let twitterApp  = Item(text: "Twitter", type: .twitter, value: "evoapp_io")
         let feedbackApp = Item(text: "Feedback", type: .email, value: "feedback@evoapp.io")
 
-        let contacts = About(section: .evolution, items: [app, backend, twitterApp, feedbackApp], footer: nil, grouped: false)
+        let contacts = Section(section: .evolution, items: [app, backend, twitterApp, feedbackApp], footer: nil, grouped: false)
         about.append(contacts)
         
         // Swift Evolution
@@ -96,7 +93,7 @@ final class AboutViewController: UITableViewController {
         let proposals   = Item(text: "Repository", type: .github, value: "apple/swift-evolution")
         let forum       = Item(text: "Forum", type: .url, value: "https://forums.swift.org/c/evolution")
         
-        let more = About(section: .swiftEvolution, items: [language, web, proposals, forum], footer: nil, grouped: false)
+        let more = Section(section: .swiftEvolution, items: [language, web, proposals, forum], footer: nil, grouped: false)
         about.append(more)
         
         // Thanks To
@@ -107,10 +104,10 @@ final class AboutViewController: UITableViewController {
         let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         
         let copyright = "Copyright (c) 2017-2018 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
-        let thanks = About(section: .thanks, items: [chris, daniel, danilo, john, lisa], footer: copyright, grouped: false)
+        let thanks = Section(section: .thanks, items: [chris, daniel, danilo, john, lisa], footer: copyright, grouped: false)
         about.append(thanks)
         
-        dataSource = about
+        return about
     }
 }
 
@@ -193,5 +190,12 @@ extension AboutViewController {
             let alertController = UIAlertController.presentAlert(to: item)
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+}
+
+// MARK: - DescriptionView Delegate
+extension AboutViewController: DescriptionViewProtocol {
+    func closeAction() {
+        dismiss(animated: true)
     }
 }
