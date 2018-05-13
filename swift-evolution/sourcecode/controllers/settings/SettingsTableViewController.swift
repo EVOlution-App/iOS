@@ -201,31 +201,44 @@ extension SettingsTableViewController {
             return
         }
         
+        if let item = dataSource[indexPath.section].items[indexPath.row] as? Subscription {
+            cell.activeSwitch.isOn = item.subscribed
+        }
+
         cell.loadingActivity = loading
     }
     
     private func updateNotification(to user: User) {
-        for (s, section) in dataSource.enumerated() {
+        var source = dataSource
+        
+        for s in source.indices {
+            var section = source[s]
             guard section.section == .notifications else {
                 continue
             }
 
-            for (i, item) in section.items.enumerated() {
-                guard item is Subscription,
-                    var value = item as? Subscription else {
-                        continue
+            for i in section.items.indices {
+                guard var value = section.items[i] as? Subscription else {
+                    continue
+                }
+                
+                section.items.remove(at: i)
+                if section.items.count == 0 {
+                    section.items = []
                 }
                 
                 if let tags = user.tags {
-                    let subscribed = (tags.count > 0)
-                    value.subscribed = subscribed
+                    value.subscribed = tags.count > 0
                 }
                 
-                dataSource[s].items[i] = value
+                let content = value
+                section.items.append(content)
             }
             
-            dataSource[s] = section
+            source[s] = section
         }
+        
+        dataSource = source
     }
 }
 

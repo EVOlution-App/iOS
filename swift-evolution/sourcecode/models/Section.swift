@@ -55,8 +55,8 @@ struct Subscription: ItemProtocol {
 
 // MARK: -
 struct Section {
-    let section: SectionType
+    var section: SectionType
     var items: [ItemProtocol]
-    let footer: String?
-    let grouped: Bool
+    var footer: String?
+    var grouped: Bool
 }
