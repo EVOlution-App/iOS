@@ -11,7 +11,6 @@ class ListProposalsViewController: BaseViewController {
     @IBOutlet private(set) weak var filterHeaderViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private(set) weak var settingsBarButtonItem: UIBarButtonItem?
-    @IBOutlet private(set) weak var aboutBarButtonItem: UIBarButtonItem?
 
     // Private properties
     fileprivate var timer: Timer = Timer()
@@ -105,7 +104,7 @@ class ListProposalsViewController: BaseViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.topItem?.setRightBarButton(self.aboutBarButtonItem, animated: true)
+        self.navigationController?.navigationBar.topItem?.setRightBarButton(self.settingsBarButtonItem, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -386,8 +385,8 @@ class ListProposalsViewController: BaseViewController {
     }
 
     // MARK: - IBActions
-    @IBAction private func openAbout() {
-        openViewController(of: "AboutStoryboardID")
+    @IBAction private func openSettings() {
+        openViewController(of: "SettingsStoryboardID")
     }
 
     private func openViewController(of storyboardID: String) {
