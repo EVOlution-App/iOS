@@ -209,34 +209,19 @@ extension SettingsTableViewController {
     }
     
     private func updateNotification(to user: User) {
-        var source = dataSource
-        
-        for s in source.indices {
-            var section = source[s]
-            guard section.section == .notifications else {
-                continue
-            }
-
-            for i in section.items.indices {
-                guard var value = section.items[i] as? Subscription else {
-                    continue
-                }
-                
-                section.items.remove(at: i)
-                if section.items.count == 0 {
-                    section.items = []
-                }
-                
-                if let tags = user.tags {
-                    value.subscribed = tags.count > 0
-                }
-                
-                let content = value
-                section.items.append(content)
-            }
-            
-            source[s] = section
+        guard let indexPath = indexPathForNotifications() else {
+            return
         }
+        
+        var source = dataSource
+        var section = source[indexPath.section]
+        
+        if var item = section.items[indexPath.row] as? Subscription, let tags = user.tags {
+            item.subscribed = tags.count > 0
+            section.items[indexPath.row] = item
+        }
+        
+        source[indexPath.section] = section
         
         dataSource = source
     }
