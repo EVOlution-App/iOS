@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     open var people: [String: Person] = [:]
     open var host: Host?
     open var value: String?
+    open var authorizedNotification: Bool = false
     
     // MARK: - AppDelegate Life Cycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -62,6 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
        register(deviceToken)
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Get Authorization to Notifications
+        getAuthorizationStatus()
+    }
 }
 
 // MARK: - Appearance
@@ -94,6 +100,18 @@ extension AppDelegate {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+    }
+    
+    private func getAuthorizationStatus() {
+        let current = UNUserNotificationCenter.current()
+        current.getNotificationSettings(completionHandler: { [weak self] settings in
+            switch settings.authorizationStatus {
+            case .notDetermined, .denied:
+                self?.authorizedNotification = false
+            case .authorized:
+                self?.authorizedNotification = true
+            }
+        })
     }
     
     private func registerSchemes() {
