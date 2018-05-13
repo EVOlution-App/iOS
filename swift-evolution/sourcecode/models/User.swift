@@ -4,22 +4,24 @@ import KeychainAccess
 struct User: Codable {
     let id: String
     let tags: [Notifications.Tag]?
+    let notifications: Bool?
     let createdAt: Date?
     let updatedAt: Date?
     
-    
-    enum Keys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id = "ckID"
         case tags
         case createdAt
         case updatedAt
+        case notifications
     }
     
-    init(id: String, tags: [Notifications.Tag]? = nil) {
-        self.id = id
-        self.tags = tags
-        self.createdAt = nil
-        self.updatedAt = nil
+    init(id: String, tags: [Notifications.Tag]? = nil, notifications: Bool = true) {
+        self.id             = id
+        self.tags           = tags
+        self.notifications  = notifications
+        self.createdAt      = nil
+        self.updatedAt      = nil
     }
 }
 
