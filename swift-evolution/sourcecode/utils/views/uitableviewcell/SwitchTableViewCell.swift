@@ -6,7 +6,6 @@ protocol SwitchTableViewCellProtocol: class {
 
 final class SwitchTableViewCell: UITableViewCell {
 
-//    @IBOutlet private weak var aciti
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var activityIndicatorTrailingConstraint: NSLayoutConstraint!
     
