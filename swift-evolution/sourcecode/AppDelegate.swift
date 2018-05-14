@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     open var people: [String: Person] = [:]
     open var host: Host?
     open var value: String?
+    open var authorizedNotification: Bool = false
     
     // MARK: - AppDelegate Life Cycle
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -62,6 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
        register(deviceToken)
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Get Authorization to Notifications
+        getAuthorizationStatus()
+        NotificationCenter.default.post(name: Notification.Name.AppDidBecomeActive,
+                                        object: nil)
+    }
 }
 
 // MARK: - Appearance
@@ -81,7 +89,7 @@ extension AppDelegate {
         SVProgressHUD.setDefaultMaskType(.clear)
     }
     
-    private func registerForPushNotification() {
+    func registerForPushNotification() {
         let notification = UNUserNotificationCenter.current()
         notification.delegate = self
         
@@ -94,6 +102,18 @@ extension AppDelegate {
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
+    }
+    
+    private func getAuthorizationStatus() {
+        let current = UNUserNotificationCenter.current()
+        current.getNotificationSettings(completionHandler: { [weak self] settings in
+            switch settings.authorizationStatus {
+            case .notDetermined, .denied:
+                self?.authorizedNotification = false
+            case .authorized:
+                self?.authorizedNotification = true
+            }
+        })
     }
     
     private func registerSchemes() {
@@ -133,6 +153,10 @@ extension AppDelegate {
             return
         }
         
+        guard authorizedNotification else {
+            return
+        }
+        
         let modelIdentifier = UIDevice.current.modelIdentifier()
         let systemVersion = UIDevice.current.systemVersion
         let appVersion = Environment.Release.version
@@ -156,6 +180,10 @@ extension AppDelegate {
             switch result {
             case .success:
                 print("[EVO Notification] [Add Device] Registration complete")
+                
+                NotificationCenter.default.post(name: Notification.Name.NotificationRegister,
+                                                object: nil)
+                
                 
             case .failure(let error):
                 print("[EVO Notification] [Add Device] Error: \(error.localizedDescription)")

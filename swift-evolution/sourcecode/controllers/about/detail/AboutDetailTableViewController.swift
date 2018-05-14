@@ -2,7 +2,7 @@ import UIKit
 
 final class AboutDetailTableViewController: UITableViewController {
 
-    var about: About? {
+    var about: Section? {
         didSet {
             guard let about = about else {
                 return
@@ -20,6 +20,12 @@ final class AboutDetailTableViewController: UITableViewController {
         tableView.registerClass(CustomSubtitleTableViewCell.self)
         
         tableView.rowHeight = 44
+        
+        var contentInset = tableView.contentInset
+        contentInset.top += 10
+        contentInset.bottom += 10
+        
+        tableView.contentInset = contentInset
     }
 
     override func didReceiveMemoryWarning() {

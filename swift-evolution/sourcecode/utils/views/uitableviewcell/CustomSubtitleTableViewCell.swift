@@ -7,7 +7,7 @@ final class CustomSubtitleTableViewCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     var contributor: Contributor? {
@@ -45,8 +45,19 @@ final class CustomSubtitleTableViewCell: UITableViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        imageView?.backgroundColor = UIColor.Proposal.lightGray.withAlphaComponent(0.5)
-        imageView?.round(with: UIColor.clear, width: 0)
+        if let imageView = imageView {
+            let currentSize = imageView.frame.size
+            let size = CGSize(width: currentSize.width - 4, height: currentSize.height - 4)
+            
+            let currentOrigin = imageView.frame.origin
+            let origin = CGPoint(x: currentOrigin.x + 2, y: currentOrigin.y + 2)
+            
+            let frame = CGRect(origin: origin, size: size)
+            imageView.frame = frame
+            
+            imageView.backgroundColor = UIColor.Proposal.lightGray.withAlphaComponent(0.5)
+            imageView.round(with: UIColor.clear, width: 0)
+        }
     }
     
     private func loadProfileImage() {
