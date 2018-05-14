@@ -67,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Get Authorization to Notifications
         getAuthorizationStatus()
+        NotificationCenter.default.post(name: Notification.Name.AppDidBecomeActive,
+                                        object: nil)
     }
 }
 
@@ -87,7 +89,7 @@ extension AppDelegate {
         SVProgressHUD.setDefaultMaskType(.clear)
     }
     
-    private func registerForPushNotification() {
+    func registerForPushNotification() {
         let notification = UNUserNotificationCenter.current()
         notification.delegate = self
         
@@ -151,6 +153,10 @@ extension AppDelegate {
             return
         }
         
+        guard authorizedNotification else {
+            return
+        }
+        
         let modelIdentifier = UIDevice.current.modelIdentifier()
         let systemVersion = UIDevice.current.systemVersion
         let appVersion = Environment.Release.version
@@ -174,6 +180,10 @@ extension AppDelegate {
             switch result {
             case .success:
                 print("[EVO Notification] [Add Device] Registration complete")
+                
+                NotificationCenter.default.post(name: Notification.Name.NotificationRegister,
+                                                object: nil)
+                
                 
             case .failure(let error):
                 print("[EVO Notification] [Add Device] Error: \(error.localizedDescription)")

@@ -4,7 +4,7 @@ import KeychainAccess
 struct User: Codable {
     let id: String
     let tags: [Notifications.Tag]?
-    let notifications: Bool?
+    var notifications: Bool?
     let createdAt: Date?
     let updatedAt: Date?
     

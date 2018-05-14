@@ -131,4 +131,5 @@ struct Config {
 extension Notification.Name {
     static let URLScheme = NSNotification.Name("URLSchemeActivation")
     static let NotificationRegister = Notification.Name("FinishedRegisterNotification")
+    static let AppDidBecomeActive = Notification.Name("AppDidBecomeActive")
 }

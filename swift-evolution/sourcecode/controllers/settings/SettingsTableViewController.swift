@@ -2,7 +2,9 @@ import UIKit
 
 final class SettingsTableViewController: UITableViewController {
 
+    // MARK: - Private properties
     private var dataSource: [Section] = []
+    private weak var appDelegate: AppDelegate?
     
     private lazy var descriptionView: DescriptionView? = {
         guard
@@ -14,24 +16,23 @@ final class SettingsTableViewController: UITableViewController {
         return view
     }()
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionView?.delegate = self
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.appDelegate = appDelegate
+        }
+        
+        buildDataSource()
         registerNotifications()
         
         title = "Settings"
+        descriptionView?.delegate = self
         tableView.tableHeaderView = descriptionView
         
         tableView.registerNib(withClass: SwitchTableViewCell.self)
         tableView.registerNib(withClass: CustomSubtitleTableViewCell.self)
-        
-        buildDataSource()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,14 +49,16 @@ final class SettingsTableViewController: UITableViewController {
     deinit {
         removeNotifications()
     }
+    
+    // MARK: - Build data
     private func buildDataSource() {
         var footerDescription: String?
         
         if User.current == nil {
             footerDescription = "To enable notifications, you need to configure your iCloud account on iOS"
         }
-        else if let appDelegate = UIApplication.shared.delegate as? AppDelegate, appDelegate.authorizedNotification == false {
-            footerDescription = "You need to authorize Push Notifications. Switch on and you will be asked."
+        else if self.appDelegate?.authorizedNotification == false {
+            footerDescription = "You need to authorize Notifications for Evolution App before the switch be enabled. Settings > Notifications > Evolution > Allow Notifications."
         }
         
         let notifications = Section(section: .notifications,
@@ -98,7 +101,9 @@ extension SettingsTableViewController {
             switchCell.indexPath = indexPath
             switchCell.delegate = self
 
-            switchCell.activeSwitch.isEnabled = User.current == nil ? false : true
+            let enabled = User.current != nil && appDelegate?.authorizedNotification == true
+            switchCell.activeSwitch.isEnabled = enabled
+            switchCell.activeSwitch.isUserInteractionEnabled = enabled
             
             cell = switchCell
         }
@@ -138,7 +143,18 @@ extension SettingsTableViewController {
 // MARK: - UITableView Delegate
 extension SettingsTableViewController: SwitchTableViewCellProtocol {
     func `switch`(active: Bool, didChangeSelectionAt indexPath: IndexPath) {
-        // TODO: Register selection
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        guard appDelegate.authorizedNotification else {
+            appDelegate.registerForPushNotification()
+            updateNotification(loading: true)
+
+            return
+        }
+        
+        updateSettings(to: User.current)
     }
 }
 
@@ -150,7 +166,7 @@ extension SettingsTableViewController {
         }
 
         DispatchQueue.main.async {
-            self.notification(loading: true)
+            self.updateNotification(loading: true)
         }
         
         NotificationsService.getDetails(from: user) { [weak self] result in
@@ -161,16 +177,48 @@ extension SettingsTableViewController {
                 return
             }
             
-            self?.updateNotification(to: user)
+            self?.updateNotificationData(to: user)
             
             DispatchQueue.main.async {
-                self?.notification(loading: false)
+                self?.updateNotification(loading: false)
+                self?.updateNotification(useDataSource: true)
             }
         }
     }
     
-    private func registerNotifications() {
-        // TODO: Update user details request
+    private func updateSettings(to user: User?) {
+        guard var user = user else {
+            return
+        }
+        
+        guard let indexPath = indexPathForNotifications() else {
+            return
+        }
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.updateNotification(loading: true)
+        }
+        
+        user.notifications = cell.activeSwitch.isOn
+        NotificationsService.updateTags(to: user) { [weak self] result in
+            guard let user = result.value else {
+                if let error = result.error {
+                    print("Error: \(error)")
+                }
+                return
+            }
+            
+            self?.updateNotificationData(to: user)
+            
+            DispatchQueue.main.async {
+                self?.updateNotification(loading: false)
+                self?.updateNotification(useDataSource: true)
+            }
+        }
     }
 }
 
@@ -181,19 +229,27 @@ extension SettingsTableViewController {
                                                selector: #selector(didReceiveNotification(_:)),
                                                name: NSNotification.Name.NotificationRegister,
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveNotification(_:)),
+                                               name: NSNotification.Name.AppDidBecomeActive,
+                                               object: nil)
     }
     
     private func removeNotifications() {
         NotificationCenter.default.removeObserver(NSNotification.Name.NotificationRegister)
+        NotificationCenter.default.removeObserver(NSNotification.Name.AppDidBecomeActive)
     }
     
     @objc
     private func didReceiveNotification(_ notification: Notification) {
-        guard notification.name == NSNotification.Name.NotificationRegister else {
-            return
+        if notification.name == NSNotification.Name.NotificationRegister {
+            getDetails(from: User.current)
         }
-        
-        getDetails(from: User.current)
+        else if notification.name == NSNotification.Name.AppDidBecomeActive {
+            buildDataSource()
+            tableView.reloadData()
+        }
     }
 }
 
@@ -219,7 +275,7 @@ extension SettingsTableViewController {
         return indexPath
     }
     
-    private func notification(loading: Bool) {
+    private func updateNotification(loading: Bool? = nil) {
         guard let indexPath = indexPathForNotifications() else {
             return
         }
@@ -228,16 +284,31 @@ extension SettingsTableViewController {
             return
         }
         
-        cell.loadingActivity = loading
+        if let loading = loading {
+            DispatchQueue.main.async {
+                cell.loadingActivity = loading
+            }
+        }
         
-        if let item = dataSource[indexPath.section].items[indexPath.row] as? Subscription {
+    }
+    
+    private func updateNotification(useDataSource: Bool) {
+        guard let indexPath = indexPathForNotifications() else {
+            return
+        }
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell else {
+            return
+        }
+
+        if let item = dataSource[indexPath.section].items[indexPath.row] as? Subscription, useDataSource {
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
                 cell.activeSwitch.setOn(item.subscribed, animated: true)
             }
         }
     }
     
-    private func updateNotification(to user: User) {
+    private func updateNotificationData(to user: User) {
         guard let indexPath = indexPathForNotifications() else {
             return
         }
