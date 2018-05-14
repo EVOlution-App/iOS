@@ -18,6 +18,7 @@ final class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         descriptionView?.delegate = self
+        registerNotifications()
         
         title = "Settings"
         tableView.tableHeaderView = descriptionView
@@ -44,6 +45,9 @@ final class SettingsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        removeNotifications()
+    }
     private func buildDataSource() {
         var footerDescription: String?
         
@@ -167,6 +171,29 @@ extension SettingsTableViewController {
     
     private func registerNotifications() {
         // TODO: Update user details request
+    }
+}
+
+// MARK: - Notification Center
+extension SettingsTableViewController {
+    private func registerNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveNotification(_:)),
+                                               name: NSNotification.Name.NotificationRegister,
+                                               object: nil)
+    }
+    
+    private func removeNotifications() {
+        NotificationCenter.default.removeObserver(NSNotification.Name.NotificationRegister)
+    }
+    
+    @objc
+    private func didReceiveNotification(_ notification: Notification) {
+        guard notification.name == NSNotification.Name.NotificationRegister else {
+            return
+        }
+        
+        getDetails(from: User.current)
     }
 }
 
