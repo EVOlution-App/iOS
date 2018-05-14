@@ -128,6 +128,7 @@ struct Config {
     }
 }
 
-extension NSNotification.Name {
-    static let URLScheme = NSNotification.Name(rawValue: "URLSchemeActivation")
+extension Notification.Name {
+    static let URLScheme = NSNotification.Name("URLSchemeActivation")
+    static let NotificationRegister = Notification.Name("FinishedRegisterNotification")
 }
