@@ -201,11 +201,13 @@ extension SettingsTableViewController {
             return
         }
         
-        if let item = dataSource[indexPath.section].items[indexPath.row] as? Subscription {
-            cell.activeSwitch.isOn = item.subscribed
-        }
-
         cell.loadingActivity = loading
+        
+        if let item = dataSource[indexPath.section].items[indexPath.row] as? Subscription {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
+                cell.activeSwitch.setOn(item.subscribed, animated: true)
+            }
+        }
     }
     
     private func updateNotification(to user: User) {
