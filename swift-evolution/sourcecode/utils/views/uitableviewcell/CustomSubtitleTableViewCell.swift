@@ -47,10 +47,10 @@ final class CustomSubtitleTableViewCell: UITableViewCell {
 
         if let imageView = imageView {
             let currentSize = imageView.frame.size
-            let size = CGSize(width: currentSize.width - 4, height: currentSize.height - 4)
+            let size = CGSize(width: currentSize.width - 8, height: currentSize.height - 8)
             
             let currentOrigin = imageView.frame.origin
-            let origin = CGPoint(x: currentOrigin.x + 2, y: currentOrigin.y + 2)
+            let origin = CGPoint(x: currentOrigin.x, y: currentOrigin.y + 4)
             
             let frame = CGRect(origin: origin, size: size)
             imageView.frame = frame

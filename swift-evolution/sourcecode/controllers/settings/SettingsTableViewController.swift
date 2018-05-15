@@ -66,7 +66,13 @@ final class SettingsTableViewController: UITableViewController {
                                         Subscription(text: "Proposal creation/update", type: .undefined, value: "", subscribed: false)],
                                     footer: footerDescription,
                                     grouped: false)
-        
+
+        let author = Section(section: .author,
+                             items: [
+                                Contributor(text: "Thiago Holanda", type: .github, value: "unnamedd")],
+                             footer: nil,
+                             grouped: false)
+
         let about = Section(section: .about,
                             items: [
                                 Item(text: "See all details about this app", type: .undefined, value: "")],
@@ -74,7 +80,7 @@ final class SettingsTableViewController: UITableViewController {
                             grouped: false)
         
         
-        dataSource = [notifications, about]
+        dataSource = [notifications, author, about]
     }
 }
 
@@ -112,6 +118,11 @@ extension SettingsTableViewController {
             cell.textLabel?.text        = "Contributors, licenses and more"
             cell.detailTextLabel?.text  = item.text
         }
+        else if section.section == .author, let contributor = section.items.first as? Contributor {
+            let contributorCell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
+            contributorCell.contributor = contributor
+            cell = contributorCell
+        }
         
         return cell
     }
@@ -119,6 +130,11 @@ extension SettingsTableViewController {
 
 // MARK: - UITableView Delegate
 extension SettingsTableViewController {
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.setNeedsDisplay()
+    }
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = dataSource[section]
         
@@ -130,12 +146,24 @@ extension SettingsTableViewController {
         
         return section.footer
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = dataSource[indexPath.section]
+        if section.section == .author {
+            return 60
+        }
+        return UITableViewAutomaticDimension
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let about = dataSource[indexPath.section]
+        let section = dataSource[indexPath.section]
         
-        if about.section == .about {
+        if section.section == .about {
             performSegue(withIdentifier: "AboutStoryboardSegue", sender: nil)
+        }
+        else if section.section == .author, let item = section.items.first {
+            let alertController = UIAlertController.presentAlert(to: item)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }
