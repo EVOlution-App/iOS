@@ -9,7 +9,8 @@ enum SectionType: String {
     
     // Settings
     case notifications = "Notifications"
-    case about = "About"
+    case about = "Open Source"
+    case author = "Author"
 }
 
 // MARK: -

@@ -467,10 +467,10 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             </objects>
             <point key="canvasLocation" x="-1565" y="973"/>
         </scene>
-        <!--About-->
+        <!--Open Source-->
         <scene sceneID="tuR-kd-nQG">
             <objects>
-                <tableViewController storyboardIdentifier="AboutStoryboardID" title="About" id="fHh-kc-l7X" customClass="AboutViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AboutStoryboardID" title="Open Source" id="fHh-kc-l7X" customClass="AboutViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xZz-Rr-h0Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

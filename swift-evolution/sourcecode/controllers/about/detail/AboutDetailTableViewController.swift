@@ -92,6 +92,10 @@ extension AboutDetailTableViewController {
             cell.contentView.alpha = 1
         })
     }
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.setNeedsDisplay()
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let about = about else {
