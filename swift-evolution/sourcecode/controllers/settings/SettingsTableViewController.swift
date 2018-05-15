@@ -69,7 +69,7 @@ final class SettingsTableViewController: UITableViewController {
 
         let author = Section(section: .author,
                              items: [
-                                Item(text: "Thiago Holanda", type: .github, value: "unnamedd")],
+                                Contributor(text: "Thiago Holanda", type: .github, value: "unnamedd")],
                              footer: nil,
                              grouped: false)
 
@@ -118,9 +118,9 @@ extension SettingsTableViewController {
             cell.textLabel?.text        = "Contributors, licenses and more"
             cell.detailTextLabel?.text  = item.text
         }
-        else if section.section == .author {
+        else if section.section == .author, let contributor = section.items.first as? Contributor {
             let contributorCell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
-            contributorCell.contributor = Contributor(text: "Thiago Holanda", type: .github, value: "unnamedd")
+            contributorCell.contributor = contributor
             cell = contributorCell
         }
         
