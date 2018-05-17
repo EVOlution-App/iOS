@@ -208,13 +208,54 @@ extension AppDelegate {
 // MARK: - User Notification Delegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("[Remote Notification][Received][Will Present] iOS 10: \(notification.request.content.userInfo)")
+        print("[Remote Notification][Will Present] iOS 10: \(notification.request.content.userInfo)")
         completionHandler([.sound, .alert, .badge])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
-        print("[Remote Notification][Received][Received] iOS 10: \(response.notification.request.content.userInfo)")
+        trackNotification(with: response)
         completionHandler()
+    }
+}
+
+// MARK: - Notifications
+extension AppDelegate {
+    private func trackNotification(with response: UNNotificationResponse) {
+        guard let custom = response.customContent(), let currentUser = User.current else {
+            return
+        }
+        
+        if let url = try? response.deeplink() {
+            Routes.shared.open(url)
+        }
+        
+        let track = Notifications.Track(notification: custom.notification, user: currentUser.id, source: "ios")
+        NotificationsService.track(track) { [track = custom] result in
+            guard let response = result.value else {
+                if let error = result.error {
+                    print("Error: \(error)")
+                    Crashlytics.sharedInstance().recordError(error)
+                }
+                return
+            }
+            
+            let reportAttributes: [String: Any] = [
+                "notification": track.notification,
+                "type": track.type.rawValue,
+                "value": track.value,
+                "statusCode": response.statusCode
+            ]
+            
+            guard response.statusCode == 201 else {
+                if let reason = response.reason {
+                    print("[AppDelegate][Tracking Notification] Error: \(reason)")
+                    Crashlytics.sharedInstance().recordError(reason, withAdditionalUserInfo: reportAttributes)
+                }
+                return
+            }
+            
+            Answers.logCustomEvent(withName: "Push Notification", customAttributes: reportAttributes)
+        }
     }
 }
 
