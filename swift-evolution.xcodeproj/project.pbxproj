@@ -24,6 +24,8 @@
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
 		912B15052085534B008EC81F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B15042085534B008EC81F /* Tag.swift */; };
 		912B1508208553B3008EC81F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B1507208553B3008EC81F /* Notifications.swift */; };
+		913520EF20AA50D900EC04E0 /* CustomContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913520EE20AA50D900EC04E0 /* CustomContent.swift */; };
+		913520F220AA528900EC04E0 /* UNNotificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913520F120AA528900EC04E0 /* UNNotificationResponse.swift */; };
 		91356A38203E656C00E5C625 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91356A37203E656C00E5C625 /* URL.swift */; };
 		913AE7001E9725BA0097BCA5 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */; };
 		913AE7031E9739F50097BCA5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913AE7021E9739F50097BCA5 /* ProfileView.swift */; };
@@ -178,6 +180,8 @@
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		912B15042085534B008EC81F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		912B1507208553B3008EC81F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		913520EE20AA50D900EC04E0 /* CustomContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContent.swift; sourceTree = "<group>"; };
+		913520F120AA528900EC04E0 /* UNNotificationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNNotificationResponse.swift; sourceTree = "<group>"; };
 		91356A37203E656C00E5C625 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		913AE6FF1E9725BA0097BCA5 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		913AE7021E9739F50097BCA5 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -551,6 +555,7 @@
 				91356A37203E656C00E5C625 /* URL.swift */,
 				9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */,
 				917E4C3020A63C1600846C87 /* UIAlertController.swift */,
+				913520F120AA528900EC04E0 /* UNNotificationResponse.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -685,6 +690,7 @@
 				919A1D3C2076D7A50042A13B /* Track.swift */,
 				919A1D3D2076D7A50042A13B /* Device.swift */,
 				912B15042085534B008EC81F /* Tag.swift */,
+				913520EE20AA50D900EC04E0 /* CustomContent.swift */,
 			);
 			path = notifications;
 			sourceTree = "<group>";
@@ -1026,6 +1032,7 @@
 				915A883620A51DB900184F6E /* About+Extension.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
 				917E4C3120A63C1600846C87 /* UIAlertController.swift in Sources */,
+				913520F220AA528900EC04E0 /* UNNotificationResponse.swift in Sources */,
 				914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */,
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
@@ -1057,6 +1064,7 @@
 				915265671E677A4F00C2AFDA /* Status.swift in Sources */,
 				913AE7051E97418A0097BCA5 /* UIImageView.swift in Sources */,
 				913AE7001E9725BA0097BCA5 /* UINavigationController.swift in Sources */,
+				913520EF20AA50D900EC04E0 /* CustomContent.swift in Sources */,
 				9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */,
 				913B711A203E2175007FE04B /* Implementation.swift in Sources */,
 				402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */,

@@ -97,7 +97,7 @@ struct NotificationsService {
     
     // MARK: - Tracking
     @discardableResult
-    static func track(_ track: Notifications.Track, completion: @escaping TrackingClosure) -> URLSessionDataTask? {
+    static func track(_ track: Notifications.Track, completion: TrackingClosure? = nil) -> URLSessionDataTask? {
         guard let params = track.asDictionary() else {
             return nil
         }
@@ -110,7 +110,7 @@ struct NotificationsService {
         
         let task = Service.dispatch(request) { result in
             let value = result.flatMap { try JSONDecoder().decode(Response.self, from: $0) }
-            completion(value)
+            completion?(value)
         }
         
         return task
