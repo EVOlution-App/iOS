@@ -186,7 +186,10 @@ class Service {
             }
         }
         
-        let session = URLSession(configuration: .default)
+        let config = URLSessionConfiguration.default
+        config.protocolClasses = [LoadingMonitor.self]
+        
+        let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { data, _, error in
             if let error = error {
                 completion(.failure(error))
