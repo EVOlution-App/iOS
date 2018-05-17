@@ -67,9 +67,10 @@ You need to create an issue and associate a pull request to this issue. Your pul
 After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
 
 
-## Authors
+## Author
 
 - Thiago Holanda - [GitHub](https://github.com/unnamedd) / [Twitter](https://twitter.com/tholanda)
+
 
 ## Contributors 
 
@@ -86,6 +87,12 @@ After you send your pull request, other developers will make a code review befor
 - Rodrigo Reis - [Github](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
 - Xaver Lohmüller - [Github](https://github.com/xaverlohmueller) / [Twitter](https://twitter.com/binaryXML)
 
+
 ## License
 
 **Swift Evolution** is available under the MIT license. See the LICENSE file for more info. 
+
+
+
+---
+<a href="https://www.buymeacoffee.com/tholanda"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" target="_blank"></a>
