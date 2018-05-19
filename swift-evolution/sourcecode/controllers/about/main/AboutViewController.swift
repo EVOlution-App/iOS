@@ -35,16 +35,34 @@ final class AboutViewController: UITableViewController {
         
     }
 
-    func sectionsData() -> [Section] {
-        var about: [Section] = []
-        
-        // Main Developer
-        let thiago = Contributor(text: "Thiago Holanda", type: .github, value: "unnamedd")
-        let mainDeveloper = Section(section: .mainDeveloper, items: [thiago], footer: nil, grouped: false)
-        about.append(mainDeveloper)
-
-        // Contributors
-        let contributorsMembers = [
+    private func sectionsData() -> [Section] {
+        return [
+            mainDeveloper(),
+            contributors(),
+            licenses(),
+            app(),
+            swiftEvolution(),
+            thanks()
+        ]
+    }
+    
+    private func mainDeveloper() -> Section {
+        return Section(
+            section: .mainDeveloper,
+            items: [
+                Contributor(
+                    text: "Thiago Holanda",
+                    type: .github,
+                    value: "unnamedd"
+                )
+            ],
+            footer: nil,
+            grouped: false
+        )
+    }
+    
+    private func contributors() -> Section {
+        let members = [
             Contributor(text: "Bruno Bilescky", type: .github, value: "brunogb"),
             Contributor(text: "Bruno Guidolim", type: .github, value: "bguidolim"),
             Contributor(text: "Bruno Hecktheuer", type: .github, value: "bbheck"),
@@ -61,12 +79,17 @@ final class AboutViewController: UITableViewController {
             Contributor(text: "Taylor Franklin", type: .github, value: "tfrank64"),
             Contributor(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller")
         ]
-        
-        let contributors = Section(section: .contributors, items: contributorsMembers, footer: nil, grouped: true)
-        about.append(contributors)
-        
-        // Licenses
-        let licensesItems = [
+
+        return Section(
+            section: .contributors,
+            items: members,
+            footer: nil,
+            grouped: true
+        )
+    }
+    
+    private func licenses() -> Section {
+        let items = [
             License(text: "Down", type: .github, value: "iwasrobbed/Down"),
             License(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift"),
             License(text: "SVProgressHUD", type: .github, value: "SVProgressHUD/SVProgressHUD"),
@@ -75,39 +98,62 @@ final class AboutViewController: UITableViewController {
             License(text: "Kitura Web Framework", type: .url, value: "http://www.kitura.io/")
         ]
         
-        let licenses = Section(section: .licenses, items: licensesItems, footer: nil, grouped: true)
-        about.append(licenses)
+        return Section(
+            section: .licenses,
+            items: items,
+            footer: nil,
+            grouped: true
+        )
+    }
+    
+    private func app() -> Section {
+        let items = [
+            Item(text: "iOS App", type: .github, value: "evolution-app/ios"),
+            Item(text: "Backend", type: .github, value: "evolution-app/backend"),
+            Item(text: "Twitter", type: .twitter, value: "evoapp_io"),
+            Item(text: "Feedback", type: .email, value: "feedback@evoapp.io")
+        ]
         
-        // Evolution App
-        let app         = Item(text: "iOS App", type: .github, value: "evolution-app/ios")
-        let backend     = Item(text: "Backend", type: .github, value: "evolution-app/backend")
-        let twitterApp  = Item(text: "Twitter", type: .twitter, value: "evoapp_io")
-        let feedbackApp = Item(text: "Feedback", type: .email, value: "feedback@evoapp.io")
+        return Section(
+            section: .evolution,
+            items: items,
+            footer: nil,
+            grouped: false
+        )
+    }
+    
+    private func swiftEvolution() -> Section {
+        let items = [
+            Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang"),
+            Item(text: "Site", type: .url, value: "https://apple.github.io/swift-evolution"),
+            Item(text: "Repository", type: .github, value: "apple/swift-evolution"),
+            Item(text: "Forum", type: .url, value: "https://forums.swift.org/c/evolution")
+        ]
 
-        let contacts = Section(section: .evolution, items: [app, backend, twitterApp, feedbackApp], footer: nil, grouped: false)
-        about.append(contacts)
-        
-        // Swift Evolution
-        let language    = Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang")
-        let web         = Item(text: "Site", type: .url, value: "https://apple.github.io/swift-evolution")
-        let proposals   = Item(text: "Repository", type: .github, value: "apple/swift-evolution")
-        let forum       = Item(text: "Forum", type: .url, value: "https://forums.swift.org/c/evolution")
-        
-        let more = Section(section: .swiftEvolution, items: [language, web, proposals, forum], footer: nil, grouped: false)
-        about.append(more)
-        
-        // Thanks To
-        let chris   = Item(text: "Chris Bailey", type: .twitter, value: "Chris__Bailey")
-        let daniel  = Item(text: "Daniel Dunbar", type: .twitter, value: "daniel_dunbar")
-        let danilo  = Item(text: "Danilo Altheman", type: .twitter, value: "daltheman")
-        let john    = Item(text: "John Calistro", type: .twitter, value: "johncalistro")
-        let lisa    = Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
+        return Section(
+            section: .swiftEvolution,
+            items: items,
+            footer: nil,
+            grouped: false
+        )
+    }
+    
+    private func thanks() -> Section {
+        let items = [
+            Item(text: "Chris Bailey", type: .twitter, value: "Chris__Bailey"),
+            Item(text: "Daniel Dunbar", type: .twitter, value: "daniel_dunbar"),
+            Item(text: "Danilo Altheman", type: .twitter, value: "daltheman"),
+            Item(text: "John Calistro", type: .twitter, value: "johncalistro"),
+            Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
+        ]
         
         let copyright = "Copyright (c) 2017-2018 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
-        let thanks = Section(section: .thanks, items: [chris, daniel, danilo, john, lisa], footer: copyright, grouped: false)
-        about.append(thanks)
-        
-        return about
+        return Section(
+            section: .thanks,
+            items: items,
+            footer: copyright,
+            grouped: false
+        )
     }
 }
 
@@ -154,6 +200,8 @@ extension AboutViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
                                                  for: indexPath)
         
+        cell.selectionStyle = .none
+        
         if about.grouped {
             let contributors = about.items.shuffle()
             cell.textLabel?.text = contributors.text
@@ -195,7 +243,7 @@ extension AboutViewController {
 
 // MARK: - DescriptionView Delegate
 extension AboutViewController: DescriptionViewProtocol {
-    func closeAction() {
+    internal func closeAction() {
         dismiss(animated: true)
     }
 }

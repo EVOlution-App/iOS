@@ -501,7 +501,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupedTableViewCell" textLabel="jMX-Jg-NXH" style="IBUITableViewCellStyleDefault" id="WSL-IO-MJ4">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupedTableViewCell" textLabel="jMX-Jg-NXH" style="IBUITableViewCellStyleDefault" id="WSL-IO-MJ4">
                                 <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WSL-IO-MJ4" id="qIF-nn-rjN">
