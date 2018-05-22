@@ -96,27 +96,24 @@ extension String {
      - returns: list of Int found
      */
     func regex(_ pattern: String) -> [Int] {
-        
-        if let expression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
-            let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.count))
-
-            let contents: [Int] = results.compactMap {_ in
-                Int(String(self.unicodeScalars.filter(CharacterSet.decimalDigits.contains)))
-            }
-            
-            return contents
+        guard let expression = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
+            return []
         }
         
-        return []
+        let results = expression.matches(in: self, options: .reportCompletion, range: NSRange(location: 0, length: self.count))
+        let contents: [Int] = results.compactMap { _ in
+            Int(String(unicodeScalars.filter(CharacterSet.decimalDigits.contains)))
+        }
+        
+        return contents
     }
 
     /**
      Return first and last words from string
      */
     var firstLast: String {
-        let list = self.components(separatedBy: .whitespaces)
-        
         var name = ""
+        let list = self.components(separatedBy: .whitespaces)
         
         if let first = list.first, let last = list.last, list.count > 1 {
             name = "\(first) \(last)"
