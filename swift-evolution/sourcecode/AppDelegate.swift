@@ -5,7 +5,7 @@ import Crashlytics
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: Private properties
     private var rotate: Bool = true
@@ -13,40 +13,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Open properties
     var window: UIWindow?
     open var people: [String: Person] = [:]
-    open var host: Host?
-    open var value: String?
     open var authorizedNotification: Bool = false
     
-    // MARK: - AppDelegate Life Cycle
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Register Fabric
-        Fabric.with([Crashlytics.self])
+    // MARK: - Life Cycle
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+        _ = Navigation.shared
+        Routes.shared.open(URL(string: "evo://proposal/SE-0200")!)
+        application.applicationIconBadgeNumber = 0
         
-        // Register User
+        return true
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Crashlytics.self])
+        registerSchemes()
+        registerNetworkingMonitor()
+        registerSizeOfCache()
         registerUser()
         
-        // Network monitor
-        registerNetworkingMonitor()
-
+        // UI
         configSplitViewController()
         navigationBarAppearance()
-        
-        // Register routes to use on URL Scheme
-        registerSchemes()
-
         disableRotationIfNeeded()
-        
-        URLCache.shared = {
-            let memoryCapacity = 50 * 1024 * 1024
-            let diskCapacity = 50 * 1024 * 1024
-            return URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: nil)
-        }()
         
         return true
     }
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        
         guard self.rotate else {
             return .portrait
         }
@@ -75,8 +68,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Appearance
 extension AppDelegate {
     private func navigationBarAppearance() {
-        let font = UIFont(name: "HelveticaNeue", size: 25)!
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: font, NSAttributedStringKey.foregroundColor: UIColor.Proposal.darkGray]
+        guard let font = UIFont(name: "HelveticaNeue", size: 25) else {
+            return
+        }
+        
+        typealias Key = NSAttributedStringKey
+        var attributes: [Key: Any]      = [:]
+        attributes[.font]               = font
+        attributes[.foregroundColor]    = UIColor.Proposal.darkGray
+        
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
 }
 
@@ -117,14 +118,21 @@ extension AppDelegate {
     }
     
     private func registerSchemes() {
-        let routerHandler: CallbackHandler = { [weak self] host, value in
-            guard let h = host, let host = Host(h), let value = value else {
+        let routerHandler: Routes.CallbackHandler = { host, value in
+            guard let host = Host(host), let value = value else {
                 return
             }
             
-            self?.host = host
-            self?.value = value
-            NotificationCenter.default.post(name: NSNotification.Name.URLScheme, object: nil, userInfo: ["Host": host, "Value": value])
+            let navigation = Navigation.shared
+            navigation.host = host
+            navigation.value = value
+
+            if UIApplication.shared.applicationState != .inactive || UIApplication.shared.applicationState != .background {
+                NotificationCenter.default.post(
+                    name: NSNotification.Name.URLScheme,
+                    object: nil
+                )
+            }
         }
         
         // Register only URL hosts to Routes. URL example: evo://proposal/SE-0025
@@ -189,6 +197,17 @@ extension AppDelegate {
                 print("[EVO Notification] [Add Device] Error: \(error.localizedDescription)")
             }
         }
+    }
+    
+    private func registerSizeOfCache() {
+        URLCache.shared = {
+            let memoryCapacity = 50 * 1024 * 1024
+            let diskCapacity = 50 * 1024 * 1024
+            
+            return URLCache(memoryCapacity: memoryCapacity,
+                            diskCapacity: diskCapacity,
+                            diskPath: nil)
+        }()
     }
 }
 

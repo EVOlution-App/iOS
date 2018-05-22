@@ -1,30 +1,7 @@
 import Foundation
 
-public enum Host {
-    case proposal
-    case profile
-    case implementation
-    
-    init?(_ value: String) {
-        switch value {
-        case "proposal":
-            self = .proposal
-            
-        case "profile":
-            self = .profile
-            
-        case "implementation":
-            self = .implementation
-            
-        default:
-            return nil
-        }
-    }
-}
-
-public typealias CallbackHandler = (_ url: String?, _ value: String?) -> Swift.Void
-
 final class Routes {
+    public typealias CallbackHandler = (_ url: String?, _ value: String?) -> Swift.Void
     
     static let shared = Routes()
     private var routes = [String: CallbackHandler]()
