@@ -92,8 +92,12 @@ class ProposalDetailViewController: BaseViewController {
             // Hide No Connection View
             self.showNoConnection = false
             
-            
-            EvolutionService.detail(for: proposal) { [unowned self] result in
+            EvolutionService.detail(for: proposal) { [weak self] result in
+                guard let strongSelf = self else {
+                    Crashlytics.sharedInstance().recordError("[Get Proposal Detail] self is nil")
+                    return
+                }
+                
                 guard let data = result.value else {
                     if let error = result.error {
                         Crashlytics.sharedInstance().recordError(error)
@@ -103,13 +107,13 @@ class ProposalDetailViewController: BaseViewController {
                 
                 Answers.logContentView(withName: "Proposal Detail",
                                        contentType: "Load Detail from server",
-                                       contentId: self.proposal?.link,
+                                       contentId: strongSelf.proposal?.link,
                                        customAttributes: nil)
                 
-                self.proposalMarkdown = data
+                strongSelf.proposalMarkdown = data
                 DispatchQueue.main.async {
-                    try? self.downView?.update(markdownString: data)
-                    self.showHideNavigationButtons()
+                    try? strongSelf.downView?.update(markdownString: data)
+                    strongSelf.showHideNavigationButtons()
                 }
 
             }

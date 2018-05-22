@@ -51,23 +51,23 @@ class ListProposalsViewController: BaseViewController {
         self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
         // Register Cell to TableView
-        self.tableView.registerNib(withClass: ProposalTableViewCell.self)
-        self.tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
+        tableView.registerNib(withClass: ProposalTableViewCell.self)
+        tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
         
-        self.tableView.estimatedRowHeight = 164
-        self.tableView.estimatedSectionHeaderHeight = 44.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 164
+        tableView.estimatedSectionHeaderHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Filter Header View settings
-        self.filterHeaderView.statusFilterView.delegate = self
-        self.filterHeaderView.languageVersionFilterView.delegate = self
-        self.filterHeaderView.searchBar.delegate = self
-        self.filterHeaderView.clipsToBounds = true
+        filterHeaderView.statusFilterView.delegate = self
+        filterHeaderView.languageVersionFilterView.delegate = self
+        filterHeaderView.searchBar.delegate = self
+        filterHeaderView.clipsToBounds = true
         
-        self.filterHeaderView.filterButton.addTarget(self, action: #selector(filterButtonAction(_:)), for: .touchUpInside)
-        self.filterHeaderView.filteredByButton.addTarget(self, action: #selector(filteredByButtonAction(_:)), for: .touchUpInside)
+        filterHeaderView.filterButton.addTarget(self, action: #selector(filterButtonAction(_:)), for: .touchUpInside)
+        filterHeaderView.filteredByButton.addTarget(self, action: #selector(filteredByButtonAction(_:)), for: .touchUpInside)
         
-        self.filterHeaderView.filterLevel = .without
+        filterHeaderView.filterLevel = .without
         
         Answers.logContentView(withName: "Proposal List",
                                contentType: "Load View",
@@ -75,21 +75,21 @@ class ListProposalsViewController: BaseViewController {
                                customAttributes: nil)
         
         // Notifications
-        self.registerNotifications()
+        registerNotifications()
         
         // Request the Proposes
-        self.getProposalList()
+        getProposalList()
         
         // Configure reachability closures
-        self.reachability?.whenReachable = { [unowned self] reachability in
-            if self.dataSource.count == 0 {
-                self.getProposalList()
+        self.reachability?.whenReachable = { [weak self] reachability in
+            if self?.dataSource.count == 0 {
+                self?.getProposalList()
             }
         }
         
-        self.reachability?.whenUnreachable = { [unowned self] reachability in
-            if self.dataSource.count == 0 {
-                self.showNoConnection = true
+        self.reachability?.whenUnreachable = { [weak self] reachability in
+            if self?.dataSource.count == 0 {
+                self?.showNoConnection = true
             }
         }
         
@@ -134,7 +134,7 @@ class ListProposalsViewController: BaseViewController {
     override func retryButtonAction(_ sender: UIButton) {
         super.retryButtonAction(sender)
 
-        self.getProposalList()
+        getProposalList()
     }
     
     // MARK: - Notifications
@@ -150,8 +150,11 @@ class ListProposalsViewController: BaseViewController {
     }
     
     @objc func didReceiveNotification(_ notification: Notification) {
-        guard let info = notification.userInfo else { return }//,
-        self.navigateTo(info["Host"], info["Value"])
+        guard notification.name == Notification.Name.URLScheme else {
+            return
+        }
+
+        navigate(to: Navigation.shared)
     }
     
     // MARK: - Navigation
@@ -160,8 +163,8 @@ class ListProposalsViewController: BaseViewController {
             let destination = segue.destination as? ProposalDetailViewController {
             
             var item: Proposal? = nil
-            if sender == nil, let indexPath = self.tableView.indexPathForSelectedRow {
-                item = self.filteredDataSource[indexPath.row]
+            if sender == nil, let indexPath = tableView.indexPathForSelectedRow {
+                item = filteredDataSource[indexPath.row]
             }
             else if sender != nil, sender is Proposal {
                 item = sender as? Proposal
@@ -179,31 +182,37 @@ class ListProposalsViewController: BaseViewController {
         }
     }
     
-    func navigateTo(_ host: Any?, _ value: Any?) {
+    func navigate(to navigation: Navigation?) {
+        guard let navigation = navigation else {
+            return
+        }
 
+        guard
+            let host = navigation.host,
+            let value = navigation.value else {
+            return
+        }
+        
         let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
 
-        guard host is Host, let host = host as? Host,
-            value is String, let value = value as? String else {
-                return
-        }
-        
         if host == .proposal {
             let id: Int = value.regex(Config.Common.Regex.proposalID)
-            if let proposal = self.dataSource.get(by: id) {
-                Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
+            
+            guard let proposal = dataSource.get(by: id) else {
+                return
             }
+
+            Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
+            Navigation.shared.clear()
         }
         else if host == .profile {
-            if let appDelegate = self.appDelegate,
-                let person = appDelegate.people.get(username: value) {
-                Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+            guard let appDelegate = self.appDelegate, let person = appDelegate.people.get(username: value) else {
+                return
             }
+
+            Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+            Navigation.shared.clear()
         }
-        
-        // Invalidate host and value after use
-        self.appDelegate?.host = nil
-        self.appDelegate?.value = nil
     }
     
     // MARK: - Requests
@@ -212,7 +221,11 @@ class ListProposalsViewController: BaseViewController {
             // Hide No Connection View
             self.showNoConnection = false
 
-            EvolutionService.listProposals { [unowned self] result in
+            EvolutionService.listProposals { [weak self] result in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 guard let proposals = result.value else {
                     if let error = result.error {
                         print("Error: \(error)")
@@ -226,21 +239,21 @@ class ListProposalsViewController: BaseViewController {
                                        contentId: nil,
                                        customAttributes: nil)
                 
-                self.dataSource = proposals.filter(by: self.statusOrder)
-                self.filteredDataSource = self.dataSource
-                
-                self.filterHeaderView?.statusSource = self.statusOrder
-                
-                self.buildPeople()
+                strongSelf.dataSource                       = proposals.filter(by: strongSelf.statusOrder)
+                strongSelf.filteredDataSource               = strongSelf.dataSource
+                strongSelf.filterHeaderView?.statusSource   = strongSelf.statusOrder
+                strongSelf.buildPeople()
                 
                 // Language Versions source
-                self.filterHeaderView?.languageVersionSource = proposals.compactMap({ $0.status.version }).removeDuplicates().sorted()
+                strongSelf.filterHeaderView?.languageVersionSource = proposals.compactMap({ $0.status.version }).removeDuplicates().sorted()
                 
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    strongSelf.tableView.reloadData()
                     
                     // In case of user have come
-                    self.navigateTo(self.appDelegate?.host, self.appDelegate?.value)
+                    if !Navigation.shared.isClear {
+                        strongSelf.navigate(to: Navigation.shared)
+                    }
                 }
             }
         }
@@ -357,7 +370,7 @@ class ListProposalsViewController: BaseViewController {
     func buildPeople() {
         var authors: [String: Person] = [:]
         
-        self.dataSource.forEach { proposal in
+        dataSource.forEach { proposal in
             proposal.authors?.forEach { person in
                 guard let name = person.name, name != "" else {
                     return
@@ -373,15 +386,15 @@ class ListProposalsViewController: BaseViewController {
                     return
                 }
                 
-                user.id = UUID().uuidString
-                user.asAuthor = self.dataSource.filter(author: user)
-                user.asManager = self.dataSource.filter(manager: user)
+                user.id         = UUID().uuidString
+                user.asAuthor   = dataSource.filter(author: user)
+                user.asManager  = dataSource.filter(manager: user)
                 
                 authors[name] = user
             }
         }
 
-        self.appDelegate?.people = authors
+        appDelegate?.people = authors
     }
 
     // MARK: - IBActions
