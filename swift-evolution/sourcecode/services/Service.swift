@@ -154,7 +154,7 @@ class Service {
     // MARK: - Base Request
     
     @discardableResult
-    static func dispatch(_ settings: RequestProtocol, completion: @escaping (ServiceResult<Data>) -> Void) -> URLSessionDataTask? {
+    static func dispatch(_ settings: RequestProtocol, useLoadingMonitor: Bool = true, completion: @escaping (ServiceResult<Data>) -> Void) -> URLSessionDataTask? {
         guard let baseURL = URL(string: settings.url) else {
             completion(.failure(ServiceError.invalidURL(settings.url)))
             return nil
@@ -187,7 +187,10 @@ class Service {
         }
         
         let config = URLSessionConfiguration.default
-        config.protocolClasses = [LoadingMonitor.self]
+        
+        if useLoadingMonitor {
+            config.protocolClasses = [LoadingMonitor.self]
+        }
         
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request) { data, _, error in

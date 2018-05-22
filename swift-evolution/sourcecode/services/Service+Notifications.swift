@@ -41,7 +41,7 @@ struct NotificationsService {
                                       params: nil,
                                       headers: NotificationsService.authorizationHeader)
         
-        let task = Service.dispatch(request) { result in
+        let task = Service.dispatch(request, useLoadingMonitor: false) { result in
             let value: ServiceResult<User> = result.flatMap {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(Config.Date.Formatter.custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
@@ -82,7 +82,7 @@ struct NotificationsService {
                                       params: params,
                                       headers: NotificationsService.authorizationHeader)
         
-        let task = Service.dispatch(request) { result in
+        let task = Service.dispatch(request, useLoadingMonitor: false) { result in
             let value: ServiceResult<User> = result.flatMap {
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = .formatted(Config.Date.Formatter.custom("yyyy-MM-dd'T'HH:mm:ss.SSSZ"))
