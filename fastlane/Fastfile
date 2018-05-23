@@ -168,7 +168,7 @@ platform :ios do
     # Download certificates and provisionings
     match(type: "appstore") # more information: https://codesigning.guide
     
-    # check if project is okay to AppStore
+    # check if the project is okay to AppStore
     precheck
     
      # will increment the build version
@@ -180,7 +180,7 @@ platform :ios do
         include_symbols: true)
 
     # Commit all changes and push it to remote repo
-    commit_changes
+    # commit_changes
 
     # Send release to TestFlight
     pilot
