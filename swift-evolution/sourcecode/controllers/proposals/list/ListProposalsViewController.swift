@@ -172,6 +172,10 @@ class ListProposalsViewController: BaseViewController {
             
             if let proposal = item {
                 destination.proposal = proposal
+                
+                if !Navigation.shared.isClear {
+                    Navigation.shared.clear()
+                }
             }
         }
         else if segue.destination is ProfileViewController,
@@ -183,7 +187,7 @@ class ListProposalsViewController: BaseViewController {
     }
     
     func navigate(to navigation: Navigation?) {
-        guard let navigation = navigation else {
+        guard let navigation = navigation, !navigation.isClear else {
             return
         }
 
@@ -203,7 +207,6 @@ class ListProposalsViewController: BaseViewController {
             }
 
             Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
-            Navigation.shared.clear()
         }
         else if host == .profile {
             guard let appDelegate = self.appDelegate, let person = appDelegate.people.get(username: value) else {
@@ -211,7 +214,6 @@ class ListProposalsViewController: BaseViewController {
             }
 
             Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
-            Navigation.shared.clear()
         }
     }
     

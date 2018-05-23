@@ -18,7 +18,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Life Cycle
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
         _ = Navigation.shared
-        Routes.shared.open(URL(string: "evo://proposal/SE-0200")!)
         application.applicationIconBadgeNumber = 0
         
         return true
