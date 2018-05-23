@@ -138,7 +138,7 @@ platform :ios do
     end
   end
 
-  private_lane :commit_changes do
+  lane :commit_changes do
     get_build_number
     get_version_number
 
