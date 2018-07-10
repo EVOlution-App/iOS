@@ -1,7 +1,10 @@
-# Swift Evolution - iOS
-[![Build Status](https://www.bitrise.io/app/e1327785b8df7e9e.svg?token=S2v1wACgSV9zm4F7KG7LBQ&branch=development)](https://www.bitrise.io/app/e1327785b8df7e9e)
+# EVOlution - iOS
 
-The main goal of this project is to recreate as an iOS app, the web page created to [Swift Evolution](https://apple.github.io/swift-evolution).
+The goal of this project is for the version 1.0 was: bring to iOS the experience provided by Swift Evolution [website](https://apple.github.io/swift-evolution).
+
+Now we are shifting from the basic idea to make it more social. 
+
+On our roadmap (you can read at our [GitHub Projects](https://github.com/Evolution-App/iOS/projects/2)), we have some notes for the future, which will cover stuff like: Follow Proposals starring or watching them, Follow Authors and/or Review Managers, List of most popular proposals, featured proposals and other ideas coming from the community.
 
 ![](images/screenshots_base.png)
 
@@ -90,7 +93,7 @@ After you send your pull request, other developers will make a code review befor
 
 ## License
 
-**Swift Evolution** is available under the MIT license. See the LICENSE file for more info. 
+**EVOlution App** is available under the MIT license. See the LICENSE file for more info. 
 
 
 
