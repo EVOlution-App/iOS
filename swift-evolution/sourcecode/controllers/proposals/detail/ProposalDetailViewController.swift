@@ -4,64 +4,45 @@ import Down
 import Crashlytics
 import SafariServices
 
-class ProposalDetailViewController: BaseViewController {
+final class ProposalDetailViewController: BaseViewController {
     
     // MARK: - IBOutlet connections
     @IBOutlet private weak var detailView: UIView!
     @IBOutlet private var noSelectedProposalLabel: UILabel?
 
     // MARK: - Private properties
+    private weak var appDelegate: AppDelegate?
     private var proposalMarkdown: String?
-    internal private(set) var downView: DownView?
-    fileprivate weak var appDelegate: AppDelegate?
     private var shareButton: UIBarButtonItem?
+    internal private(set) var downView: DownView?
 
     // MARK: - Public properties
     var proposal: Proposal?
     
-    // MARK: - Life cycle
+    // MARK: - Reachability Retry Action
+    override func retryButtonAction(_ sender: UIButton) {
+        super.retryButtonAction(sender)
+        
+        getProposalDetail()
+    }
+}
+
+// MARK: - Life cycle
+extension ProposalDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.appDelegate = UIApplication.shared.delegate as? AppDelegate
-
-        noSelectedProposalLabel?.isHidden = proposal?.description != nil
+        title                               = proposal?.description
+        appDelegate                         = UIApplication.shared.delegate as? AppDelegate
+        noSelectedProposalLabel?.isHidden   = proposal?.description != nil
+        navigationItem.leftBarButtonItem    = splitViewController?.displayModeButtonItem
+        navigationItem.leftItemsSupplementBackButton = true
         
-        // Configure title using Proposal ID, e.g: SE-0172
-        self.title = proposal?.description
-        
-        self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "")
-        self.downView?.navigationDelegate = self
-        
-        if let downView = self.downView {
-            self.detailView.addSubview(downView)
-            downView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                downView.topAnchor.constraint(equalTo: self.detailView.topAnchor),
-                downView.bottomAnchor.constraint(equalTo: self.detailView.bottomAnchor),
-                downView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor),
-                downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
-                ])
-        }
-        // Request the Proposes
-        self.getProposalDetail()
-        
-        // Configure reachability closures
-        self.reachability?.whenReachable = { [unowned self] reachability in
-            if self.proposalMarkdown == nil {
-                self.getProposalDetail()
-            }
-        }
+        configureDownView()
+        configureReachability()
         refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
         
-        self.reachability?.whenUnreachable = { [unowned self] reachability in
-            if self.proposalMarkdown == nil {
-                self.showNoConnection = true
-            }
-        }
-
-        navigationItem.leftItemsSupplementBackButton = true
-        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        getProposalDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,16 +56,49 @@ class ProposalDetailViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    // MARK: - Reachability Retry Action
-    override func retryButtonAction(_ sender: UIButton) {
-        super.retryButtonAction(sender)
-        
-        self.getProposalDetail()
-    }
+}
 
-    // MARK: - Networking
+// MARK: - Reachability Closures
+extension ProposalDetailViewController {
+    
+    private func configureReachability() {
+        reachability?.whenReachable = { [weak self] reachability in
+            if self?.proposalMarkdown == nil {
+                self?.getProposalDetail()
+            }
+        }
+        
+        reachability?.whenUnreachable = { [weak self] reachability in
+            if self?.proposalMarkdown == nil {
+                self?.showNoConnection = true
+            }
+        }
+    }
+}
+
+// MARK: - Elements
+extension ProposalDetailViewController {
+    internal func configureDownView() {
+        self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "")
+        self.downView?.navigationDelegate = self
         self.downView?.scrollView.addSubview(refreshControl)
+        
+        if let downView = self.downView {
+            self.detailView.addSubview(downView)
+            downView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                downView.topAnchor.constraint(equalTo: self.detailView.topAnchor),
+                downView.bottomAnchor.constraint(equalTo: self.detailView.bottomAnchor),
+                downView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor),
+                downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
+                ])
+        }
+    }
+}
+
+// MARK: - Networking
+extension ProposalDetailViewController {
+    @objc
     fileprivate func getProposalDetail() {
         guard let proposal = self.proposal else {
             return
@@ -92,7 +106,7 @@ class ProposalDetailViewController: BaseViewController {
         
         if let reachability = self.reachability, reachability.isReachable {
             // Hide No Connection View
-            self.showNoConnection = false
+            showNoConnection = false
             
             refreshControl.forceShowAnimation()
             EvolutionService.detail(for: proposal) { [weak self] result in
@@ -130,11 +144,13 @@ class ProposalDetailViewController: BaseViewController {
             }
         }
         else {
-            self.showNoConnection = true
+            showNoConnection = true
         }
     }
-    
-    // MARK: - Navigation
+}
+
+// MARK: - Navigation
+extension ProposalDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
             let destination = segue.destination as? ProposalDetailViewController,
@@ -150,7 +166,10 @@ class ProposalDetailViewController: BaseViewController {
         }
     }
     
-    // MARK: - Share Proposal
+}
+
+// MARK: - Share Proposal
+extension ProposalDetailViewController {
     @objc private func shareProposal() {
         guard let proposal = self.proposal else {
             return
