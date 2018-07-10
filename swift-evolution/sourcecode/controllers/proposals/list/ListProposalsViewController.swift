@@ -2,7 +2,7 @@ import UIKit
 import Crashlytics
 import SafariServices
 
-class ListProposalsViewController: BaseViewController {
+final class ListProposalsViewController: BaseViewController {
     
     // Private IBOutlets
     @IBOutlet private(set) weak var tableView: UITableView!
@@ -14,13 +14,13 @@ class ListProposalsViewController: BaseViewController {
 
     // Private properties
     fileprivate var timer: Timer = Timer()
+
+    
     fileprivate lazy var filteredDataSource: [Proposal] = {
         return []
     }()
     
-    fileprivate var dataSource: [Proposal] = {
-        return []
-        }() {
+    fileprivate var dataSource: [Proposal] = { return [] }() {
         didSet {
             guard
                 oldValue.isEmpty,
@@ -226,7 +226,7 @@ class ListProposalsViewController: BaseViewController {
     fileprivate func getProposalList() {
         if let reachability = self.reachability, reachability.isReachable {
             // Hide No Connection View
-            self.showNoConnection = false
+            showNoConnection = false
             refreshControl.forceShowAnimation()
 
             EvolutionService.listProposals { [weak self] result in
@@ -234,6 +234,20 @@ class ListProposalsViewController: BaseViewController {
                     return
                 }
                 
+                if strongSelf.dataSource.count > 0 {
+                    strongSelf.filteredDataSource   = []
+                    strongSelf.dataSource           = []
+                    strongSelf.languages            = []
+                    strongSelf.status               = []
+                    strongSelf.appDelegate?.people  = [:]
+                }
+                
+                DispatchQueue.main.async {
+                    if strongSelf.refreshControl.isRefreshing {
+                        strongSelf.refreshControl.endRefreshing()
+                    }
+                }
+
                 guard let proposals = result.value else {
                     if let error = result.error {
                         print("Error: \(error)")
@@ -271,6 +285,7 @@ class ListProposalsViewController: BaseViewController {
         }
         else {
             refreshControl.endRefreshing()
+            showNoConnection = true
         }
     }
     
