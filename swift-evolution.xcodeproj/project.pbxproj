@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
-		408A32A81E8C5678006A870B /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32A71E8C5678006A870B /* SVProgressHUD.framework */; };
 		408A32AF1E8C5E0C006A870B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AD1E8C5E0C006A870B /* Crashlytics.framework */; };
 		408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 408A32AE1E8C5E0C006A870B /* Fabric.framework */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
@@ -284,7 +283,6 @@
 				91F05E641F034F78002738F4 /* Reachability.framework in Frameworks */,
 				911432211EB96E2D00CCC0D0 /* UserNotifications.framework in Frameworks */,
 				408A32B01E8C5E0C006A870B /* Fabric.framework in Frameworks */,
-				408A32A81E8C5678006A870B /* SVProgressHUD.framework in Frameworks */,
 				91B1005D207AB9F200B65E02 /* CloudKit.framework in Frameworks */,
 				408A32AF1E8C5E0C006A870B /* Crashlytics.framework in Frameworks */,
 				91485DEA1E68F89B008C4715 /* SwiftRichString.framework in Frameworks */,

@@ -32,7 +32,6 @@ final class LoadingMonitor: URLProtocol {
     override func startLoading() {
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            SVProgressHUD.show()
         }
     
         guard let mutableRequest = (request as NSURLRequest).mutableCopy() as? NSMutableURLRequest else {
@@ -55,7 +54,6 @@ final class LoadingMonitor: URLProtocol {
     override func stopLoading() {
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            SVProgressHUD.dismiss(withDelay: 0.5)
         }
     }
 }
