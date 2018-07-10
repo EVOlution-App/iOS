@@ -95,4 +95,10 @@ public extension UIColor {
             return UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         }
     }
+    
+    struct Generic {
+        static var darkGray: UIColor {
+            return UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        }
+    }
 }
