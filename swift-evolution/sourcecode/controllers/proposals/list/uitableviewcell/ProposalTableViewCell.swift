@@ -185,7 +185,7 @@ extension ProposalTableViewCell {
                 return nil
         }
         
-        let names: [String] = authors.compactMap({ $0.name })
+        let names: [String] = authors.compactMap({ $0.name != "" && $0.link != "" ? $0.name : nil })
         
         var detail = names.count > 1 ? "Authors" : "Author"
         detail = "\(detail):".tag(.label) + String.doubleSpace + names.map({ $0.tag(.anchor) }).joined(separator: ", ")
