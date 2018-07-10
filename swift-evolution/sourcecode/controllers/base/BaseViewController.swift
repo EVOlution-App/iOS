@@ -4,9 +4,9 @@ import Reachability
 class BaseViewController: UIViewController {
     // MARK: - Public properties
 
-    public var reachability: Reachability?
+    internal var reachability: Reachability?
     
-    public lazy var noConnectionView: NoConnectionView? = {
+    internal lazy var noConnectionView: NoConnectionView? = {
         guard
             let view: NoConnectionView = NoConnectionView.fromNib()
             else {
@@ -16,13 +16,21 @@ class BaseViewController: UIViewController {
         return view
     }()
     
-    public var showNoConnection: Bool = false {
+    internal var showNoConnection: Bool = false {
         didSet {
             DispatchQueue.main.async { [unowned self] in
                 self.noConnectionView?.isHidden = !self.showNoConnection
             }
         }
     }
+    
+    internal lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        
+        refreshControl.tintColor = UIColor.Generic.darkGray
+        
+        return refreshControl
+    }()
     
     // MARK: - Life cycle
     override func viewDidLoad() {

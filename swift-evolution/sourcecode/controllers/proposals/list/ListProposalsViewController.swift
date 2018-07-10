@@ -50,6 +50,9 @@ class ListProposalsViewController: BaseViewController {
         
         self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
+        // Target to RefreshControl
+        refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        
         // Register Cell to TableView
         tableView.registerNib(withClass: ProposalTableViewCell.self)
         tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
@@ -57,6 +60,8 @@ class ListProposalsViewController: BaseViewController {
         tableView.estimatedRowHeight = 164
         tableView.estimatedSectionHeaderHeight = 44.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.addSubview(refreshControl)
         
         // Filter Header View settings
         filterHeaderView.statusFilterView.delegate = self
@@ -222,6 +227,7 @@ class ListProposalsViewController: BaseViewController {
         if let reachability = self.reachability, reachability.isReachable {
             // Hide No Connection View
             self.showNoConnection = false
+            refreshControl.forceShowAnimation()
 
             EvolutionService.listProposals { [weak self] result in
                 guard let strongSelf = self else {
@@ -252,6 +258,10 @@ class ListProposalsViewController: BaseViewController {
                 DispatchQueue.main.async {
                     strongSelf.tableView.reloadData()
                     
+                    if strongSelf.refreshControl.isRefreshing {
+                       strongSelf.refreshControl.endRefreshing()
+                    }
+                    
                     // In case of user have come
                     if !Navigation.shared.isClear {
                         strongSelf.navigate(to: Navigation.shared)
@@ -260,7 +270,7 @@ class ListProposalsViewController: BaseViewController {
             }
         }
         else {
-            self.showNoConnection = true
+            refreshControl.endRefreshing()
         }
     }
     
@@ -318,6 +328,10 @@ class ListProposalsViewController: BaseViewController {
         Answers.logSearch(withQuery: search.query, customAttributes: ["type": "search", "os-version": "<= ios9"])
         let filtered = self.dataSource.filter(by: search.query)
         self.updateTableView(filtered)
+    }
+    
+    @objc private func pullToRefresh(_ sender: UIRefreshControl) {
+        getProposalList()
     }
     
     // MARK: - Filters

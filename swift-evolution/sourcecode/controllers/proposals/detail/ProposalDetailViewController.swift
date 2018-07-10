@@ -52,6 +52,7 @@ class ProposalDetailViewController: BaseViewController {
                 self.getProposalDetail()
             }
         }
+        refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
         
         self.reachability?.whenUnreachable = { [unowned self] reachability in
             if self.proposalMarkdown == nil {
@@ -83,6 +84,7 @@ class ProposalDetailViewController: BaseViewController {
     }
 
     // MARK: - Networking
+        self.downView?.scrollView.addSubview(refreshControl)
     fileprivate func getProposalDetail() {
         guard let proposal = self.proposal else {
             return
@@ -92,6 +94,7 @@ class ProposalDetailViewController: BaseViewController {
             // Hide No Connection View
             self.showNoConnection = false
             
+            refreshControl.forceShowAnimation()
             EvolutionService.detail(for: proposal) { [weak self] result in
                 guard let strongSelf = self else {
                     Crashlytics.sharedInstance().recordError("[Get Proposal Detail] self is nil")
@@ -113,9 +116,17 @@ class ProposalDetailViewController: BaseViewController {
                 strongSelf.proposalMarkdown = data
                 DispatchQueue.main.async {
                     try? strongSelf.downView?.update(markdownString: data)
+                    strongSelf.refreshControl.beginRefreshing()
                     strongSelf.showHideNavigationButtons()
                 }
-
+                
+                // Remove refresh control
+                let time: DispatchTime = .now() + 1.00
+                DispatchQueue.main.asyncAfter(deadline: time) {
+                    if strongSelf.refreshControl.isRefreshing {
+                        strongSelf.refreshControl.endRefreshing()
+                    }
+                }
             }
         }
         else {

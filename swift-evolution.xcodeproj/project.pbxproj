@@ -15,6 +15,7 @@
 		670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */; };
 		8748C79D1F7A97D00030DADF /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C79A1F7A97B80030DADF /* Down.framework */; };
 		87DE00661F7AAF59007C374A /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C79A1F7A97B80030DADF /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		91121F8A20EAC58F00FE80E6 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91121F8920EAC58F00FE80E6 /* UIRefreshControl.swift */; };
 		911432211EB96E2D00CCC0D0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
 		911432231EB9756500CCC0D0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911432221EB9756500CCC0D0 /* Data.swift */; };
 		9115A50320A0FDF100AC657E /* Sequence+Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */; };
@@ -171,6 +172,7 @@
 		670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalListHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProposalListHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		8748C7941F7A97B80030DADF /* Down.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Down.xcodeproj; path = Carthage/Checkouts/Down/Down.xcodeproj; sourceTree = "<group>"; };
+		91121F8920EAC58F00FE80E6 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		9114321F1EB963BD00CCC0D0 /* swift-evolution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "swift-evolution.entitlements"; sourceTree = "<group>"; };
 		911432201EB96E2D00CCC0D0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		911432221EB9756500CCC0D0 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				914A5C1D1E7F710C005E653A /* SegueRepresentable.swift */,
 				912938D21E766EE000D2B2CF /* Sequence.swift */,
 				91E1500C1E6A758100025B77 /* String.swift */,
+				91121F8920EAC58F00FE80E6 /* UIRefreshControl.swift */,
 				91E150231E6CF37900025B77 /* UICollectionView.swift */,
 				9152658E1E67E74700C2AFDA /* UIColor.swift */,
 				913AE7041E97418A0097BCA5 /* UIImageView.swift */,
@@ -1096,6 +1099,7 @@
 				913AE7031E9739F50097BCA5 /* ProfileView.swift in Sources */,
 				9168963E1E93469F00FC6913 /* Service+Github.swift in Sources */,
 				912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */,
+				91121F8A20EAC58F00FE80E6 /* UIRefreshControl.swift in Sources */,
 				916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */,
 				915F7DE61F038322001B298D /* NoConnectionView.swift in Sources */,
 				9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */,
