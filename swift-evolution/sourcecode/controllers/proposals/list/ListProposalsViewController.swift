@@ -578,7 +578,7 @@ extension ListProposalsViewController: ProposalDelegate {
     
     func didSelect(implementation: Implementation) {
         if let url = URL(string: "\(Config.Base.URL.GitHub.base)/\(implementation.path)") {
-            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
+            let safariViewController = SFSafariViewController(url: url)
             self.present(safariViewController, animated: true)
         }
     }

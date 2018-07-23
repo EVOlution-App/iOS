@@ -228,7 +228,7 @@ extension ProposalDetailViewController: WKNavigationDelegate {
                     
                     // In case of url lastPathComponent has .md suffix and it isn't a proposal
                 else {
-                    let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
+                    let safariViewController = SFSafariViewController(url: url)
                     self.present(safariViewController, animated: true)
                 }
             }
@@ -242,7 +242,7 @@ extension ProposalDetailViewController: WKNavigationDelegate {
                 
                 // The last step is check only if the url "appears" to be correct, before try to send it to safari
             else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
-                let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: false)
+                let safariViewController = SFSafariViewController(url: url)
                 self.present(safariViewController, animated: true)
             }
             
