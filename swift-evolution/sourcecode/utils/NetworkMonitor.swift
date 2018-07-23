@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import SVProgressHUD
 
 final class LoadingMonitor: URLProtocol {
     

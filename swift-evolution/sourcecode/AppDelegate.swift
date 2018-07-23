@@ -1,5 +1,4 @@
 import UIKit
-import SVProgressHUD
 import Fabric
 import Crashlytics
 import UserNotifications
@@ -85,8 +84,6 @@ extension AppDelegate {
 
     private func registerNetworkingMonitor() {
         LoadingMonitor.register()
-        SVProgressHUD.setDefaultAnimationType(.native)
-        SVProgressHUD.setDefaultMaskType(.clear)
     }
     
     func registerForPushNotification() {
