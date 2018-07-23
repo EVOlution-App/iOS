@@ -78,17 +78,17 @@ After you send your pull request, other developers will make a code review befor
 ## Contributors 
 
 - Bruno Bilescky - [GitHub](https://github.com/brunogb) / [Twitter](https://twitter.com/bgondim)
-- Bruno Guidolim - [Github](https://github.com/bguidolim) / [Twitter](https://twitter.com/bguidolim)
-- Bruno Hecktheuer - [Github](https://github.com/bbheck) / [Twitter](https://twitter.com/brunobheck)
+- Bruno Guidolim - [GitHub](https://github.com/bguidolim) / [Twitter](https://twitter.com/bguidolim)
+- Bruno Hecktheuer - [GitHub](https://github.com/bbheck) / [Twitter](https://twitter.com/brunobheck)
 - Diego Ventura - [GitHub](https://github.com/diegoventura) / [Twitter](https://twitter.com/venturadiego)
-- Diogo Tridapalli - [Github](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
-- Gustavo Barbosa - [Github](https://github.com/barbosa) / [Twitter](https://twitter.com/gustavocsb)
-- Guilherme Rambo - [Github](https://github.com/insidegui) / [Twitter](https://twitter.com/insidegui)
-- Leonardo Cardoso - [Github](https://github.com/leonardocardoso) / [Twitter](https://twitter.com/leocardz)
-- Ricardo Borelli - [Github](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
-- Rob Hudson - [Github](https://github.com/robtimp) / [Twitter](https://twitter.com/robtimp)
-- Rodrigo Reis - [Github](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
-- Xaver Lohmüller - [Github](https://github.com/xaverlohmueller) / [Twitter](https://twitter.com/binaryXML)
+- Diogo Tridapalli - [GitHub](https://github.com/diogot) / [Twitter](https://twitter.com/diogot)
+- Gustavo Barbosa - [GitHub](https://github.com/barbosa) / [Twitter](https://twitter.com/gustavocsb)
+- Guilherme Rambo - [GitHub](https://github.com/insidegui) / [Twitter](https://twitter.com/insidegui)
+- Leonardo Cardoso - [GitHub](https://github.com/leonardocardoso) / [Twitter](https://twitter.com/leocardz)
+- Ricardo Borelli - [GitHub](https://github.com/rabc) / [Twitter](https://twitter.com/rabc)
+- Rob Hudson - [GitHub](https://github.com/robtimp) / [Twitter](https://twitter.com/robtimp)
+- Rodrigo Reis - [GitHub](https://github.com/digoreis) / [Twitter](https://twitter.com/digoreis)
+- Xaver Lohmüller - [GitHub](https://github.com/xaverlohmueller) / [Twitter](https://twitter.com/binaryXML)
 
 
 ## License
