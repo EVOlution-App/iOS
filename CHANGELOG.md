@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2] - 2018-05-20
+### Added
+- Property 'implementations' from proposal
+- SwiftLint
+- iPad support
+- Push Notifications
+- Support to work with different environments
+- Settings screen
+
+### Changed
+- Models encoding/decoding from Unbox to Swift 4 Codable
+
 ## [1.1.1] - 2017-07-09
 ### Added
 - No Connection view using Reachability
@@ -44,5 +56,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - About screen
 
 [Unreleased]: https://github.com/evolution-app/ios/compare/master...development
+[1.2]: https://github.com/evolution-app/ios/compare/v1.1.1...v1.2
 [1.1.1]: https://github.com/evolution-app/ios/compare/v1.1...v1.1.1
 [1.1]: https://github.com/evolution-app/ios/compare/v1.0...v1.1
