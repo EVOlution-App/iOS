@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="czz-pU-pLJ">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="czz-pU-pLJ">
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,10 +13,9 @@
             <objects>
                 <navigationController storyboardIdentifier="ListNavigationStoryboardID" id="uUZ-fy-2NM" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.058823529411764705" green="0.043137254901960784" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="alP-NB-bbT" kind="relationship" relationship="rootViewController" id="eFj-vx-YmD"/>
@@ -50,7 +47,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rAt-nJ-6SM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yon-bb-kvg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xy9-CI-bMR" customClass="FilterHeaderView" customModule="swift_evolution" customModuleProvider="target">
@@ -111,7 +108,7 @@
                                                 </connections>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" name="BgColor"/>
                                         <constraints>
                                             <constraint firstItem="YoH-Hx-d3Y" firstAttribute="top" secondItem="RSP-jv-VOG" secondAttribute="bottom" id="6So-tq-cDv"/>
                                             <constraint firstItem="RSP-jv-VOG" firstAttribute="top" secondItem="5u9-zd-vRu" secondAttribute="top" id="GS7-KP-QHe"/>
@@ -154,7 +151,7 @@
                                                 </connections>
                                             </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" name="BgColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="128" id="6hC-hr-zRG"/>
                                             <constraint firstAttribute="bottom" secondItem="Wj9-L6-Nr6" secondAttribute="bottom" id="DXB-qo-Xj4"/>
@@ -171,7 +168,7 @@
                                         </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="BgColor"/>
                                 <constraints>
                                     <constraint firstItem="2vQ-lh-azd" firstAttribute="top" secondItem="Xy9-CI-bMR" secondAttribute="top" id="0bu-O1-lar"/>
                                     <constraint firstItem="GWA-Ou-HCw" firstAttribute="leading" secondItem="Xy9-CI-bMR" secondAttribute="leading" constant="16" id="1hg-KH-3ti"/>
@@ -200,7 +197,7 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wrl-Y8-uLB">
-                                <rect key="frame" x="0.0" y="355" width="414" height="317"/>
+                                <rect key="frame" x="0.0" y="355" width="414" height="337"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="alP-NB-bbT" id="eWy-DB-ZIo"/>
@@ -208,7 +205,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="BgColor"/>
                         <constraints>
                             <constraint firstItem="Xy9-CI-bMR" firstAttribute="leading" secondItem="yon-bb-kvg" secondAttribute="leading" id="91V-Wp-60q"/>
                             <constraint firstItem="Xy9-CI-bMR" firstAttribute="top" secondItem="ndH-s4-ED8" secondAttribute="bottom" id="9qH-ov-ZfC"/>
@@ -268,7 +265,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             <objects>
                 <navigationController storyboardIdentifier="DetailsNavigationStoryboardID" id="2o8-m5-GfY" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Bl-Sv-RBi">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.058823529411764705" green="0.043137254901960784" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -289,15 +286,15 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EqY-9D-y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
-                                <rect key="frame" x="4" y="0.0" width="406" height="672"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="4" y="0.0" width="406" height="692"/>
+                                <color key="backgroundColor" name="BgColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Selected Proposal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-xW-YFk">
-                                <rect key="frame" x="160.33333333333334" y="297.66666666666669" width="93.666666666666657" height="77"/>
+                                <rect key="frame" x="160.33333333333334" y="307.66666666666669" width="93.666666666666657" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="Aoo-b9-Z6D"/>
                                 </constraints>
@@ -306,7 +303,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="BgColor"/>
                         <constraints>
                             <constraint firstItem="PVc-xW-YFk" firstAttribute="centerX" secondItem="EqY-9D-y2h" secondAttribute="centerX" id="FZD-mV-Wew"/>
                             <constraint firstItem="UrU-21-DUf" firstAttribute="top" secondItem="L4P-6d-O4b" secondAttribute="bottom" id="dGt-mE-WGw"/>
@@ -337,7 +334,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <viewControllerLayoutGuide type="bottom" id="mug-0m-6CO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jfJ-d2-sQG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UhO-0b-yld">
@@ -373,7 +370,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iFC-f8-Q5k">
                                         <rect key="frame" x="15" y="140" width="384" height="28"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" name="BgColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="RXb-XQ-C3j"/>
                                         </constraints>
@@ -382,7 +379,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" name="BgColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xvv-1y-4o0" secondAttribute="trailing" constant="15" id="0uV-NC-dao"/>
                                     <constraint firstAttribute="trailing" secondItem="iFC-f8-Q5k" secondAttribute="trailing" constant="15" id="Ek6-KB-qJb"/>
@@ -403,7 +400,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4qS-ei-dyF">
-                                <rect key="frame" x="0.0" y="220" width="414" height="452"/>
+                                <rect key="frame" x="0.0" y="220" width="414" height="472"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="3eh-9t-QMu" id="Il6-Fn-YJr"/>
@@ -411,7 +408,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="BgColor"/>
                         <constraints>
                             <constraint firstItem="dHm-GO-R55" firstAttribute="top" secondItem="UhO-0b-yld" secondAttribute="bottom" id="6E1-oo-Q5y"/>
                             <constraint firstItem="UhO-0b-yld" firstAttribute="leading" secondItem="jfJ-d2-sQG" secondAttribute="leading" constant="-1" id="ALB-Mw-pwV"/>
@@ -436,7 +433,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-j0-jer" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="974"/>
+            <point key="canvasLocation" x="697" y="1036"/>
         </scene>
         <!--ProposalDetailStoryboardID-->
         <scene sceneID="iLc-1L-4vW">
@@ -472,26 +469,26 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             <objects>
                 <tableViewController storyboardIdentifier="AboutStoryboardID" title="Open Source" id="fHh-kc-l7X" customClass="AboutViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="xZz-Rr-h0Z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="BgColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AboutCellIdentifier" textLabel="g97-K9-KnQ" detailTextLabel="wVb-df-kea" style="IBUITableViewCellStyleSubtitle" id="cZ5-yH-F1U">
-                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cZ5-yH-F1U" id="5t8-Yn-pJ8">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g97-K9-KnQ">
-                                            <rect key="frame" x="15" y="2" width="32" height="20"/>
+                                            <rect key="frame" x="20" y="2" width="32" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wVb-df-kea">
-                                            <rect key="frame" x="15" y="22" width="58" height="20"/>
+                                            <rect key="frame" x="20" y="22" width="58" height="20"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -502,17 +499,16 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupedTableViewCell" textLabel="jMX-Jg-NXH" style="IBUITableViewCellStyleDefault" id="WSL-IO-MJ4">
-                                <rect key="frame" x="0.0" y="99.333333333333343" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="99.333332061767578" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WSL-IO-MJ4" id="qIF-nn-rjN">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jMX-Jg-NXH">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -524,6 +520,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <outlet property="delegate" destination="fHh-kc-l7X" id="RQm-tA-mE2"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Ylu-RL-qRq"/>
                     <connections>
                         <segue destination="d3c-lM-9bo" kind="show" identifier="AboutDetailsItemsSegue" id="ckA-rp-h1w"/>
                     </connections>
@@ -537,7 +534,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             <objects>
                 <tableViewController id="d3c-lM-9bo" customClass="AboutDetailTableViewController" customModule="swift_evolution" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="njs-ta-ZmZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
@@ -545,6 +542,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                             <outlet property="delegate" destination="d3c-lM-9bo" id="F0C-ev-bci"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="1EV-Cq-aFl"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6i-lZ-tKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -555,9 +553,12 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="icon-filter-off" width="23" height="23"/>
         <image name="icon-filter-on" width="23" height="23"/>
         <image name="placeholder-photo" width="150" height="150"/>
+        <namedColor name="BgColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2o2-Fg-V0b"/>
+        <segue reference="rf2-rv-6M0"/>
         <segue reference="XKc-wh-heR"/>
         <segue reference="sHa-dI-MgD"/>
     </inferredMetricsTieBreakers>

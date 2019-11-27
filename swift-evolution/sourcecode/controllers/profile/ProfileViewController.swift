@@ -31,7 +31,7 @@ class ProfileViewController: BaseViewController {
         
         self.tableView.estimatedRowHeight = 164
         self.tableView.estimatedSectionHeaderHeight = 44.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
 
         if UIDevice.current.userInterfaceIdiom != .pad {
             toolbar?.items?.removeAll()

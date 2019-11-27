@@ -13,7 +13,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
     
     mutating func remove(_ status: StatusState) -> Bool {
-        if let index = self.index(where: { $0 == status }) {
+        if let index = self.firstIndex(where: { $0 == status }) {
             self.remove(at: index)
             return true
         }

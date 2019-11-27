@@ -13,7 +13,7 @@ final class LoadingMonitor: URLProtocol {
         URLProtocol.unregisterClass(self)
     }
     
-    open override class func canInit(with request: URLRequest) -> Bool {
+    public override class func canInit(with request: URLRequest) -> Bool {
         guard property(forKey: NetworkMonitorHandlerKey, in: request) == nil else {
             return false
         }

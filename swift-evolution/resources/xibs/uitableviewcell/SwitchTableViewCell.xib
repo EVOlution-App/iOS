@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,21 +14,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6R-z3-Byr">
-                        <rect key="frame" x="16" y="9" width="37" height="25"/>
+                        <rect key="frame" x="16" y="9" width="37" height="25.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                        <color key="textColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Jq3-wf-2Jy">
-                        <rect key="frame" x="284" y="11" width="20" height="20"/>
+                        <rect key="frame" x="284" y="12" width="20" height="20"/>
                         <color key="color" red="0.31372549020000001" green="0.29803921570000003" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </activityIndicatorView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J2v-jt-HFh">
-                        <rect key="frame" x="257" y="6" width="49" height="31"/>
+                        <rect key="frame" x="257" y="6.5" width="49" height="31"/>
                         <subviews>
                             <switch contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rjm-pg-YI3">
                                 <rect key="frame" x="0.0" y="0.0" width="49" height="31"/>
@@ -39,7 +36,6 @@
                                     <constraint firstAttribute="height" constant="31" id="8fP-12-Jgp"/>
                                     <constraint firstAttribute="width" constant="47" id="F81-Vp-oNK"/>
                                 </constraints>
-                                <color key="onTintColor" red="0.31372549020000001" green="0.29803921570000003" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="changeSelection:" destination="KGk-i7-Jjw" eventType="valueChanged" id="HnA-6r-AT1"/>
                                 </connections>
@@ -73,6 +69,7 @@
                 <outlet property="activityIndicatorTrailingConstraint" destination="MoE-Iu-CeY" id="tDR-Up-3ii"/>
                 <outlet property="descriptionLabel" destination="h6R-z3-Byr" id="rgw-j7-N7x"/>
             </connections>
+            <point key="canvasLocation" x="139" y="154"/>
         </tableViewCell>
     </objects>
 </document>
