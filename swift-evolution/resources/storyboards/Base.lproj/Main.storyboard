@@ -15,7 +15,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="r4M-VW-5SC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.058823529411764705" green="0.043137254901960784" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" name="NavTitle"/>
                     </navigationBar>
                     <connections>
                         <segue destination="alP-NB-bbT" kind="relationship" relationship="rootViewController" id="eFj-vx-YmD"/>
@@ -267,7 +267,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Bl-Sv-RBi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.058823529411764705" green="0.043137254901960784" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" name="NavTitle"/>
                     </navigationBar>
                     <connections>
                         <segue destination="b40-fX-jN2" kind="relationship" relationship="rootViewController" id="4IH-mQ-5Xa"/>
@@ -286,15 +286,15 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EqY-9D-y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
-                                <rect key="frame" x="4" y="0.0" width="406" height="692"/>
+                                <rect key="frame" x="4" y="44" width="406" height="692"/>
                                 <color key="backgroundColor" name="BgColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Selected Proposal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-xW-YFk">
-                                <rect key="frame" x="160.33333333333334" y="307.66666666666669" width="93.666666666666657" height="77"/>
+                                <rect key="frame" x="160.33333333333334" y="329.66666666666669" width="93.666666666666657" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="Aoo-b9-Z6D"/>
                                 </constraints>
@@ -556,10 +556,13 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <namedColor name="BgColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
+        <namedColor name="NavTitle">
+            <color red="0.058823529409999999" green="0.043137254899999998" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="rf2-rv-6M0"/>
         <segue reference="XKc-wh-heR"/>
-        <segue reference="sHa-dI-MgD"/>
+        <segue reference="4IH-mQ-5Xa"/>
     </inferredMetricsTieBreakers>
 </document>
