@@ -86,7 +86,7 @@ public extension UIColor {
         }
         
         public static var darkGray: UIColor {
-            return UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+            return UIColor(named: "MainTitle") ?? UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
         }
     }
     
