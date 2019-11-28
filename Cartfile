@@ -2,4 +2,3 @@ github "malcommac/SwiftRichString" ~> 1.0.1
 github "iwasrobbed/Down"
 github "ashleymills/Reachability.swift" ~> 4.3.1
 github "kishikawakatsumi/KeychainAccess"
-github "SVProgressHUD/SVProgressHUD"
