@@ -21,4 +21,9 @@ final class ProposalListHeaderTableViewCell: UITableViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentView.backgroundColor = UIColor(named: "SecBgColor")
+    }
+    
 }

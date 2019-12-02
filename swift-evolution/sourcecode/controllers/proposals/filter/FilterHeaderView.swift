@@ -124,7 +124,7 @@ extension FilterHeaderView: FilterGenericViewLayoutDelegate {
 
 extension FilterHeaderView {
     func formatterColor(color: UIColor, text: String) -> NSMutableAttributedString {
-        let color = [NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
+        let color = [NSAttributedString.Key.foregroundColor: color, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
         return NSMutableAttributedString(string: text, attributes: color)
     }
     

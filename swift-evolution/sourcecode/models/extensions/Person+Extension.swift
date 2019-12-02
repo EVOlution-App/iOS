@@ -26,7 +26,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
     
     func get(username: String) -> Person? {
-        guard let index = self.index(where: {
+        guard let index = self.firstIndex(where: {
             guard let user = $0.username, username != "" else {
                 return false
             }
@@ -39,7 +39,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
     
     func get(name: String) -> Person? {
-        guard let index = self.index(where: {
+        guard let index = self.firstIndex(where: {
             guard let user = $0.name, name != "" else {
                 return false
             }
@@ -52,7 +52,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
     
     func get(id: String) -> Person? {
-        guard let index = self.index(where: {
+        guard let index = self.firstIndex(where: {
             guard let user = $0.id, id != "" else {
                 return false
             }

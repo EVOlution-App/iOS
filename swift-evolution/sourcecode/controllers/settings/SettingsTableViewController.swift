@@ -27,6 +27,7 @@ final class SettingsTableViewController: UITableViewController {
         buildDataSource()
         registerNotifications()
         
+        tableView.backgroundColor = UIColor(named: "BgColor")
         title = "Settings"
         descriptionView?.delegate = self
         tableView.tableHeaderView = descriptionView
@@ -152,7 +153,7 @@ extension SettingsTableViewController {
         if section.section == .author {
             return 60
         }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -40,7 +40,7 @@ extension UIAlertController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let openAction = UIAlertAction(title: "Open", style: .default) { _ in
             if let url = URL(string: value) {
-                UIApplication.shared.open(url, options: [UIApplicationOpenURLOptionUniversalLinksOnly: false])
+                UIApplication.shared.open(url, options: [UIApplication.OpenExternalURLOptionsKey.universalLinksOnly: false])
             }
         }
         

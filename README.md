@@ -77,6 +77,7 @@ After you send your pull request, other developers will make a code review befor
 
 ## Contributors 
 
+- Anton Kuzmin - [GitHub](https://github.com/uuttff8) / [Twitter](https://twitter.com/babnikbezbab)
 - Bruno Bilescky - [GitHub](https://github.com/brunogb) / [Twitter](https://twitter.com/bgondim)
 - Bruno Guidolim - [GitHub](https://github.com/bguidolim) / [Twitter](https://twitter.com/bguidolim)
 - Bruno Hecktheuer - [GitHub](https://github.com/bbheck) / [Twitter](https://twitter.com/brunobheck)

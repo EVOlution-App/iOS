@@ -59,7 +59,7 @@ final class ListProposalsViewController: BaseViewController {
         
         tableView.estimatedRowHeight = 164
         tableView.estimatedSectionHeaderHeight = 44.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         tableView.addSubview(refreshControl)
         
@@ -167,7 +167,7 @@ final class ListProposalsViewController: BaseViewController {
         if segue.destination is ProposalDetailViewController,
             let destination = segue.destination as? ProposalDetailViewController {
             
-            var item: Proposal? = nil
+            var item: Proposal?
             if sender == nil, let indexPath = tableView.indexPathForSelectedRow {
                 item = filteredDataSource[indexPath.row]
             }
@@ -480,7 +480,6 @@ extension ListProposalsViewController: UITableViewDelegate {
         }
         
         let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
-
         headerCell.proposalCount = self.filteredDataSource.count
         
         return headerCell.contentView

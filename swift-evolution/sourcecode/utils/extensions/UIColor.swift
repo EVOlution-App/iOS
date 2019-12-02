@@ -5,7 +5,7 @@ public extension UIColor {
     /**
         Colors for proposal status
     */
-    public struct Status {
+    struct Status {
         /**
          Color for status: **awaitingReview**
          */
@@ -79,18 +79,18 @@ public extension UIColor {
     /**
      Color for proposal elements on screen
      */
-    public struct Proposal {
+    struct Proposal {
         
         public static var lightGray: UIColor {
             return UIColor(red: 136/255, green: 136/255, blue: 136/255, alpha: 1)
         }
         
         public static var darkGray: UIColor {
-            return UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+            return UIColor(named: "MainTitle") ?? UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
         }
     }
     
-    public struct Filter {
+    struct Filter {
         public static var darkGray: UIColor {
             return UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         }

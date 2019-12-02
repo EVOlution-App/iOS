@@ -30,10 +30,11 @@ extension User {
         let bundleID = Environment.bundleID ?? "io.swift-evolution.app"
         let keychain = Keychain(service: bundleID).synchronizable(true)
         
-        guard let token = try? keychain.getString("currentUser"), let id = token else {
+        guard let token = try? keychain.getString("currentUser") else {
             return nil
         }
         
-        return User(id: id)
+        
+        return User(id: token)
     }
 }

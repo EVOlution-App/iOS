@@ -20,7 +20,7 @@ class ProposalTableViewCell: UITableViewCell {
         self.detailsLabel.delegate = self
         // Configure links into textView
         self.detailsLabel.linkTextAttributes = [
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.Proposal.darkGray
+            NSAttributedString.Key.foregroundColor: UIColor.Proposal.darkGray
         ]
     }
     
@@ -172,7 +172,7 @@ extension ProposalTableViewCell {
         let anchor = Style("anchor", {
             $0.color = UIColor.Proposal.darkGray
             $0.font = FontAttribute(.HelveticaNeue, size: 14)
-            $0.underline = UnderlineAttribute(color: UIColor.Proposal.darkGray, style: NSUnderlineStyle.styleSingle)
+            $0.underline = UnderlineAttribute(color: UIColor.Proposal.darkGray, style: NSUnderlineStyle.single)
         })
         
         return [id, title, label, value, anchor]
@@ -317,16 +317,16 @@ extension ProposalTableViewCell: UITextViewDelegate {
 // MARK: - NSMutableAttributedString Extension
 fileprivate extension NSMutableAttributedString {
     
-    fileprivate func add(style: Style, range: NSRange) -> NSMutableAttributedString {
+    func add(style: Style, range: NSRange) -> NSMutableAttributedString {
         self.addAttributes(style.attributes, range: range)
         return self
     }
     
-    fileprivate func link(_ person: Person, text: String) -> NSMutableAttributedString {
+    func link(_ person: Person, text: String) -> NSMutableAttributedString {
         return self.link([person], text: text)
     }
     
-    fileprivate func link(_ people: [Person], text: String) -> NSMutableAttributedString {
+    func link(_ people: [Person], text: String) -> NSMutableAttributedString {
         var attributed = self
         
         people.forEach { person in
@@ -347,7 +347,7 @@ fileprivate extension NSMutableAttributedString {
         return attributed
     }
     
-    fileprivate func link(title proposal: Proposal, text: String) -> NSMutableAttributedString {
+    func link(title proposal: Proposal, text: String) -> NSMutableAttributedString {
         var attributed = self
         
         let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -363,7 +363,7 @@ fileprivate extension NSMutableAttributedString {
         return attributed
     }
     
-    fileprivate func link(_ implementations: [Implementation], text: String) -> NSMutableAttributedString {
+    func link(_ implementations: [Implementation], text: String) -> NSMutableAttributedString {
         var attributed = self
         
         implementations.forEach { implementation in

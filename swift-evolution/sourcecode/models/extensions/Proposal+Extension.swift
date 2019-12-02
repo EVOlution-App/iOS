@@ -7,7 +7,7 @@ public enum Sorting {
 
 extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == Proposal {
     func get(by id: Int) -> Proposal? {
-        guard let index = self.index(where: { $0.id == id }) else {
+        guard let index = self.firstIndex(where: { $0.id == id }) else {
             return nil
         }
         
@@ -160,7 +160,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
     
     func index(of proposal: Proposal) -> Int? {
-        return self.index(where: { $0 == proposal }) as? Int
+        return self.firstIndex(where: { $0 == proposal }) as? Int
     }
     
     func sort(_ direction: Sorting) -> [Proposal] {
@@ -174,7 +174,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
         var result: [Proposal] = []
         
         for value in self {
-            if result.index(of: value) == nil {
+            if result.firstIndex(of: value) == nil {
                 result.append(value)
             }
         }

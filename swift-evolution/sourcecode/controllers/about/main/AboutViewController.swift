@@ -63,6 +63,7 @@ final class AboutViewController: UITableViewController {
     
     private func contributors() -> Section {
         let members = [
+            Contributor(text: "Anton Kuzmin", type: .github, value: "uuttff8"),
             Contributor(text: "Bruno Bilescky", type: .github, value: "brunogb"),
             Contributor(text: "Bruno Guidolim", type: .github, value: "bguidolim"),
             Contributor(text: "Bruno Hecktheuer", type: .github, value: "bbheck"),

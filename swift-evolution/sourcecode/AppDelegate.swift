@@ -11,18 +11,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Open properties
     var window: UIWindow?
-    open var people: [String: Person] = [:]
-    open var authorizedNotification: Bool = false
+    public var people: [String: Person] = [:]
+    public var authorizedNotification: Bool = false
     
     // MARK: - Life Cycle
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         _ = Navigation.shared
         application.applicationIconBadgeNumber = 0
         
         return true
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Fabric.with([Crashlytics.self])
         registerSchemes()
         registerNetworkingMonitor()
@@ -45,7 +45,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return .allButUpsideDown
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         Routes.shared.open(url)
         
         return true
@@ -70,7 +70,7 @@ extension AppDelegate {
             return
         }
         
-        typealias Key = NSAttributedStringKey
+        typealias Key = NSAttributedString.Key
         var attributes: [Key: Any]      = [:]
         attributes[.font]               = font
         attributes[.foregroundColor]    = UIColor.Proposal.darkGray
@@ -107,8 +107,10 @@ extension AppDelegate {
             switch settings.authorizationStatus {
             case .notDetermined, .denied:
                 self?.authorizedNotification = false
-            case .authorized:
+            case .authorized, .provisional:
                 self?.authorizedNotification = true
+            @unknown default:
+                break
             }
         })
     }

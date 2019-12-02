@@ -36,7 +36,7 @@ extension UIView {
     }
     
     private func border(to edge: RectEdge) -> UIViewNamed? {
-        let index = self.subviews.index(where: {
+        let index = self.subviews.firstIndex(where: {
             if $0 is UIViewNamed, let view = $0 as? UIViewNamed, view.name == edge.rawValue {
                 return true
             }

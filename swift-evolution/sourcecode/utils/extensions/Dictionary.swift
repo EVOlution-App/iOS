@@ -9,7 +9,7 @@ extension Dictionary where Key: ExpressibleByStringLiteral, Value: Searchable {
     - returns: person object found
      */
     func get(username: String) -> Person? {
-        var item: Person? = nil
+        var item: Person?
         
         self.forEach { _, value in
             if value is Person, let person = value as? Person,
