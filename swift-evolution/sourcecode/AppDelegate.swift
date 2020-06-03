@@ -1,6 +1,4 @@
 import UIKit
-import Fabric
-import Crashlytics
 import UserNotifications
 
 @UIApplicationMain
@@ -225,7 +223,6 @@ extension AppDelegate {
 // MARK: - User Notification Delegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("[Remote Notification][Will Present] iOS 10: \(notification.request.content.userInfo)")
         completionHandler([.sound, .alert, .badge])
     }
     
@@ -247,32 +244,7 @@ extension AppDelegate {
         }
         
         let track = Notifications.Track(notification: custom.notification, user: currentUser.id, source: "ios")
-        NotificationsService.track(track) { [track = custom] result in
-            guard let response = result.value else {
-                if let error = result.error {
-                    print("Error: \(error)")
-                    Crashlytics.sharedInstance().recordError(error)
-                }
-                return
-            }
-            
-            let reportAttributes: [String: Any] = [
-                "notification": track.notification,
-                "type": track.type.rawValue,
-                "value": track.value,
-                "statusCode": response.statusCode
-            ]
-            
-            guard response.statusCode == 201 else {
-                if let reason = response.reason {
-                    print("[AppDelegate][Tracking Notification] Error: \(reason)")
-                    Crashlytics.sharedInstance().recordError(reason, withAdditionalUserInfo: reportAttributes)
-                }
-                return
-            }
-            
-            Answers.logCustomEvent(withName: "Push Notification", customAttributes: reportAttributes)
-        }
+        NotificationsService.track(track)
     }
 }
 

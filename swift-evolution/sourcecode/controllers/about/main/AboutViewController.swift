@@ -1,5 +1,4 @@
 import UIKit
-import Crashlytics
 import StoreKit
 
 final class AboutViewController: UITableViewController {
@@ -18,11 +17,6 @@ final class AboutViewController: UITableViewController {
         
         tableView.register(CustomSubtitleTableViewCell.self, forCellReuseIdentifier: "AboutCellIdentifier")
         tableView.reloadData()
-        
-        Answers.logContentView(withName: "About this app",
-                               contentType: "Load View",
-                               contentId: nil,
-                               customAttributes: nil)
         
         // Ask for review
         DispatchQueue.global(qos: .background).async {

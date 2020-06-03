@@ -116,16 +116,9 @@ extension ProposalDetailViewController {
                 }
                 
                 guard let data = result.value else {
-                    if let error = result.error {
-                        Crashlytics.sharedInstance().recordError(error)
-                    }
                     return
                 }
                 
-                Answers.logContentView(withName: "Proposal Detail",
-                                       contentType: "Load Detail from server",
-                                       contentId: strongSelf.proposal?.link,
-                                       customAttributes: nil)
                 
                 strongSelf.proposalMarkdown = data
                 DispatchQueue.main.async {

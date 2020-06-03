@@ -1,5 +1,4 @@
 import UIKit
-import Crashlytics
 import SafariServices
 
 final class ListProposalsViewController: BaseViewController {
@@ -251,15 +250,10 @@ final class ListProposalsViewController: BaseViewController {
                 guard let proposals = result.value else {
                     if let error = result.error {
                         print("Error: \(error)")
-                        Crashlytics.sharedInstance().recordError(error)
                     }
                     return
                 }
                 
-                Answers.logContentView(withName: "Proposal List",
-                                       contentType: "Load Proposals from server",
-                                       contentId: nil,
-                                       customAttributes: nil)
                 
                 strongSelf.dataSource                       = proposals.filter(by: strongSelf.statusOrder)
                 strongSelf.filteredDataSource               = strongSelf.dataSource
@@ -340,7 +334,6 @@ final class ListProposalsViewController: BaseViewController {
             return
         }
         
-        Answers.logSearch(withQuery: search.query, customAttributes: ["type": "search", "os-version": "<= ios9"])
         let filtered = self.dataSource.filter(by: search.query)
         self.updateTableView(filtered)
     }
@@ -504,7 +497,6 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             }
             
             if let item: StatusState = view.dataSource[indexPath.item] as? StatusState {
-                Answers.logSearch(withQuery: item.rawValue.className, customAttributes: ["type": "filter"])
                 self.status.append(item)
             }
             
@@ -512,7 +504,6 @@ extension ListProposalsViewController: FilterGenericViewDelegate {
             
         case .version:
             if let version = view.dataSource[indexPath.item] as? String {
-                Answers.logSearch(withQuery: version, customAttributes: ["type": "filter", "subtype": "language-version"])
                 self.languages.append(version)
             }
             
@@ -608,8 +599,6 @@ extension ListProposalsViewController: UISearchBarDelegate {
         if searchText.count > 3 {
             let interval = 0.7
             self.timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in
-                Answers.logSearch(withQuery: searchText, customAttributes: ["type": "search", "os-version": ">= ios10"])
-                
                 let filtered = self.dataSource.filter(by: searchText)
                 self.updateTableView(filtered)
             }
