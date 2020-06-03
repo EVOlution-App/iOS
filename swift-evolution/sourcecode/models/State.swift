@@ -35,6 +35,7 @@ public enum StatusState {
     case acceptedWithRevisions
     case rejected
     case implemented
+    case previewing
     case error
     
 }
@@ -68,6 +69,8 @@ extension StatusState: RawRepresentable {
             self = .rejected
         case ".implemented":
             self = .implemented
+        case ".previewing":
+            self = .previewing
         case ".error":
             self = .error
             
@@ -107,6 +110,9 @@ extension StatusState: RawRepresentable {
             
         case .implemented:
             return State(name: "Implemented", shortName: "Implemented", className: "implemented", identifier: ".implemented", color: UIColor.Status.implemented)
+            
+        case .previewing:
+            return State(name: "Previewing", shortName: "Previewing", className: "previewing", identifier: ".previewing", color: UIColor.Status.previewing)
             
         case .error:
             return State(name: "Error", shortName: "Error", className: "error", identifier: ".error", color: UIColor.clear)

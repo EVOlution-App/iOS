@@ -67,6 +67,14 @@ public extension UIColor {
         public static var implemented: UIColor {
             return UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         }
+        
+        /**
+         Color for status: **implemented**
+         */
+        public static var previewing: UIColor {
+            return UIColor(red: 0/255, green: 190/255, blue: 180/255, alpha: 1)
+        }
+        
         /**
          Color for status: **withdrawn**
          */

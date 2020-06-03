@@ -36,11 +36,19 @@ final class ListProposalsViewController: BaseViewController {
     fileprivate var status: [StatusState] = []
     
     // Proposal ordering
-    fileprivate lazy var statusOrder: [StatusState] = {
-        return [.awaitingReview, .scheduledForReview, .activeReview,
-                .returnedForRevision, .accepted, .acceptedWithRevisions, .implemented,
-                .deferred, .rejected, .withdrawn]
-    }()
+    fileprivate lazy var statusOrder: [StatusState] = [
+        .awaitingReview,
+        .scheduledForReview,
+        .activeReview,
+        .accepted,
+        .acceptedWithRevisions,
+        .previewing,
+        .implemented,
+        .returnedForRevision,
+        .deferred,
+        .rejected,
+        .withdrawn
+    ]
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
