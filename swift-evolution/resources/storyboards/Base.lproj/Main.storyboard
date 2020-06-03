@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="czz-pU-pLJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="czz-pU-pLJ">
     <device id="retina5_5" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -286,15 +285,15 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                         <viewControllerLayoutGuide type="bottom" id="2ZS-ut-GeF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EqY-9D-y2h">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UrU-21-DUf">
-                                <rect key="frame" x="4" y="44" width="406" height="692"/>
+                                <rect key="frame" x="4" y="0.0" width="406" height="692"/>
                                 <color key="backgroundColor" name="BgColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Selected Proposal" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVc-xW-YFk">
-                                <rect key="frame" x="160.33333333333334" y="329.66666666666669" width="93.666666666666657" height="77"/>
+                                <rect key="frame" x="160.33333333333334" y="307.66666666666669" width="93.666666666666657" height="77"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="77" id="Aoo-b9-Z6D"/>
                                 </constraints>
@@ -549,6 +548,11 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             <point key="canvasLocation" x="-96" y="973"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="2o2-Fg-V0b"/>
+        <segue reference="XKc-wh-heR"/>
+        <segue reference="sHa-dI-MgD"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="icon-filter-off" width="23" height="23"/>
         <image name="icon-filter-on" width="23" height="23"/>
@@ -557,12 +561,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="NavTitle">
-            <color red="0.058823529409999999" green="0.043137254899999998" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.059000000357627869" green="0.043000001460313797" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="2o2-Fg-V0b"/>
-        <segue reference="XKc-wh-heR"/>
-        <segue reference="4IH-mQ-5Xa"/>
-    </inferredMetricsTieBreakers>
 </document>
