@@ -11,7 +11,7 @@ final class ProposalListHeaderTableViewCell: UITableViewCell {
     
     var proposalCount: Int = 0 {
         didSet {
-            proposalsCountLabel.text = "\(proposalCount) proposals"
+            proposalsCountLabel.text = proposalCount > 0 ? "\(proposalCount) proposals" : ""
         }
     }
     
@@ -21,9 +21,19 @@ final class ProposalListHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        contentView.backgroundColor = UIColor(named: "SecBgColor")
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setupBackgroundColor()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        setupBackgroundColor()
+    }
+    
+    private func setupBackgroundColor() {
+        contentView.backgroundColor = proposalCount > 0 ? UIColor(named: "SecBgColor") : UIColor(named: "BgColor")
+    }
 }

@@ -71,7 +71,12 @@ class FilterHeaderView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        self.set(to: .bottom, with: UIColor.Filter.darkGray)
+        let color = UIColor(named: "DivisorLine") ?? UIColor.clear
+        
+        self.set(
+            to: .bottom,
+            with: color
+        )
     }
     
     func updateFilterButton(status: [StatusState]) {

@@ -1,7 +1,6 @@
 import UIKit
 import WebKit
 import Down
-import Crashlytics
 import SafariServices
 
 final class ProposalDetailViewController: BaseViewController {
@@ -79,19 +78,25 @@ extension ProposalDetailViewController {
 // MARK: - Elements
 extension ProposalDetailViewController {
     internal func configureDownView() {
-        self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "")
+        guard let url = Bundle.main.url(forResource: "DownView", withExtension: "bundle"),
+            let bundle = Bundle(url: url) else {
+            return
+        }
+
+        self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "", templateBundle: bundle)
         self.downView?.navigationDelegate = self
         self.downView?.scrollView.addSubview(refreshControl)
         
         if let downView = self.downView {
             self.detailView.addSubview(downView)
             downView.translatesAutoresizingMaskIntoConstraints = false
+         
             NSLayoutConstraint.activate([
                 downView.topAnchor.constraint(equalTo: self.detailView.topAnchor),
                 downView.bottomAnchor.constraint(equalTo: self.detailView.bottomAnchor),
                 downView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor),
                 downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
-                ])
+            ])
         }
     }
 }
@@ -118,19 +123,18 @@ extension ProposalDetailViewController {
                     return
                 }
                 
+                self.proposalMarkdown = data
                 
-                strongSelf.proposalMarkdown = data
                 DispatchQueue.main.async {
-                    try? strongSelf.downView?.update(markdownString: data)
-                    strongSelf.refreshControl.beginRefreshing()
-                    strongSelf.showHideNavigationButtons()
+                    try? self.downView?.update(markdownString: data)
+                    self.refreshControl.beginRefreshing()
+                    self.showHideNavigationButtons()
                 }
                 
                 // Remove refresh control
-                let time: DispatchTime = .now() + 1.00
-                DispatchQueue.main.asyncAfter(deadline: time) {
-                    if strongSelf.refreshControl.isRefreshing {
-                        strongSelf.refreshControl.endRefreshing()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
                     }
                 }
             }
@@ -168,7 +172,7 @@ extension ProposalDetailViewController {
         }
         
         let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
-        let content = "Hey, this proposal could be interesting to you: \"\(title)\""
+        let content = "Hey, check this proposal: \"\(title)\""
         let url = "https://evoapp.io/proposal/\(proposal.description)"
         
         let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)

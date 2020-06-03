@@ -80,11 +80,6 @@ final class ListProposalsViewController: BaseViewController {
         
         filterHeaderView.filterLevel = .without
         
-        Answers.logContentView(withName: "Proposal List",
-                               contentType: "Load View",
-                               contentId: nil,
-                               customAttributes: nil)
-        
         // Notifications
         registerNotifications()
         
@@ -104,7 +99,7 @@ final class ListProposalsViewController: BaseViewController {
             }
         }
         
-        if let title = Environment.title, title != "" {
+        if let title = Environment.title, title.isEmpty == false {
             self.title = title
         }
 
@@ -236,21 +231,21 @@ final class ListProposalsViewController: BaseViewController {
             refreshControl.forceShowAnimation()
 
             EvolutionService.listProposals { [weak self] result in
-                guard let strongSelf = self else {
+                guard let self = self else {
                     return
                 }
                 
-                if strongSelf.dataSource.count > 0 {
-                    strongSelf.filteredDataSource   = []
-                    strongSelf.dataSource           = []
-                    strongSelf.languages            = []
-                    strongSelf.status               = []
-                    strongSelf.appDelegate?.people  = [:]
+                if self.dataSource.count > 0 {
+                    self.filteredDataSource   = []
+                    self.dataSource           = []
+                    self.languages            = []
+                    self.status               = []
+                    self.appDelegate?.people  = [:]
                 }
                 
                 DispatchQueue.main.async {
-                    if strongSelf.refreshControl.isRefreshing {
-                        strongSelf.refreshControl.endRefreshing()
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
                     }
                 }
 
@@ -261,25 +256,24 @@ final class ListProposalsViewController: BaseViewController {
                     return
                 }
                 
-                
-                strongSelf.dataSource                       = proposals.filter(by: strongSelf.statusOrder)
-                strongSelf.filteredDataSource               = strongSelf.dataSource
-                strongSelf.filterHeaderView?.statusSource   = strongSelf.statusOrder
-                strongSelf.buildPeople()
+                self.dataSource                       = proposals.filter(by: self.statusOrder)
+                self.filteredDataSource               = self.dataSource
+                self.filterHeaderView?.statusSource   = self.statusOrder
+                self.buildPeople()
                 
                 // Language Versions source
-                strongSelf.filterHeaderView?.languageVersionSource = proposals.compactMap({ $0.status.version }).removeDuplicates().sorted()
+                self.filterHeaderView?.languageVersionSource = proposals.compactMap({ $0.status.version }).removeDuplicates().sorted()
                 
                 DispatchQueue.main.async {
-                    strongSelf.tableView.reloadData()
+                    self.tableView.reloadData()
                     
-                    if strongSelf.refreshControl.isRefreshing {
-                       strongSelf.refreshControl.endRefreshing()
+                    if self.refreshControl.isRefreshing {
+                       self.refreshControl.endRefreshing()
                     }
                     
                     // In case of user have come
                     if !Navigation.shared.isClear {
-                        strongSelf.navigate(to: Navigation.shared)
+                        self.navigate(to: Navigation.shared)
                     }
                 }
             }
@@ -460,7 +454,7 @@ extension ListProposalsViewController: UITableViewDataSource {
         let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
         
         cell.delegate = self
-        cell.proposal = self.filteredDataSource[indexPath.row]
+        cell.proposal = filteredDataSource[indexPath.row]
         
         return cell
     }
@@ -475,12 +469,8 @@ extension ListProposalsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard !dataSource.isEmpty else {
-            return nil
-        }
-        
-        let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
-        headerCell.proposalCount = self.filteredDataSource.count
+        let headerCell: ProposalListHeaderTableViewCell = tableView.cell()
+        headerCell.proposalCount = filteredDataSource.count
         
         return headerCell.contentView
     }
