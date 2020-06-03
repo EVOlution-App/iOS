@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -32,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>11</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>EnvironmentSettings</key>
 	<dict>
 		<key>Notification</key>
@@ -87,6 +87,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Needs access to your microphone so you can attach voice notes.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Needs access to your photo library so you can attach images.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

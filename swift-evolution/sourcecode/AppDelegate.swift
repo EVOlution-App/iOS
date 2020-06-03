@@ -1,5 +1,6 @@
 import UIKit
 import UserNotifications
+import Instabug
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
+        Instabug.start(
+            withToken: "",
+            invocationEvents: [
+                .shake,
+                .screenshot
+            ]
+        )
+
         registerSchemes()
         registerNetworkingMonitor()
         registerSizeOfCache()
