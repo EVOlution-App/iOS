@@ -104,14 +104,13 @@ extension ProposalDetailViewController {
             return
         }
         
-        if let reachability = self.reachability, reachability.isReachable {
+        if let reachability = self.reachability, reachability.connection != .none {
             // Hide No Connection View
             showNoConnection = false
             
             refreshControl.forceShowAnimation()
             EvolutionService.detail(for: proposal) { [weak self] result in
-                guard let strongSelf = self else {
-                    Crashlytics.sharedInstance().recordError("[Get Proposal Detail] self is nil")
+                guard let self = self else {
                     return
                 }
                 

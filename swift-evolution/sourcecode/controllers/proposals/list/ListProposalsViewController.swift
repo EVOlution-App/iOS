@@ -13,7 +13,6 @@ final class ListProposalsViewController: BaseViewController {
 
     // Private properties
     fileprivate var timer: Timer = Timer()
-
     
     fileprivate lazy var filteredDataSource: [Proposal] = {
         return []
@@ -223,7 +222,7 @@ final class ListProposalsViewController: BaseViewController {
     
     // MARK: - Requests
     fileprivate func getProposalList() {
-        if let reachability = self.reachability, reachability.isReachable {
+        if let reachability = self.reachability, reachability.connection != .none {
             // Hide No Connection View
             showNoConnection = false
             refreshControl.forceShowAnimation()
