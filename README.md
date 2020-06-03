@@ -8,62 +8,6 @@ On our roadmap (you can read at our [GitHub Projects](https://github.com/Evoluti
 
 ![](images/screenshots_base.png)
 
-## Environment prerequisites
-
-### Ruby
-
-If you don't have experience with Ruby we recommend [rbenv](https://github.com/rbenv/rbenv):
-
-```sh
-brew install rbenv
-rbenv init
-echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-```
-
-Install the Ruby version used on the project:
-
-```sh
-rbenv install `cat .ruby-version`
-```
-
-### Bundler
-
-```sh
-gem install bundler
-```
-
-### Optional: Rakefile auto complete
-
-Nobody likes to type 😉
-
-Brew has a [repository](https://github.com/Homebrew/homebrew-completions) only for auto completions:
-
-```sh
-brew tap homebrew/completions
-brew install bash-completion
-brew install rake-completion
-```
-
-Don't forget to add to your `.bash_profile`:
-
-```sh
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
-fi
-```
-
-## Setup project
-
-```sh
-rake setup
-```
-
-## Running the tests
-
-```sh
-rake xcode:tests
-```
-
 ## How to contribute
 
 You need to create an issue and associate a pull request to this issue. Your pull request, needs to have some description on title about the issue that you are trying to solve. 
@@ -95,7 +39,6 @@ After you send your pull request, other developers will make a code review befor
 ## License
 
 **EVOlution App** is available under the MIT license. See the LICENSE file for more info. 
-
 
 
 ---
