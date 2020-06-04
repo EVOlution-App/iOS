@@ -23,9 +23,9 @@
 		91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
 		91263BF42487E98D000CBB39 /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF32487E98D000CBB39 /* Instabug.framework */; };
 		91263BF52487E98D000CBB39 /* Instabug.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF32487E98D000CBB39 /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		91263BF72487F1AB000CBB39 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF62487F1AB000CBB39 /* Down.framework */; };
-		91263BF82487F1AB000CBB39 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF62487F1AB000CBB39 /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91263BFF2487F405000CBB39 /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 91263BFE2487F404000CBB39 /* DownView.bundle */; };
+		91263C0524884968000CBB39 /* MarkdownView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91263C0424884968000CBB39 /* MarkdownView.framework */; };
+		91263C0624884968000CBB39 /* MarkdownView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91263C0424884968000CBB39 /* MarkdownView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* Formatter+ID.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
 		912B15052085534B008EC81F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B15042085534B008EC81F /* Tag.swift */; };
@@ -139,8 +139,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				91263BDF2487E32C000CBB39 /* Reachability.framework in Embed Frameworks */,
+				91263C0624884968000CBB39 /* MarkdownView.framework in Embed Frameworks */,
 				91263BE12487E32D000CBB39 /* SwiftRichString.framework in Embed Frameworks */,
-				91263BF82487F1AB000CBB39 /* Down.framework in Embed Frameworks */,
 				91263BF52487E98D000CBB39 /* Instabug.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -160,8 +160,8 @@
 		9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Contributor.swift"; sourceTree = "<group>"; };
 		9116263B1E8DD16100E8DB77 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		91263BF32487E98D000CBB39 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = frameworks/Instabug.framework; sourceTree = "<group>"; };
-		91263BF62487F1AB000CBB39 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
 		91263BFE2487F404000CBB39 /* DownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DownView.bundle; sourceTree = "<group>"; };
+		91263C0424884968000CBB39 /* MarkdownView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarkdownView.framework; path = Carthage/Build/iOS/MarkdownView.framework; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* Formatter+ID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ID.swift"; sourceTree = "<group>"; };
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		912B15042085534B008EC81F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -265,11 +265,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91263C0524884968000CBB39 /* MarkdownView.framework in Frameworks */,
 				91263BE02487E32D000CBB39 /* SwiftRichString.framework in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
 				91263BF42487E98D000CBB39 /* Instabug.framework in Frameworks */,
 				91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */,
-				91263BF72487F1AB000CBB39 /* Down.framework in Frameworks */,
 				91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,7 +508,7 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91263BF62487F1AB000CBB39 /* Down.framework */,
+				91263C0424884968000CBB39 /* MarkdownView.framework */,
 				91263BF32487E98D000CBB39 /* Instabug.framework */,
 				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
 				91F05E631F034F78002738F4 /* Reachability.framework */,
@@ -953,10 +953,9 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/MarkdownView.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
