@@ -157,10 +157,9 @@ extension ProfileViewController: UITableViewDelegate {
         let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
 
         if modalPresentationStyle == .formSheet {
-            dismiss(animated: true,
-                    completion: {
-                        ProfileViewController.dismissCallback?(self.sections[indexPath.section].proposals[indexPath.row])
-            })
+            dismiss(animated: true) {
+                ProfileViewController.dismissCallback?(self.sections[indexPath.section].proposals[indexPath.row])
+            }
         } else {
             Config.Segues.proposalDetail.performSegue(in: sourceViewController, split: true)
         }

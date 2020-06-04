@@ -341,6 +341,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IQs-1c-ai1"/>
                                     <barButtonItem title="Close" id="Mz0-3d-He9">
+                                        <color key="tintColor" name="NavTitle"/>
                                         <connections>
                                             <action selector="closeAction:" destination="3eh-9t-QMu" id="Zy7-n7-iXQ"/>
                                         </connections>
@@ -364,7 +365,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
                                             <constraint firstAttribute="height" constant="124" id="JLo-Lm-mSl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.33342915773391724" green="0.33341541886329651" blue="0.33342477679252625" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" name="MainTitle"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iFC-f8-Q5k">
@@ -559,6 +560,9 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
         <image name="placeholder-photo" width="150" height="150"/>
         <namedColor name="BgColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="MainTitle">
+            <color red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavTitle">
             <color red="0.059000000357627869" green="0.043000001460313797" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -1,5 +1,7 @@
 import UIKit
 
+typealias People = [Person]
+
 struct Person: Decodable {
     var id: String?
     let name: String?

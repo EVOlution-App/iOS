@@ -78,7 +78,7 @@ fileprivate extension ProfileView {
 
                 // Configure font properties
                 $0.font = FontAttribute(.HelveticaNeue_Bold, size: pointSize)
-                $0.color = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
+                $0.color = UIColor(named: "MainTitle")
             })
             
             attributedStrings.append(string: text, style: style)
@@ -122,7 +122,7 @@ fileprivate extension ProfileView {
         
         let valueStyle = Style("value", {
             $0.font = FontAttribute(.HelveticaNeue_Bold, size: 18)
-            $0.color = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
+            $0.color = UIColor(named: "MainTitle")
             $0.align = .center
         })
         

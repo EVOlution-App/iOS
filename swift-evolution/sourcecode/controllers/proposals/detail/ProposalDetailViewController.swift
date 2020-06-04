@@ -1,6 +1,6 @@
 import UIKit
 import WebKit
-import Down
+import MarkdownView
 import SafariServices
 
 final class ProposalDetailViewController: BaseViewController {
@@ -13,7 +13,19 @@ final class ProposalDetailViewController: BaseViewController {
     private weak var appDelegate: AppDelegate?
     private var proposalMarkdown: String?
     private var shareButton: UIBarButtonItem?
-    internal private(set) var downView: DownView?
+    private(set) lazy var markdownView: MarkdownView = {
+        let markdownView = MarkdownView()
+        
+        markdownView.onTouchLink = { [weak self] request in
+            guard let self = self else {
+                return false
+            }
+            
+            return self.handleTap(with: request)
+        }
+
+        return markdownView
+    }()
 
     // MARK: - Public properties
     var proposal: Proposal?
@@ -27,19 +39,22 @@ final class ProposalDetailViewController: BaseViewController {
 }
 
 // MARK: - Life cycle
+
 extension ProposalDetailViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title                               = proposal?.description
-        appDelegate                         = UIApplication.shared.delegate as? AppDelegate
-        noSelectedProposalLabel?.isHidden   = proposal?.description != nil
-        navigationItem.leftBarButtonItem    = splitViewController?.displayModeButtonItem
+        title                             = proposal?.description
+        appDelegate                       = UIApplication.shared.delegate as? AppDelegate
+        noSelectedProposalLabel?.isHidden = proposal?.description != nil
+        navigationItem.leftBarButtonItem  = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
         
-        configureDownView()
+        configureMarkdownView()
         configureReachability()
-        refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
+        
+        // FIXME: This should be uncommented when I have access to the scrollView in the Markdown's view again
+        // refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
         
         getProposalDetail()
     }
@@ -47,6 +62,7 @@ extension ProposalDetailViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+       
         // Allow rotation
         (UIApplication.shared.delegate as? AppDelegate)?.allowRotation()
     }
@@ -55,9 +71,55 @@ extension ProposalDetailViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func handleTap(with request: URLRequest) -> Bool {
+        
+        guard let url = request.url, let proposal = self.proposal else {
+            return true
+        }
+        
+        let lastPathComponent = url.lastPathComponent
+        
+        // Extract proposal info from selected anchor
+        if url.path.hasSuffix(".md") {
+            let list = lastPathComponent.components(separatedBy: "-")
+            
+            if let first = list.first, list.count > 0 {
+                
+                // Only load if the proposal touched isn't the same presented
+                if let id = Int(first), id != proposal.id {
+                    let proposal = Proposal(id: id, link: lastPathComponent)
+                    
+                    Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+                }
+            }
+                
+                // In case of url lastPathComponent has .md suffix and it isn't a proposal
+            else {
+                let safariViewController = SFSafariViewController(url: url)
+                self.present(safariViewController, animated: true)
+            }
+        }
+            
+            // Check if the link is an author/review manager, if yes, send user to profile screen
+        else if let host = url.host, host.contains("github.com"),
+            let person = self.appDelegate?.people.get(username: lastPathComponent) {
+            
+            Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+        }
+            
+            // The last step is check only if the url "appears" to be correct, before try to send it to safari
+        else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
+            let safariViewController = SFSafariViewController(url: url)
+            self.present(safariViewController, animated: true)
+        }
+        
+        return false
+    }
 }
 
 // MARK: - Reachability Closures
+
 extension ProposalDetailViewController {
     
     private func configureReachability() {
@@ -76,35 +138,29 @@ extension ProposalDetailViewController {
 }
 
 // MARK: - Elements
-extension ProposalDetailViewController {
-    internal func configureDownView() {
-        guard let url = Bundle.main.url(forResource: "DownView", withExtension: "bundle"),
-            let bundle = Bundle(url: url) else {
-            return
-        }
 
-        self.downView = try? DownView(frame: self.detailView.bounds, markdownString: "", templateBundle: bundle)
-        self.downView?.navigationDelegate = self
-        self.downView?.scrollView.addSubview(refreshControl)
+extension ProposalDetailViewController {
+    func configureMarkdownView() {
+        detailView.addSubview(markdownView)
+        markdownView.translatesAutoresizingMaskIntoConstraints = false
         
-        if let downView = self.downView {
-            self.detailView.addSubview(downView)
-            downView.translatesAutoresizingMaskIntoConstraints = false
-         
-            NSLayoutConstraint.activate([
-                downView.topAnchor.constraint(equalTo: self.detailView.topAnchor),
-                downView.bottomAnchor.constraint(equalTo: self.detailView.bottomAnchor),
-                downView.leadingAnchor.constraint(equalTo: self.detailView.leadingAnchor),
-                downView.trailingAnchor.constraint(equalTo: self.detailView.trailingAnchor)
-            ])
-        }
+        // TODO: Add refreshControl as subView of scrollView (when we have access to it)
+        
+        NSLayoutConstraint.activate([
+            markdownView.topAnchor.constraint(equalTo: detailView.topAnchor),
+            markdownView.bottomAnchor.constraint(equalTo: detailView.bottomAnchor),
+            markdownView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor),
+            markdownView.trailingAnchor.constraint(equalTo: detailView.trailingAnchor)
+        ])
+        
     }
 }
 
 // MARK: - Networking
+
 extension ProposalDetailViewController {
     @objc
-    fileprivate func getProposalDetail() {
+    private func getProposalDetail() {
         guard let proposal = self.proposal else {
             return
         }
@@ -119,14 +175,14 @@ extension ProposalDetailViewController {
                     return
                 }
                 
-                guard let data = result.value else {
+                guard let markdownString = result.value else {
                     return
                 }
                 
-                self.proposalMarkdown = data
+                self.proposalMarkdown = markdownString
                 
                 DispatchQueue.main.async {
-                    try? self.downView?.update(markdownString: data)
+                    self.markdownView.load(markdown: markdownString)
                     self.refreshControl.beginRefreshing()
                     self.showHideNavigationButtons()
                 }
@@ -146,6 +202,7 @@ extension ProposalDetailViewController {
 }
 
 // MARK: - Navigation
+
 extension ProposalDetailViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is ProposalDetailViewController,
@@ -165,6 +222,7 @@ extension ProposalDetailViewController {
 }
 
 // MARK: - Share Proposal
+
 extension ProposalDetailViewController {
     @objc private func shareProposal() {
         guard let proposal = self.proposal else {
@@ -193,59 +251,5 @@ extension ProposalDetailViewController {
     private func showHideNavigationButtons() {
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
         navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
-    }
-}
-
-// MARK: - WKNavigation Delegate
-extension ProposalDetailViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
-        if navigationAction.navigationType == .linkActivated {
-            guard let url = navigationAction.request.url, let proposal = self.proposal else {
-                decisionHandler(.allow)
-                return
-            }
-            
-            let lastPathComponent = url.lastPathComponent
-            
-            // Extract proposal info from selected anchor
-            if url.path.hasSuffix(".md") {
-                let list = lastPathComponent.components(separatedBy: "-")
-                
-                if let first = list.first, list.count > 0 {
-                    
-                    // Only load if the proposal touched isn't the same presented
-                    if let id = Int(first), id != proposal.id {
-                        let proposal = Proposal(id: id, link: lastPathComponent)
-                        
-                        Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
-                    }
-                }
-                    
-                    // In case of url lastPathComponent has .md suffix and it isn't a proposal
-                else {
-                    let safariViewController = SFSafariViewController(url: url)
-                    self.present(safariViewController, animated: true)
-                }
-            }
-
-                // Check if the link is an author/review manager, if yes, send user to profile screen
-            else if let host = url.host, host.contains("github.com"),
-                let person = self.appDelegate?.people.get(username: lastPathComponent) {
-
-                Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
-            }
-                
-                // The last step is check only if the url "appears" to be correct, before try to send it to safari
-            else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
-                let safariViewController = SFSafariViewController(url: url)
-                self.present(safariViewController, animated: true)
-            }
-            
-            decisionHandler(.cancel)
-            return
-        }
-        
-        decisionHandler(.allow)
     }
 }
