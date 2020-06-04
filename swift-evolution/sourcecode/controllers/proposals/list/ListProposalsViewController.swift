@@ -393,33 +393,44 @@ final class ListProposalsViewController: BaseViewController {
     // MARK: - Data Consolidation
     
     func buildPeople() {
-        var authors: [String: Person] = [:]
+        var people: [String: Person] = [:]
+        
+        var proposalsPeople = People()
         
         dataSource.forEach { proposal in
-            proposal.authors?.forEach { person in
-                guard let name = person.name, name != "" else {
-                    return
-                }
-                
-                guard authors[name] == nil else {
-                    return
-                }
-                
-                authors[name] = person
-                
-                guard var user = authors[name] else {
-                    return
-                }
-                
-                user.id         = UUID().uuidString
-                user.asAuthor   = dataSource.filter(author: user)
-                user.asManager  = dataSource.filter(manager: user)
-                
-                authors[name] = user
+            proposal.authors?.forEach { author in
+                proposalsPeople.append(author)
+            }
+            
+            if let reviewManager = proposal.reviewManager {
+                proposalsPeople.append(reviewManager)
             }
         }
+        
+        proposalsPeople.forEach { person in
+            
+            guard let name = person.name, name.isEmpty == false else {
+                return
+            }
+            
+            guard people[name] == nil else {
+                return
+            }
+            
+            people[name] = person
+            
+            guard var user = people[name] else {
+                return
+            }
+            
+            user.id         = UUID().uuidString
+            user.asAuthor   = dataSource.filter(author: user)
+            user.asManager  = dataSource.filter(manager: user)
+            
+            people[name] = user
+        }
 
-        appDelegate?.people = authors
+        appDelegate?.people = people
     }
 
     // MARK: - IBActions
