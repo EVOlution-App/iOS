@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,9 +23,6 @@
 		91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
 		91263BF42487E98D000CBB39 /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF32487E98D000CBB39 /* Instabug.framework */; };
 		91263BF52487E98D000CBB39 /* Instabug.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF32487E98D000CBB39 /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		91263BFF2487F405000CBB39 /* DownView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 91263BFE2487F404000CBB39 /* DownView.bundle */; };
-		91263C0524884968000CBB39 /* MarkdownView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91263C0424884968000CBB39 /* MarkdownView.framework */; };
-		91263C0624884968000CBB39 /* MarkdownView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91263C0424884968000CBB39 /* MarkdownView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* Formatter+ID.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
 		912B15052085534B008EC81F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B15042085534B008EC81F /* Tag.swift */; };
@@ -94,6 +91,10 @@
 		91B1006C207ADDAB00B65E02 /* Service+CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1006B207ADDAB00B65E02 /* Service+CloudKit.swift */; };
 		91B246091E98BF2B00904DE3 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B246081E98BF2B00904DE3 /* Dictionary.swift */; };
 		91B2460B1E99BC4100904DE3 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B2460A1E99BC4100904DE3 /* Routes.swift */; };
+		91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */ = {isa = PBXBuildFile; productRef = 91B88F11248D593C00F69B69 /* MarkdownSyntax */; };
+		91B88F18248D5DEE00F69B69 /* Markdown.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 91B88F17248D5DEE00F69B69 /* Markdown.bundle */; };
+		91B88F1C248D73ED00F69B69 /* MarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B88F1B248D73ED00F69B69 /* MarkdownView.swift */; };
+		91B88F1F248D7BB600F69B69 /* MarkdownResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B88F1E248D7BB600F69B69 /* MarkdownResources.swift */; };
 		91D5895E1E7E251200FE958D /* Formatter+GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D5895D1E7E251200FE958D /* Formatter+GithubUser.swift */; };
 		91D589611E7E43D300FE958D /* Person+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D589601E7E43D300FE958D /* Person+Extension.swift */; };
 		91D589631E7E43F400FE958D /* Proposal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D589621E7E43F400FE958D /* Proposal+Extension.swift */; };
@@ -139,7 +140,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				91263BDF2487E32C000CBB39 /* Reachability.framework in Embed Frameworks */,
-				91263C0624884968000CBB39 /* MarkdownView.framework in Embed Frameworks */,
 				91263BE12487E32D000CBB39 /* SwiftRichString.framework in Embed Frameworks */,
 				91263BF52487E98D000CBB39 /* Instabug.framework in Embed Frameworks */,
 			);
@@ -160,8 +160,6 @@
 		9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Contributor.swift"; sourceTree = "<group>"; };
 		9116263B1E8DD16100E8DB77 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		91263BF32487E98D000CBB39 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = frameworks/Instabug.framework; sourceTree = "<group>"; };
-		91263BFE2487F404000CBB39 /* DownView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DownView.bundle; sourceTree = "<group>"; };
-		91263C0424884968000CBB39 /* MarkdownView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MarkdownView.framework; path = Carthage/Build/iOS/MarkdownView.framework; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* Formatter+ID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ID.swift"; sourceTree = "<group>"; };
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		912B15042085534B008EC81F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -238,6 +236,9 @@
 		91B1006B207ADDAB00B65E02 /* Service+CloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+CloudKit.swift"; sourceTree = "<group>"; };
 		91B246081E98BF2B00904DE3 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		91B2460A1E99BC4100904DE3 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		91B88F17248D5DEE00F69B69 /* Markdown.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Markdown.bundle; sourceTree = "<group>"; };
+		91B88F1B248D73ED00F69B69 /* MarkdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownView.swift; sourceTree = "<group>"; };
+		91B88F1E248D7BB600F69B69 /* MarkdownResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownResources.swift; sourceTree = "<group>"; };
 		91D5895D1E7E251200FE958D /* Formatter+GithubUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+GithubUser.swift"; sourceTree = "<group>"; };
 		91D589601E7E43D300FE958D /* Person+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+Extension.swift"; sourceTree = "<group>"; };
 		91D589621E7E43F400FE958D /* Proposal+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Proposal+Extension.swift"; sourceTree = "<group>"; };
@@ -265,7 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91263C0524884968000CBB39 /* MarkdownView.framework in Frameworks */,
+				91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */,
 				91263BE02487E32D000CBB39 /* SwiftRichString.framework in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
 				91263BF42487E98D000CBB39 /* Instabug.framework in Frameworks */,
@@ -294,7 +295,7 @@
 		91263BF92487F3C3000CBB39 /* bundles */ = {
 			isa = PBXGroup;
 			children = (
-				91263BFE2487F404000CBB39 /* DownView.bundle */,
+				91B88F17248D5DEE00F69B69 /* Markdown.bundle */,
 			);
 			path = bundles;
 			sourceTree = "<group>";
@@ -491,6 +492,7 @@
 		9152655D1E6775BE00C2AFDA /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				91B88F1D248D7BA100F69B69 /* markdown */,
 				917E4C6F20A7581500846C87 /* views */,
 				9152658B1E67E10500C2AFDA /* designables */,
 				915265741E67811B00C2AFDA /* extensions */,
@@ -508,7 +510,6 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91263C0424884968000CBB39 /* MarkdownView.framework */,
 				91263BF32487E98D000CBB39 /* Instabug.framework */,
 				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
 				91F05E631F034F78002738F4 /* Reachability.framework */,
@@ -645,6 +646,7 @@
 		917E4C6F20A7581500846C87 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				91B88F19248D73DD00F69B69 /* markdownview */,
 				914B719A209E9A6B00906645 /* uitableviewcell */,
 				917E4C7720A763FE00846C87 /* descriptionview */,
 			);
@@ -678,6 +680,22 @@
 				913520EE20AA50D900EC04E0 /* CustomContent.swift */,
 			);
 			path = notifications;
+			sourceTree = "<group>";
+		};
+		91B88F19248D73DD00F69B69 /* markdownview */ = {
+			isa = PBXGroup;
+			children = (
+				91B88F1B248D73ED00F69B69 /* MarkdownView.swift */,
+			);
+			path = markdownview;
+			sourceTree = "<group>";
+		};
+		91B88F1D248D7BA100F69B69 /* markdown */ = {
+			isa = PBXGroup;
+			children = (
+				91B88F1E248D7BB600F69B69 /* MarkdownResources.swift */,
+			);
+			path = markdown;
 			sourceTree = "<group>";
 		};
 		91D5895F1E7E42FE00FE958D /* extensions */ = {
@@ -786,6 +804,9 @@
 			dependencies = (
 			);
 			name = "swift-evolution";
+			packageProductDependencies = (
+				91B88F11248D593C00F69B69 /* MarkdownSyntax */,
+			);
 			productName = "swift-evolution";
 			productReference = 915265221E67659900C2AFDA /* swift-evolution.app */;
 			productType = "com.apple.product-type.application";
@@ -881,6 +902,9 @@
 				Base,
 			);
 			mainGroup = 915265191E67659900C2AFDA;
+			packageReferences = (
+				91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */,
+			);
 			productRefGroup = 915265231E67659900C2AFDA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -899,13 +923,13 @@
 			files = (
 				917E4C7D20A77A5200846C87 /* CustomSubtitleTableViewCell.xib in Resources */,
 				917E4C7220A7588F00846C87 /* SwitchTableViewCell.xib in Resources */,
-				91263BFF2487F405000CBB39 /* DownView.bundle in Resources */,
 				915265301E67659A00C2AFDA /* LaunchScreen.storyboard in Resources */,
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
 				670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */,
 				917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
 				915F7DE21F0382C4001B298D /* NoConnectionView.xib in Resources */,
+				91B88F18248D5DEE00F69B69 /* Markdown.bundle in Resources */,
 				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
 				915265831E67D7A900C2AFDA /* ProposalTableViewCell.xib in Resources */,
 			);
@@ -955,7 +979,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MarkdownView.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -1012,6 +1035,7 @@
 				91D5896B1E7E538600FE958D /* State+Extension.swift in Sources */,
 				91A454871EB99B6C00098A6B /* Environment.swift in Sources */,
 				914B7199209E785D00906645 /* Contributor+Extension.swift in Sources */,
+				91B88F1F248D7BB600F69B69 /* MarkdownResources.swift in Sources */,
 				91DAF71320B046FB00A2EC9A /* Navigation.swift in Sources */,
 				914B719E209E9AA300906645 /* CustomSubtitleTableViewCell.swift in Sources */,
 				919A1D372076D6390042A13B /* Encodable.swift in Sources */,
@@ -1050,6 +1074,7 @@
 				91B1006C207ADDAB00B65E02 /* Service+CloudKit.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,
 				913B711D203E5F52007FE04B /* Implementation+Extension.swift in Sources */,
+				91B88F1C248D73ED00F69B69 /* MarkdownView.swift in Sources */,
 				916896431E935ED700FC6913 /* Github+Profile.swift in Sources */,
 				9152655F1E6777B600C2AFDA /* Service.swift in Sources */,
 				919A1D3A2076D70C0042A13B /* Service+Notifications.swift in Sources */,
@@ -1176,7 +1201,8 @@
 				NOTIFICATION_APP_URL = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1186,7 +1212,6 @@
 		911432251EB97FE900CCC0D0 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
 				APP_ENVIRONMENT_TITLE = Internal;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon.development;
@@ -1207,7 +1232,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.3;
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
@@ -1231,7 +1259,11 @@
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				INFOPLIST_FILE = "swift-evolutionTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1247,7 +1279,11 @@
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				INFOPLIST_FILE = "swift-evolutionUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1371,7 +1407,8 @@
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1381,7 +1418,6 @@
 		9152654B1E67659A00C2AFDA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
 				APP_ENVIRONMENT_TITLE = EVO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1401,7 +1437,10 @@
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.3;
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
@@ -1417,7 +1456,6 @@
 		9152654C1E67659A00C2AFDA /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_DISPLAY_NAME = Evolution;
 				APP_ENVIRONMENT_TITLE = EVO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1436,7 +1474,10 @@
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.3;
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
@@ -1458,7 +1499,11 @@
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				INFOPLIST_FILE = "swift-evolutionTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1475,7 +1520,11 @@
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				INFOPLIST_FILE = "swift-evolutionTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1491,7 +1540,11 @@
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				INFOPLIST_FILE = "swift-evolutionUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1507,7 +1560,11 @@
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				INFOPLIST_FILE = "swift-evolutionUITests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "mobi.holanda.swift-evolutionUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1559,6 +1616,25 @@
 			defaultConfigurationName = AppStore;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hebertialmeida/MarkdownSyntax";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		91B88F11248D593C00F69B69 /* MarkdownSyntax */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */;
+			productName = MarkdownSyntax;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9152651A1E67659900C2AFDA /* Project object */;
 }

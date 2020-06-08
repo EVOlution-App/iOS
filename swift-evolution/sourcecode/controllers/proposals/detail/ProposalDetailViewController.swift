@@ -1,6 +1,5 @@
 import UIKit
 import WebKit
-import MarkdownView
 import SafariServices
 
 final class ProposalDetailViewController: BaseViewController {
@@ -11,21 +10,10 @@ final class ProposalDetailViewController: BaseViewController {
 
     // MARK: - Private properties
     private weak var appDelegate: AppDelegate?
-    private var proposalMarkdown: String?
     private var shareButton: UIBarButtonItem?
-    private(set) lazy var markdownView: MarkdownView = {
-        let markdownView = MarkdownView()
-        
-        markdownView.onTouchLink = { [weak self] request in
-            guard let self = self else {
-                return false
-            }
-            
-            return self.handleTap(with: request)
-        }
-
-        return markdownView
-    }()
+    
+    private var proposalMarkdown: String?
+    private lazy var markdownView = MarkdownView()
 
     // MARK: - Public properties
     var proposal: Proposal?
@@ -50,11 +38,12 @@ extension ProposalDetailViewController {
         navigationItem.leftBarButtonItem  = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
         
+        markdownView.navigationDelegate = self
+        
         configureMarkdownView()
         configureReachability()
         
-        // FIXME: This should be uncommented when I have access to the scrollView in the Markdown's view again
-        // refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
         
         getProposalDetail()
     }
@@ -62,7 +51,6 @@ extension ProposalDetailViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-       
         // Allow rotation
         (UIApplication.shared.delegate as? AppDelegate)?.allowRotation()
     }
@@ -72,50 +60,6 @@ extension ProposalDetailViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func handleTap(with request: URLRequest) -> Bool {
-        
-        guard let url = request.url, let proposal = self.proposal else {
-            return true
-        }
-        
-        let lastPathComponent = url.lastPathComponent
-        
-        // Extract proposal info from selected anchor
-        if url.path.hasSuffix(".md") {
-            let list = lastPathComponent.components(separatedBy: "-")
-            
-            if let first = list.first, list.count > 0 {
-                
-                // Only load if the proposal touched isn't the same presented
-                if let id = Int(first), id != proposal.id {
-                    let proposal = Proposal(id: id, link: lastPathComponent)
-                    
-                    Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
-                }
-            }
-                
-                // In case of url lastPathComponent has .md suffix and it isn't a proposal
-            else {
-                let safariViewController = SFSafariViewController(url: url)
-                self.present(safariViewController, animated: true)
-            }
-        }
-            
-            // Check if the link is an author/review manager, if yes, send user to profile screen
-        else if let host = url.host, host.contains("github.com"),
-            let person = self.appDelegate?.people.get(username: lastPathComponent) {
-            
-            Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
-        }
-            
-            // The last step is check only if the url "appears" to be correct, before try to send it to safari
-        else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
-            let safariViewController = SFSafariViewController(url: url)
-            self.present(safariViewController, animated: true)
-        }
-        
-        return false
-    }
 }
 
 // MARK: - Reachability Closures
@@ -144,7 +88,7 @@ extension ProposalDetailViewController {
         detailView.addSubview(markdownView)
         markdownView.translatesAutoresizingMaskIntoConstraints = false
         
-        // TODO: Add refreshControl as subView of scrollView (when we have access to it)
+        markdownView.addRefreshControl(refreshControl)
         
         NSLayoutConstraint.activate([
             markdownView.topAnchor.constraint(equalTo: detailView.topAnchor),
@@ -182,7 +126,10 @@ extension ProposalDetailViewController {
                 self.proposalMarkdown = markdownString
                 
                 DispatchQueue.main.async {
-                    self.markdownView.load(markdown: markdownString)
+                    self.markdownView.load(
+                        markdown: markdownString
+                    )
+                    
                     self.refreshControl.beginRefreshing()
                     self.showHideNavigationButtons()
                 }
@@ -243,7 +190,8 @@ extension ProposalDetailViewController {
                 popoverPresentationController.sourceRect = bounds
             }
             self.navigationController?.present(activityController, animated: true, completion: nil)
-        } else {
+        }
+        else {
             self.navigationController?.present(activityController, animated: true, completion: nil)
         }
     }
@@ -252,4 +200,61 @@ extension ProposalDetailViewController {
         shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
         navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
     }
+}
+
+// MARK: - WKNavigation Delegate
+
+extension ProposalDetailViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        if navigationAction.navigationType == .linkActivated {
+            guard let url = navigationAction.request.url, let proposal = self.proposal else {
+                decisionHandler(.allow)
+                return
+            }
+            
+            let lastPathComponent = url.lastPathComponent
+            
+            // Extract proposal info from selected anchor
+            if url.path.hasSuffix(".md") {
+                let list = lastPathComponent.components(separatedBy: "-")
+                
+                if let first = list.first, list.count > 0 {
+                    
+                    // Only load if the proposal touched isn't the same presented
+                    if let id = Int(first), id != proposal.id {
+                        let proposal = Proposal(id: id, link: lastPathComponent)
+                        
+                        Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+                    }
+                }
+                    
+                    // In case of url lastPathComponent has .md suffix and it isn't a proposal
+                else {
+                    let safariViewController = SFSafariViewController(url: url)
+                    self.present(safariViewController, animated: true)
+                }
+            }
+                
+                // Check if the link is an author/review manager, if yes, send user to profile screen
+            else if let host = url.host, host.contains("github.com"),
+                let person = self.appDelegate?.people.get(username: lastPathComponent) {
+                
+                Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+            }
+                
+                // The last step is check only if the url "appears" to be correct, before try to send it to safari
+            else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
+                let safariViewController = SFSafariViewController(url: url)
+                self.present(safariViewController, animated: true)
+            }
+            
+            decisionHandler(.cancel)
+            return
+        }
+        
+        decisionHandler(.allow)
+    }
+    
 }

@@ -85,7 +85,7 @@ final class AboutViewController: UITableViewController {
     
     private func licenses() -> Section {
         let items = [
-            License(text: "Down", type: .github, value: "iwasrobbed/Down"),
+            License(text: "MarkdownSyntax", type: .github, value: "hebertialmeida/MarkdownSyntax"),
             License(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift"),
             License(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString"),
             License(text: "KeychainAccess", type: .github, value: "kishikawakatsumi/KeychainAccess"),
