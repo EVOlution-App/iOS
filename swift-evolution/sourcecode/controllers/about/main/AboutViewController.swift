@@ -141,7 +141,7 @@ final class AboutViewController: UITableViewController {
             Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
         ]
         
-        let copyright = "Copyright (c) 2017-2018 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
+        let copyright = "Copyright (c) 2017-2020 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
         return Section(
             section: .thanks,
             items: items,

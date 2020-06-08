@@ -16,12 +16,16 @@ extension UIImageView {
     }
     
     public func loadImage(from url: String?) {
-        guard let url = url, url != "" else {
+        guard let url = url, url.isEmpty == false else {
             return
         }
         
         Service.requestImage(url) { [weak self] result in
-            guard let image = result.value else { return }
+            
+            guard let image = result.value else {
+                return
+            }
+            
             DispatchQueue.main.async {
                 self?.image = image
             }

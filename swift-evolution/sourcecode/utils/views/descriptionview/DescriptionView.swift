@@ -28,7 +28,6 @@ final class DescriptionView: UIView {
             self.versionLabel.text = "v\(version) (\(build))"
         }
         
-        
         closeButton.isHidden = UIDevice.current.userInterfaceIdiom != .pad
     }
     
