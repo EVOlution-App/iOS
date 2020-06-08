@@ -41,7 +41,7 @@ final class MarkdownView: UIView {
     }()
     
     private var contentHeight: CGFloat = 0
-    
+    private var estimatedProgressObserver: NSKeyValueObservation?
     override var intrinsicContentSize: CGSize {
         CGSize(width: UIView.noIntrinsicMetric, height: contentHeight)
     }
@@ -55,15 +55,20 @@ final class MarkdownView: UIView {
         }
     }
     
+    var finishedLoading: ((Bool) -> Void)?
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.addSubview(webView)
-        loadHTML()
         
+        loadHTML()
         setupWebViewConstraints()
+        setupEstimatedProgressObserver()
+
+        webView.alpha = 0
     }
     
     required init?(coder: NSCoder) {
@@ -86,6 +91,20 @@ final class MarkdownView: UIView {
             webView.bottomAnchor.constraint(equalTo: bottomAnchor),
             webView.leadingAnchor.constraint(equalTo: leadingAnchor)
         ])
+    }
+    
+    private func setupEstimatedProgressObserver() {
+        estimatedProgressObserver = webView.observe(\.estimatedProgress, options: [.new]) { [weak self] webView, _ in
+            guard webView.estimatedProgress == 1.0 else {
+                return
+            }
+
+            UIView.animate(withDuration: 0.25) {
+                self?.webView.alpha = 1.0
+                
+                self?.finishedLoading?(true)
+            }
+        }
     }
     
     // MARK: - Markdown Loading

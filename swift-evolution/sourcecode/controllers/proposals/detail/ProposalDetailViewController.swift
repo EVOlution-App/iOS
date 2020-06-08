@@ -13,7 +13,12 @@ final class ProposalDetailViewController: BaseViewController {
     private var shareButton: UIBarButtonItem?
     
     private var proposalMarkdown: String?
-    private lazy var markdownView = MarkdownView()
+    private lazy var markdownView: MarkdownView = {
+        let markdownView = MarkdownView()
+        markdownView.navigationDelegate = self
+        
+        return markdownView
+    }()
 
     // MARK: - Public properties
     var proposal: Proposal?
@@ -22,7 +27,7 @@ final class ProposalDetailViewController: BaseViewController {
     override func retryButtonAction(_ sender: UIButton) {
         super.retryButtonAction(sender)
         
-        getProposalDetail()
+        loadProposalDetail()
     }
 }
 
@@ -37,15 +42,14 @@ extension ProposalDetailViewController {
         noSelectedProposalLabel?.isHidden = proposal?.description != nil
         navigationItem.leftBarButtonItem  = splitViewController?.displayModeButtonItem
         navigationItem.leftItemsSupplementBackButton = true
+
         
-        markdownView.navigationDelegate = self
+        setupMarkdownView()
+        setupReachability()
         
-        configureMarkdownView()
-        configureReachability()
+        refreshControl.addTarget(self, action: #selector(loadProposalDetail), for: .valueChanged)
         
-        refreshControl.addTarget(self, action: #selector(getProposalDetail), for: .valueChanged)
-        
-        getProposalDetail()
+        loadProposalDetail()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,10 +70,10 @@ extension ProposalDetailViewController {
 
 extension ProposalDetailViewController {
     
-    private func configureReachability() {
+    private func setupReachability() {
         reachability?.whenReachable = { [weak self] reachability in
             if self?.proposalMarkdown == nil {
-                self?.getProposalDetail()
+                self?.loadProposalDetail()
             }
         }
         
@@ -84,7 +88,7 @@ extension ProposalDetailViewController {
 // MARK: - Elements
 
 extension ProposalDetailViewController {
-    func configureMarkdownView() {
+    func setupMarkdownView() {
         detailView.addSubview(markdownView)
         markdownView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -96,7 +100,11 @@ extension ProposalDetailViewController {
             markdownView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor),
             markdownView.trailingAnchor.constraint(equalTo: detailView.trailingAnchor)
         ])
-        
+    }
+    
+    private func setupNavigationButtons() {
+        shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
+        navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
     }
 }
 
@@ -104,7 +112,7 @@ extension ProposalDetailViewController {
 
 extension ProposalDetailViewController {
     @objc
-    private func getProposalDetail() {
+    private func loadProposalDetail() {
         guard let proposal = self.proposal else {
             return
         }
@@ -131,7 +139,7 @@ extension ProposalDetailViewController {
                     )
                     
                     self.refreshControl.beginRefreshing()
-                    self.showHideNavigationButtons()
+                    self.setupNavigationButtons()
                 }
                 
                 // Remove refresh control
@@ -176,11 +184,9 @@ extension ProposalDetailViewController {
             return
         }
         
-        let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
-        let content = "Hey, check this proposal: \"\(title)\""
         let url = "https://evoapp.io/proposal/\(proposal.description)"
         
-        let activityController = UIActivityViewController(activityItems: [content, url], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad, let sourceView = shareButton?.value(forKey: "view") as? UIView {
             activityController.modalPresentationStyle = .popover
             if let popoverPresentationController = activityController.popoverPresentationController {
@@ -196,10 +202,6 @@ extension ProposalDetailViewController {
         }
     }
 
-    private func showHideNavigationButtons() {
-        shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
-        navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
-    }
 }
 
 // MARK: - WKNavigation Delegate
