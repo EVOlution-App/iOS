@@ -27,7 +27,7 @@
         <!--Split View Controller-->
         <scene sceneID="mbJ-Z2-1Cc">
             <objects>
-                <splitViewController storyboardIdentifier="SplitStoryboardID" id="czz-pU-pLJ" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="SplitStoryboardID" maximumPrimaryColumnWidth="319.5" minimumPrimaryColumnWidth="319.5" id="czz-pU-pLJ" sceneMemberID="viewController">
                     <connections>
                         <segue destination="uUZ-fy-2NM" kind="relationship" relationship="masterViewController" id="4dZ-Er-Qt7"/>
                         <segue destination="2o8-m5-GfY" kind="relationship" relationship="detailViewController" id="L5X-Ld-mKZ"/>
@@ -551,7 +551,7 @@ Swift and the Swift logo are trademarks of Apple Inc. For more information about
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rf2-rv-6M0"/>
-        <segue reference="3pf-Ye-P5i"/>
+        <segue reference="XKc-wh-heR"/>
         <segue reference="sHa-dI-MgD"/>
     </inferredMetricsTieBreakers>
     <resources>

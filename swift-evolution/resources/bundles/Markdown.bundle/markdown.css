@@ -126,6 +126,7 @@
     --blue-200: #d1e6ff;
     --blue-100: #e5f2ff;
     --blue-000: #f5faff;
+    --gray-1050: #000000;
     --gray-1000: #050505;
     --gray-950: #0b0b0d;
     --gray-900: #17181a;
@@ -214,7 +215,7 @@
     --textPlaceholder: rgba(145, 148, 161, 0.5);
     --link: var(--blue-400);
     --appBackground: var(--gray-1000);
-    --backgroundSecondary: var(--gray-900);
+    --backgroundSecondary: var(--gray-1050);
     --backgroundTertiary: var(--gray-850);
     --border: rgba(191, 193, 201, 0.16);
     --borderOpaque: var(--gray-700);
@@ -355,6 +356,7 @@ input[type="checkbox"] {
   font-size: inherit;
   line-height: 1.5;
   word-wrap: break-word;
+  margin: 10px;
 }
 
 .markdown-body kbd {

@@ -20,6 +20,16 @@ final class MarkdownResources {
         return styleSheetContent
     }()
     
+    private lazy var syntaxCSSContent: String = {
+        let cssURL = self.markdownBundleURL.appendingPathComponent("syntax.css")
+        
+        guard let styleSheetContent = try? String(contentsOf: cssURL) else {
+            fatalError("markdown.css was not found")
+        }
+        
+        return styleSheetContent
+    }()
+    
     private lazy var javascriptContent: String = {
         let javascriptURL = self.markdownBundleURL.appendingPathComponent("markdown.js")
         
@@ -42,7 +52,7 @@ final class MarkdownResources {
     
     static let shared = MarkdownResources()
     
-    lazy var template = String(format: templateContent, cascadingStyleSheetContent, javascriptContent)
+    lazy var template = String(format: templateContent, cascadingStyleSheetContent, syntaxCSSContent, javascriptContent)
     
     private init() {}
 }

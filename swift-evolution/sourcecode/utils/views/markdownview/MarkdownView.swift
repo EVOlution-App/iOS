@@ -35,6 +35,8 @@ final class MarkdownView: UIView {
             configuration: configuration
         )
         
+        webView.scrollView.isDirectionalLockEnabled = true
+        
         return webView
     }()
     
@@ -60,6 +62,8 @@ final class MarkdownView: UIView {
         
         self.addSubview(webView)
         loadHTML()
+        
+        setupWebViewConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -70,20 +74,6 @@ final class MarkdownView: UIView {
     
     func addRefreshControl(_ view: UIRefreshControl) {
         webView.scrollView.addSubview(view)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        backgroundColor = UIColor(named: "BgColor")
-        
-        setupWebViewConstraints()
-        
-        let size = bounds.size
-        if !contentSize.equalTo(size) {
-            contentSize = size
-            loadHTML()
-        }
     }
     
     private func setupWebViewConstraints() {
@@ -130,7 +120,7 @@ final class MarkdownView: UIView {
     }
     
     private func loadMarkdownIntoHTML() {
-        let javascript = String(format: "github.load('%@')", markdownHTML)
+        let javascript = "github.load('\(markdownHTML)')"
         
         webView.evaluateJavaScript(javascript) { [weak self] (height, _) in
             if let height = height as? CGFloat, let contentHeight = self?.contentHeight, height != contentHeight {
