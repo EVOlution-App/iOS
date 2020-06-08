@@ -112,7 +112,7 @@ extension FilterListGenericView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         if let text = self.textFor(indexPath: indexPath), let font = UIFont(name: "HelveticaNeue", size: 16) {
-            let width = text.contraint(height: 28, font: font) + 34
+            let width = text.estimatedWidth(height: 28, font: font) + 34
             
             let size = CGSize(width: width, height: 28)
             return size

@@ -45,7 +45,7 @@ class ProposalTableViewCell: UITableViewCell {
         self.statusIndicatorView.backgroundColor = state.color
         
         // Fit size to status text
-        let statusWidth = state.shortName.contraint(height: self.statusLabel.bounds.size.height,
+        let statusWidth = state.shortName.estimatedWidth(height: self.statusLabel.bounds.size.height,
                                                     font: self.statusLabel.font)
         self.statusLabelWidthConstraint.constant = statusWidth + 20
         

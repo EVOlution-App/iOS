@@ -63,14 +63,21 @@ extension String {
      
      - parameter height: height to base the string
      - parameter font: font attributes to check text
-     - returns: width total based on attributes
+     - returns: width based on attributes
      */
-    func contraint(height: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect,
-                                            options: .usesLineFragmentOrigin,
-                                            attributes: [NSAttributedString.Key.font: font],
-                                            context: nil)
+    func estimatedWidth(height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(
+            width: .greatestFiniteMagnitude,
+            height: height
+        )
+        
+        let boundingBox = self.boundingRect(
+            with: constraintRect,
+            options: .usesLineFragmentOrigin,
+            attributes: [NSAttributedString.Key.font: font],
+            context: nil
+        )
+        
         return boundingBox.width
     }
     
