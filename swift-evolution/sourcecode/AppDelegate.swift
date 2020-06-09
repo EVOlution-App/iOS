@@ -1,6 +1,8 @@
 import UIKit
 import UserNotifications
-import Instabug
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,11 +24,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Instabug.start(
-            withToken: "",
-            invocationEvents: [
-                .shake,
-                .screenshot
+        MSAppCenter.start(
+            "<AppCenter Key",
+            withServices: [
+                MSAnalytics.self,
+                MSCrashes.self
             ]
         )
 

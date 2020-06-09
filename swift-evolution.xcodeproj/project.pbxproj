@@ -17,12 +17,8 @@
 		9116263C1E8DD16100E8DB77 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9116263B1E8DD16100E8DB77 /* Section.swift */; };
 		91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B1005C207AB9F200B65E02 /* CloudKit.framework */; };
 		91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F05E631F034F78002738F4 /* Reachability.framework */; };
-		91263BDF2487E32C000CBB39 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91F05E631F034F78002738F4 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91263BE02487E32D000CBB39 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
-		91263BE12487E32D000CBB39 /* SwiftRichString.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
-		91263BF42487E98D000CBB39 /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF32487E98D000CBB39 /* Instabug.framework */; };
-		91263BF52487E98D000CBB39 /* Instabug.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91263BF32487E98D000CBB39 /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* Formatter+ID.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
 		912B15052085534B008EC81F /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912B15042085534B008EC81F /* Tag.swift */; };
@@ -80,6 +76,9 @@
 		917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7820A7643400846C87 /* DescriptionView.xib */; };
 		917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7A20A7644800846C87 /* DescriptionView.swift */; };
 		917E4C7D20A77A5200846C87 /* CustomSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */; };
+		9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657C248F89F500C471D5 /* AppCenterCrashes.framework */; };
+		91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657D248F89F500C471D5 /* AppCenter.framework */; };
+		91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		919A1D372076D6390042A13B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D342076D6380042A13B /* Encodable.swift */; };
 		919A1D382076D6390042A13B /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D362076D6390042A13B /* UIDevice.swift */; };
@@ -132,22 +131,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		87DE00691F7AAF59007C374A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				91263BDF2487E32C000CBB39 /* Reachability.framework in Embed Frameworks */,
-				91263BE12487E32D000CBB39 /* SwiftRichString.framework in Embed Frameworks */,
-				91263BF52487E98D000CBB39 /* Instabug.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -159,7 +142,6 @@
 		911432221EB9756500CCC0D0 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Contributor.swift"; sourceTree = "<group>"; };
 		9116263B1E8DD16100E8DB77 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		91263BF32487E98D000CBB39 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = frameworks/Instabug.framework; sourceTree = "<group>"; };
 		912938D01E762C3000D2B2CF /* Formatter+ID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Formatter+ID.swift"; sourceTree = "<group>"; };
 		912938D21E766EE000D2B2CF /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		912B15042085534B008EC81F /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -224,6 +206,9 @@
 		917E4C7820A7643400846C87 /* DescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
 		917E4C7A20A7644800846C87 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubtitleTableViewCell.xib; sourceTree = "<group>"; };
+		9183657C248F89F500C471D5 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = Carthage/Build/iOS/AppCenterCrashes.framework; sourceTree = "<group>"; };
+		9183657D248F89F500C471D5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = Carthage/Build/iOS/AppCenter.framework; sourceTree = "<group>"; };
+		9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = Carthage/Build/iOS/AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		919A1D342076D6380042A13B /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		919A1D362076D6390042A13B /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -266,10 +251,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */,
+				91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */,
+				91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */,
 				91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */,
 				91263BE02487E32D000CBB39 /* SwiftRichString.framework in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
-				91263BF42487E98D000CBB39 /* Instabug.framework in Frameworks */,
 				91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */,
 				91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */,
 			);
@@ -510,7 +497,9 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91263BF32487E98D000CBB39 /* Instabug.framework */,
+				9183657D248F89F500C471D5 /* AppCenter.framework */,
+				9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */,
+				9183657C248F89F500C471D5 /* AppCenterCrashes.framework */,
 				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
 				91F05E631F034F78002738F4 /* Reachability.framework */,
 				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
@@ -796,8 +785,6 @@
 				915265201E67659900C2AFDA /* Resources */,
 				91BBA17E1F19E943008A7DDD /* SwiftLint Script */,
 				915265711E677D2C00C2AFDA /* Carthage Script */,
-				91263BED2487E76C000CBB39 /* Instabug Script */,
-				87DE00691F7AAF59007C374A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -952,24 +939,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		91263BED2487E76C000CBB39 /* Instabug Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Instabug Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework/strip-frameworks.sh\"\n";
-		};
 		915265711E677D2C00C2AFDA /* Carthage Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
