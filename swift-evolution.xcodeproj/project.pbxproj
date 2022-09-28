@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = 00A2109F28E4B0D000587485 /* SwiftRichString */; };
+		00A210A328E4BECC00587485 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A228E4BECC00587485 /* Reachability */; };
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
@@ -17,7 +18,6 @@
 		9115A50320A0FDF100AC657E /* Sequence+Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */; };
 		9116263C1E8DD16100E8DB77 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9116263B1E8DD16100E8DB77 /* Section.swift */; };
 		91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B1005C207AB9F200B65E02 /* CloudKit.framework */; };
-		91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F05E631F034F78002738F4 /* Reachability.framework */; };
 		91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
 		912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* Formatter+ID.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
@@ -241,7 +241,6 @@
 		91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGCollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
 		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		91F05E611F034992002738F4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		91F05E631F034F78002738F4 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposalDetailViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,10 +252,10 @@
 				9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */,
 				91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */,
 				91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */,
+				00A210A328E4BECC00587485 /* Reachability in Frameworks */,
 				00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */,
 				91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
-				91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */,
 				91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,7 +499,6 @@
 				9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */,
 				9183657C248F89F500C471D5 /* AppCenterCrashes.framework */,
 				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
-				91F05E631F034F78002738F4 /* Reachability.framework */,
 				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
 				911432201EB96E2D00CCC0D0 /* UserNotifications.framework */,
 			);
@@ -792,6 +790,7 @@
 			packageProductDependencies = (
 				91B88F11248D593C00F69B69 /* MarkdownSyntax */,
 				00A2109F28E4B0D000587485 /* SwiftRichString */,
+				00A210A228E4BECC00587485 /* Reachability */,
 			);
 			productName = "swift-evolution";
 			productReference = 915265221E67659900C2AFDA /* swift-evolution.app */;
@@ -891,6 +890,7 @@
 			packageReferences = (
 				91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */,
 				00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */,
+				00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 915265231E67659900C2AFDA /* Products */;
 			projectDirPath = "";
@@ -1595,6 +1595,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hebertialmeida/MarkdownSyntax";
@@ -1610,6 +1618,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */;
 			productName = SwiftRichString;
+		};
+		00A210A228E4BECC00587485 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 		91B88F11248D593C00F69B69 /* MarkdownSyntax */ = {
 			isa = XCSwiftPackageProductDependency;
