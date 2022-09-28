@@ -10,6 +10,8 @@
 		00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = 00A2109F28E4B0D000587485 /* SwiftRichString */; };
 		00A210A328E4BECC00587485 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A228E4BECC00587485 /* Reachability */; };
 		00A210A628E4BF7200587485 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A528E4BF7200587485 /* KeychainAccess */; };
+		00A210A928E4C04000587485 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A828E4C04000587485 /* AppCenterAnalytics */; };
+		00A210AB28E4C04000587485 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210AA28E4C04000587485 /* AppCenterCrashes */; };
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
@@ -77,9 +79,6 @@
 		917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7820A7643400846C87 /* DescriptionView.xib */; };
 		917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7A20A7644800846C87 /* DescriptionView.swift */; };
 		917E4C7D20A77A5200846C87 /* CustomSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */; };
-		9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657C248F89F500C471D5 /* AppCenterCrashes.framework */; };
-		91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657D248F89F500C471D5 /* AppCenter.framework */; };
-		91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		919A1D372076D6390042A13B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D342076D6380042A13B /* Encodable.swift */; };
 		919A1D382076D6390042A13B /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D362076D6390042A13B /* UIDevice.swift */; };
@@ -206,9 +205,6 @@
 		917E4C7820A7643400846C87 /* DescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
 		917E4C7A20A7644800846C87 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubtitleTableViewCell.xib; sourceTree = "<group>"; };
-		9183657C248F89F500C471D5 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = Carthage/Build/iOS/AppCenterCrashes.framework; sourceTree = "<group>"; };
-		9183657D248F89F500C471D5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = Carthage/Build/iOS/AppCenter.framework; sourceTree = "<group>"; };
-		9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = Carthage/Build/iOS/AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		919A1D342076D6380042A13B /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		919A1D362076D6390042A13B /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -250,11 +246,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */,
-				91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */,
-				91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */,
 				00A210A328E4BECC00587485 /* Reachability in Frameworks */,
+				00A210A928E4C04000587485 /* AppCenterAnalytics in Frameworks */,
 				00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */,
+				00A210AB28E4C04000587485 /* AppCenterCrashes in Frameworks */,
 				00A210A628E4BF7200587485 /* KeychainAccess in Frameworks */,
 				91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
@@ -497,9 +492,6 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9183657D248F89F500C471D5 /* AppCenter.framework */,
-				9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */,
-				9183657C248F89F500C471D5 /* AppCenterCrashes.framework */,
 				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
 				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
 				911432201EB96E2D00CCC0D0 /* UserNotifications.framework */,
@@ -794,6 +786,8 @@
 				00A2109F28E4B0D000587485 /* SwiftRichString */,
 				00A210A228E4BECC00587485 /* Reachability */,
 				00A210A528E4BF7200587485 /* KeychainAccess */,
+				00A210A828E4C04000587485 /* AppCenterAnalytics */,
+				00A210AA28E4C04000587485 /* AppCenterCrashes */,
 			);
 			productName = "swift-evolution";
 			productReference = 915265221E67659900C2AFDA /* swift-evolution.app */;
@@ -895,6 +889,7 @@
 				00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */,
 				00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */,
 				00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = 915265231E67659900C2AFDA /* Products */;
 			projectDirPath = "";
@@ -1615,6 +1610,14 @@
 				minimumVersion = 4.2.2;
 			};
 		};
+		00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hebertialmeida/MarkdownSyntax";
@@ -1640,6 +1643,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		00A210A828E4C04000587485 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		00A210AA28E4C04000587485 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
 		};
 		91B88F11248D593C00F69B69 /* MarkdownSyntax */ = {
 			isa = XCSwiftPackageProductDependency;

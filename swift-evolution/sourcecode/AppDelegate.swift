@@ -24,11 +24,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        MSAppCenter.start(
-            "<AppCenter Key",
-            withServices: [
-                MSAnalytics.self,
-                MSCrashes.self
+        AppCenter.start(
+            withAppSecret: "<AppCenter Key",
+            services: [
+                Analytics.self,
+                Crashes.self
             ]
         )
 
