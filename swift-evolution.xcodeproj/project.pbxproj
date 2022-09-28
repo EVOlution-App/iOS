@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = 00A2109F28E4B0D000587485 /* SwiftRichString */; };
 		00A210A328E4BECC00587485 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A228E4BECC00587485 /* Reachability */; };
+		00A210A628E4BF7200587485 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A528E4BF7200587485 /* KeychainAccess */; };
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
@@ -254,6 +255,7 @@
 				91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */,
 				00A210A328E4BECC00587485 /* Reachability in Frameworks */,
 				00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */,
+				00A210A628E4BF7200587485 /* KeychainAccess in Frameworks */,
 				91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
 				91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */,
@@ -791,6 +793,7 @@
 				91B88F11248D593C00F69B69 /* MarkdownSyntax */,
 				00A2109F28E4B0D000587485 /* SwiftRichString */,
 				00A210A228E4BECC00587485 /* Reachability */,
+				00A210A528E4BF7200587485 /* KeychainAccess */,
 			);
 			productName = "swift-evolution";
 			productReference = 915265221E67659900C2AFDA /* swift-evolution.app */;
@@ -891,6 +894,7 @@
 				91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */,
 				00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */,
 				00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */,
+				00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 915265231E67659900C2AFDA /* Products */;
 			projectDirPath = "";
@@ -1603,6 +1607,14 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 		91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hebertialmeida/MarkdownSyntax";
@@ -1623,6 +1635,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */;
 			productName = Reachability;
+		};
+		00A210A528E4BF7200587485 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 		91B88F11248D593C00F69B69 /* MarkdownSyntax */ = {
 			isa = XCSwiftPackageProductDependency;
