@@ -108,74 +108,79 @@ class ProposalTableViewCell: UITableViewCell {
             self.detailsLabel.isUserInteractionEnabled = false
         }
         
-        let defaultStyle = Style("defaultStyle", {
+        let defaultStyle = Style {
             $0.lineSpacing = 5.5
             $0.hyphenationFactor = 1.0
-        })
+        }
         
         // Convert all styles into text
-        if let tagged = MarkupString(source: details) {
-            var attributedText = tagged.render(withStyles: self.styles()).add(style: defaultStyle)
-            let details = attributedText.string
-            
-            // Title
-            attributedText = attributedText.link(title: proposal, text: details)
-            
-            // Authors
-            if let authors = proposal.authors {
-                attributedText = attributedText.link(authors, text: details)
-                detailsLabel.attributedText = attributedText
-            }
-            
-            // Review Manager
-            if let reviewer = proposal.reviewManager {
-                attributedText = attributedText.link(reviewer, text: details)
-                detailsLabel.attributedText = attributedText
-            }
-            
-            // Implementations
-            if let implementations = proposal.implementations {
-                attributedText = attributedText.link(implementations, text: details)
-            }
-            
-            self.detailsLabel.attributedText = attributedText
+        let styleGroup = StyleGroup(base: defaultStyle, styles())
+        var attributedText = details.set(style: styleGroup)
+        let details2 = attributedText.string
+
+        // Title
+        attributedText = attributedText.link(title: proposal, text: details2)
+
+        // Authors
+        if let authors = proposal.authors {
+            attributedText = attributedText.link(authors, text: details2)
+            detailsLabel.attributedText = attributedText
         }
+
+        // Review Manager
+        if let reviewer = proposal.reviewManager {
+            attributedText = attributedText.link(reviewer, text: details2)
+            detailsLabel.attributedText = attributedText
+        }
+
+        // Implementations
+        if let implementations = proposal.implementations {
+            attributedText = attributedText.link(implementations, text: details2)
+        }
+
+        self.detailsLabel.attributedText = attributedText
     }
 }
 
 // MARK: - Renders && Style
 extension ProposalTableViewCell {
     
-    fileprivate func styles() -> [Style] {
-        let id = Style("id", {
-            $0.font = FontAttribute(.HelveticaNeue, size: 20)
+    fileprivate func styles() -> [String: StyleProtocol] {
+        let id = Style {
+            $0.font = SystemFonts.HelveticaNeue.font(size: 20)
             $0.color = UIColor.Proposal.lightGray
             $0.lineSpacing = 0
-        })
+        }
         
-        let title = Style("title", {
-            $0.font = FontAttribute(.HelveticaNeue, size: 20)
+        let title = Style {
+            $0.font = SystemFonts.HelveticaNeue.font(size: 20)
             $0.color = UIColor.Proposal.darkGray
             $0.lineSpacing = 0
-        })
+        }
         
-        let label = Style("label", {
+        let label = Style {
             $0.color = UIColor.Proposal.lightGray
-            $0.font = FontAttribute(.HelveticaNeue, size: 14)
-        })
+            $0.font = SystemFonts.HelveticaNeue.font(size: 14)
+        }
         
-        let value = Style("value", {
+        let value = Style {
             $0.color = UIColor.Proposal.darkGray
-            $0.font = FontAttribute(.HelveticaNeue, size: 14)
-        })
+            $0.font = SystemFonts.HelveticaNeue.font(size: 14)
+        }
         
-        let anchor = Style("anchor", {
+        let anchor = Style {
             $0.color = UIColor.Proposal.darkGray
-            $0.font = FontAttribute(.HelveticaNeue, size: 14)
-            $0.underline = UnderlineAttribute(color: UIColor.Proposal.darkGray, style: NSUnderlineStyle.single)
-        })
-        
-        return [id, title, label, value, anchor]
+            $0.font = SystemFonts.HelveticaNeue.font(size: 14)
+            $0.underline = (NSUnderlineStyle.single, UIColor.Proposal.darkGray)
+        }
+
+        return [
+            "id": id,
+            "title": title,
+            "label": label,
+            "value": value,
+            "anchor": anchor
+        ]
     }
     
     fileprivate func renderAuthors() -> String? {
@@ -333,14 +338,14 @@ fileprivate extension NSMutableAttributedString {
             guard let username = person.username, let name = person.name else {
                 return
             }
-            
-            if let nameRange = text.range(of: name) {
-                let range = text.nsRange(from: nameRange)
-                let style = Style("url") {
+
+            let nameRange = (text as NSString).range(of: name)
+            if nameRange.location != NSNotFound {
+                let style = Style {
                     $0.linkURL = URL(string: "evo://profile/\(username)")
                 }
-                
-                attributed = attributed.add(style: style, range: range)
+
+                attributed = attributed.add(style: style, range: nameRange)
             }
         }
         
@@ -351,13 +356,13 @@ fileprivate extension NSMutableAttributedString {
         var attributed = self
         
         let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines)
-        if let titleRange = text.range(of: title) {
-            let range = text.nsRange(from: titleRange)
-            let style = Style("url") {
+        let titleRange = (text as NSString).range(of: title)
+        if titleRange.location != NSNotFound {
+            let style = Style {
                 $0.linkURL = URL(string: "evo://proposal/\(proposal.description)")
             }
             
-            attributed = attributed.add(style: style, range: range)
+            attributed = attributed.add(style: style, range: titleRange)
         }
         
         return attributed
@@ -367,13 +372,13 @@ fileprivate extension NSMutableAttributedString {
         var attributed = self
         
         implementations.forEach { implementation in
-            if let textRange = text.range(of: implementation.description) {
-                let range = text.nsRange(from: textRange)
-                let style = Style("url") {
+            let textRange = (text as NSString).range(of: implementation.description)
+            if textRange.location != NSNotFound {
+                let style = Style {
                     $0.linkURL = URL(string: "evo://implementation?path=\(implementation.path)")
                 }
                 
-                attributed = attributed.add(style: style, range: range)
+                attributed = attributed.add(style: style, range: textRange)
             }
         }
         
