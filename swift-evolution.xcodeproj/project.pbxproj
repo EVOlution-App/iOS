@@ -774,7 +774,6 @@
 				9152651F1E67659900C2AFDA /* Frameworks */,
 				915265201E67659900C2AFDA /* Resources */,
 				91BBA17E1F19E943008A7DDD /* SwiftLint Script */,
-				915265711E677D2C00C2AFDA /* Carthage Script */,
 			);
 			buildRules = (
 			);
@@ -938,23 +937,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		915265711E677D2C00C2AFDA /* Carthage Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-			);
-			name = "Carthage Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		91BBA17E1F19E943008A7DDD /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1192,8 +1174,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1399,8 +1379,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
@@ -1436,8 +1414,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";

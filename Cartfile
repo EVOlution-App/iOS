@@ -1,4 +1,0 @@
-github "malcommac/SwiftRichString" ~> 1.0.1
-github "ashleymills/Reachability.swift" ~> 4.3.1
-github "kishikawakatsumi/KeychainAccess"
-github "microsoft/appcenter-sdk-apple"
