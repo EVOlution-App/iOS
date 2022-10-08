@@ -57,8 +57,8 @@ class FilterHeaderView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: "All Statuses"))
+
+        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: 0x0088CC), text: "All Statuses"))
         
         self.filteredByButton.adjustsImageWhenHighlighted = false
         self.filteredByButton.setAttributedTitle(text, for: .normal)
@@ -95,7 +95,7 @@ class FilterHeaderView: UIView {
             label = status.compactMap({ $0.description }).joined(separator: ", ")
         }
         
-        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: "#0088CC", alpha: 1.0)!, text: label))
+        let text = concatText(texts: formatterColor(color: UIColor.darkGray, text: "Filtered by: "), formatterColor(color: UIColor(hex: 0x0088CC), text: label))
         filteredByButton.setAttributedTitle(text, for: .normal)
         filteredByButton.titleLabel?.adjustsFontSizeToFitWidth = true
         

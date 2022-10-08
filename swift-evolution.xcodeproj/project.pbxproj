@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */ = {isa = PBXBuildFile; productRef = 00A2109F28E4B0D000587485 /* SwiftRichString */; };
+		00A210A328E4BECC00587485 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A228E4BECC00587485 /* Reachability */; };
+		00A210A628E4BF7200587485 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A528E4BF7200587485 /* KeychainAccess */; };
+		00A210A928E4C04000587485 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210A828E4C04000587485 /* AppCenterAnalytics */; };
+		00A210AB28E4C04000587485 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210AA28E4C04000587485 /* AppCenterCrashes */; };
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
 		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
@@ -16,8 +21,6 @@
 		9115A50320A0FDF100AC657E /* Sequence+Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */; };
 		9116263C1E8DD16100E8DB77 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9116263B1E8DD16100E8DB77 /* Section.swift */; };
 		91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B1005C207AB9F200B65E02 /* CloudKit.framework */; };
-		91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F05E631F034F78002738F4 /* Reachability.framework */; };
-		91263BE02487E32D000CBB39 /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91485DE91E68F89B008C4715 /* SwiftRichString.framework */; };
 		91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 911432201EB96E2D00CCC0D0 /* UserNotifications.framework */; };
 		912938D11E762C3000D2B2CF /* Formatter+ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D01E762C3000D2B2CF /* Formatter+ID.swift */; };
 		912938D31E766EE000D2B2CF /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912938D21E766EE000D2B2CF /* Sequence.swift */; };
@@ -76,9 +79,6 @@
 		917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7820A7643400846C87 /* DescriptionView.xib */; };
 		917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7A20A7644800846C87 /* DescriptionView.swift */; };
 		917E4C7D20A77A5200846C87 /* CustomSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */; };
-		9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657C248F89F500C471D5 /* AppCenterCrashes.framework */; };
-		91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657D248F89F500C471D5 /* AppCenter.framework */; };
-		91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		919A1D372076D6390042A13B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D342076D6380042A13B /* Encodable.swift */; };
 		919A1D382076D6390042A13B /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D362076D6390042A13B /* UIDevice.swift */; };
@@ -154,7 +154,6 @@
 		913AE7041E97418A0097BCA5 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		913B7119203E2175007FE04B /* Implementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Implementation.swift; sourceTree = "<group>"; };
 		913B711C203E5F52007FE04B /* Implementation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Implementation+Extension.swift"; sourceTree = "<group>"; };
-		91485DE91E68F89B008C4715 /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		91485DEC1E6902A2008C4715 /* StatusLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusLabel.swift; sourceTree = "<group>"; };
 		91485DEE1E690A33008C4715 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		91494F6B20857AD200285857 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
@@ -206,9 +205,6 @@
 		917E4C7820A7643400846C87 /* DescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
 		917E4C7A20A7644800846C87 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubtitleTableViewCell.xib; sourceTree = "<group>"; };
-		9183657C248F89F500C471D5 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = Carthage/Build/iOS/AppCenterCrashes.framework; sourceTree = "<group>"; };
-		9183657D248F89F500C471D5 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = Carthage/Build/iOS/AppCenter.framework; sourceTree = "<group>"; };
-		9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = Carthage/Build/iOS/AppCenterAnalytics.framework; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		919A1D342076D6380042A13B /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		919A1D362076D6390042A13B /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -242,7 +238,6 @@
 		91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGCollectionViewLeftAlignFlowLayout.swift; sourceTree = "<group>"; };
 		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		91F05E611F034992002738F4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		91F05E631F034F78002738F4 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
 		A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposalDetailViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,13 +246,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9183657F248F89F500C471D5 /* AppCenterCrashes.framework in Frameworks */,
-				91836580248F89F500C471D5 /* AppCenter.framework in Frameworks */,
-				91836581248F89F500C471D5 /* AppCenterAnalytics.framework in Frameworks */,
+				00A210A328E4BECC00587485 /* Reachability in Frameworks */,
+				00A210A928E4C04000587485 /* AppCenterAnalytics in Frameworks */,
+				00A210A028E4B0D000587485 /* SwiftRichString in Frameworks */,
+				00A210AB28E4C04000587485 /* AppCenterCrashes in Frameworks */,
+				00A210A628E4BF7200587485 /* KeychainAccess in Frameworks */,
 				91B88F12248D593C00F69B69 /* MarkdownSyntax in Frameworks */,
-				91263BE02487E32D000CBB39 /* SwiftRichString.framework in Frameworks */,
 				91263BE22487E330000CBB39 /* UserNotifications.framework in Frameworks */,
-				91263BDE2487E32C000CBB39 /* Reachability.framework in Frameworks */,
 				91263BDC2487E32A000CBB39 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,14 +492,9 @@
 		9152656E1E677D1200C2AFDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9183657D248F89F500C471D5 /* AppCenter.framework */,
-				9183657E248F89F500C471D5 /* AppCenterAnalytics.framework */,
-				9183657C248F89F500C471D5 /* AppCenterCrashes.framework */,
 				91B1005C207AB9F200B65E02 /* CloudKit.framework */,
-				91F05E631F034F78002738F4 /* Reachability.framework */,
 				91F05E611F034992002738F4 /* SystemConfiguration.framework */,
 				911432201EB96E2D00CCC0D0 /* UserNotifications.framework */,
-				91485DE91E68F89B008C4715 /* SwiftRichString.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -784,7 +774,6 @@
 				9152651F1E67659900C2AFDA /* Frameworks */,
 				915265201E67659900C2AFDA /* Resources */,
 				91BBA17E1F19E943008A7DDD /* SwiftLint Script */,
-				915265711E677D2C00C2AFDA /* Carthage Script */,
 			);
 			buildRules = (
 			);
@@ -793,6 +782,11 @@
 			name = "swift-evolution";
 			packageProductDependencies = (
 				91B88F11248D593C00F69B69 /* MarkdownSyntax */,
+				00A2109F28E4B0D000587485 /* SwiftRichString */,
+				00A210A228E4BECC00587485 /* Reachability */,
+				00A210A528E4BF7200587485 /* KeychainAccess */,
+				00A210A828E4C04000587485 /* AppCenterAnalytics */,
+				00A210AA28E4C04000587485 /* AppCenterCrashes */,
 			);
 			productName = "swift-evolution";
 			productReference = 915265221E67659900C2AFDA /* swift-evolution.app */;
@@ -891,6 +885,10 @@
 			mainGroup = 915265191E67659900C2AFDA;
 			packageReferences = (
 				91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */,
+				00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */,
+				00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */,
+				00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = 915265231E67659900C2AFDA /* Products */;
 			projectDirPath = "";
@@ -939,23 +937,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		915265711E677D2C00C2AFDA /* Carthage Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SwiftRichString.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-			);
-			name = "Carthage Script";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		91BBA17E1F19E943008A7DDD /* SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1193,8 +1174,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1400,8 +1379,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
@@ -1437,8 +1414,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/swift-evolution",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/frameworks",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
@@ -1587,6 +1562,38 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftRichString.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
+		00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hebertialmeida/MarkdownSyntax";
@@ -1598,6 +1605,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		00A2109F28E4B0D000587485 /* SwiftRichString */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A2109E28E4B0D000587485 /* XCRemoteSwiftPackageReference "SwiftRichString" */;
+			productName = SwiftRichString;
+		};
+		00A210A228E4BECC00587485 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A128E4BECC00587485 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
+		00A210A528E4BF7200587485 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A428E4BF7200587485 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		00A210A828E4C04000587485 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		00A210AA28E4C04000587485 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A210A728E4C04000587485 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
 		91B88F11248D593C00F69B69 /* MarkdownSyntax */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 91B88F10248D593C00F69B69 /* XCRemoteSwiftPackageReference "MarkdownSyntax" */;
