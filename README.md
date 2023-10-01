@@ -1,25 +1,57 @@
 # EVOlution - iOS
 
-The goal of this project is for the version 1.0 was: bring to iOS the experience provided by Swift Evolution [website](https://apple.github.io/swift-evolution).
+EVOlution is an iOS project wit the goal of bringing the experience provided by [Swift Evolution](https://www.swift.org/swift-evolution/) to iOS users as a mobile application. Version 1.0 was focued on tracking Swift Evolution proposals but has now changed to make it more social and engaging for the community.
 
-Now we are shifting from the basic idea to make it more social. 
 
-On our roadmap (you can read at our [GitHub Projects](https://github.com/Evolution-App/iOS/projects/2)), we have some notes for the future, which will cover stuff like: Follow Proposals starring or watching them, Follow Authors and/or Review Managers, List of most popular proposals, featured proposals and other ideas coming from the community.
+## Roadmap
+On our roadmap (you can read at our [GitHub Projects](https://github.com/Evolution-App/iOS/projects/2)), we have some notes for future features and improvements including:
+- Follow Proposals
+- Follow Authors / Review Managers
+- List of Most Popular Propsals
+- Featured Proposals and much more...
 
 ![](images/screenshots_base.png)
 
-## How to contribute
+## Getting Started
 
-You need to create an issue and associate a pull request to this issue. Your pull request, needs to have some description on title about the issue that you are trying to solve. 
-After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
+### Required
+- iOS Device
+- Swift
 
+### Swift Installation
+- View Swift installation guide on their [website](https://www.swift.org/install/) for macOS, Linux, and Windows.
+
+## How To Contribute
+
+1. Create an Issue
+    - Create an issue that outlines the problem you would like addressed.
+2. Fork and Clone the Repository
+    - Fork this repository to your GitHub account.
+    - Once forked, select the green code button and copy the URL to clone it.
+    - In your terminal run: `git clone <URL>` to clone your forked repository.
+3. Create a Branch
+    - Before working on any changes, change into the cloned repository using: `cd <repository-name>` then create a branch that addresses the problem.
+    - To create a brabch run: `git checkout -b <read-me-name>`
+4. Make Your Changes
+    - Implement additions or changes within your new branch.
+5. Commit and Push Changes
+    - Add an informative commit message and push to forked repository.
+    - Use `git add <read-me-name>` to stage your changes.
+    - Then use: `git commit -m <commit-message>` to commit your changes.
+    - Finally use: `git push origin <read-me-name>` to push all of your cvhanges to your forked repository.
+6. Create and Submit a Pull Request
+    - Include a descrtiptive title and description for this pull request
+7. Code Review
+    - Other developers wil review this request.
+8. Merge
+    - Once reviewed, if accepted, it will be merged with the development branch.
 
 ## Author
 
 - Thiago Holanda - [GitHub](https://github.com/unnamedd) / [Twitter](https://twitter.com/tholanda)
 
 
-## Contributors 
+## Project Contributors 
 
 - Anton Kuzmin - [GitHub](https://github.com/uuttff8) / [Twitter](https://twitter.com/babnikbezbab)
 - Bruno Bilescky - [GitHub](https://github.com/brunogb) / [Twitter](https://twitter.com/bgondim)
