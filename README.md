@@ -1,17 +1,28 @@
-# EVOlution - iOS
+## TABLE OF CONTENTS
+      Swift EVOlution - iOS
+      Install/Run Application
+      How It Works
+      Author
+      Contributors
+      License
+      How to contribute
 
-The goal of this project is for the version 1.0 was: bring to iOS the experience provided by Swift Evolution [website](https://apple.github.io/swift-evolution).
 
-Now we are shifting from the basic idea to make it more social. 
+# Swift EVOlution - iOS
 
-On our roadmap (you can read at our [GitHub Projects](https://github.com/Evolution-App/iOS/projects/2)), we have some notes for the future, which will cover stuff like: Follow Proposals starring or watching them, Follow Authors and/or Review Managers, List of most popular proposals, featured proposals and other ideas coming from the community.
+Swift is a general-purpose programming language that's approachable for newcomers and powerful for experts. It is fast, modern, safe, and a joy to write.
 
-![](images/screenshots_base.png)
+Swift 5.9 was released recently and provides a number of new debugging features to the compiler and LLDB debugger.
 
-## How to contribute
+## Install/Run Application
 
-You need to create an issue and associate a pull request to this issue. Your pull request, needs to have some description on title about the issue that you are trying to solve. 
-After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
+To install and run the application, do the following steps:
+1. Go to [Website](https://www.swift.org/install/) and select the appropriate option for your system.
+2. To test that you have Swift installed, run swift --version from your shell or terminal app.
+
+## How It Works
+
+Visit [Website](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/guidedtour/) to familiarize yourself with Swift syntax.
 
 
 ## Author
@@ -39,6 +50,11 @@ After you send your pull request, other developers will make a code review befor
 ## License
 
 **EVOlution App** is available under the MIT license. See the LICENSE file for more info. 
+
+
+## How to contribute
+
+You need to create an issue and associate a pull request to this issue. Your pull request, needs to have some description on title about the issue that you are trying to solve. After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
 
 
 ---
