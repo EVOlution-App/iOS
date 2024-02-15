@@ -2,16 +2,47 @@
 
 The goal of this project is for the version 1.0 was: bring to iOS the experience provided by Swift Evolution [website](https://apple.github.io/swift-evolution).
 
+Swift Evolution is the process by which changes and enhancements to the Swift programming language are proposed, discussed, and ultimately accepted or rejected. It is an open and transparent process that involves the Swift community, including both Apple engineers and the broader developer community.
+
 Now we are shifting from the basic idea to make it more social. 
 
 On our roadmap (you can read at our [GitHub Projects](https://github.com/Evolution-App/iOS/projects/2)), we have some notes for the future, which will cover stuff like: Follow Proposals starring or watching them, Follow Authors and/or Review Managers, List of most popular proposals, featured proposals and other ideas coming from the community.
 
 ![](images/screenshots_base.png)
 
+Languages Used: Swift, CSS, Javascript
+
+
+## Get Started
+
+Fork the repository: Fork the project to your own GitHub account to start making your contributions.
+
+Clone your forked copy of the project: Clone the forked repository to your local machine to work on it.
+
 ## How to contribute
 
 You need to create an issue and associate a pull request to this issue. Your pull request, needs to have some description on title about the issue that you are trying to solve. 
 After you send your pull request, other developers will make a code review before merging it into the _development_ branch.
+
+How to create a Pull Request
+
+1. Navigate to the project directory.
+
+2. cd IOS
+
+3. Create a new branch:
+
+4. git checkout -b YourBranchName
+
+5. Make changes in source code.
+
+6. Stage your changes and commit
+
+git add . git commit -m "<your_commit_message>"
+
+7. Push your local commits to the remote repo.
+
+git push origin YourBranchName
 
 
 ## Author
