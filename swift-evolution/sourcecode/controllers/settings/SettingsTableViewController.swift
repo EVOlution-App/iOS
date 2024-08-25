@@ -17,25 +17,39 @@ final class SettingsTableViewController: UITableViewController {
     }()
     
     // MARK: - Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            self.appDelegate = appDelegate
-        }
-        
-        buildDataSource()
-        registerNotifications()
-        
-        tableView.backgroundColor = UIColor(named: "BgColor")
-        title = "Settings"
-        descriptionView?.delegate = self
-        tableView.tableHeaderView = descriptionView
-        
-        tableView.registerNib(withClass: SwitchTableViewCell.self)
-        tableView.registerNib(withClass: CustomSubtitleTableViewCell.self)
-    }
-    
+  override func viewDidLoad() {
+      super.viewDidLoad()
+
+      setupAppDelegate()
+      configureUI()
+      setupTableView()
+      setupDescriptionView()
+  }
+
+  private func setupAppDelegate() {
+      if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+          self.appDelegate = appDelegate
+      }
+  }
+
+  private func configureUI() {
+      tableView.backgroundColor = UIColor(named: "BgColor")
+      title = "Settings"
+  }
+
+  private func setupTableView() {
+      buildDataSource()
+      registerNotifications()
+
+      tableView.registerNib(withClass: SwitchTableViewCell.self)
+      tableView.registerNib(withClass: CustomSubtitleTableViewCell.self)
+  }
+
+  private func setupDescriptionView() {
+      descriptionView?.delegate = self
+      tableView.tableHeaderView = descriptionView
+  }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
