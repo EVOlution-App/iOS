@@ -1,5 +1,9 @@
 import Foundation
 
+struct ProposalResponse: Decodable {
+    let proposals: [Proposal]
+}
+
 struct Proposal: Decodable {
     let id: Int
     let title: String
