@@ -57,7 +57,7 @@ final class ListProposalsViewController: BaseViewController {
         self.appDelegate = UIApplication.shared.delegate as? AppDelegate
         
         // Target to RefreshControl
-        refreshControl.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         
         // Register Cell to TableView
         tableView.registerNib(withClass: ProposalTableViewCell.self)
@@ -75,7 +75,7 @@ final class ListProposalsViewController: BaseViewController {
         filterHeaderView.searchBar.delegate = self
         filterHeaderView.clipsToBounds = true
         
-        filterHeaderView.filterButton.addTarget(self, action: #selector(filterButtonAction(_:)), for: .touchUpInside)
+        filterHeaderView.filterButton.addTarget(self, action: #selector(filter(_:)), for: .touchUpInside)
         filterHeaderView.filteredByButton.addTarget(self, action: #selector(filteredByButtonAction(_:)), for: .touchUpInside)
         
         filterHeaderView.filterLevel = .without
@@ -145,14 +145,18 @@ final class ListProposalsViewController: BaseViewController {
     
     // MARK: - Notifications
     func registerNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didReceiveNotification(_:)),
-                                               name: NSNotification.Name.URLScheme,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveNotification(_:)),
+            name: NSNotification.Name.URLScheme,
+            object: nil
+        )
     }
     
     func removeNotifications() {
-        NotificationCenter.default.removeObserver(NSNotification.Name.URLScheme)
+        NotificationCenter.default.removeObserver(
+            NSNotification.Name.URLScheme
+        )
     }
     
     @objc func didReceiveNotification(_ notification: Notification) {
@@ -285,7 +289,7 @@ final class ListProposalsViewController: BaseViewController {
     }
     
     // MARK: - Actions
-    @objc func filterButtonAction(_ sender: UIButton?) {
+    @objc func filter(_ sender: UIButton?) {
         guard let sender = sender else {
             return
         }
@@ -330,16 +334,7 @@ final class ListProposalsViewController: BaseViewController {
         self.layoutFilterHeaderView()
     }
     
-    @objc func fireSearch(_ timer: Timer) {
-        guard let search = timer.userInfo as? Search else {
-            return
-        }
-        
-        let filtered = self.dataSource.filter(by: search.query)
-        self.updateTableView(filtered)
-    }
-    
-    @objc private func pullToRefresh(_ sender: UIRefreshControl) {
+    @objc private func refresh(_ sender: UIRefreshControl) {
         getProposalList()
     }
     
