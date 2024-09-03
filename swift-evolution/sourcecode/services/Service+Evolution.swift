@@ -10,7 +10,9 @@ struct EvolutionService {
         let request = RequestSettings(url)
 
         Service.dispatch(request) { result in
-            let newResult = result.flatMap { try JSONDecoder().decode([Proposal].self, from: $0) }
+            let newResult = result
+                .flatMap { try JSONDecoder().decode(ProposalResponse.self, from: $0) }
+                .flatMap { $0.proposals }
             completion(newResult)
         }
     }

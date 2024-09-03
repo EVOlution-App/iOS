@@ -49,29 +49,29 @@ extension StatusState: RawRepresentable {
     
     public init?(rawValue: RawValue) {
         switch rawValue.identifier {
-        case ".awaitingReview":
+        case "awaitingReview":
             self = .awaitingReview
-        case ".scheduledForReview":
+        case "scheduledForReview":
             self = .scheduledForReview
-        case ".activeReview":
+        case "activeReview":
             self = .activeReview
-        case ".returnedForRevision":
+        case "returnedForRevision":
             self = .returnedForRevision
-        case ".withdrawn":
+        case "withdrawn":
             self = .withdrawn
-        case ".deferred":
+        case "deferred":
             self = .deferred
-        case ".accepted":
+        case "accepted":
             self = .accepted
-        case ".acceptedWithRevisions":
+        case "acceptedWithRevisions":
             self = .acceptedWithRevisions
-        case ".rejected":
+        case "rejected":
             self = .rejected
-        case ".implemented":
+        case "implemented":
             self = .implemented
-        case ".previewing":
+        case "previewing":
             self = .previewing
-        case ".error":
+        case "error":
             self = .error
             
         default:
