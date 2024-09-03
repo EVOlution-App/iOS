@@ -67,35 +67,57 @@ final class SettingsTableViewController: UITableViewController {
     
     // MARK: - Build data
     private func buildDataSource() {
-        var footerDescription: String?
-        
-        if User.current == nil {
-            footerDescription = "To enable notifications, you need to configure your iCloud account on iOS"
-        }
-        else if self.appDelegate?.authorizedNotification == false {
-            footerDescription = "You need to authorize Notifications for Evolution App before the switch be enabled. Settings > Notifications > Evolution > Allow Notifications."
-        }
-        
-        let notifications = Section(section: .notifications,
-                                    items: [
-                                        Subscription(text: "Proposal creation/update", type: .undefined, value: "", subscribed: false)],
-                                    footer: footerDescription,
-                                    grouped: false)
+        // FIXME: This will return when we stabilize push notifications again
+        //
+        //var footerDescription: String?
+        //
+        //if User.current == nil {
+        //    footerDescription = "To enable notifications, you need to configure your iCloud account on iOS"
+        //}
+        //else if self.appDelegate?.authorizedNotification == false {
+        //    footerDescription = "You need to authorize Notifications for Evolution App before the switch be enabled. Settings > Notifications > Evolution > Allow Notifications."
+        //}
+        //
+        // let notifications = Section(
+        //     section: .notifications,
+        //     items: [
+        //         Subscription(text: "Proposal creation/update", type: .undefined, value: "", subscribed: false)],
+        //     footer: footerDescription,
+        //     grouped: false
+        // )
 
-        let author = Section(section: .author,
-                             items: [
-                                Contributor(text: "Thiago Holanda", type: .github, value: "unnamedd")],
-                             footer: nil,
-                             grouped: false)
-
-        let about = Section(section: .about,
-                            items: [
-                                Item(text: "See all details about this app", type: .undefined, value: "")],
-                            footer: nil,
-                            grouped: false)
+        let author = Section(
+            section: .author,
+            items: [
+                Contributor(
+                    text: "Thiago Holanda",
+                    type: .github,
+                    value: "unnamedd"
+                )
+            ],
+            footer: nil,
+            grouped: false
+        )
+        
+        let about = Section(
+            section: .about,
+            items: [
+                Item(
+                    text: "See all details about this app",
+                    type: .undefined,
+                    value: ""
+                )
+            ],
+            footer: nil,
+            grouped: false
+        )
         
         
-        dataSource = [notifications, author, about]
+        dataSource = [
+            // notifications,
+            author,
+            about
+        ]
     }
 }
 

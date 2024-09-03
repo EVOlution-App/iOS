@@ -35,7 +35,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         registerSchemes()
         registerNetworkingMonitor()
         registerSizeOfCache()
-        registerUser()
+
+        // FIXME: This will return when we stabilize push notifications again
+        // registerUser()
         
         // UI
         configSplitViewController()
@@ -64,8 +66,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        // FIXME: This will return when we stabilize push notifications again
         // Get Authorization to Notifications
-        getAuthorizationStatus()
+        // getAuthorizationStatus()
         NotificationCenter.default.post(name: Notification.Name.AppDidBecomeActive,
                                         object: nil)
     }
@@ -117,7 +120,7 @@ extension AppDelegate {
                 self?.authorizedNotification = false
             case .authorized, .provisional:
                 self?.authorizedNotification = true
-            @unknown default:
+            default:
                 break
             }
         })

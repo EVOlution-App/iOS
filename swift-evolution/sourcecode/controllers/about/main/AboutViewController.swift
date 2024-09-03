@@ -89,7 +89,6 @@ final class AboutViewController: UITableViewController {
             License(text: "Reachability.swift", type: .github, value: "ashleymills/Reachability.swift"),
             License(text: "SwiftRichString", type: .github, value: "malcommac/SwiftRichString"),
             License(text: "KeychainAccess", type: .github, value: "kishikawakatsumi/KeychainAccess"),
-            License(text: "Kitura Web Framework", type: .url, value: "http://www.kitura.io/")
         ]
         
         return Section(

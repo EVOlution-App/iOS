@@ -1,11 +1,3 @@
-//
-//  DescriptionView.swift
-//  swift-evolution
-//
-//  Created by Thiago Holanda on 12.05.18.
-//  Copyright © 2018 Holanda Mobile. All rights reserved.
-//
-
 import UIKit
 
 protocol DescriptionViewProtocol: class {
@@ -13,7 +5,6 @@ protocol DescriptionViewProtocol: class {
 }
 
 final class DescriptionView: UIView {
-
     @IBOutlet private weak var versionLabel: UILabel!
     @IBOutlet private weak var appNameLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
@@ -23,8 +14,7 @@ final class DescriptionView: UIView {
     
     override func draw(_ rect: CGRect) {
         if let version = Environment.Release.version,
-            let build = Environment.Release.build {
-            
+            let build = Environment.Release.build {            
             self.versionLabel.text = "v\(version) (\(build))"
         }
         

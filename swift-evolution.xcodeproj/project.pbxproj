@@ -836,7 +836,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "Holanda Mobile";
+				ORGANIZATIONNAME = "EVO App";
 				TargetAttributes = {
 					915265211E67659900C2AFDA = {
 						CreatedOnToolsVersion = 8.2.1;
