@@ -14,8 +14,6 @@
 		00A210AB28E4C04000587485 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 00A210AA28E4C04000587485 /* AppCenterCrashes */; };
 		0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCEEE251E6CC0B100F7D176 /* UITableView.swift */; };
 		402EF4641E8C1CD700DBA425 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */; };
-		670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */; };
-		670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */; };
 		91121F8A20EAC58F00FE80E6 /* UIRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91121F8920EAC58F00FE80E6 /* UIRefreshControl.swift */; };
 		911432231EB9756500CCC0D0 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911432221EB9756500CCC0D0 /* Data.swift */; };
 		9115A50320A0FDF100AC657E /* Sequence+Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115A50220A0FDF100AC657E /* Sequence+Contributor.swift */; };
@@ -80,6 +78,7 @@
 		917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7A20A7644800846C87 /* DescriptionView.swift */; };
 		917E4C7D20A77A5200846C87 /* CustomSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
+		91940A752C87CCFF00B61D99 /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91940A742C87CCFF00B61D99 /* ListHeaderView.swift */; };
 		919A1D372076D6390042A13B /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D342076D6380042A13B /* Encodable.swift */; };
 		919A1D382076D6390042A13B /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D362076D6390042A13B /* UIDevice.swift */; };
 		919A1D3A2076D70C0042A13B /* Service+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A1D392076D70C0042A13B /* Service+Notifications.swift */; };
@@ -134,8 +133,6 @@
 /* Begin PBXFileReference section */
 		0BCEEE251E6CC0B100F7D176 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		402EF4631E8C1CD700DBA425 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProposalListHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProposalListHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		91121F8920EAC58F00FE80E6 /* UIRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIRefreshControl.swift; sourceTree = "<group>"; };
 		9114321F1EB963BD00CCC0D0 /* swift-evolution.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "swift-evolution.entitlements"; sourceTree = "<group>"; };
 		911432201EB96E2D00CCC0D0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -206,6 +203,7 @@
 		917E4C7A20A7644800846C87 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		91940A742C87CCFF00B61D99 /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		919A1D342076D6380042A13B /* Encodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		919A1D362076D6390042A13B /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		919A1D392076D70C0042A13B /* Service+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Service+Notifications.swift"; sourceTree = "<group>"; };
@@ -548,6 +546,7 @@
 		915265871E67D86E00C2AFDA /* list */ = {
 			isa = PBXGroup;
 			children = (
+				91940A722C87CCD500B61D99 /* views */,
 				915265881E67D87E00C2AFDA /* uitableviewcell */,
 				915265891E67E01800C2AFDA /* ListProposalsViewController.swift */,
 			);
@@ -557,7 +556,6 @@
 		915265881E67D87E00C2AFDA /* uitableviewcell */ = {
 			isa = PBXGroup;
 			children = (
-				670F30DF1E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift */,
 				915265801E67D7A900C2AFDA /* ProposalTableViewCell.swift */,
 			);
 			path = uitableviewcell;
@@ -649,6 +647,14 @@
 			path = about;
 			sourceTree = "<group>";
 		};
+		91940A722C87CCD500B61D99 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				91940A742C87CCFF00B61D99 /* ListHeaderView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		919A1D3B2076D7A50042A13B /* notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,7 +722,6 @@
 			isa = PBXGroup;
 			children = (
 				917E4C7120A7588F00846C87 /* SwitchTableViewCell.xib */,
-				670F30E11E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib */,
 				915265811E67D7A900C2AFDA /* ProposalTableViewCell.xib */,
 				917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */,
 			);
@@ -910,7 +915,6 @@
 				917E4C7220A7588F00846C87 /* SwitchTableViewCell.xib in Resources */,
 				915265301E67659A00C2AFDA /* LaunchScreen.storyboard in Resources */,
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
-				670F30E21E86683200A58FB1 /* ProposalListHeaderTableViewCell.xib in Resources */,
 				917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
 				915F7DE21F0382C4001B298D /* NoConnectionView.xib in Resources */,
@@ -993,10 +997,10 @@
 				917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */,
 				91B246091E98BF2B00904DE3 /* Dictionary.swift in Sources */,
 				919A1D3E2076D7A50042A13B /* Track.swift in Sources */,
+				91940A752C87CCFF00B61D99 /* ListHeaderView.swift in Sources */,
 				915A883120A4C97200184F6E /* Section+Extension.swift in Sources */,
 				91E150201E6BF0BC00025B77 /* FilterListGenericView.swift in Sources */,
 				912938D31E766EE000D2B2CF /* Sequence.swift in Sources */,
-				670F30E01E8667E800A58FB1 /* ProposalListHeaderTableViewCell.swift in Sources */,
 				9152658A1E67E01800C2AFDA /* ListProposalsViewController.swift in Sources */,
 				91485DED1E6902A2008C4715 /* StatusLabel.swift in Sources */,
 				91B2460B1E99BC4100904DE3 /* Routes.swift in Sources */,
@@ -1169,7 +1173,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1179,12 +1183,13 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app.development";
@@ -1373,7 +1378,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1382,12 +1387,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";
@@ -1409,7 +1415,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = 56DQ8B5T2R;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1417,12 +1423,13 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "swift-evolution/supportingfiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				NOTIFICATION_APP_KEY = "";
 				NOTIFICATION_APP_URL = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.swift-evolution.app";

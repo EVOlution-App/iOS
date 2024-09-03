@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import SafariServices
 
 final class ListProposalsViewController: BaseViewController {
@@ -61,7 +62,6 @@ final class ListProposalsViewController: BaseViewController {
         
         // Register Cell to TableView
         tableView.registerNib(withClass: ProposalTableViewCell.self)
-        tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
         
         tableView.estimatedRowHeight = 164
         tableView.estimatedSectionHeaderHeight = 44.0
@@ -475,10 +475,12 @@ extension ListProposalsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell: ProposalListHeaderTableViewCell = tableView.cell()
-        headerCell.proposalCount = filteredDataSource.count
-        
-        return headerCell.contentView
+        UIHostingController(
+            rootView: ListHeaderView(
+                with: filteredDataSource.count
+            )
+        )
+        .view
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
