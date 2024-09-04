@@ -25,10 +25,14 @@ struct ListHeaderView: View {
   }
 }
 
-#Preview {
+#Preview("Empty") {
+  ListHeaderView(count: 0)
+}
+
+#Preview("Counting") {
   ListHeaderView(count: 12)
 }
 
-#Preview {
+#Preview("Custom title") {
   ListHeaderView(title: "No Proposals")
 }
