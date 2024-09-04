@@ -117,7 +117,7 @@ extension ProposalDetailViewController {
             return
         }
         
-        if let reachability = self.reachability, reachability.connection != .none {
+        if let reachability = self.reachability, reachability.connection != .unavailable {
             // Hide No Connection View
             showNoConnection = false
             

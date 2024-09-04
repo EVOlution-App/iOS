@@ -45,7 +45,7 @@ class ProfileViewController: BaseViewController {
         self.tableView.reloadData()
         
         // Title
-        if let profile = self.profile, let username = profile.username {
+        if let profile, let username = profile.username {
             self.title = "@\(username)"
         }
         
@@ -105,11 +105,11 @@ extension ProfileViewController {
     }
     
     fileprivate func getUserDataFromGithub() {
-        guard let profile = self.profile, let username = profile.username else {
+        guard let profile, let username = profile.username else {
             return
         }
         
-        if let reachability = self.reachability, reachability.connection != .none {
+        if let reachability, reachability.connection != .unavailable {
             GithubService.profile(from: username) { [weak self] result in
                 guard let github = result.value else {
                     return

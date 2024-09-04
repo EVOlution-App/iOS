@@ -138,7 +138,7 @@ fileprivate extension ProfileView {
         if let list = manager, list.count > 0 {
             let space = attributedStrings.length > 0 ? .doubleSpace + .doubleSpace : ""
             
-            var text = space + "\(list.count)"
+            let text = space + "\(list.count)"
             attributedStrings.append(text.set(style: valueStyle))
             
             attributedStrings.append(" review manager".set(style: descriptionStyle))

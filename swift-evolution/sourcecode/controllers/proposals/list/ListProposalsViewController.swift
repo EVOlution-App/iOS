@@ -229,7 +229,7 @@ final class ListProposalsViewController: BaseViewController {
     
     // MARK: - Requests
     fileprivate func getProposalList() {
-        if let reachability = self.reachability, reachability.connection != .none {
+        if let reachability = self.reachability, reachability.connection != .unavailable {
             // Hide No Connection View
             showNoConnection = false
             refreshControl.forceShowAnimation()

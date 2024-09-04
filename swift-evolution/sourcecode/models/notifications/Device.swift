@@ -9,7 +9,7 @@ extension Notifications {
         let appVersion: String?
         let model: String?
         let language: String?
-        let createdAt: Date? = nil
-        let updatedAt: Date? = nil
+        var createdAt: Date? = nil
+        var updatedAt: Date? = nil
     }
 }
