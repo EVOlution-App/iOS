@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 class ProfileViewController: BaseViewController {
 
@@ -26,7 +27,6 @@ class ProfileViewController: BaseViewController {
         
         // Register Cell to TableView
         self.tableView.registerNib(withClass: ProposalTableViewCell.self)
-        self.tableView.registerNib(withClass: ProposalListHeaderTableViewCell.self)
         
         self.tableView.estimatedRowHeight = 164
         self.tableView.estimatedSectionHeaderHeight = 44.0
@@ -167,12 +167,14 @@ extension ProfileViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.cell(forClass: ProposalListHeaderTableViewCell.self)
-        
         let section = self.sections[section]
-        headerCell.header = section.title
-
-        return headerCell.contentView
+        
+        return UIHostingController(
+            rootView: ListHeaderView(
+                title: section.title
+            )
+        )
+        .view
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

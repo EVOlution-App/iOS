@@ -477,7 +477,7 @@ extension ListProposalsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         UIHostingController(
             rootView: ListHeaderView(
-                with: filteredDataSource.count
+                count: filteredDataSource.count
             )
         )
         .view
