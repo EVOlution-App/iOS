@@ -38,11 +38,6 @@ final class SettingsTableViewController: UITableViewController {
     tableView.registerNib(withClass: CustomSubtitleTableViewCell.self)
   }
 
-  private func setupDescriptionView() {
-    descriptionView.delegate = self
-    tableView.tableHeaderView = descriptionView
-  }
-
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
@@ -163,9 +158,6 @@ extension SettingsTableViewController {
 // MARK: - UITableView Delegate
 
 extension SettingsTableViewController {
-  override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt _: IndexPath) {
-    cell.setNeedsDisplay()
-  }
 
   override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
     let section = dataSource[section]
@@ -387,13 +379,5 @@ extension SettingsTableViewController {
     source[indexPath.section] = section
 
     dataSource = source
-  }
-}
-
-// MARK: - DescriptionView Delegate
-
-extension SettingsTableViewController: DescriptionViewProtocol {
-  func closeAction() {
-    dismiss(animated: true)
   }
 }

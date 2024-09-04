@@ -233,11 +233,3 @@ extension AboutViewController {
     }
   }
 }
-
-// MARK: - DescriptionView Delegate
-
-extension AboutViewController: DescriptionViewProtocol {
-  func closeAction() {
-    dismiss(animated: true)
-  }
-}

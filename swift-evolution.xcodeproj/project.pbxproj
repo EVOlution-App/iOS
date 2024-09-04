@@ -73,8 +73,6 @@
 		917E4C7220A7588F00846C87 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7120A7588F00846C87 /* SwitchTableViewCell.xib */; };
 		917E4C7420A758C700846C87 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7320A758C700846C87 /* SwitchTableViewCell.swift */; };
 		917E4C7620A75BC800846C87 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7520A75BC800846C87 /* SettingsTableViewController.swift */; };
-		917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7820A7643400846C87 /* DescriptionView.xib */; };
-		917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7A20A7644800846C87 /* DescriptionView.swift */; };
 		917E4C7D20A77A5200846C87 /* CustomSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */; };
 		9192CC541E8CC1CD00953357 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9192CC531E8CC1CD00953357 /* AboutViewController.swift */; };
 		91940A752C87CCFF00B61D99 /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91940A742C87CCFF00B61D99 /* ListHeaderView.swift */; };
@@ -197,8 +195,6 @@
 		917E4C7120A7588F00846C87 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		917E4C7320A758C700846C87 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = "swift-evolution/sourcecode/utils/views/uitableviewcell/SwitchTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		917E4C7520A75BC800846C87 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		917E4C7820A7643400846C87 /* DescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionView.xib; sourceTree = "<group>"; };
-		917E4C7A20A7644800846C87 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		917E4C7C20A77A5200846C87 /* CustomSubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		9192CC531E8CC1CD00953357 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		91940A742C87CCFF00B61D99 /* ListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
@@ -407,7 +403,6 @@
 			children = (
 				91E150191E6BBCD900025B77 /* uicollectionviewcell */,
 				91E150181E6BBCCF00025B77 /* uitableviewcell */,
-				915F7DE01F03828A001B298D /* uiview */,
 			);
 			path = xibs;
 			sourceTree = "<group>";
@@ -568,14 +563,6 @@
 			path = designables;
 			sourceTree = "<group>";
 		};
-		915F7DE01F03828A001B298D /* uiview */ = {
-			isa = PBXGroup;
-			children = (
-				917E4C7820A7643400846C87 /* DescriptionView.xib */,
-			);
-			path = uiview;
-			sourceTree = "<group>";
-		};
 		915F7DE41F0382FD001B298D /* noconnection */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,17 +609,8 @@
 			children = (
 				91B88F19248D73DD00F69B69 /* markdownview */,
 				914B719A209E9A6B00906645 /* uitableviewcell */,
-				917E4C7720A763FE00846C87 /* descriptionview */,
 			);
 			path = views;
-			sourceTree = "<group>";
-		};
-		917E4C7720A763FE00846C87 /* descriptionview */ = {
-			isa = PBXGroup;
-			children = (
-				917E4C7A20A7644800846C87 /* DescriptionView.swift */,
-			);
-			path = descriptionview;
 			sourceTree = "<group>";
 		};
 		9192CC521E8CC1AC00953357 /* about */ = {
@@ -911,7 +889,6 @@
 				917E4C7220A7588F00846C87 /* SwitchTableViewCell.xib in Resources */,
 				915265301E67659A00C2AFDA /* LaunchScreen.storyboard in Resources */,
 				9152652D1E67659A00C2AFDA /* Assets.xcassets in Resources */,
-				917E4C7920A7643400846C87 /* DescriptionView.xib in Resources */,
 				9152652B1E67659A00C2AFDA /* Main.storyboard in Resources */,
 				91B88F18248D5DEE00F69B69 /* Markdown.bundle in Resources */,
 				91E150171E6BBCC100025B77 /* FilterCollectionViewCell.xib in Resources */,
@@ -972,7 +949,6 @@
 				914B719E209E9AA300906645 /* CustomSubtitleTableViewCell.swift in Sources */,
 				919A1D372076D6390042A13B /* Encodable.swift in Sources */,
 				9116263C1E8DD16100E8DB77 /* Section.swift in Sources */,
-				917E4C7B20A7644800846C87 /* DescriptionView.swift in Sources */,
 				91B246091E98BF2B00904DE3 /* Dictionary.swift in Sources */,
 				919A1D3E2076D7A50042A13B /* Track.swift in Sources */,
 				91940A752C87CCFF00B61D99 /* ListHeaderView.swift in Sources */,
