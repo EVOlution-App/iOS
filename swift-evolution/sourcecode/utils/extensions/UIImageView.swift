@@ -1,7 +1,7 @@
 import UIKit
 
 public extension UIImageView {
-  func round(with color: UIColor? = nil, width: CGFloat?) {
+  func round(with color: UIColor? = nil, width: CGFloat? = 0) {
     if let color {
       layer.borderColor = color.cgColor
     }
@@ -20,13 +20,13 @@ public extension UIImageView {
     }
 
     Service.requestImage(url) { [weak self] result in
-
       guard let image = result.value else {
         return
       }
 
       DispatchQueue.main.async {
         self?.image = image
+        self?.round()
       }
     }
   }

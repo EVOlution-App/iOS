@@ -4,7 +4,13 @@ import UIKit
 final class AboutViewController: UITableViewController {
   // MARK: - Private properties
     
-  private lazy var dataSource: [Section] = sectionsData()
+  private lazy var dataSource: [Section] = [
+    contributors(),
+    licenses(),
+    app(),
+    swiftEvolution(),
+    thanks(),
+  ]
     
   // MARK: - IBOutlets
     
@@ -18,65 +24,44 @@ final class AboutViewController: UITableViewController {
     tableView.reloadData()
         
     // Ask for review
-    DispatchQueue.global(qos: .background).async {
-      SKStoreReviewController.requestReview()
+    DispatchQueue.main.async {
+      let scene = UIApplication.shared.connectedScenes.first(where: {
+        $0.activationState == .foregroundActive
+      }) as? UIWindowScene
+      
+      if let scene {
+        SKStoreReviewController.requestReview(in: scene)
+      }
     }
   }
     
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-    
-  private func sectionsData() -> [Section] {
-    [
-      mainDeveloper(),
-      contributors(),
-      licenses(),
-      app(),
-      swiftEvolution(),
-      thanks(),
-    ]
-  }
-    
-  private func mainDeveloper() -> Section {
-    Section(
-      section: .mainDeveloper,
-      items: [
-        Contributor(
-          text: "Thiago Holanda",
-          type: .github,
-          value: "unnamedd"
-        ),
-      ],
-      footer: nil,
-      grouped: false
-    )
-  }
-    
+
   private func contributors() -> Section {
-    let members = [
-      Contributor(text: "Anton Kuzmin", type: .github, value: "uuttff8"),
-      Contributor(text: "Bruno Bilescky", type: .github, value: "brunogb"),
-      Contributor(text: "Bruno Guidolim", type: .github, value: "bguidolim"),
-      Contributor(text: "Bruno Hecktheuer", type: .github, value: "bbheck"),
-      Contributor(text: "Diego Ventura", type: .github, value: "diegoventura"),
-      Contributor(text: "Diogo Tridapalli", type: .github, value: "diogot"),
-      Contributor(text: "Ezequiel França", type: .github, value: "ezefranca"),
-      Contributor(text: "Gustavo Barbosa", type: .github, value: "barbosa"),
-      Contributor(text: "Guilherme Rambo", type: .github, value: "insidegui"),
-      Contributor(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso"),
-      Contributor(text: "Ricardo Borelli", type: .github, value: "rabc"),
-      Contributor(text: "Ricardo Olivieri", type: .github, value: "rolivieri"),
-      Contributor(text: "Rob Hudson", type: .github, value: "robtimp"),
-      Contributor(text: "Rodrigo Reis", type: .github, value: "digoreis"),
-      Contributor(text: "Taylor Franklin", type: .github, value: "tfrank64"),
-      Contributor(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller"),
+    let members: [Contributor] = [
+      .init(text: "Anton Kuzmin", type: .github, value: "uuttff8"),
+      .init(text: "Bruno Bilescky", type: .github, value: "brunogb"),
+      .init(text: "Bruno Guidolim", type: .github, value: "bguidolim"),
+      .init(text: "Bruno Hecktheuer", type: .github, value: "bbheck"),
+      .init(text: "Diego Ventura", type: .github, value: "diegoventura"),
+      .init(text: "Diogo Tridapalli", type: .github, value: "diogot"),
+      .init(text: "Ezequiel França", type: .github, value: "ezefranca"),
+      .init(text: "Gustavo Barbosa", type: .github, value: "barbosa"),
+      .init(text: "Guilherme Rambo", type: .github, value: "insidegui"),
+      .init(text: "Leonardo Cardoso", type: .github, value: "leonardocardoso"),
+      .init(text: "Ricardo Borelli", type: .github, value: "rabc"),
+      .init(text: "Ricardo Olivieri", type: .github, value: "rolivieri"),
+      .init(text: "Rob Hudson", type: .github, value: "robtimp"),
+      .init(text: "Rodrigo Reis", type: .github, value: "digoreis"),
+      .init(text: "Taylor Franklin", type: .github, value: "tfrank64"),
+      .init(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller"),
     ]
         
     return Section(
       section: .contributors,
       items: members,
-      footer: nil,
       grouped: true
     )
   }
@@ -92,7 +77,6 @@ final class AboutViewController: UITableViewController {
     return Section(
       section: .licenses,
       items: items,
-      footer: nil,
       grouped: true
     )
   }
@@ -100,32 +84,26 @@ final class AboutViewController: UITableViewController {
   private func app() -> Section {
     let items = [
       Item(text: "iOS App", type: .github, value: "evolution-app/ios"),
-      Item(text: "Backend", type: .github, value: "evolution-app/backend"),
       Item(text: "Twitter", type: .twitter, value: "evoapp_io"),
       Item(text: "Feedback", type: .email, value: "feedback@evoapp.io"),
     ]
         
     return Section(
       section: .evolution,
-      items: items,
-      footer: nil,
-      grouped: false
+      items: items
     )
   }
     
   private func swiftEvolution() -> Section {
     let items = [
-      Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang"),
-      Item(text: "Site", type: .url, value: "https://apple.github.io/swift-evolution"),
-      Item(text: "Repository", type: .github, value: "apple/swift-evolution"),
+      Item(text: "Site", type: .url, value: "https://www.swift.org/swift-evolution/"),
+      Item(text: "Repository", type: .github, value: "swiftlang/swift-evolution"),
       Item(text: "Forum", type: .url, value: "https://forums.swift.org/c/evolution"),
     ]
         
     return Section(
       section: .swiftEvolution,
-      items: items,
-      footer: nil,
-      grouped: false
+      items: items
     )
   }
     
@@ -137,13 +115,16 @@ final class AboutViewController: UITableViewController {
       Item(text: "John Calistro", type: .twitter, value: "johncalistro"),
       Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba"),
     ]
-        
-    let copyright =
-      "Copyright (c) 2017-2024 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
+      
     return Section(
       section: .thanks,
       items: items,
-      footer: copyright,
+      footer: """
+      
+      Copyright (c) 2017-2024 Thiago Holanda (thiago@evoapp.io)
+      
+      Swift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries.
+      """,
       grouped: false
     )
   }
@@ -191,8 +172,10 @@ extension AboutViewController {
     let item = about.items[indexPath.row]
         
     let cellIdentifier = about.grouped ? "GroupedTableViewCell" : "AboutCellIdentifier"
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
-                                             for: indexPath)
+    let cell = tableView.dequeueReusableCell(
+      withIdentifier: cellIdentifier,
+      for: indexPath
+    )
         
     cell.selectionStyle = .none
         
@@ -209,11 +192,7 @@ extension AboutViewController {
   }
     
   override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-    guard let footer = dataSource[section].footer else {
-      return nil
-    }
-        
-    return footer
+    dataSource[section].footer
   }
 }
 

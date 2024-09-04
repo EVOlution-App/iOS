@@ -8,6 +8,7 @@ enum SectionType: String {
   case thanks = "Thanks to"
 
   // Settings
+  case app
   case notifications = "Notifications"
   case about = "Open Source"
   case author = "Author"
@@ -46,7 +47,7 @@ struct License: ItemProtocol {
 struct Item: ItemProtocol {
   var text: String
   var type: Type
-  var value: String
+  var value: String = ""
 }
 
 struct Subscription: ItemProtocol {
@@ -60,7 +61,7 @@ struct Subscription: ItemProtocol {
 
 struct Section {
   var section: SectionType
-  var items: [ItemProtocol]
-  var footer: String?
-  var grouped: Bool
+  var items: [ItemProtocol] = []
+  var footer: String? = nil
+  var grouped: Bool = false
 }
