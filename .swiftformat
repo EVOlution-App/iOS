@@ -1,3 +1,4 @@
+
 --exclude fastlane
 
 --disable initCoderUnavailable
@@ -5,6 +6,7 @@
 --maxwidth 120
 --asynccapturing
 
+--enable indent
 --enable isEmpty
 --enable spaceInsideComments
 --enable redundantObjc
@@ -32,6 +34,8 @@
 --enable wrapConditionalBodies
 --enable wrapenumcases
 --enable wrapSwitchCases
+
+--indent 2
 
 --doccomments before-declarations
 --comments indent

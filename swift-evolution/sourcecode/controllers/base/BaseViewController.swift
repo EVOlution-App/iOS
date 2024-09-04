@@ -2,93 +2,93 @@ import Reachability
 import UIKit
 
 class BaseViewController: UIViewController {
-    // MARK: - Public properties
+  // MARK: - Public properties
 
-    var reachability: Reachability?
+  var reachability: Reachability?
 
-    lazy var noConnectionView: NoConnectionView? = NoConnectionView.fromNib()
+  lazy var noConnectionView: NoConnectionView? = NoConnectionView.fromNib()
 
-    var showNoConnection: Bool = false {
-        didSet {
-            DispatchQueue.main.async { [unowned self] in
-                noConnectionView?.isHidden = !showNoConnection
-            }
-        }
+  var showNoConnection: Bool = false {
+    didSet {
+      DispatchQueue.main.async { [unowned self] in
+        noConnectionView?.isHidden = !showNoConnection
+      }
+    }
+  }
+
+  lazy var refreshControl: UIRefreshControl = {
+    let refreshControl = UIRefreshControl()
+
+    refreshControl.tintColor = UIColor.Generic.darkGray
+
+    return refreshControl
+  }()
+
+  // MARK: - Life cycle
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    setupReachability()
+  }
+
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    // Disable Rotation for iPhones only
+    if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+      appDelegate.disableRotationIfNeeded()
     }
 
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
+    // Force rotation back to portrait
+    Config.Orientation.portrait()
+  }
 
-        refreshControl.tintColor = UIColor.Generic.darkGray
+  deinit {
+    self.stopNotifier()
+  }
 
-        return refreshControl
-    }()
+  // MARK: - Reachability
 
-    // MARK: - Life cycle
+  private func setupReachability() {
+    if let reachability = try? Reachability(hostname: "google.com") {
+      configureReachabilityView()
+      noConnectionView?.retryButton.addTarget(self, action: #selector(retryButtonAction(_:)), for: .touchUpInside)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        setupReachability()
+      self.reachability = reachability
+      startNotifier()
     }
+  }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        // Disable Rotation for iPhones only
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.disableRotationIfNeeded()
-        }
-
-        // Force rotation back to portrait
-        Config.Orientation.portrait()
+  private func startNotifier() {
+    do {
+      try reachability?.startNotifier()
     }
-
-    deinit {
-        self.stopNotifier()
+    catch {
+      print("Unable to start notifier")
     }
+  }
 
-    // MARK: - Reachability
+  private func stopNotifier() {
+    reachability?.stopNotifier()
+  }
 
-    private func setupReachability() {
-        if let reachability = try? Reachability(hostname: "google.com") {
-            configureReachabilityView()
-            noConnectionView?.retryButton.addTarget(self, action: #selector(retryButtonAction(_:)), for: .touchUpInside)
+  private func configureReachabilityView() {
+    if let noConnectionView {
+      view.addSubview(noConnectionView)
+      noConnectionView.isHidden = true
 
-            self.reachability = reachability
-            startNotifier()
-        }
+      noConnectionView.translatesAutoresizingMaskIntoConstraints = false
+      NSLayoutConstraint.activate([
+        noConnectionView.topAnchor.constraint(equalTo: view.topAnchor),
+        noConnectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        noConnectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        noConnectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      ])
     }
+  }
 
-    private func startNotifier() {
-        do {
-            try reachability?.startNotifier()
-        }
-        catch {
-            print("Unable to start notifier")
-        }
-    }
+  // MARK: - Reachability Retry Action
 
-    private func stopNotifier() {
-        reachability?.stopNotifier()
-    }
-
-    private func configureReachabilityView() {
-        if let noConnectionView {
-            view.addSubview(noConnectionView)
-            noConnectionView.isHidden = true
-
-            noConnectionView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                noConnectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                noConnectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                noConnectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                noConnectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            ])
-        }
-    }
-
-    // MARK: - Reachability Retry Action
-
-    @objc open func retryButtonAction(_: UIButton) {}
+  @objc open func retryButtonAction(_: UIButton) {}
 }

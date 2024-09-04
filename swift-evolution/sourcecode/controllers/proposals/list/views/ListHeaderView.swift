@@ -1,34 +1,34 @@
 import SwiftUI
 
 struct ListHeaderView: View {
-    private let color: UIColor?
-    private let title: String
+  private let color: UIColor?
+  private let title: String
 
-    init(count: Int) {
-        let suffix = count != 1 ? "s" : ""
-        title = "\(count) proposal\(suffix)"
-        color = count > 0 ? UIColor(named: "SecBgColor") : UIColor(named: "BgColor")
-    }
+  init(count: Int) {
+    let suffix = count != 1 ? "s" : ""
+    title = "\(count) proposal\(suffix)"
+    color = count > 0 ? UIColor(named: "SecBgColor") : UIColor(named: "BgColor")
+  }
 
-    init(title: String) {
-        self.title = title
-        color = UIColor(named: "BgColor")
-    }
+  init(title: String) {
+    self.title = title
+    color = UIColor(named: "BgColor")
+  }
 
-    var body: some View {
-        HStack(spacing: 10) {
-            Text(title)
-            Spacer()
-        }
-        .padding(.all, 10)
-        .background(Color(uiColor: color ?? .clear))
+  var body: some View {
+    HStack(spacing: 10) {
+      Text(title)
+      Spacer()
     }
+    .padding(.all, 10)
+    .background(Color(uiColor: color ?? .clear))
+  }
 }
 
 #Preview {
-    ListHeaderView(count: 12)
+  ListHeaderView(count: 12)
 }
 
 #Preview {
-    ListHeaderView(title: "No Proposals")
+  ListHeaderView(title: "No Proposals")
 }

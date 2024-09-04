@@ -3,258 +3,258 @@ import UIKit
 import WebKit
 
 final class ProposalDetailViewController: BaseViewController {
-    // MARK: - IBOutlet connections
+  // MARK: - IBOutlet connections
 
-    @IBOutlet private var detailView: UIView!
-    @IBOutlet private var noSelectedProposalLabel: UILabel?
+  @IBOutlet private var detailView: UIView!
+  @IBOutlet private var noSelectedProposalLabel: UILabel?
 
-    // MARK: - Private properties
+  // MARK: - Private properties
 
-    private weak var appDelegate: AppDelegate?
-    private var shareButton: UIBarButtonItem?
+  private weak var appDelegate: AppDelegate?
+  private var shareButton: UIBarButtonItem?
 
-    private var proposalMarkdown: String?
-    private lazy var markdownView: MarkdownView = {
-        let markdownView = MarkdownView()
-        markdownView.navigationDelegate = self
+  private var proposalMarkdown: String?
+  private lazy var markdownView: MarkdownView = {
+    let markdownView = MarkdownView()
+    markdownView.navigationDelegate = self
 
-        return markdownView
-    }()
+    return markdownView
+  }()
 
-    // MARK: - Public properties
+  // MARK: - Public properties
 
-    var proposal: Proposal?
+  var proposal: Proposal?
 
-    // MARK: - Reachability Retry Action
+  // MARK: - Reachability Retry Action
 
-    override func retryButtonAction(_ sender: UIButton) {
-        super.retryButtonAction(sender)
+  override func retryButtonAction(_ sender: UIButton) {
+    super.retryButtonAction(sender)
 
-        loadProposalDetail()
-    }
+    loadProposalDetail()
+  }
 }
 
 // MARK: - Life cycle
 
 extension ProposalDetailViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        title = proposal?.description
-        appDelegate = UIApplication.shared.delegate as? AppDelegate
-        noSelectedProposalLabel?.isHidden = proposal?.description != nil
-        navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-        navigationItem.leftItemsSupplementBackButton = true
+    title = proposal?.description
+    appDelegate = UIApplication.shared.delegate as? AppDelegate
+    noSelectedProposalLabel?.isHidden = proposal?.description != nil
+    navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+    navigationItem.leftItemsSupplementBackButton = true
 
-        setupMarkdownView()
-        setupReachability()
+    setupMarkdownView()
+    setupReachability()
 
-        refreshControl.addTarget(self, action: #selector(loadProposalDetail), for: .valueChanged)
+    refreshControl.addTarget(self, action: #selector(loadProposalDetail), for: .valueChanged)
 
-        loadProposalDetail()
-    }
+    loadProposalDetail()
+  }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
 
-        // Allow rotation
-        (UIApplication.shared.delegate as? AppDelegate)?.allowRotation()
-    }
+    // Allow rotation
+    (UIApplication.shared.delegate as? AppDelegate)?.allowRotation()
+  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
 }
 
 // MARK: - Reachability Closures
 
 extension ProposalDetailViewController {
-    private func setupReachability() {
-        reachability?.whenReachable = { [weak self] _ in
-            if self?.proposalMarkdown == nil {
-                self?.loadProposalDetail()
-            }
-        }
-
-        reachability?.whenUnreachable = { [weak self] _ in
-            if self?.proposalMarkdown == nil {
-                self?.showNoConnection = true
-            }
-        }
+  private func setupReachability() {
+    reachability?.whenReachable = { [weak self] _ in
+      if self?.proposalMarkdown == nil {
+        self?.loadProposalDetail()
+      }
     }
+
+    reachability?.whenUnreachable = { [weak self] _ in
+      if self?.proposalMarkdown == nil {
+        self?.showNoConnection = true
+      }
+    }
+  }
 }
 
 // MARK: - Elements
 
 extension ProposalDetailViewController {
-    func setupMarkdownView() {
-        detailView.addSubview(markdownView)
-        markdownView.translatesAutoresizingMaskIntoConstraints = false
+  func setupMarkdownView() {
+    detailView.addSubview(markdownView)
+    markdownView.translatesAutoresizingMaskIntoConstraints = false
 
-        markdownView.addRefreshControl(refreshControl)
+    markdownView.addRefreshControl(refreshControl)
 
-        NSLayoutConstraint.activate([
-            markdownView.topAnchor.constraint(equalTo: detailView.topAnchor),
-            markdownView.bottomAnchor.constraint(equalTo: detailView.bottomAnchor),
-            markdownView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor),
-            markdownView.trailingAnchor.constraint(equalTo: detailView.trailingAnchor),
-        ])
-    }
+    NSLayoutConstraint.activate([
+      markdownView.topAnchor.constraint(equalTo: detailView.topAnchor),
+      markdownView.bottomAnchor.constraint(equalTo: detailView.bottomAnchor),
+      markdownView.leadingAnchor.constraint(equalTo: detailView.leadingAnchor),
+      markdownView.trailingAnchor.constraint(equalTo: detailView.trailingAnchor),
+    ])
+  }
 
-    private func setupNavigationButtons() {
-        shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
-        navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
-    }
+  private func setupNavigationButtons() {
+    shareButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareProposal))
+    navigationController?.navigationBar.topItem?.setRightBarButton(shareButton, animated: true)
+  }
 }
 
 // MARK: - Networking
 
 extension ProposalDetailViewController {
-    @objc
-    private func loadProposalDetail() {
-        guard let proposal else {
-            return
-        }
-
-        if let reachability, reachability.connection != .unavailable {
-            // Hide No Connection View
-            showNoConnection = false
-
-            refreshControl.forceShowAnimation()
-            EvolutionService.detail(for: proposal) { [weak self] result in
-                guard let self else {
-                    return
-                }
-
-                guard let markdownString = result.value else {
-                    return
-                }
-
-                proposalMarkdown = markdownString
-
-                DispatchQueue.main.async {
-                    self.markdownView.load(
-                        markdown: markdownString
-                    )
-
-                    self.refreshControl.beginRefreshing()
-                    self.setupNavigationButtons()
-                }
-
-                // Remove refresh control
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    if self.refreshControl.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-                }
-            }
-        }
-        else {
-            showNoConnection = true
-        }
+  @objc
+  private func loadProposalDetail() {
+    guard let proposal else {
+      return
     }
+
+    if let reachability, reachability.connection != .unavailable {
+      // Hide No Connection View
+      showNoConnection = false
+
+      refreshControl.forceShowAnimation()
+      EvolutionService.detail(for: proposal) { [weak self] result in
+        guard let self else {
+          return
+        }
+
+        guard let markdownString = result.value else {
+          return
+        }
+
+        proposalMarkdown = markdownString
+
+        DispatchQueue.main.async {
+          self.markdownView.load(
+            markdown: markdownString
+          )
+
+          self.refreshControl.beginRefreshing()
+          self.setupNavigationButtons()
+        }
+
+        // Remove refresh control
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+          if self.refreshControl.isRefreshing {
+            self.refreshControl.endRefreshing()
+          }
+        }
+      }
+    }
+    else {
+      showNoConnection = true
+    }
+  }
 }
 
 // MARK: - Navigation
 
 extension ProposalDetailViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is ProposalDetailViewController,
-           let destination = segue.destination as? ProposalDetailViewController,
-           sender != nil, let item = sender as? Proposal
-        {
-            destination.proposal = item
-        }
-        else if segue.destination is ProfileViewController,
-                let destination = segue.destination as? ProfileViewController,
-                sender != nil, sender is Person, let person = sender as? Person
-        {
-            destination.profile = person
-        }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.destination is ProposalDetailViewController,
+       let destination = segue.destination as? ProposalDetailViewController,
+       sender != nil, let item = sender as? Proposal
+    {
+      destination.proposal = item
     }
+    else if segue.destination is ProfileViewController,
+            let destination = segue.destination as? ProfileViewController,
+            sender != nil, sender is Person, let person = sender as? Person
+    {
+      destination.profile = person
+    }
+  }
 }
 
 // MARK: - Share Proposal
 
 extension ProposalDetailViewController {
-    @objc private func shareProposal() {
-        guard let proposal else {
-            return
-        }
-
-        let url = "https://evoapp.io/proposal/\(proposal.description)"
-
-        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        if UIDevice.current.userInterfaceIdiom == .pad, let sourceView = shareButton?.value(forKey: "view") as? UIView {
-            activityController.modalPresentationStyle = .popover
-            if let popoverPresentationController = activityController.popoverPresentationController {
-                popoverPresentationController.sourceView = sourceView
-                var bounds = sourceView.bounds
-                bounds.origin.x = 10
-                popoverPresentationController.sourceRect = bounds
-            }
-            navigationController?.present(activityController, animated: true, completion: nil)
-        }
-        else {
-            navigationController?.present(activityController, animated: true, completion: nil)
-        }
+  @objc private func shareProposal() {
+    guard let proposal else {
+      return
     }
+
+    let url = "https://evoapp.io/proposal/\(proposal.description)"
+
+    let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    if UIDevice.current.userInterfaceIdiom == .pad, let sourceView = shareButton?.value(forKey: "view") as? UIView {
+      activityController.modalPresentationStyle = .popover
+      if let popoverPresentationController = activityController.popoverPresentationController {
+        popoverPresentationController.sourceView = sourceView
+        var bounds = sourceView.bounds
+        bounds.origin.x = 10
+        popoverPresentationController.sourceRect = bounds
+      }
+      navigationController?.present(activityController, animated: true, completion: nil)
+    }
+    else {
+      navigationController?.present(activityController, animated: true, completion: nil)
+    }
+  }
 }
 
 // MARK: - WKNavigation Delegate
 
 extension ProposalDetailViewController: WKNavigationDelegate {
-    func webView(
-        _: WKWebView,
-        decidePolicyFor navigationAction: WKNavigationAction,
-        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-    ) {
-        if navigationAction.navigationType == .linkActivated {
-            guard let url = navigationAction.request.url, let proposal else {
-                decisionHandler(.allow)
-                return
-            }
+  func webView(
+    _: WKWebView,
+    decidePolicyFor navigationAction: WKNavigationAction,
+    decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+  ) {
+    if navigationAction.navigationType == .linkActivated {
+      guard let url = navigationAction.request.url, let proposal else {
+        decisionHandler(.allow)
+        return
+      }
 
-            let lastPathComponent = url.lastPathComponent
+      let lastPathComponent = url.lastPathComponent
 
-            // Extract proposal info from selected anchor
-            if url.path.hasSuffix(".md") {
-                let list = lastPathComponent.components(separatedBy: "-")
+      // Extract proposal info from selected anchor
+      if url.path.hasSuffix(".md") {
+        let list = lastPathComponent.components(separatedBy: "-")
 
-                if let first = list.first, !list.isEmpty {
-                    // Only load if the proposal touched isn't the same presented
-                    if let id = Int(first), id != proposal.id {
-                        let proposal = Proposal(id: id, link: lastPathComponent)
+        if let first = list.first, !list.isEmpty {
+          // Only load if the proposal touched isn't the same presented
+          if let id = Int(first), id != proposal.id {
+            let proposal = Proposal(id: id, link: lastPathComponent)
 
-                        Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
-                    }
-                }
-
-                // In case of url lastPathComponent has .md suffix and it isn't a proposal
-                else {
-                    let safariViewController = SFSafariViewController(url: url)
-                    present(safariViewController, animated: true)
-                }
-            }
-
-            // Check if the link is an author/review manager, if yes, send user to profile screen
-            else if let host = url.host, host.contains("github.com"),
-                    let person = appDelegate?.people.get(username: lastPathComponent)
-            {
-                Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
-            }
-
-            // The last step is check only if the url "appears" to be correct, before try to send it to safari
-            else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
-                let safariViewController = SFSafariViewController(url: url)
-                present(safariViewController, animated: true)
-            }
-
-            decisionHandler(.cancel)
-            return
+            Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
+          }
         }
 
-        decisionHandler(.allow)
+        // In case of url lastPathComponent has .md suffix and it isn't a proposal
+        else {
+          let safariViewController = SFSafariViewController(url: url)
+          present(safariViewController, animated: true)
+        }
+      }
+
+      // Check if the link is an author/review manager, if yes, send user to profile screen
+      else if let host = url.host, host.contains("github.com"),
+              let person = appDelegate?.people.get(username: lastPathComponent)
+      {
+        Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+      }
+
+      // The last step is check only if the url "appears" to be correct, before try to send it to safari
+      else if let scheme = url.scheme, ["http", "https"].contains(scheme.lowercased()) {
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
+      }
+
+      decisionHandler(.cancel)
+      return
     }
+
+    decisionHandler(.allow)
+  }
 }
