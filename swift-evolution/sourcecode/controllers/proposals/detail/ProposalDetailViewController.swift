@@ -27,7 +27,7 @@ final class ProposalDetailViewController: BaseViewController {
 
   // MARK: - Reachability Retry Action
 
-  override func retryButtonAction(_ sender: UIButton) {
+  override func retryButtonAction(_ sender: UIAction) {
     super.retryButtonAction(sender)
 
     loadProposalDetail()

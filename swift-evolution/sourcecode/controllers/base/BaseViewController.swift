@@ -6,13 +6,25 @@ class BaseViewController: UIViewController {
 
   var reachability: Reachability?
 
-  lazy var noConnectionView: NoConnectionView? = NoConnectionView.fromNib()
+  private func noConnectionView() -> UIContentUnavailableConfiguration {
+    var tryAgain = UIButton.Configuration.plain()
+    tryAgain.title = "Try again"
+
+    var configuration = UIContentUnavailableConfiguration.empty()
+    configuration.image = UIImage(named: "bird-no-connection")
+    configuration.text = "No internet connection"
+    configuration.button = tryAgain
+    configuration.buttonProperties.primaryAction = UIAction(
+      title: "Try again",
+      handler: retryButtonAction
+    )
+
+    return configuration
+  }
 
   var showNoConnection: Bool = false {
     didSet {
-      DispatchQueue.main.async { [unowned self] in
-        noConnectionView?.isHidden = !showNoConnection
-      }
+      contentUnavailableConfiguration = showNoConnection ? noConnectionView() : nil
     }
   }
 
@@ -52,9 +64,6 @@ class BaseViewController: UIViewController {
 
   private func setupReachability() {
     if let reachability = try? Reachability(hostname: "google.com") {
-      configureReachabilityView()
-      noConnectionView?.retryButton.addTarget(self, action: #selector(retryButtonAction(_:)), for: .touchUpInside)
-
       self.reachability = reachability
       startNotifier()
     }
@@ -73,22 +82,7 @@ class BaseViewController: UIViewController {
     reachability?.stopNotifier()
   }
 
-  private func configureReachabilityView() {
-    if let noConnectionView {
-      view.addSubview(noConnectionView)
-      noConnectionView.isHidden = true
-
-      noConnectionView.translatesAutoresizingMaskIntoConstraints = false
-      NSLayoutConstraint.activate([
-        noConnectionView.topAnchor.constraint(equalTo: view.topAnchor),
-        noConnectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        noConnectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        noConnectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      ])
-    }
-  }
-
   // MARK: - Reachability Retry Action
 
-  @objc open func retryButtonAction(_: UIButton) {}
+  @objc open func retryButtonAction(_: UIAction) {}
 }
