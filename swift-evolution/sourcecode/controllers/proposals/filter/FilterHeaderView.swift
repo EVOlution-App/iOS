@@ -94,7 +94,7 @@ class FilterHeaderView: UIView {
       label = "\(filter.description) (\(versions.joined(separator: ", ")))"
     }
     else if !status.isEmpty, status.count < 3 {
-      label = status.compactMap(\.description).joined(separator: ", ")
+      label = status.map(\.description).joined(separator: ", ")
     }
 
     let text = concatText(
