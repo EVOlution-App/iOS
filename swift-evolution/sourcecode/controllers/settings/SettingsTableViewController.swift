@@ -1,3 +1,4 @@
+import SwiftUI
 import UIKit
 
 final class SettingsTableViewController: UITableViewController {
@@ -5,8 +6,6 @@ final class SettingsTableViewController: UITableViewController {
 
   private var dataSource: [Section] = []
   private weak var appDelegate: AppDelegate?
-
-  private lazy var descriptionView: DescriptionView = .fromNib()
 
   // MARK: - Life cycle
 
@@ -16,7 +15,6 @@ final class SettingsTableViewController: UITableViewController {
     setupAppDelegate()
     configureUI()
     setupTableView()
-    setupDescriptionView()
   }
 
   private func setupAppDelegate() {
@@ -28,11 +26,19 @@ final class SettingsTableViewController: UITableViewController {
   private func configureUI() {
     tableView.backgroundColor = UIColor(named: "BgColor")
     title = "Settings"
+
+    navigationController?.navigationBar.topItem?.rightBarButtonItem = .init(
+      barButtonSystemItem: .close,
+      target: self,
+      action: #selector(close)
+    )
   }
 
   private func setupTableView() {
     buildDataSource()
-    registerNotifications()
+
+    // FIXME: This will return when we stabilize push notifications again
+    // registerNotifications()
 
     tableView.registerNib(withClass: SwitchTableViewCell.self)
     tableView.registerNib(withClass: CustomSubtitleTableViewCell.self)
@@ -41,7 +47,8 @@ final class SettingsTableViewController: UITableViewController {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 
-    getDetails(from: User.current)
+    // FIXME: This will return when we stabilize push notifications again
+    // getDetails(from: User.current)
   }
 
   override func didReceiveMemoryWarning() {
@@ -76,37 +83,39 @@ final class SettingsTableViewController: UITableViewController {
     //     grouped: false
     // )
 
-    let author = Section(
-      section: .author,
-      items: [
-        Contributor(
-          text: "Thiago Holanda",
-          type: .github,
-          value: "unnamedd"
-        ),
-      ],
-      footer: nil,
-      grouped: false
-    )
-
-    let about = Section(
-      section: .about,
-      items: [
-        Item(
-          text: "See all details about this app",
-          type: .undefined,
-          value: ""
-        ),
-      ],
-      footer: nil,
-      grouped: false
-    )
-
     dataSource = [
-      // notifications,
-      author,
-      about,
+      .init(
+        section: .app
+      ),
+      .init(
+        section: .author,
+        items: [
+          Contributor(
+            text: "Thiago Holanda",
+            type: .github,
+            value: "unnamedd"
+          ),
+        ]
+      ),
+      .init(
+        section: .about,
+        items: [
+          Item(
+            text: "See all details about this app",
+            type: .undefined
+          ),
+        ]
+      ),
     ]
+  }
+}
+
+// MARK: - Actions
+
+extension SettingsTableViewController {
+  @objc
+  func close(_: Any) {
+    dismiss(animated: true)
   }
 }
 
@@ -127,7 +136,8 @@ extension SettingsTableViewController {
     let section = dataSource[indexPath.section]
     let item = section.items[indexPath.row]
 
-    if section.section == .notifications {
+    switch section.section {
+    case .notifications:
       let switchCell = tableView.cell(forRowAt: indexPath) as SwitchTableViewCell
 
       switchCell.descriptionLabel?.text = item.text
@@ -139,16 +149,21 @@ extension SettingsTableViewController {
       switchCell.activeSwitch.isUserInteractionEnabled = enabled
 
       cell = switchCell
-    }
-    else if section.section == .about {
+
+    case .about:
       cell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
       cell.textLabel?.text = "Contributors, licenses and more"
       cell.detailTextLabel?.text = item.text
-    }
-    else if section.section == .author, let contributor = section.items.first as? Contributor {
-      let contributorCell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
-      contributorCell.contributor = contributor
-      cell = contributorCell
+
+    case .author:
+      if let contributor = section.items.first as? Contributor {
+        let contributorCell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
+        contributorCell.contributor = contributor
+        cell = contributorCell
+      }
+
+    default:
+      break
     }
 
     return cell
@@ -158,6 +173,16 @@ extension SettingsTableViewController {
 // MARK: - UITableView Delegate
 
 extension SettingsTableViewController {
+  override func tableView(_: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    if section == 0 {
+      return AboutAppView().toUIView()
+    }
+
+    let section = dataSource[section]
+    let description = section.section.description
+
+    return AboutHeaderView(description).toUIView()
+  }
 
   override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
     let section = dataSource[section]
@@ -165,18 +190,8 @@ extension SettingsTableViewController {
     return section.section.description
   }
 
-  override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-    let section = dataSource[section]
-
-    return section.footer
-  }
-
-  override func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    let section = dataSource[indexPath.section]
-    if section.section == .author {
-      return 60
-    }
-    return UITableView.automaticDimension
+  override func tableView(_: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    section == 0 ? 280 : 50
   }
 
   override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -280,15 +295,19 @@ extension SettingsTableViewController {
 
 extension SettingsTableViewController {
   private func registerNotifications() {
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(didReceiveNotification(_:)),
-                                           name: NSNotification.Name.NotificationRegister,
-                                           object: nil)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(didReceiveNotification(_:)),
+      name: NSNotification.Name.NotificationRegister,
+      object: nil
+    )
 
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(didReceiveNotification(_:)),
-                                           name: NSNotification.Name.AppDidBecomeActive,
-                                           object: nil)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(didReceiveNotification(_:)),
+      name: NSNotification.Name.AppDidBecomeActive,
+      object: nil
+    )
   }
 
   private func removeNotifications() {
