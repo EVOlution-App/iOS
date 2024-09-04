@@ -1,45 +1,169 @@
-disabled_rules:
-  - line_length
-  - cyclomatic_complexity
-  - force_unwrapping
-  - force_cast
-  - identifier_name
-  - statement_position
-  - nesting
-
 opt_in_rules:
-  - closure_spacing
-  - closure_end_indentation
   - explicit_init
-  - switch_case_on_newline
-  - redundant_nil_coalescing
-  - prohibited_super_call
+  - force_unwrapping
+  - force_try
+  - force_cast
+  - toggle_bool
+  - trailing_closure
+  - weak_delegate
+  - anyobject_protocol
   - overridden_super_call
-  - nimble_operator
+
+disabled_rules:
+  - statement_position
+  - trailing_newline
+  - trailing_whitespace
+  - operator_whitespace
+  - type_name
+  - opening_brace
+  - trailing_comma
 
 file_length:
-  warning: 800
-  error: 1200
-
-function_body_length:
-  warning: 500
-  error: 1200
+  warning: 450
+  error: 500
 
 type_body_length:
-  warning: 500
-  error: 1200
+  warning: 250
+  error: 500
 
-trailing_whitespace:
-  ignores_empty_lines: true
+function_body_length:
+  warning: 250
+  error: 300
+
+line_length:
   ignores_comments: true
+  warning: 180
+  error: 200
+
+weak_delegate:
+  severity: error
 
 vertical_whitespace:
-  max_empty_lines: 2
+  severity: error
+
+force_unwrapping:
+  severity: error
+
+anyobject_protocol:
+  severity: error
+
+overridden_super_call:
+  severity: error
+
+superfluous_disable_command:
+  severity: error
+
+leading_whitespace:
+  severity: error
+
+trailing_closure:
+  severity: error
+
+multiple_closures_with_trailing_closure:
+  severity: error
+
+computed_accessors_order:
+  severity: error
+
+class_delegate_protocol:
+  severity: error
+
+nesting:
+  type_level: 3
 
 identifier_name:
-  excluded:
-    - id
-    - up
+  min_length:
+    warning: 2
+    error: 1
+  max_length:
+    warning: 50
+    error: 60
+
+cyclomatic_complexity:
+  warning: 20
+  error: 25
+
+function_parameter_count:
+  warning: 10
+  error: 15
+
+legacy_constructor:
+  severity: error
 
 excluded:
-  - Carthage
+  - .build
+  - "**/build/**"
+
+custom_rules:
+  no_abbreviation_id:
+    name: "No abbreviation id"
+    regex: "(\\Wid\\W)|(\\w*Id\\W)|(\\w*ID\\W)"
+    match_kinds:
+      - argument
+      - identifier
+      - parameter
+      - typeidentifier
+    message: "Abbreviation 'id' is forbidden. Use 'identifier' instead."
+    severity: error
+
+  no_usage_ipad:
+    name: "No usage iPad"
+    regex: "(?i)(\\w*ipad\\W)"
+    match_kinds:
+      - argument
+      - identifier
+      - parameter
+      - typeidentifier
+    message: "Usage of 'iPad' word is forbidden. Use 'Pad' instead."
+    severity: error
+
+  uppercased_acronym_json:
+    name: "Uppercased acronym JSON"
+    regex: "(\\w*Json\\W)|(\\w*Json[A-Z0-9])"
+    match_kinds:
+      - argument
+      - identifier
+      - parameter
+      - typeidentifier
+    message: "Acronym 'JSON' should be uppercased."
+    severity: error
+
+  uppercased_acronym_url:
+    name: "Uppercased acronym URL"
+    regex: "(\\w*Url\\W)|(\\w*Url[A-Z0-9])"
+    match_kinds:
+      - argument
+      - identifier
+      - parameter
+      - typeidentifier
+    message: "Acronym 'URL' should be uppercased."
+    severity: error
+
+  uppercased_acronym_iso:
+    name: "Uppercased acronym ISO"
+    regex: "(\\w*Iso\\W)|(\\w*Iso[A-Z0-9])"
+    match_kinds:
+      - argument
+      - identifier
+      - parameter
+      - typeidentifier
+    message: "Acronym 'ISO' should be uppercased."
+    severity: error
+
+  no_date_constructor:
+    name: "No Date constructor"
+    regex: "(\\WDate\\(\\))"
+    message: "Constructor 'Date()' is forbidden. Use 'Date.current' instead."
+    severity: error
+
+  objc_func_argument:
+    name: "@objc function argument should be of Any Type"
+    regex: "^\\s*@objc\\s*\\w*\\sfunc\\s\\w*\\((\\w*|_\\s\\w*):\\s(?!Any\\)\\s\\{$)"
+    message: "Argument type in a @objc function should be Any to avoid wrong typecasting"
+    severity: error
+
+  delegate_method_naming:
+    name: "Delegate method naming"
+    regex: "(func did[A-Z0-9])|(func will[A-Z0-9])"
+    message: "Delegate method naming should match the following pattern: classNameDidDoSomething(_ className: ClassName) or classNameWillDoSomething(_ className: ClassName)."
+    severity: error

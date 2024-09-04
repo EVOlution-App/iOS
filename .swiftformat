@@ -1,0 +1,50 @@
+--exclude fastlane
+
+--disable initCoderUnavailable
+
+--maxwidth 120
+--asynccapturing
+
+--enable isEmpty
+--enable spaceInsideComments
+--enable redundantObjc
+--enable spaceInsideParens
+--enable todos
+--enable duplicateImports
+--enable hoistAwait
+--enable hoistPatternLet
+--enable hoistTry
+--enable consistentSwitchCaseSpacing
+--enable conditionalAssignment
+--enable blankLinesBetweenScopes
+--enable blankLineAfterSwitchCase
+--enable blankLineAfterImports
+--enable anyObjectProtocol
+--enable acronyms
+--enable preferKeyPath
+--enable redundantBackticks
+--enable redundantBreak
+--enable redundantClosure
+--enable redundantExtensionACL
+--enable redundantFileprivate
+--enable redundantPattern
+--enable redundantTypedThrows
+--enable wrapConditionalBodies
+--enable wrapenumcases
+--enable wrapSwitchCases
+
+--doccomments before-declarations
+--comments indent
+
+--rules trailingCommas
+--commas always # trailingCommas
+
+--wraparguments before-first
+--wrapcollections before-first
+
+--funcattributes prev-line
+--typeattributes prev-line
+
+--enable elseOnSameLine
+--elseposition next-line
+--guardelse next-line
