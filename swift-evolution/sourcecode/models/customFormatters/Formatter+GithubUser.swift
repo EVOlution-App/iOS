@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct GithubUserFormatter {
+struct GitHubUserFormatter {
     static func format(unboxedValue: String?) -> String? {
         guard let unboxedValue = unboxedValue else { return nil }
         let values = unboxedValue.components(separatedBy: "/").filter { $0 != "" }

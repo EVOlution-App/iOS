@@ -1,5 +1,5 @@
 // Created by Digipolitan
-// Github: https://github.com/Digipolitan/collection-view-left-align-flow-layout-swift
+// GitHub: https://github.com/Digipolitan/collection-view-left-align-flow-layout-swift
 
 import UIKit
 

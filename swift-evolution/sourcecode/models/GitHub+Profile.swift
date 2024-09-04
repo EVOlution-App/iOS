@@ -1,7 +1,8 @@
 import UIKit
 
-// MARK: - Github Profile
-struct GithubProfile: Codable {
+// MARK: - GitHub Profile
+
+struct GitHubProfile: Codable {
     let login: String
     let id: Int
     let avatar: String?
@@ -17,7 +18,7 @@ struct GithubProfile: Codable {
     }
 }
 
-extension GithubProfile {
+extension GitHubProfile {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)

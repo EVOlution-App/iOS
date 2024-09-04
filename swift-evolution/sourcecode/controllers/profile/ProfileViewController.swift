@@ -41,7 +41,7 @@ class ProfileViewController: BaseViewController {
         // Settings
         self.showNoConnection = false
         self.profileView.profile = profile
-        self.getUserDataFromGithub()
+        self.userDataFromGitHub()
         self.tableView.reloadData()
         
         // Title
@@ -54,7 +54,7 @@ class ProfileViewController: BaseViewController {
         // Configure reachability closures
         self.reachability?.whenReachable = { [unowned self] reachability in
             if self.profileView.imageURL == nil {
-                self.getUserDataFromGithub()
+                self.userDataFromGitHub()
             }
         }
     }
@@ -104,13 +104,13 @@ extension ProfileViewController {
         self.tableView.reloadData()
     }
     
-    fileprivate func getUserDataFromGithub() {
+    private func userDataFromGitHub() {
         guard let profile, let username = profile.username else {
             return
         }
         
         if let reachability, reachability.connection != .unavailable {
-            GithubService.profile(from: username) { [weak self] result in
+            GitHubService.profile(from: username) { [weak self] result in
                 guard let github = result.value else {
                     return
                 }

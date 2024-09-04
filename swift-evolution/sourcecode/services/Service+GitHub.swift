@@ -1,8 +1,8 @@
 import Foundation
 
-struct GithubService {
+struct GitHubService {
     
-    typealias CompletionUserProfile = (ServiceResult<GithubProfile>) -> Swift.Void
+    typealias CompletionUserProfile = (ServiceResult<GitHubProfile>) -> Swift.Void
     
     @discardableResult
     static func profile(from username: String, completion: @escaping CompletionUserProfile) -> URLSessionDataTask? {
@@ -10,7 +10,7 @@ struct GithubService {
         let request = RequestSettings(url)
         
         let task = Service.dispatch(request) { result in
-            let newResult = result.flatMap { try JSONDecoder().decode(GithubProfile.self, from: $0) }
+            let newResult = result.flatMap { try JSONDecoder().decode(GitHubProfile.self, from: $0) }
             completion(newResult)
         }
         return task

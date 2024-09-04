@@ -9,7 +9,7 @@ struct Person: Decodable {
     let username: String?
 
     // These properties will not come from server
-    var github: GithubProfile?
+    var github: GitHubProfile?
     var asAuthor: [Proposal]?
     var asManager: [Proposal]?
     
@@ -28,7 +28,7 @@ extension Person: Searchable {
         self.id = try container.decodeIfPresent(String.self, forKey: .id)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.link = try container.decodeIfPresent(String.self, forKey: .link)
-        self.username = GithubUserFormatter.format(unboxedValue: self.link)
+        self.username = GitHubUserFormatter.format(unboxedValue: self.link)
     }
     
 }
