@@ -1,18 +1,15 @@
 import SwiftUI
 
 struct ListHeaderView: View {
-  private let color: UIColor?
   private let title: String
 
   init(count: Int) {
     let suffix = count != 1 ? "s" : ""
     title = "\(count) proposal\(suffix)"
-    color = count > 0 ? UIColor(named: "SecBgColor") : UIColor(named: "BgColor")
   }
 
   init(title: String) {
     self.title = title
-    color = UIColor(named: "BgColor")
   }
 
   var body: some View {
@@ -21,18 +18,17 @@ struct ListHeaderView: View {
       Spacer()
     }
     .padding(.all, 10)
-    .background(Color(uiColor: color ?? .clear))
   }
 }
 
-#Preview("Empty") {
+#Preview("Empty", traits: .fixedLayout(width: 250, height: 50)) {
   ListHeaderView(count: 0)
 }
 
-#Preview("Counting") {
+#Preview("Counting", traits: .fixedLayout(width: 250, height: 50)) {
   ListHeaderView(count: 12)
 }
 
-#Preview("Custom title") {
+#Preview("Custom title", traits: .fixedLayout(width: 250, height: 50)) {
   ListHeaderView(title: "No Proposals")
 }
