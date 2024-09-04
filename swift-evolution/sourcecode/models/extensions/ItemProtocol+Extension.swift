@@ -3,17 +3,19 @@ import Foundation
 extension ItemProtocol {
     var media: String {
         switch type {
-        case .github, .twitter:
-            return "\(type.rawValue)/\(value)"
+        case .github,
+             .twitter:
+            "\(type.rawValue)/\(value)"
         default:
-            return value
+            value
         }
     }
 }
 
 // MARK: - Equatable
+
 extension ItemProtocol where Self: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.text == rhs.text
+        lhs.text == rhs.text
     }
 }

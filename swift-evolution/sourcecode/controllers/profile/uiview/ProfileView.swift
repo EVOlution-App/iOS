@@ -1,76 +1,76 @@
-import UIKit
 import SwiftRichString
+import UIKit
 
 class ProfileView: UIView {
-
     // IBOutlets
-    @IBOutlet private weak var profileImageView: UIImageView!
-    @IBOutlet private weak var detailsLabel: UILabel!
-    @IBOutlet private weak var statisticsLabel: UILabel!
-    
+    @IBOutlet private var profileImageView: UIImageView!
+    @IBOutlet private var detailsLabel: UILabel!
+    @IBOutlet private var statisticsLabel: UILabel!
+
     // MARK: - Public properties
+
     open var profile: Person? {
         didSet {
-            self.configureElements()
+            configureElements()
         }
     }
-    
+
     open var imageURL: String? {
         didSet {
-            self.loadProfileImage()
+            loadProfileImage()
         }
     }
-    
+
     // MARK: - Life cycle
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        self.profileImageView.round(with: UIColor.clear, width: 0)
-        self.profileImageView.backgroundColor = UIColor.Proposal.lightGray.withAlphaComponent(0.5)
+
+        profileImageView.round(with: UIColor.clear, width: 0)
+        profileImageView.backgroundColor = UIColor.Proposal.lightGray.withAlphaComponent(0.5)
     }
- 
+
     func configureElements() {
-        guard let profile = self.profile else {
+        guard let profile else {
             return
         }
-        
+
         let details = NSMutableAttributedString()
-        details.append(self.render(name: profile.name))
-        details.append(self.render(link: profile.link))
-        
+        details.append(render(name: profile.name))
+        details.append(render(link: profile.link))
+
         let statistics = NSMutableAttributedString()
-        statistics.append(self.render(author: profile.asAuthor, manager: profile.asManager))
-        
-        self.detailsLabel.attributedText = details
-        self.statisticsLabel.attributedText = statistics
+        statistics.append(render(author: profile.asAuthor, manager: profile.asManager))
+
+        detailsLabel.attributedText = details
+        statisticsLabel.attributedText = statistics
     }
-    
+
     func loadProfileImage() {
-        guard let url = self.imageURL, url != "" else {
+        guard let url = imageURL, url != "" else {
             return
         }
-        
-        self.profileImageView.loadImage(from: url)
+
+        profileImageView.loadImage(from: url)
     }
 }
 
 // MARK: - Renders
-fileprivate extension ProfileView {
 
+private extension ProfileView {
     func render(name: String?) -> NSMutableAttributedString {
         let attributedStrings = NSMutableAttributedString()
-        
+
         // Name
-        if let name = name {
+        if let name {
             let text = name.firstLast.components(separatedBy: .whitespaces).joined(separator: .newLine)
-            
+
             let style = Style {
-                
                 // Check if name is too long, and reduce the font size
                 var pointSize: CGFloat = 40.0
                 if name.count > 10 {
                     pointSize = 34
-                    
+
                     if UIScreen.main.bounds.size.width < 375 {
                         pointSize = 27
                     }
@@ -83,17 +83,17 @@ fileprivate extension ProfileView {
 
             attributedStrings.append(text.set(style: style))
         }
-        
+
         return attributedStrings
     }
-    
+
     func render(link: String?) -> NSMutableAttributedString {
         let attributedStrings = NSMutableAttributedString()
 
         // Link
-        if let link = link, let url = URL(string: link),
-            let host = url.host {
-            
+        if let link, let url = URL(string: link),
+           let host = url.host
+        {
             let style = Style {
                 // Check if link is too long, and reduce the font size
                 var pointSize: CGFloat = 14.0
@@ -111,7 +111,7 @@ fileprivate extension ProfileView {
 
         return attributedStrings
     }
-    
+
     func render(author: [Proposal]?, manager: [Proposal]?) -> NSMutableAttributedString {
         let attributedStrings = NSMutableAttributedString()
 
@@ -120,30 +120,30 @@ fileprivate extension ProfileView {
             $0.font = SystemFonts.HelveticaNeue.font(size: 20)
             $0.color = UIColor.Proposal.lightGray
         }
-        
+
         let valueStyle = Style {
             $0.font = SystemFonts.HelveticaNeue_Bold.font(size: 18)
             $0.color = UIColor(named: "MainTitle")
             $0.alignment = .center
         }
-        
+
         // as Author
-        if let list = author, list.count > 0 {
+        if let list = author, !list.isEmpty {
             attributedStrings.append("\(list.count)".set(style: valueStyle))
 
             attributedStrings.append(" author".set(style: descriptionStyle))
         }
-        
+
         // as Review Manager
-        if let list = manager, list.count > 0 {
+        if let list = manager, !list.isEmpty {
             let space = attributedStrings.length > 0 ? .doubleSpace + .doubleSpace : ""
-            
+
             let text = space + "\(list.count)"
             attributedStrings.append(text.set(style: valueStyle))
-            
+
             attributedStrings.append(" review manager".set(style: descriptionStyle))
         }
-        
+
         return attributedStrings
     }
 }

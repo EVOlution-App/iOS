@@ -6,7 +6,7 @@ extension Notifications {
         let name: String
         let identifier: String
         let subscribed: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "_id"
             case name

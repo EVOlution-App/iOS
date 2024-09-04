@@ -12,23 +12,20 @@ struct Person: Decodable {
     var github: GitHubProfile?
     var asAuthor: [Proposal]?
     var asManager: [Proposal]?
-    
+
     enum Keys: String, CodingKey {
         case id
         case name
         case link
     }
-    
 }
 
 extension Person: Searchable {
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
-        self.id = try container.decodeIfPresent(String.self, forKey: .id)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.link = try container.decodeIfPresent(String.self, forKey: .link)
-        self.username = GitHubUserFormatter.format(unboxedValue: self.link)
+        id = try container.decodeIfPresent(String.self, forKey: .id)
+        name = try container.decodeIfPresent(String.self, forKey: .name)
+        link = try container.decodeIfPresent(String.self, forKey: .link)
+        username = GitHubUserFormatter.format(unboxedValue: link)
     }
-    
 }

@@ -2,10 +2,10 @@ import Foundation
 
 extension Section {
     subscript(index: Int) -> ItemProtocol? {
-        guard items.count > 0 else {
+        guard !items.isEmpty else {
             return nil
         }
-        
+
         let item = items[index]
         return item
     }

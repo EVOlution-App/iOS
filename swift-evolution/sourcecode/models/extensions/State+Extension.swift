@@ -1,23 +1,25 @@
 // MARK: - Status State Extension
 
-extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == StatusState {
+extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection,
+    Iterator.Element == StatusState
+{
     func filter(by value: String) -> [StatusState] {
         var filter: [StatusState] = []
-        
+
         let states = self.filter { $0.rawValue.name.contains(value) }
-        if states.count > 0 {
+        if !states.isEmpty {
             filter.append(contentsOf: states)
         }
-        
+
         return filter
     }
-    
+
     mutating func remove(_ status: StatusState) -> Bool {
-        if let index = self.firstIndex(where: { $0 == status }) {
-            self.remove(at: index)
+        if let index = firstIndex(where: { $0 == status }) {
+            remove(at: index)
             return true
         }
-        
+
         return false
     }
 }

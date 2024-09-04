@@ -1,13 +1,13 @@
 import Foundation
 
-struct ProposalIDFormatter {
+enum ProposalIDFormatter {
     static func format(unboxedValue: String) -> Int {
         let id: Int = unboxedValue.regex(Config.Common.Regex.proposalID)
         return id
     }
 }
 
-struct BugIDFormatter {
+enum BugIDFormatter {
     static func format(unboxedValue: String) -> Int {
         let id: Int = unboxedValue.regex(Config.Common.Regex.bugID)
         return id

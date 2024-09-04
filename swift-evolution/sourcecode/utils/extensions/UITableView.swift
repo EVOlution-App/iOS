@@ -1,24 +1,22 @@
 import UIKit
 
 extension UITableView {
-    
-    func registerNib<T: UITableViewCell>(withClass cellClass: T.Type) {
+    func registerNib<T: UITableViewCell>(withClass _: T.Type) {
         register(
             Config.Nib.loadNib(name: T.cellIdentifier),
             forCellReuseIdentifier: T.cellIdentifier
         )
     }
-    
-    func registerClass<T: UITableViewCell>(_ cellClass: T.Type) {
+
+    func registerClass(_ cellClass: (some UITableViewCell).Type) {
         register(cellClass.self, forCellReuseIdentifier: cellClass.cellIdentifier)
     }
-    
+
     func cell<T: ReusableCellIdentifiable>(forRowAt indexPath: IndexPath) -> T {
-        return dequeueReusableCell(withIdentifier: T.cellIdentifier, for: indexPath) as! T
+        dequeueReusableCell(withIdentifier: T.cellIdentifier, for: indexPath) as! T
     }
-    
-    func cell<T: ReusableCellIdentifiable>(forClass cellClass: T.Type = T.self) -> T {
-        return dequeueReusableCell(withIdentifier: T.cellIdentifier) as! T
+
+    func cell<T: ReusableCellIdentifiable>(forClass _: T.Type = T.self) -> T {
+        dequeueReusableCell(withIdentifier: T.cellIdentifier) as! T
     }
-    
 }

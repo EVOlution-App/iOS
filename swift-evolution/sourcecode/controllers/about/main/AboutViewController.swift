@@ -1,17 +1,16 @@
-import UIKit
 import StoreKit
+import UIKit
 
 final class AboutViewController: UITableViewController {
-
     // MARK: - Private properties
-    private lazy var dataSource: [Section] = {
-        return sectionsData()
-    }()
+    
+    private lazy var dataSource: [Section] = sectionsData()
     
     // MARK: - IBOutlets
+    
     @IBOutlet private var versionLabel: UILabel!
     @IBOutlet private var closeButton: UIButton?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,32 +22,31 @@ final class AboutViewController: UITableViewController {
             SKStoreReviewController.requestReview()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-
+    
     private func sectionsData() -> [Section] {
-        return [
+        [
             mainDeveloper(),
             contributors(),
             licenses(),
             app(),
             swiftEvolution(),
-            thanks()
+            thanks(),
         ]
     }
     
     private func mainDeveloper() -> Section {
-        return Section(
+        Section(
             section: .mainDeveloper,
             items: [
                 Contributor(
                     text: "Thiago Holanda",
                     type: .github,
                     value: "unnamedd"
-                )
+                ),
             ],
             footer: nil,
             grouped: false
@@ -72,9 +70,9 @@ final class AboutViewController: UITableViewController {
             Contributor(text: "Rob Hudson", type: .github, value: "robtimp"),
             Contributor(text: "Rodrigo Reis", type: .github, value: "digoreis"),
             Contributor(text: "Taylor Franklin", type: .github, value: "tfrank64"),
-            Contributor(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller")
+            Contributor(text: "Xaver Lohmüller", type: .github, value: "xaverlohmueller"),
         ]
-
+        
         return Section(
             section: .contributors,
             items: members,
@@ -104,7 +102,7 @@ final class AboutViewController: UITableViewController {
             Item(text: "iOS App", type: .github, value: "evolution-app/ios"),
             Item(text: "Backend", type: .github, value: "evolution-app/backend"),
             Item(text: "Twitter", type: .twitter, value: "evoapp_io"),
-            Item(text: "Feedback", type: .email, value: "feedback@evoapp.io")
+            Item(text: "Feedback", type: .email, value: "feedback@evoapp.io"),
         ]
         
         return Section(
@@ -120,9 +118,9 @@ final class AboutViewController: UITableViewController {
             Item(text: "Swift Language - Twitter", type: .twitter, value: "swiftlang"),
             Item(text: "Site", type: .url, value: "https://apple.github.io/swift-evolution"),
             Item(text: "Repository", type: .github, value: "apple/swift-evolution"),
-            Item(text: "Forum", type: .url, value: "https://forums.swift.org/c/evolution")
+            Item(text: "Forum", type: .url, value: "https://forums.swift.org/c/evolution"),
         ]
-
+        
         return Section(
             section: .swiftEvolution,
             items: items,
@@ -137,10 +135,11 @@ final class AboutViewController: UITableViewController {
             Item(text: "Daniel Dunbar", type: .twitter, value: "daniel_dunbar"),
             Item(text: "Danilo Altheman", type: .twitter, value: "daltheman"),
             Item(text: "John Calistro", type: .twitter, value: "johncalistro"),
-            Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba")
+            Item(text: "Lisa Dziuba", type: .twitter, value: "LisaDziuba"),
         ]
         
-        let copyright = "Copyright (c) 2017-2020 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
+        let copyright =
+            "Copyright (c) 2017-2024 Thiago Holanda (thiago@evoapp.io)\n\nSwift and the Swift logo are trademarks of Apple Inc., registered in the U.S. and other countries."
         return Section(
             section: .thanks,
             items: items,
@@ -151,11 +150,12 @@ final class AboutViewController: UITableViewController {
 }
 
 // MARK: - Navigation
+
 extension AboutViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if let destinationViewController = segue.destination as? AboutDetailTableViewController,
-            let indexPath = tableView.indexPathForSelectedRow {
-            
+           let indexPath = tableView.indexPathForSelectedRow
+        {
             let section = dataSource[indexPath.section]
             if section.grouped {
                 destinationViewController.about = section
@@ -165,12 +165,13 @@ extension AboutViewController {
 }
 
 // MARK: - UITableView Data Source
+
 extension AboutViewController {
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.count
+    override func numberOfSections(in _: UITableView) -> Int {
+        dataSource.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         let about = dataSource[section]
         guard about.grouped == false else {
             return 1
@@ -179,9 +180,9 @@ extension AboutViewController {
         return about.items.count
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         let about = dataSource[section]
-
+        
         return about.section.description
     }
     
@@ -207,7 +208,7 @@ extension AboutViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         guard let footer = dataSource[section].footer else {
             return nil
         }
@@ -216,11 +217,10 @@ extension AboutViewController {
     }
 }
 
-
 // MARK: - UITableView Delegate
+
 extension AboutViewController {
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let about = dataSource[indexPath.section]
         let item = about.items[indexPath.row]
         
@@ -229,14 +229,15 @@ extension AboutViewController {
         }
         else {
             let alertController = UIAlertController.presentAlert(to: item)
-            self.present(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
 }
 
 // MARK: - DescriptionView Delegate
+
 extension AboutViewController: DescriptionViewProtocol {
-    internal func closeAction() {
+    func closeAction() {
         dismiss(animated: true)
     }
 }

@@ -3,18 +3,18 @@ import SwiftUI
 struct ListHeaderView: View {
     private let color: UIColor?
     private let title: String
-    
+
     init(count: Int) {
         let suffix = count != 1 ? "s" : ""
         title = "\(count) proposal\(suffix)"
         color = count > 0 ? UIColor(named: "SecBgColor") : UIColor(named: "BgColor")
     }
-    
+
     init(title: String) {
         self.title = title
-        self.color = UIColor(named: "BgColor")
+        color = UIColor(named: "BgColor")
     }
-    
+
     var body: some View {
         HStack(spacing: 10) {
             Text(title)

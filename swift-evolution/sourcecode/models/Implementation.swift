@@ -14,29 +14,28 @@ struct Implementation: Decodable {
 
 extension Implementation: CustomStringConvertible {
     var description: String {
-        var content: String = ""
-        
-        switch self.type {
+        var content = ""
+
+        switch type {
         case .pull:
             content = "\(repository)#\(id)"
-            
+
         case .commit:
             let index = id.index(id.startIndex, offsetBy: 7)
             let hash = id.prefix(upTo: index)
-            
+
             content = "\(repository)@\(hash)"
-            
         }
         return content
     }
-    
+
     var path: String {
-        return "\(account)/\(repository)/\(type.rawValue)/\(id)"
+        "\(account)/\(repository)/\(type.rawValue)/\(id)"
     }
 }
 
 extension Implementation: Equatable {
     public static func == (lhs: Implementation, rhs: Implementation) -> Bool {
-        return lhs.path == rhs.path
+        lhs.path == rhs.path
     }
 }

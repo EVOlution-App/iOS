@@ -1,17 +1,16 @@
 import UIKit
 
-protocol SwitchTableViewCellProtocol: class {
+protocol SwitchTableViewCellProtocol: AnyObject {
     func `switch`(active: Bool, didChangeSelectionAt indexPath: IndexPath)
 }
 
 final class SwitchTableViewCell: UITableViewCell {
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private var activityIndicatorTrailingConstraint: NSLayoutConstraint!
 
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var activityIndicatorTrailingConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var activeSwitch: UISwitch!
-    
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var activeSwitch: UISwitch!
+
     var loadingActivity: Bool = false {
         willSet {
             DispatchQueue.main.async {
@@ -20,13 +19,13 @@ final class SwitchTableViewCell: UITableViewCell {
             }
         }
     }
-    
+
     var indexPath: IndexPath?
     weak var delegate: SwitchTableViewCellProtocol?
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+
         activityIndicator(animate: false)
         selectionStyle = .none
         activityIndicatorTrailingConstraint.constant = 0
@@ -36,19 +35,19 @@ final class SwitchTableViewCell: UITableViewCell {
     private func activityIndicator(animate: Bool = false) {
         let targetX = animate ? activeSwitch.frame.size.width + activityIndicator.frame.size.width : 16
         let alpha: CGFloat = animate ? 1 : 0
-        
+
         let animation = {
             if animate {
                 self.activityIndicator.startAnimating()
             }
-            
+
             self.activityIndicator.alpha = alpha
             self.activityIndicatorTrailingConstraint.constant = targetX
             self.layoutIfNeeded()
         }
-        
+
         let completion: ((Bool) -> Swift.Void) = { complete in
-            if complete && !animate {
+            if complete, !animate {
                 self.activityIndicator.stopAnimating()
             }
         }
@@ -57,12 +56,12 @@ final class SwitchTableViewCell: UITableViewCell {
                        animations: animation,
                        completion: completion)
     }
-    
-    @IBAction private func changeSelection(_ sender: UISwitch) {
-        guard let indexPath = indexPath else {
+
+    @IBAction private func changeSelection(_: UISwitch) {
+        guard let indexPath else {
             return
         }
-        
+
         delegate?.switch(active: activeSwitch.isOn, didChangeSelectionAt: indexPath)
     }
 }

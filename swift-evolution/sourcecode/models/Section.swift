@@ -6,7 +6,7 @@ enum SectionType: String {
     case evolution = "Evolution App"
     case swiftEvolution = "Swift Evolution"
     case thanks = "Thanks to"
-    
+
     // Settings
     case notifications = "Notifications"
     case about = "Open Source"
@@ -14,6 +14,7 @@ enum SectionType: String {
 }
 
 // MARK: -
+
 enum Type: String {
     case github = "github.com"
     case twitter = "twitter.com"
@@ -23,9 +24,10 @@ enum Type: String {
 }
 
 // MARK: - ItemProtocols
+
 protocol ItemProtocol {
     var text: String { get set }
-    var type: Type { get  set }
+    var type: Type { get set }
     var value: String { get set }
 }
 
@@ -55,6 +57,7 @@ struct Subscription: ItemProtocol {
 }
 
 // MARK: -
+
 struct Section {
     var section: SectionType
     var items: [ItemProtocol]

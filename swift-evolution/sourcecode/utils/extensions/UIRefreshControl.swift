@@ -6,7 +6,7 @@ extension UIRefreshControl {
             guard let scrollView = self.superview as? UIScrollView else {
                 return
             }
-            
+
             let offSet = CGPoint(x: 0, y: scrollView.contentOffset.y - self.frame.height)
             scrollView.setContentOffset(offSet, animated: true)
 

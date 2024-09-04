@@ -7,7 +7,7 @@ extension Notifications {
         case status
         case proposal
     }
-    
+
     struct CustomContent: Codable {
         let notification: String
         let type: Type

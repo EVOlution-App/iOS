@@ -8,7 +8,7 @@ struct GitHubProfile: Codable {
     let avatar: String?
     let gravatar: String?
     let bio: String?
-    
+
     enum Keys: String, CodingKey {
         case login
         case id
@@ -19,14 +19,12 @@ struct GitHubProfile: Codable {
 }
 
 extension GitHubProfile {
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
-        self.login = try container.decode(String.self, forKey: .login)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.avatar = try container.decodeIfPresent(String.self, forKey: .avatar_url)
-        self.gravatar = try container.decodeIfPresent(String.self, forKey: .gravatar_url)
-        self.bio = try container.decodeIfPresent(String.self, forKey: .bio)
+        login = try container.decode(String.self, forKey: .login)
+        id = try container.decode(Int.self, forKey: .id)
+        avatar = try container.decodeIfPresent(String.self, forKey: .avatar_url)
+        gravatar = try container.decodeIfPresent(String.self, forKey: .gravatar_url)
+        bio = try container.decodeIfPresent(String.self, forKey: .bio)
     }
-    
 }

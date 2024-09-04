@@ -8,7 +8,7 @@ enum Header: String {
 
 enum MimeType: String {
     case applicationJSON = "application/json"
-    case formUrlEncoded = "application/x-www-form-urlencoded"
+    case formURLEncoded = "application/x-www-form-urlencoded"
     case textPlain = "text/plain"
 }
 
@@ -17,7 +17,7 @@ struct RequestSettings: RequestProtocol {
     var method: ServiceMethod
     var params: [String: Any]?
     var headers: [Header: String]?
-    
+
     init(_ url: String, method: ServiceMethod = .get, params: [String: Any]? = nil, headers: [Header: String]? = nil) {
         self.url = url
         self.method = method

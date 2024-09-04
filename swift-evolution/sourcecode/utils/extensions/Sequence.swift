@@ -2,11 +2,11 @@
 
 extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == String {
     mutating func remove(string: String) -> Bool {
-        if let index = self.firstIndex(where: { $0 == string }) {
-            self.remove(at: index)
+        if let index = firstIndex(where: { $0 == string }) {
+            remove(at: index)
             return true
         }
-        
+
         return false
     }
 }

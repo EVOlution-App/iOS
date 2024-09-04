@@ -7,7 +7,7 @@ struct User: Codable {
     var notifications: Bool?
     let createdAt: Date?
     let updatedAt: Date?
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "ckID"
         case tags
@@ -15,13 +15,13 @@ struct User: Codable {
         case updatedAt
         case notifications
     }
-    
+
     init(id: String, tags: [Notifications.Tag]? = nil, notifications: Bool = true) {
-        self.id             = id
-        self.tags           = tags
-        self.notifications  = notifications
-        self.createdAt      = nil
-        self.updatedAt      = nil
+        self.id = id
+        self.tags = tags
+        self.notifications = notifications
+        createdAt = nil
+        updatedAt = nil
     }
 }
 
@@ -29,12 +29,11 @@ extension User {
     static var current: User? {
         let bundleID = Environment.bundleID ?? "io.swift-evolution.app"
         let keychain = Keychain(service: bundleID).synchronizable(true)
-        
+
         guard let token = try? keychain.getString("currentUser") else {
             return nil
         }
-        
-        
+
         return User(id: token)
     }
 }
