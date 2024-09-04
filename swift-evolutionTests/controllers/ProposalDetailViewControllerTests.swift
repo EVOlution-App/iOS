@@ -1,4 +1,3 @@
-import Down
 @testable import swift_evolution
 import WebKit
 import XCTest
@@ -60,9 +59,5 @@ class ProposalDetailViewControllerTests: XCTestCase {
     XCTAssert(proposalDetailViewController.conforms(to: WKNavigationDelegate.self))
     XCTAssertTrue(proposalDetailViewController
       .responds(to: #selector(proposalDetailViewController.webView(_:decidePolicyFor:decisionHandler:))))
-  }
-
-  func testInstanceofDownView() {
-    XCTAssertNotNil(proposalDetailViewController.downView)
   }
 }
