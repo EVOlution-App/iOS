@@ -23,7 +23,7 @@ extension UIView {
     case left
   }
 
-  open func set(to edge: RectEdge, with color: UIColor, thickness: CGFloat? = nil) {
+  public func set(to edge: RectEdge, with color: UIColor, thickness: CGFloat? = nil) {
     let view = border(to: edge) ?? UIViewNamed(name: edge.rawValue)
     let thicknessToApply = thickness ?? view.thickness ?? 1.0
 

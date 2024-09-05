@@ -23,7 +23,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     willFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
     _ = Navigation.shared
-    application.applicationIconBadgeNumber = 0
+    UNUserNotificationCenter.current().setBadgeCount(0)
 
     return true
   }
@@ -178,7 +178,7 @@ extension AppDelegate {
       return
     }
 
-    guard let languageCode = Locale.current.languageCode else {
+    guard let languageCode = Locale.current.language.languageCode?.identifier else {
       return
     }
 
@@ -294,7 +294,7 @@ extension AppDelegate: UISplitViewControllerDelegate {
     }
     topViewController.navigationItem.leftBarButtonItem = splitController.displayModeButtonItem
     splitController.delegate = self
-    splitController.preferredDisplayMode = .allVisible
+    splitController.preferredDisplayMode = .oneBesideSecondary
   }
 
   func splitViewController(_: UISplitViewController,
