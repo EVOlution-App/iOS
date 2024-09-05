@@ -1,4 +1,5 @@
 import UIKit
+import SwiftRichString
 
 public enum FilterListGenericType {
   case status
@@ -42,8 +43,8 @@ class FilterListGenericView: UIView {
 
   // MARK: - Util
 
-  fileprivate func textFor(indexPath: IndexPath) -> String? {
-    var text: String?
+  fileprivate func textFor(indexPath: IndexPath) -> String {
+    var text: String
     let item = dataSource[indexPath.item]
 
     text = (item is String) ? "Swift \(item)" : item.description
@@ -111,14 +112,11 @@ extension FilterListGenericView: UICollectionViewDelegateFlowLayout {
   func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize
   {
-    if let text = textFor(indexPath: indexPath), let font = UIFont(name: "HelveticaNeue", size: 16) {
-      let width = text.estimatedWidth(height: 28, font: font) + 34
-
-      let size = CGSize(width: width, height: 28)
-      return size
-    }
-
-    return CGSize.zero
+    let text = textFor(indexPath: indexPath)
+    let font = SystemFonts.HelveticaNeue.font(size: 16)
+    let width = text.estimatedWidth(height: 28, font: font) + 34
+    let size = CGSize(width: width, height: 28)
+    return size
   }
 
   func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
