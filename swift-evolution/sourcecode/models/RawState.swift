@@ -1,6 +1,6 @@
 import UIKit
 
-public struct State {
+public struct RawState {
   let name: String
   let shortName: String
   let className: String
@@ -46,7 +46,7 @@ public enum StatusState {
 }
 
 extension StatusState: RawRepresentable {
-  public typealias RawValue = State
+  public typealias RawValue = RawState
 
   public init?(_ state: StatusState) {
     self = state
@@ -86,7 +86,7 @@ extension StatusState: RawRepresentable {
   public var rawValue: RawValue {
     switch self {
     case .awaitingReview:
-      State(
+      RawState(
         name: "Awaiting Review",
         shortName: "Awaiting Review",
         className: "awaiting-review",
@@ -95,7 +95,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .scheduledForReview:
-      State(
+      RawState(
         name: "Scheduled for Review",
         shortName: "Scheduled",
         className: "scheduled-for-review",
@@ -104,7 +104,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .activeReview:
-      State(
+      RawState(
         name: "Active Review",
         shortName: "Active Review",
         className: "active-review",
@@ -113,7 +113,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .returnedForRevision:
-      State(
+      RawState(
         name: "Returned for Revision",
         shortName: "Returned",
         className: "returned-for-revision",
@@ -122,7 +122,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .withdrawn:
-      State(
+      RawState(
         name: "Withdrawn",
         shortName: "Withdrawn",
         className: "withdrawn",
@@ -131,7 +131,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .deferred:
-      State(
+      RawState(
         name: "Deferred",
         shortName: "Deferred",
         className: "deferred",
@@ -140,7 +140,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .accepted:
-      State(
+      RawState(
         name: "Accepted",
         shortName: "Accepted",
         className: "accepted",
@@ -149,7 +149,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .acceptedWithRevisions:
-      State(
+      RawState(
         name: "Accepted with Revisions",
         shortName: "Accepted with Revisions",
         className: "accepted-with-revisions",
@@ -158,7 +158,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .rejected:
-      State(
+      RawState(
         name: "Rejected",
         shortName: "Rejected",
         className: "rejected",
@@ -167,7 +167,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .implemented:
-      State(
+      RawState(
         name: "Implemented",
         shortName: "Implemented",
         className: "implemented",
@@ -176,7 +176,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .previewing:
-      State(
+      RawState(
         name: "Previewing",
         shortName: "Previewing",
         className: "previewing",
@@ -185,7 +185,7 @@ extension StatusState: RawRepresentable {
       )
 
     case .error:
-      State(name: "Error", shortName: "Error", className: "error", identifier: ".error", color: UIColor.clear)
+      RawState(name: "Error", shortName: "Error", className: "error", identifier: ".error", color: UIColor.clear)
     }
   }
 }

@@ -23,7 +23,7 @@ extension Status {
     version = try container.decodeIfPresent(String.self, forKey: .version)
 
     let stateString = try container.decode(String.self, forKey: .state)
-    let desiredState = State(stateString)
+    let desiredState = RawState(stateString)
 
     guard let validState = StatusState(rawValue: desiredState) else {
       throw ServiceError.invalidResponse
