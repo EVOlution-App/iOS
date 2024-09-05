@@ -16,49 +16,6 @@ enum SectionType: String {
 
 // MARK: -
 
-enum Type: String {
-  case github = "github.com"
-  case twitter = "twitter.com"
-  case url
-  case email
-  case undefined
-}
-
-// MARK: - ItemProtocols
-
-protocol ItemProtocol {
-  var text: String { get set }
-  var type: Type { get set }
-  var value: String { get set }
-}
-
-struct Contributor: ItemProtocol {
-  var text: String
-  var type: Type
-  var value: String
-}
-
-struct License: ItemProtocol {
-  var text: String
-  var type: Type
-  var value: String
-}
-
-struct Item: ItemProtocol {
-  var text: String
-  var type: Type
-  var value: String = ""
-}
-
-struct Subscription: ItemProtocol {
-  var text: String
-  var type: Type
-  var value: String
-  var subscribed: Bool
-}
-
-// MARK: -
-
 struct Section {
   var section: SectionType
   var items: [ItemProtocol] = []

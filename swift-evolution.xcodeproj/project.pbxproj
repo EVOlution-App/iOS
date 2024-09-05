@@ -66,7 +66,7 @@
 		9152658D1E67E12800C2AFDA /* BorderedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658C1E67E12800C2AFDA /* BorderedLabel.swift */; };
 		9152658F1E67E74700C2AFDA /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9152658E1E67E74700C2AFDA /* UIColor.swift */; };
 		915A883120A4C97200184F6E /* Section+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A883020A4C97200184F6E /* Section+Extension.swift */; };
-		915A883420A4CA2000184F6E /* ItemProtocol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A883320A4CA2000184F6E /* ItemProtocol+Extension.swift */; };
+		915A883420A4CA2000184F6E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A883320A4CA2000184F6E /* Item.swift */; };
 		915A883620A51DB900184F6E /* About+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A883520A51DB900184F6E /* About+Extension.swift */; };
 		915F7DE61F038322001B298D /* NoConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915F7DE51F038322001B298D /* NoConnectionView.swift */; };
 		9168963E1E93469F00FC6913 /* Service+GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168963D1E93469F00FC6913 /* Service+GitHub.swift */; };
@@ -192,7 +192,7 @@
 		9152658C1E67E12800C2AFDA /* BorderedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedLabel.swift; sourceTree = "<group>"; };
 		9152658E1E67E74700C2AFDA /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		915A883020A4C97200184F6E /* Section+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+Extension.swift"; sourceTree = "<group>"; };
-		915A883320A4CA2000184F6E /* ItemProtocol+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemProtocol+Extension.swift"; sourceTree = "<group>"; };
+		915A883320A4CA2000184F6E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		915A883520A51DB900184F6E /* About+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "About+Extension.swift"; sourceTree = "<group>"; };
 		915F7DE51F038322001B298D /* NoConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoConnectionView.swift; sourceTree = "<group>"; };
 		9168963D1E93469F00FC6913 /* Service+GitHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+GitHub.swift"; sourceTree = "<group>"; };
@@ -464,6 +464,7 @@
 				9152657D1E67C63B00C2AFDA /* customFormatters */,
 				91D5895F1E7E42FE00FE958D /* extensions */,
 				9116263B1E8DD16100E8DB77 /* Section.swift */,
+				915A883320A4CA2000184F6E /* Item.swift */,
 				915265721E677E1900C2AFDA /* Bug.swift */,
 				916896421E935ED700FC6913 /* GitHub+Profile.swift */,
 				915265621E6779F500C2AFDA /* Person.swift */,
@@ -690,7 +691,6 @@
 				913B711C203E5F52007FE04B /* Implementation+Extension.swift */,
 				914B7198209E785D00906645 /* Contributor+Extension.swift */,
 				915A883020A4C97200184F6E /* Section+Extension.swift */,
-				915A883320A4CA2000184F6E /* ItemProtocol+Extension.swift */,
 				915A883520A51DB900184F6E /* About+Extension.swift */,
 			);
 			path = extensions;
@@ -948,7 +948,7 @@
 				915265731E677E1900C2AFDA /* Bug.swift in Sources */,
 				91E150241E6CF37900025B77 /* UICollectionView.swift in Sources */,
 				917E4C7620A75BC800846C87 /* SettingsTableViewController.swift in Sources */,
-				915A883420A4CA2000184F6E /* ItemProtocol+Extension.swift in Sources */,
+				915A883420A4CA2000184F6E /* Item.swift in Sources */,
 				914A5C231E7F97EF005E653A /* BaseViewController.swift in Sources */,
 				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
 				EB9994E22C8A496D007C4EFB /* EdgeInsets.swift in Sources */,
