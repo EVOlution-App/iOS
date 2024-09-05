@@ -56,9 +56,7 @@ extension StatusLabelView where Label == Text {
 }
 
 #Preview {
-
-
-  return VStack {
+  VStack {
     StatusLabelView_Preview(text: "Selected", isOn: true)
     StatusLabelView_Preview(text: "Unselected", isOn: false)
   }
