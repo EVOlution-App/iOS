@@ -111,6 +111,8 @@
 		91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150271E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift */; };
 		91E1502A1E6D250E00025B77 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E150291E6D250E00025B77 /* Array.swift */; };
 		A2B7B61C2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */; };
+		EB9994E22C8A496D007C4EFB /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9994E12C8A496D007C4EFB /* EdgeInsets.swift */; };
+		EB9994E52C8A4A77007C4EFB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9994E42C8A4A77007C4EFB /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +239,8 @@
 		91E150291E6D250E00025B77 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		91F05E611F034992002738F4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A2B7B61B2046F6F20022FA74 /* ProposalDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProposalDetailViewControllerTests.swift; sourceTree = "<group>"; };
+		EB9994E12C8A496D007C4EFB /* EdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
+		EB9994E42C8A4A77007C4EFB /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +512,7 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EB9994E12C8A496D007C4EFB /* EdgeInsets.swift */,
 				91E150291E6D250E00025B77 /* Array.swift */,
 				911432221EB9756500CCC0D0 /* Data.swift */,
 				91B246081E98BF2B00904DE3 /* Dictionary.swift */,
@@ -528,6 +533,7 @@
 				913520F120AA528900EC04E0 /* UNNotificationResponse.swift */,
 				91356A37203E656C00E5C625 /* URL.swift */,
 				911B32F72C8925F80083A391 /* View+UIView.swift */,
+				EB9994E42C8A4A77007C4EFB /* Font.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -942,6 +948,7 @@
 				915265631E6779F500C2AFDA /* Person.swift in Sources */,
 				91B1006A207ADCA300B65E02 /* User.swift in Sources */,
 				91E150221E6CCDD300025B77 /* UIView.swift in Sources */,
+				EB9994E52C8A4A77007C4EFB /* Font.swift in Sources */,
 				91E150281E6D15B100025B77 /* DGCollectionViewLeftAlignFlowLayout.swift in Sources */,
 				9152657F1E67C64D00C2AFDA /* Formatter+State.swift in Sources */,
 				915A883620A51DB900184F6E /* About+Extension.swift in Sources */,
@@ -956,6 +963,7 @@
 				915A883420A4CA2000184F6E /* ItemProtocol+Extension.swift in Sources */,
 				914A5C231E7F97EF005E653A /* BaseViewController.swift in Sources */,
 				0BCEEE261E6CC0B100F7D176 /* UITableView.swift in Sources */,
+				EB9994E22C8A496D007C4EFB /* EdgeInsets.swift in Sources */,
 				9115A50320A0FDF100AC657E /* Sequence+Contributor.swift in Sources */,
 				91D589651E7E441C00FE958D /* Status+Extension.swift in Sources */,
 				91E1502A1E6D250E00025B77 /* Array.swift in Sources */,

@@ -17,11 +17,11 @@ struct AboutAppView: View {
         Image("logo-evolution-splash")
         
         Text(verbatim: "EVO App")
-          .font(.custom("HelveticaNeue-Thin", size: scale * 36))
-        
+          .font(.helveticaThin(size: scale * 36))
+
         if let version, let build {
           Text(verbatim: "v\(version) (\(build))")
-            .font(.custom("HelveticaNeue-Light", size: scale * 17))
+            .font(.helveticaLight(size: scale * 17))
         }
         
         Spacer()
