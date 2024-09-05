@@ -1,5 +1,6 @@
 import UIKit
 import SwiftRichString
+import SwiftUI
 
 public enum FilterListGenericType {
   case status
@@ -36,7 +37,7 @@ class FilterListGenericView: UIView {
   override func awakeFromNib() {
     super.awakeFromNib()
 
-    collectionView.registerNib(withClass: FilterCollectionViewCell.self)
+    collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     collectionView.collectionViewLayout = DGCollectionViewLeftAlignFlowLayout()
     collectionView.allowsMultipleSelection = true
   }
@@ -86,9 +87,13 @@ extension FilterListGenericView: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView,
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
   {
-    let cell = collectionView.cell(forItemAt: indexPath) as FilterCollectionViewCell
-
-    cell.text = textFor(indexPath: indexPath) ?? ""
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+    cell.contentConfiguration = UIHostingConfiguration(content: {
+      StatusLabelView(
+        textFor(indexPath: indexPath),
+        isOn: .constant(selectedItems.contains(indexPath))
+      ).fixedSize()
+    })
 
     return cell
   }

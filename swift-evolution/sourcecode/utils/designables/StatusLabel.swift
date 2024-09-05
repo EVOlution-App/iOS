@@ -25,3 +25,10 @@ class StatusLabel: BorderedLabel {
     super.drawText(in: edgeInsets)
   }
 }
+
+#Preview {
+  let label = StatusLabel()
+  label.selected = true
+  label.text = "Selected"
+  return label
+}
