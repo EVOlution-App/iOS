@@ -489,12 +489,10 @@ extension ListProposalsViewController: UITableViewDelegate {
   }
 
   func tableView(_: UITableView, viewForHeaderInSection _: Int) -> UIView? {
-    UIHostingController(
-      rootView: ListHeaderView(
-        count: filteredDataSource.count
-      )
+    ListHeaderView(
+      count: filteredDataSource.count
     )
-    .view
+    .toUIView()
   }
 
   func tableView(_: UITableView, heightForFooterInSection _: Int) -> CGFloat {
