@@ -23,17 +23,27 @@ struct StatusLabelView<Label: View>: View {
     let foreground = isOn ? selectedColor : normalColor
     let background = isOn ? normalColor : .clear
 
-    label
-      .padding(EdgeInsets(x: 10, y: 3))
-      .foregroundStyle(foreground)
-      .background {
-        let shape = RoundedRectangle(cornerRadius: 4)
+    Toggle(isOn: $isOn, label: {
+      label
+        .padding(EdgeInsets(x: 10, y: 3))
+        .foregroundStyle(foreground)
+        .background {
+          let shape = RoundedRectangle(cornerRadius: 4)
 
-        ZStack {
-          shape.strokeBorder(.secondary)
-          shape.fill(background)
+          ZStack {
+            shape.strokeBorder(.secondary)
+            shape.fill(background)
+          }
         }
-      }
+    })
+    .toggleStyle(.button)
+    .buttonStyle(_ButtonStyle())
+  }
+
+  private struct _ButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+      configuration.label
+    }
   }
 }
 
@@ -58,13 +68,13 @@ extension StatusLabelView where Label == Text {
 #Preview {
   VStack {
     StatusLabelView_Preview(text: "Selected", isOn: true)
-    StatusLabelView_Preview(text: "Unselected", isOn: false)
+    StatusLabelView_Preview(text: "Unselected")
   }
 }
 
 struct StatusLabelView_Preview: View {
   var text: String
-  @State var isOn: Bool
+  @State var isOn = false
 
   var body: some View {
     StatusLabelView(text, isOn: $isOn)
