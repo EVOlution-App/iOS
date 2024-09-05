@@ -64,7 +64,7 @@ extension StatusLabelView where Label == Text {
 
 struct StatusLabelView_Preview: View {
   var text: String
-  @SwiftUI.State var isOn: Bool
+  @State var isOn: Bool
 
   var body: some View {
     StatusLabelView(text, isOn: $isOn)
