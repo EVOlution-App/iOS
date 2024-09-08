@@ -6,23 +6,23 @@ enum CloudKitService {
 
   static func user(completion: @escaping UserClosure) {
     let container = CKContainer.default()
-    container.fetchUserRecordID { result, error in
+    container.fetchUserRecordID { result, error in  // swiftlint:disable:this no_abbreviation_id
       if let error {
         completion(.failure(error))
       }
 
-      guard let recordID = result else {
+      guard let recordIdentifier = result else {
         completion(.failure(ServiceError.unknownState))
         return
       }
 
-      let bundleID = Environment.bundleID ?? "io.swift-evolution.app"
-      let keychain = Keychain(service: bundleID).synchronizable(true)
+      let bundleIdentifier = Environment.bundleIdentifier ?? "io.swift-evolution.app"
+      let keychain = Keychain(service: bundleIdentifier).synchronizable(true)
 
-      let userID = recordID.recordName
-      keychain["currentUser"] = userID
+      let userIdentifier = recordIdentifier.recordName
+      keychain["currentUser"] = userIdentifier
 
-      let user = User(id: userID)
+      let user = User(identifier: userIdentifier)
       completion(.success(user))
     }
   }

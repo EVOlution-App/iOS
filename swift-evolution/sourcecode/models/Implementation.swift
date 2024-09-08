@@ -7,9 +7,16 @@ enum ImplementationType: String, Codable {
 
 struct Implementation: Decodable {
   let type: ImplementationType
-  let id: String
+  let identifier: String
   let repository: String
   let account: String
+
+  enum CodingKeys: String, CodingKey {
+    case identifier = "id"
+    case type
+    case repository
+    case account
+  }
 }
 
 extension Implementation: CustomStringConvertible {
@@ -18,11 +25,11 @@ extension Implementation: CustomStringConvertible {
 
     switch type {
     case .pull:
-      content = "\(repository)#\(id)"
+      content = "\(repository)#\(identifier)"
 
     case .commit:
-      let index = id.index(id.startIndex, offsetBy: 7)
-      let hash = id.prefix(upTo: index)
+      let index = identifier.index(identifier.startIndex, offsetBy: 7)
+      let hash = identifier.prefix(upTo: index)
 
       content = "\(repository)@\(hash)"
     }
@@ -30,7 +37,7 @@ extension Implementation: CustomStringConvertible {
   }
 
   var path: String {
-    "\(account)/\(repository)/\(type.rawValue)/\(id)"
+    "\(account)/\(repository)/\(type.rawValue)/\(identifier)"
   }
 }
 

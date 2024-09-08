@@ -1,6 +1,6 @@
-import UIKit
 import SwiftRichString
 import SwiftUI
+import UIKit
 
 public enum FilterListGenericType {
   case status
@@ -59,11 +59,11 @@ class FilterListGenericView: UIView {
     super.layoutSubviews()
 
     height = collectionView.contentSize.height + descriptionLabel.frame.maxY
-    layoutDelegate?.didFinishCalculateHeightToView(type: type, height: height)
+    layoutDelegate?.filterGenericView(self, didFinishCalculateHeightToView: type, height: height)
   }
 
   private func reloadData() {
-    guard !dataSource.isEmpty else {
+    guard dataSource.isEmpty == false else {
       return
     }
 
@@ -71,7 +71,7 @@ class FilterListGenericView: UIView {
       self.collectionView.reloadData()
       self.collectionView.performBatchUpdates(nil) { _ in
         self.height = self.collectionView.contentSize.height + self.descriptionLabel.bounds.maxY
-        self.layoutDelegate?.didFinishCalculateHeightToView(type: self.type, height: self.height)
+        self.layoutDelegate?.filterGenericView(self, didFinishCalculateHeightToView: self.type, height: self.height)
       }
     }
   }
@@ -84,16 +84,17 @@ extension FilterListGenericView: UICollectionViewDataSource {
     dataSource.count
   }
 
-  func collectionView(_ collectionView: UICollectionView,
-                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-  {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-    cell.contentConfiguration = UIHostingConfiguration(content: {
+    cell.contentConfiguration = UIHostingConfiguration {
       StatusLabelView(
         textFor(indexPath: indexPath),
         isOn: .constant(selectedItems.contains(indexPath))
       ).fixedSize()
-    })
+    }
 
     return cell
   }
@@ -102,21 +103,24 @@ extension FilterListGenericView: UICollectionViewDataSource {
 // MARK: - UICollectionView Delegate
 
 extension FilterListGenericView: UICollectionViewDelegate {
+  
   func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    delegate?.didSelectFilter(self, type: type, indexPath: indexPath)
+    delegate?.filterGenericView(self, didSelectFilter: type, at: indexPath)
   }
 
   func collectionView(_: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-    delegate?.didDeselectFilter(self, type: type, indexPath: indexPath)
+    delegate?.filterGenericView(self, didDeselectFilter: type, at: indexPath)
   }
 }
 
 // MARK: - UICollectionView DelegateFlowLayout
 
 extension FilterListGenericView: UICollectionViewDelegateFlowLayout {
-  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
-                      sizeForItemAt indexPath: IndexPath) -> CGSize
-  {
+  func collectionView(
+    _: UICollectionView,
+    layout _: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
     let text = textFor(indexPath: indexPath)
     let font = SystemFonts.HelveticaNeue.font(size: 16)
     let width = text.estimatedWidth(height: 28, font: font) + 34
@@ -124,9 +128,11 @@ extension FilterListGenericView: UICollectionViewDelegateFlowLayout {
     return size
   }
 
-  func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
-                      minimumLineSpacingForSectionAt _: Int) -> CGFloat
-  {
+  func collectionView(
+    _: UICollectionView,
+    layout _: UICollectionViewLayout,
+    minimumLineSpacingForSectionAt _: Int
+  ) -> CGFloat {
     3
   }
 

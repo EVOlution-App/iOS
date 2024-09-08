@@ -51,11 +51,6 @@ final class SettingsTableViewController: UITableViewController {
     // getDetails(from: User.current)
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
   deinit {
     removeNotifications()
   }
@@ -138,7 +133,7 @@ extension SettingsTableViewController {
 
     switch section.section {
     case .notifications:
-      let switchCell = tableView.cell(forRowAt: indexPath) as SwitchTableViewCell
+      let switchCell = tableView.cell(at: indexPath) as SwitchTableViewCell
 
       switchCell.descriptionLabel?.text = item.text
       switchCell.indexPath = indexPath
@@ -151,13 +146,13 @@ extension SettingsTableViewController {
       cell = switchCell
 
     case .about:
-      cell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
+      cell = tableView.cell(at: indexPath) as CustomSubtitleTableViewCell
       cell.textLabel?.text = "Contributors, licenses and more"
       cell.detailTextLabel?.text = item.text
 
     case .author:
       if let contributor = section.items.first as? Contributor {
-        let contributorCell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
+        let contributorCell = tableView.cell(at: indexPath) as CustomSubtitleTableViewCell
         contributorCell.contributor = contributor
         cell = contributorCell
       }
@@ -297,14 +292,14 @@ extension SettingsTableViewController {
   private func registerNotifications() {
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(didReceiveNotification(_:)),
+      selector: #selector(notification(_:)),
       name: NSNotification.Name.NotificationRegister,
       object: nil
     )
 
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(didReceiveNotification(_:)),
+      selector: #selector(notification(_:)),
       name: NSNotification.Name.AppDidBecomeActive,
       object: nil
     )
@@ -316,7 +311,7 @@ extension SettingsTableViewController {
   }
 
   @objc
-  private func didReceiveNotification(_ notification: Notification) {
+  private func notification(_ notification: Notification) {
     if notification.name == NSNotification.Name.NotificationRegister {
       getDetails(from: User.current)
     }
@@ -333,17 +328,17 @@ extension SettingsTableViewController {
   private func indexPathForNotifications() -> IndexPath? {
     var indexPath: IndexPath?
 
-    for (s, section) in dataSource.enumerated() {
+    for (sourceIndex, section) in dataSource.enumerated() {
       guard section.section == .notifications else {
         continue
       }
 
-      for (i, item) in section.items.enumerated() {
+      for (index, item) in section.items.enumerated() {
         guard item is Subscription else {
           continue
         }
 
-        indexPath = IndexPath(row: i, section: s)
+        indexPath = IndexPath(row: index, section: sourceIndex)
       }
     }
 

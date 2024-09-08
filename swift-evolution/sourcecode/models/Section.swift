@@ -19,6 +19,6 @@ enum SectionType: String {
 struct Section {
   var section: SectionType
   var items: [ItemProtocol] = []
-  var footer: String? = nil
+  var footer: String?
   var grouped: Bool = false
 }

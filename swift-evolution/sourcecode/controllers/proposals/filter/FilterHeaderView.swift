@@ -86,14 +86,17 @@ class FilterHeaderView: UIView {
     if status.isEmpty {
       label = "All Statuses"
     }
-    else if status.count == 1, let filter = status.first, filter == .implemented,
-            let versionIndexPaths = languageVersionFilterView.indexPathsForSelectedItems,
-            !versionIndexPaths.isEmpty
+    else if
+      status.count == 1,
+      let filter = status.first,
+      filter == .implemented,
+      let versionIndexPaths = languageVersionFilterView.indexPathsForSelectedItems,
+      versionIndexPaths.isEmpty == false
     {
       let versions: [String] = versionIndexPaths.map { self.languageVersionSource[$0.item] }
       label = "\(filter.description) (\(versions.joined(separator: ", ")))"
     }
-    else if !status.isEmpty, status.count < 3 {
+    else if status.isEmpty == false, status.count < 3 {
       label = status.map(\.description).joined(separator: ", ")
     }
 
@@ -109,7 +112,11 @@ class FilterHeaderView: UIView {
 // MARK: - FilterGenericViewLayout Delegate
 
 extension FilterHeaderView: FilterGenericViewLayoutDelegate {
-  func didFinishCalculateHeightToView(type: FilterListGenericType, height: CGFloat) {
+  func filterGenericView(
+    _ filterView: UIView,
+    didFinishCalculateHeightToView type: FilterListGenericType,
+    height: CGFloat
+  ) {
     switch type {
     case .status:
       statusFilterViewHeightConstraint.constant = height

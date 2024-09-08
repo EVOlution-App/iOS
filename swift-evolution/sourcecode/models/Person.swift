@@ -3,7 +3,7 @@ import UIKit
 typealias People = [Person]
 
 struct Person: Decodable {
-  var id: String?
+  var identifier: String?
   let name: String?
   let link: String?
   let username: String?
@@ -13,8 +13,8 @@ struct Person: Decodable {
   var asAuthor: [Proposal]?
   var asManager: [Proposal]?
 
-  enum Keys: String, CodingKey {
-    case id
+  enum CodingKeys: String, CodingKey {
+    case identifier = "id"
     case name
     case link
   }
@@ -22,8 +22,8 @@ struct Person: Decodable {
 
 extension Person: Searchable {
   init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: Keys.self)
-    id = try container.decodeIfPresent(String.self, forKey: .id)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
     name = try container.decodeIfPresent(String.self, forKey: .name)
     link = try container.decodeIfPresent(String.self, forKey: .link)
     username = GitHubUserFormatter.format(unboxedValue: link)

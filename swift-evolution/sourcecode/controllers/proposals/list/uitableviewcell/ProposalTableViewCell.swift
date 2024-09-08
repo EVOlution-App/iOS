@@ -1,6 +1,12 @@
 import SwiftRichString
 import UIKit
 
+protocol ProposalTableViewCellDelegate: AnyObject {
+  func proposalTableViewCell(_ cell: ProposalTableViewCell, didSelectPerson person: Person)
+  func proposalTableViewCell(_ cell: ProposalTableViewCell, didSelectProposal proposal: Proposal)
+  func proposalTableViewCell(_ cell: ProposalTableViewCell, didSelectImplementation implementation: Implementation)
+}
+
 class ProposalTableViewCell: UITableViewCell {
   // MARK: - IBOutlets
 
@@ -27,7 +33,8 @@ class ProposalTableViewCell: UITableViewCell {
 
   // MARK: - Public properties
 
-  open weak var delegate: ProposalDelegate?
+  open weak var delegate: ProposalTableViewCellDelegate?
+
   public var proposal: Proposal? {
     didSet {
       configureElements()
@@ -53,7 +60,7 @@ class ProposalTableViewCell: UITableViewCell {
     statusLabelWidthConstraint.constant = statusWidth + 20
 
     var details = ""
-    details += proposal.description.tag(.id)
+    details += proposal.description.tag(.identifier)
     details += String.newLine
 
     let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines).convertHTMLEntities.tag(.title)
@@ -149,7 +156,7 @@ class ProposalTableViewCell: UITableViewCell {
 
 private extension ProposalTableViewCell {
   func styles() -> [String: StyleProtocol] {
-    let id = Style {
+    let identifier = Style {
       $0.font = SystemFonts.HelveticaNeue.font(size: 20)
       $0.color = UIColor.Proposal.lightGray
       $0.lineSpacing = 0
@@ -178,7 +185,7 @@ private extension ProposalTableViewCell {
     }
 
     return [
-      "id": id,
+      "identifier": identifier,
       "title": title,
       "label": label,
       "value": value,
@@ -187,9 +194,10 @@ private extension ProposalTableViewCell {
   }
 
   func renderAuthors() -> String? {
-    guard let proposal,
+    guard
+      let proposal,
           let authors = proposal.authors,
-          !authors.isEmpty
+          authors.isEmpty == false
     else {
       return nil
     }
@@ -205,7 +213,7 @@ private extension ProposalTableViewCell {
   func renderBugs() -> String? {
     guard let proposal,
           let bugs = proposal.bugs,
-          !bugs.isEmpty
+          bugs.isEmpty == false
     else {
       return nil
     }
@@ -267,7 +275,7 @@ private extension ProposalTableViewCell {
   func renderImplementations() -> String? {
     guard let proposal,
           let implementations = proposal.implementations,
-          !implementations.isEmpty
+          implementations.isEmpty == false
     else {
       return nil
     }
@@ -293,38 +301,63 @@ extension ProposalTableViewCell: UITextViewDelegate {
   }
 
   func textView(_: UITextView, shouldInteractWith URL: URL, in _: NSRange) -> Bool {
-    guard let proposal,
-          let urlhost = URL.host,
-          let host = Host(urlhost)
+    guard
+      let proposal,
+      let urlhost = URL.host,
+      let host = Host(urlhost)
     else {
       return false
     }
 
-    if host == .profile {
-      let username = URL.lastPathComponent
-      var person: Person?
+    switch host {
+      case .proposal:
+        delegate?.proposalTableViewCell(
+          self,
+          didSelectProposal: proposal
+        )
 
-      if let authors = proposal.authors, let author = authors.get(username: username) {
-        person = author
-      }
+      case .profile:
+        let username = URL.lastPathComponent
+        var person: Person?
 
-      if let manager = proposal.reviewManager, let reviewer = manager.username, reviewer == username {
-        person = manager
-      }
+        if
+          let authors = proposal.authors,
+          let author = authors.get(username: username)
+        {
+          person = author
+        }
 
-      if let person, let delegate {
-        delegate.didSelect(person: person)
-      }
-    }
-    else if host == .proposal, let proposal = self.proposal {
-      delegate?.didSelect(proposal: proposal)
-    }
-    else if host == .implementation, let proposal = self.proposal, let implementations = proposal.implementations {
-      guard let path = URL["path"], let value = implementations.get(by: path) else {
-        return false
-      }
+        if
+          let manager = proposal.reviewManager,
+          let reviewer = manager.username,
+          reviewer == username
+        {
+          person = manager
+        }
 
-      delegate?.didSelect(implementation: value)
+        if let person {
+          delegate?.proposalTableViewCell(
+            self,
+            didSelectPerson: person
+          )
+        }
+
+      case .implementation:
+        guard let implementations = proposal.implementations else {
+          return false
+        }
+
+        guard
+          let path = URL["path"],
+          let value = implementations.get(by: path)
+        else {
+          return false
+        }
+
+        delegate?.proposalTableViewCell(
+          self,
+          didSelectImplementation: value
+        )
     }
 
     return false

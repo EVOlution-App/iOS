@@ -14,10 +14,9 @@ class BaseViewController: UIViewController {
     configuration.image = UIImage(named: "bird-no-connection")
     configuration.text = "No internet connection"
     configuration.button = tryAgain
-    configuration.buttonProperties.primaryAction = UIAction(
-      title: "Try again",
-      handler: retryButtonAction
-    )
+    configuration.buttonProperties.primaryAction = UIAction(title: "Try again") { _ in
+      self.retry()
+    }
 
     return configuration
   }
@@ -84,5 +83,5 @@ class BaseViewController: UIViewController {
 
   // MARK: - Reachability Retry Action
 
-  @objc open func retryButtonAction(_: UIAction) {}
+  open func retry() {}
 }

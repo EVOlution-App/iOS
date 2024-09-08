@@ -128,14 +128,14 @@ private extension ProfileView {
     }
 
     // as Author
-    if let list = author, !list.isEmpty {
+    if let list = author, list.isEmpty == false {
       attributedStrings.append("\(list.count)".set(style: valueStyle))
 
       attributedStrings.append(" author".set(style: descriptionStyle))
     }
 
     // as Review Manager
-    if let list = manager, !list.isEmpty {
+    if let list = manager, list.isEmpty == false {
       let space = attributedStrings.length > 0 ? .doubleSpace + .doubleSpace : ""
 
       let text = space + "\(list.count)"

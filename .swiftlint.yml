@@ -20,7 +20,7 @@ disabled_rules:
 
 file_length:
   warning: 450
-  error: 500
+  error: 550
 
 type_body_length:
   warning: 250
@@ -154,12 +154,6 @@ custom_rules:
     name: "No Date constructor"
     regex: "(\\WDate\\(\\))"
     message: "Constructor 'Date()' is forbidden. Use 'Date.current' instead."
-    severity: error
-
-  objc_func_argument:
-    name: "@objc function argument should be of Any Type"
-    regex: "^\\s*@objc\\s*\\w*\\sfunc\\s\\w*\\((\\w*|_\\s\\w*):\\s(?!Any\\)\\s\\{$)"
-    message: "Argument type in a @objc function should be Any to avoid wrong typecasting"
     severity: error
 
   delegate_method_naming:

@@ -23,7 +23,7 @@ enum Environment {
     return title
   }
 
-  static var bundleID: String? {
+  static var bundleIdentifier: String? {
     guard
       let dict = Bundle.main.infoDictionary,
       let identifier = dict["CFBundleIdentifier"] as? String

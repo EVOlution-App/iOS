@@ -12,11 +12,11 @@ final class ListProposalsViewController: BaseViewController {
   @IBOutlet private(set) var settingsBarButtonItem: UIBarButtonItem?
 
   // Private properties
-  fileprivate var timer: Timer = .init()
+  var timer: Timer = .init()
 
-  fileprivate lazy var filteredDataSource: [Proposal] = []
+  private lazy var filteredDataSource: [Proposal] = []
 
-  fileprivate var dataSource: [Proposal] = [] {
+  private(set) var dataSource: [Proposal] = [] {
     didSet {
       guard
         oldValue.isEmpty,
@@ -25,18 +25,20 @@ final class ListProposalsViewController: BaseViewController {
       else {
         return
       }
-      DispatchQueue.main.async { self.didSelect(proposal: proposal) }
+      DispatchQueue.main.async {
+//        self.didSelect(proposal: proposal)
+      }
     }
   }
 
-  fileprivate weak var appDelegate: AppDelegate?
+  private(set) weak var appDelegate: AppDelegate?
 
   // Filters
-  fileprivate var languages: [Version] = []
-  fileprivate var status: [StatusState] = []
+  var languages: [Version] = []
+  var status: [StatusState] = []
 
   // Proposal ordering
-  fileprivate lazy var statusOrder: [StatusState] = [
+  private lazy var statusOrder: [StatusState] = [
     .awaitingReview,
     .scheduledForReview,
     .activeReview,
@@ -78,7 +80,7 @@ final class ListProposalsViewController: BaseViewController {
     filterHeaderView.filterButton.addTarget(self, action: #selector(filter(_:)), for: .touchUpInside)
     filterHeaderView.filteredByButton.addTarget(
       self,
-      action: #selector(filteredByButtonAction(_:)),
+      action: #selector(filtered(by:)),
       for: .touchUpInside
     )
 
@@ -88,12 +90,12 @@ final class ListProposalsViewController: BaseViewController {
     registerNotifications()
 
     // Request the Proposes
-    getProposalList()
+    listProposals()
 
     // Configure reachability closures
     reachability?.whenReachable = { [weak self] _ in
       if self?.dataSource.isEmpty == true {
-        self?.getProposalList()
+        self?.listProposals()
       }
     }
 
@@ -117,11 +119,6 @@ final class ListProposalsViewController: BaseViewController {
     navigationController?.navigationBar.topItem?.setRightBarButton(settingsBarButtonItem, animated: true)
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
   // MARK: - Layout
 
   override func viewWillLayoutSubviews() {
@@ -130,7 +127,7 @@ final class ListProposalsViewController: BaseViewController {
     filterHeaderViewHeightConstraint.constant = filterHeaderView.heightForView
   }
 
-  fileprivate func layoutFilterHeaderView() {
+  func layoutFilterHeaderView() {
     UIView.animate(withDuration: 0.25) {
       self.filterHeaderViewHeightConstraint.constant = self.filterHeaderView.heightForView
       self.view.layoutIfNeeded()
@@ -143,10 +140,10 @@ final class ListProposalsViewController: BaseViewController {
 
   // MARK: - Reachability Retry Action
 
-  override func retryButtonAction(_ sender: UIAction) {
-    super.retryButtonAction(sender)
+  override func retry() {
+    super.retry()
 
-    getProposalList()
+    listProposals()
   }
 
   // MARK: - Notifications
@@ -154,7 +151,7 @@ final class ListProposalsViewController: BaseViewController {
   func registerNotifications() {
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(didReceiveNotification(_:)),
+      selector: #selector(notification(_:)),
       name: NSNotification.Name.URLScheme,
       object: nil
     )
@@ -166,8 +163,11 @@ final class ListProposalsViewController: BaseViewController {
     )
   }
 
-  @objc func didReceiveNotification(_ notification: Notification) {
-    guard notification.name == Notification.Name.URLScheme else {
+  @objc func notification(_ notification: Any) {
+    guard
+      let notification = notification as? Notification,
+      notification.name == Notification.Name.URLScheme
+    else {
       return
     }
 
@@ -196,9 +196,12 @@ final class ListProposalsViewController: BaseViewController {
         }
       }
     }
-    else if segue.destination is ProfileViewController,
-            let destination = segue.destination as? ProfileViewController,
-            sender != nil, sender is Person, let person = sender as? Person
+    else if
+      segue.destination is ProfileViewController,
+      let destination = segue.destination as? ProfileViewController,
+      sender != nil,
+      sender is Person,
+      let person = sender as? Person
     {
       destination.profile = person
     }
@@ -218,84 +221,91 @@ final class ListProposalsViewController: BaseViewController {
 
     let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
 
-    if host == .proposal {
-      let id: Int = value.regex(Config.Common.Regex.proposalID)
+    switch host {
+      case .profile:
+        guard let appDelegate, let person = appDelegate.people.get(username: value) else {
+          return
+        }
 
-      guard let proposal = dataSource.get(by: id) else {
-        return
-      }
+        Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
 
-      Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
-    }
-    else if host == .profile {
-      guard let appDelegate, let person = appDelegate.people.get(username: value) else {
-        return
-      }
+      case .proposal:
+        let identifier: Int = value.regex(Config.Common.Regex.proposalIdentifier)
 
-      Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+        guard let proposal = dataSource.get(by: identifier) else {
+          return
+        }
+
+        Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
+
+      default:
+        break
     }
   }
 
   // MARK: - Requests
 
-  fileprivate func getProposalList() {
-    if let reachability, reachability.connection != .unavailable {
-      // Hide No Connection View
-      showNoConnection = false
-      refreshControl.forceShowAnimation()
-
-      EvolutionService.listProposals { [weak self] result in
-        guard let self else {
-          return
-        }
-
-        if !dataSource.isEmpty {
-          filteredDataSource = []
-          dataSource = []
-          languages = []
-          status = []
-          appDelegate?.people = [:]
-        }
-
-        DispatchQueue.main.async {
-          if self.refreshControl.isRefreshing {
-            self.refreshControl.endRefreshing()
-          }
-        }
-
-        guard let proposals = result.value else {
-          if let error = result.error {
-            print("Error: \(error)")
-          }
-          return
-        }
-
-        dataSource = proposals.filter(by: statusOrder)
-        filteredDataSource = dataSource
-        filterHeaderView?.statusSource = statusOrder
-        buildPeople()
-
-        // Language Versions source
-        filterHeaderView?.languageVersionSource = proposals.compactMap(\.status.version).removeDuplicates(
-        ).sorted()
-
-        DispatchQueue.main.async {
-          self.tableView.reloadData()
-
-          if self.refreshControl.isRefreshing {
-            self.refreshControl.endRefreshing()
-          }
-
-          // In case of user have come
-          if !Navigation.shared.isClear {
-            self.navigate(to: Navigation.shared)
-          }
-        }
-      }
-    }
-    else {
+  private func listProposals() {
+    guard let reachability, reachability.connection != .unavailable else {
       refreshControl.endRefreshing()
       showNoConnection = true
+
+      return
+    }
+
+    // Hide No Connection View
+    showNoConnection = false
+    refreshControl.forceShowAnimation()
+
+    EvolutionService.listProposals { [weak self] result in
+      guard let self else {
+        return
+      }
+
+      if dataSource.isEmpty == false {
+        filteredDataSource = []
+        dataSource = []
+        languages = []
+        status = []
+        appDelegate?.people = [:]
+      }
+
+      DispatchQueue.main.async {
+        if self.refreshControl.isRefreshing {
+          self.refreshControl.endRefreshing()
+        }
+      }
+
+      guard let proposals = result.value else {
+        if let error = result.error {
+          print("Error: \(error)")
+        }
+        return
+      }
+
+      dataSource = proposals.filter(by: statusOrder)
+      filteredDataSource = dataSource
+      filterHeaderView?.statusSource = statusOrder
+      buildPeople()
+
+      // Language Versions source
+      filterHeaderView?.languageVersionSource = proposals
+        .compactMap(\.status.version)
+        .removeDuplicates()
+        .sorted()
+
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+
+        if self.refreshControl.isRefreshing {
+          self.refreshControl.endRefreshing()
+        }
+
+        // In case of user have come
+        if Navigation.shared.isClear == false {
+          self.navigate(to: Navigation.shared)
+        }
+      }
     }
   }
 
@@ -306,7 +316,7 @@ final class ListProposalsViewController: BaseViewController {
       return
     }
 
-    sender.isSelected = !sender.isSelected
+    sender.isSelected.toggle()
     filterHeaderView.filterLevel = .without
 
     if !sender.isSelected {
@@ -317,7 +327,7 @@ final class ListProposalsViewController: BaseViewController {
       filterHeaderView.filterLevel = .filtered
 
       // If have any status selected, open to status list max height, else open to language version max height
-      if let selected = filterHeaderView.statusFilterView.indexPathsForSelectedItems, !selected.isEmpty {
+      if let selected = filterHeaderView.statusFilterView.indexPathsForSelectedItems, selected.isEmpty == false {
         filterHeaderView.filterLevel = .status
         if self.selected(status: .implemented) {
           filterHeaderView.filterLevel = .version
@@ -331,17 +341,19 @@ final class ListProposalsViewController: BaseViewController {
     layoutFilterHeaderView()
   }
 
-  @objc func filteredByButtonAction(_ sender: UIButton?) {
+  @objc func filtered(by sender: UIButton?) {
     guard let sender else {
       return
     }
 
-    sender.isSelected = !sender.isSelected
+    sender.isSelected.toggle()
     filterHeaderView.filterLevel = sender.isSelected ? .status : .filtered
 
     // If have any status selected, open to status list max height, else open to language version max height
-    if let selected = filterHeaderView.statusFilterView.indexPathsForSelectedItems, !selected.isEmpty,
-       sender.isSelected
+    if
+      let selected = filterHeaderView.statusFilterView.indexPathsForSelectedItems,
+      selected.isEmpty == false,
+      sender.isSelected
     {
       filterHeaderView.filterLevel = self.selected(status: .implemented) ? .version : .status
     }
@@ -350,14 +362,18 @@ final class ListProposalsViewController: BaseViewController {
   }
 
   @objc private func refresh(_: UIRefreshControl) {
-    getProposalList()
+    listProposals()
   }
 
   // MARK: - Filters
 
-  fileprivate func selected(status: StatusState) -> Bool {
-    guard let indexPaths = filterHeaderView.statusFilterView.indexPathsForSelectedItems,
-          !indexPaths.compactMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == status }).isEmpty
+  private func selected(status: StatusState) -> Bool {
+    guard
+      let indexPaths = filterHeaderView.statusFilterView.indexPathsForSelectedItems,
+      indexPaths
+      .compactMap({ self.filterHeaderView.statusSource[$0.item] })
+      .filter({ $0 == status })
+      .isEmpty == false
     else {
       return false
     }
@@ -366,7 +382,7 @@ final class ListProposalsViewController: BaseViewController {
 
   // MARK: - Utils
 
-  fileprivate func updateTableView(_ filtered: [Proposal]? = nil) {
+  func updateTableView(_ filtered: [Proposal]? = nil) {
     if let filtered {
       filteredDataSource = filtered
     }
@@ -376,24 +392,32 @@ final class ListProposalsViewController: BaseViewController {
 
     if filterHeaderView.filterButton.isSelected {
       // Check if there is at least on status selected
-      if !status.isEmpty {
+      if status.isEmpty == false {
         var expection: [StatusState] = [.implemented]
+
         if selected(status: .implemented), languages.isEmpty {
           expection = []
         }
 
-        filteredDataSource = filteredDataSource.filter(by: status, exceptions: expection).sort(.descending)
+        filteredDataSource = filteredDataSource
+          .filter(
+            by: status,
+            exceptions: expection
+          )
+          .sort(.descending)
       }
 
       // Check if the status selected is equal to .implemented and has language versions selected
-      if selected(status: .implemented), !languages.isEmpty {
+      if selected(status: .implemented), languages.isEmpty == false {
         let implemented = dataSource.filter(by: languages).filter(status: .implemented)
         filteredDataSource.append(contentsOf: implemented)
       }
     }
 
     // Sort in the right order
-    filteredDataSource = filteredDataSource.distinct().filter(by: statusOrder)
+    filteredDataSource = filteredDataSource
+      .distinct()
+      .filter(by: statusOrder)
 
     tableView.beginUpdates()
     tableView.reloadSections(IndexSet(integer: 0), with: .fade)
@@ -432,7 +456,7 @@ final class ListProposalsViewController: BaseViewController {
         continue
       }
 
-      user.id = UUID().uuidString
+      user.identifier = UUID.newIdentifier // swiftlint:disable:this no_abbreviation_id
       user.asAuthor = dataSource.filter(author: user)
       user.asManager = dataSource.filter(manager: user)
 
@@ -448,9 +472,9 @@ final class ListProposalsViewController: BaseViewController {
     openViewController(of: "SettingsStoryboardID")
   }
 
-  private func openViewController(of storyboardID: String) {
+  private func openViewController(of storyboardName: String) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    let controller = storyboard.instantiateViewController(withIdentifier: storyboardID)
+    let controller = storyboard.instantiateViewController(withIdentifier: storyboardName)
 
     if UIDevice.current.userInterfaceIdiom == .pad {
       let navigationController = UINavigationController(rootViewController: controller)
@@ -471,7 +495,7 @@ extension ListProposalsViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
+    let cell = tableView.cell(at: indexPath) as ProposalTableViewCell
 
     cell.delegate = self
     cell.proposal = filteredDataSource[indexPath.row]
@@ -497,145 +521,5 @@ extension ListProposalsViewController: UITableViewDelegate {
 
   func tableView(_: UITableView, heightForFooterInSection _: Int) -> CGFloat {
     0.01
-  }
-}
-
-// MARK: - FilterGenericView Delegate
-
-extension ListProposalsViewController: FilterGenericViewDelegate {
-  func didSelectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
-    switch type {
-    case .status:
-      if filterHeaderView.statusSource[indexPath.item] == .implemented {
-        filterHeaderView.filterLevel = .version
-        layoutFilterHeaderView()
-
-        languages = []
-      }
-
-      if let item: StatusState = view.dataSource[indexPath.item] as? StatusState {
-        status.append(item)
-      }
-
-      updateTableView()
-
-    case .version:
-      if let version = view.dataSource[indexPath.item] as? String {
-        languages.append(version)
-      }
-
-      updateTableView()
-
-    default:
-      break
-    }
-    filterHeaderView.updateFilterButton(status: status)
-  }
-
-  func didDeselectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath) {
-    let item = view.dataSource[indexPath.item]
-
-    switch type {
-    case .status:
-      if let indexPaths = view.indexPathsForSelectedItems,
-         indexPaths.compactMap({ self.filterHeaderView.statusSource[$0.item] }).filter({ $0 == .implemented })
-         .isEmpty
-      {
-        filterHeaderView.filterLevel = .status
-        layoutFilterHeaderView()
-      }
-
-      if let status = item as? StatusState, self.status.remove(status) {
-        updateTableView()
-      }
-
-    case .version:
-      if languages.remove(string: item.description) {
-        updateTableView()
-      }
-
-    default:
-      break
-    }
-    filterHeaderView.updateFilterButton(status: status)
-  }
-}
-
-// MARK: - Proposal Delegate
-
-extension ListProposalsViewController: ProposalDelegate {
-  func didSelect(person: Person) {
-    guard let name = person.name else {
-      return
-    }
-
-    let profile = appDelegate?.people[name]
-    Config.Segues.profile.performSegue(in: self, with: profile, formSheet: true)
-  }
-
-  func didSelect(proposal: Proposal) {
-    guard let proposal = dataSource.get(by: proposal.id) else {
-      return
-    }
-
-    let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
-    Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
-  }
-
-  func didSelect(implementation: Implementation) {
-    if let url = URL(string: "\(Config.Base.URL.GitHub.base)/\(implementation.path)") {
-      let safariViewController = SFSafariViewController(url: url)
-      present(safariViewController, animated: true)
-    }
-  }
-}
-
-// MARK: - UISearchBar Delegate
-
-struct Search {
-  let query: String
-}
-
-extension ListProposalsViewController: UISearchBarDelegate {
-  func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-    searchBar.setShowsCancelButton(true, animated: true)
-  }
-
-  func searchBar(_: UISearchBar, textDidChange searchText: String) {
-    guard searchText != "" else {
-      updateTableView()
-      return
-    }
-
-    if timer.isValid {
-      timer.invalidate()
-    }
-
-    if searchText.count > 3 {
-      let interval = 0.7
-      timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { _ in
-        let filtered = self.dataSource.filter(by: searchText)
-        self.updateTableView(filtered)
-      }
-    }
-  }
-
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    guard let query = searchBar.text,
-          query.trimmingCharacters(in: .whitespaces) != ""
-    else {
-      return
-    }
-
-    let filtered = dataSource.filter(by: query)
-    updateTableView(filtered)
-  }
-
-  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    searchBar.setShowsCancelButton(false, animated: true)
-    searchBar.resignFirstResponder()
-    searchBar.text = ""
-
-    updateTableView()
   }
 }

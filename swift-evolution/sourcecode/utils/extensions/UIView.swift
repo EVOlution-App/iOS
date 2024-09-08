@@ -4,6 +4,7 @@ extension UIView {
   private class UIViewNamed: UIView {
     var name: String
     var thickness: CGFloat?
+
     required init(frame: CGRect = CGRect.zero, name: String) {
       self.name = name
 
@@ -37,63 +38,96 @@ extension UIView {
   }
 
   private func border(to edge: RectEdge) -> UIViewNamed? {
-    let index = subviews.firstIndex(where: {
+    let index = subviews.firstIndex {
       if $0 is UIViewNamed, let view = $0 as? UIViewNamed, view.name == edge.rawValue {
         return true
       }
 
       return false
-    })
+    }
 
-    guard let i = index else {
+    guard let index else {
       return nil
     }
 
-    return subviews[i] as? UIViewNamed
+    return subviews[index] as? UIViewNamed
   }
 
   private func constraint(to view: UIView, edge: RectEdge, thickness: CGFloat) {
     switch edge {
     case .top:
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[top(==thickness)]",
-                                                    options: [],
-                                                    metrics: ["thickness": thickness],
-                                                    views: ["top": view]))
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "V:|-(0)-[top(==thickness)]",
+          options: [],
+          metrics: ["thickness": thickness],
+          views: ["top": view]
+        )
+      )
 
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[top]-(0)-|",
-                                                    options: [],
-                                                    metrics: nil,
-                                                    views: ["top": view]))
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "H:|-(0)-[top]-(0)-|",
+          options: [],
+          metrics: nil,
+          views: ["top": view]
+        )
+      )
 
     case .right:
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[right(==thickness)]-(0)-|",
-                                                    options: [],
-                                                    metrics: ["thickness": thickness],
-                                                    views: ["right": view]))
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[right]-(0)-|",
-                                                    options: [],
-                                                    metrics: nil,
-                                                    views: ["right": view]))
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "H:[right(==thickness)]-(0)-|",
+          options: [],
+          metrics: ["thickness": thickness],
+          views: ["right": view]
+        )
+      )
+
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "V:|-(0)-[right]-(0)-|",
+          options: [],
+          metrics: nil,
+          views: ["right": view]
+        )
+      )
 
     case .bottom:
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[bottom(==thickness)]-(0)-|",
-                                                    options: [],
-                                                    metrics: ["thickness": thickness],
-                                                    views: ["bottom": view]))
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[bottom]-(0)-|",
-                                                    options: [],
-                                                    metrics: nil,
-                                                    views: ["bottom": view]))
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "V:[bottom(==thickness)]-(0)-|",
+          options: [],
+          metrics: ["thickness": thickness],
+          views: ["bottom": view]
+        )
+      )
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "H:|-(0)-[bottom]-(0)-|",
+          options: [],
+          metrics: nil,
+          views: ["bottom": view]
+        )
+      )
 
     case .left:
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[left(==thickness)]",
-                                                    options: [],
-                                                    metrics: ["thickness": thickness],
-                                                    views: ["left": view]))
-      addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[left]-(0)-|",
-                                                    options: [],
-                                                    metrics: nil,
-                                                    views: ["left": view]))
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "H:|-(0)-[left(==thickness)]",
+          options: [],
+          metrics: ["thickness": thickness],
+          views: ["left": view]
+        )
+      )
+      addConstraints(
+        NSLayoutConstraint.constraints(
+          withVisualFormat: "V:|-(0)-[left]-(0)-|",
+          options: [],
+          metrics: nil,
+          views: ["left": view]
+        )
+      )
     }
   }
 
@@ -104,9 +138,10 @@ extension UIView {
       name = String(describing: T.self)
     }
 
-    guard let nib = Config.Nib.loadNib(name: name),
-          let nibViews = nib.instantiate(withOwner: self, options: nil) as? [T],
-          let view = nibViews.first
+    guard
+      let nib = Config.Nib.loadNib(name: name),
+      let nibViews = nib.instantiate(withOwner: self, options: nil) as? [T],
+      let view = nibViews.first
     else {
       fatalError("Resource \(name ?? "<xxx>") not found")
     }

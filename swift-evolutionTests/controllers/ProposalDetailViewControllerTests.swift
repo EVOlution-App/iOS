@@ -1,5 +1,5 @@
 @testable import swift_evolution
-import WebKit
+@preconcurrency import WebKit
 import XCTest
 
 class MockWKNavigation: NSObject {
@@ -19,8 +19,8 @@ extension MockWKNavigation: WKNavigationDelegate {
 class ProposalDetailViewControllerTests: XCTestCase {
   var proposalDetailViewController: ProposalDetailViewController!
   var mockWebView: MockWKNavigation!
-  var mockProposal: Proposal = .init(id: 0, link: "https://github.com/swift")
-  var mockRequest: URLRequest = .init(url: URL(string: "https://github.com/swift")!)
+  var mockProposal: Proposal = .init(identifier: 0, link: "https://github.com/swift")
+  var mockRequest: URLRequest = .init(url: URL(string: "https://github.com/swift")!) // swiftlint:disable:this force_unwrapping
 
   override func setUp() {
     super.setUp()
@@ -29,10 +29,6 @@ class ProposalDetailViewControllerTests: XCTestCase {
       .instantiateViewController(withIdentifier: "ProposalDetailStoryboardID") as? ProposalDetailViewController
     _ = proposalDetailViewController.view
     mockWebView = MockWKNavigation()
-  }
-
-  override func tearDown() {
-    super.tearDown()
   }
 
   func testCanInstantiateProposalDetailViewController() {

@@ -14,6 +14,6 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
   }
 
   func index(of implementation: Implementation) -> Int? {
-    firstIndex(where: { $0 == implementation }) as? Int
+    firstIndex { $0 == implementation } as? Int
   }
 }

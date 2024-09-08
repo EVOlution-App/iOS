@@ -5,7 +5,7 @@ struct ProposalResponse: Decodable {
 }
 
 struct Proposal: Decodable {
-  let id: Int
+  let identifier: Int
   let title: String
   let status: Status
   let summary: String?
@@ -17,22 +17,22 @@ struct Proposal: Decodable {
   let bugs: [Bug]?
   let implementations: [Implementation]?
 
-  enum Keys: String, CodingKey {
-    case status
-    case summary
+  enum CodingKeys: String, CodingKey {
     case authors
-    case id
-    case title
-    case warnings
+    case identifier = "id"
+    case implementation
     case link
     case reviewManager
     case sha
+    case status
+    case summary
+    case title
     case trackingBugs
-    case implementation
+    case warnings
   }
 
-  init(id: Int, link: String) {
-    self.id = id
+  init(identifier: Int, link: String) {
+    self.identifier = identifier
     self.link = link
     title = ""
     status = Status(version: nil, state: .accepted, start: nil, end: nil)
@@ -48,10 +48,10 @@ struct Proposal: Decodable {
 
 extension Proposal {
   init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: Keys.self)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    let idString = try container.decode(String.self, forKey: .id)
-    id = ProposalIDFormatter.format(unboxedValue: idString)
+    let value = try container.decode(String.self, forKey: .identifier)
+    identifier = ProposalIdentifierFormatter.format(value)
 
     title = try container.decode(String.self, forKey: .title)
     status = try container.decode(Status.self, forKey: .status)
@@ -68,28 +68,28 @@ extension Proposal {
 
 extension Proposal: CustomStringConvertible {
   var description: String {
-    String(format: "SE-%04i", id)
+    String(format: "SE-%04i", identifier)
   }
 }
 
 extension Proposal: Comparable {
   public static func == (lhs: Proposal, rhs: Proposal) -> Bool {
-    lhs.id == rhs.id
+    lhs.identifier == rhs.identifier
   }
 
   public static func < (lhs: Proposal, rhs: Proposal) -> Bool {
-    lhs.id < rhs.id
+    lhs.identifier < rhs.identifier
   }
 
   public static func <= (lhs: Proposal, rhs: Proposal) -> Bool {
-    lhs.id <= rhs.id
+    lhs.identifier <= rhs.identifier
   }
 
   public static func >= (lhs: Proposal, rhs: Proposal) -> Bool {
-    lhs.id >= rhs.id
+    lhs.identifier >= rhs.identifier
   }
 
   public static func > (lhs: Proposal, rhs: Proposal) -> Bool {
-    lhs.id > rhs.id
+    lhs.identifier > rhs.identifier
   }
 }

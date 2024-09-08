@@ -25,18 +25,14 @@ final class AboutViewController: UITableViewController {
         
     // Ask for review
     DispatchQueue.main.async {
-      let scene = UIApplication.shared.connectedScenes.first(where: {
+      let scene = UIApplication.shared.connectedScenes.first {
         $0.activationState == .foregroundActive
-      }) as? UIWindowScene
+      } as? UIWindowScene
       
       if let scene {
         SKStoreReviewController.requestReview(in: scene)
       }
     }
-  }
-    
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
   }
 
   private func contributors() -> Section {

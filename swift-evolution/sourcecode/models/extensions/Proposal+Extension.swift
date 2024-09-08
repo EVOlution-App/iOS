@@ -6,8 +6,8 @@ public enum Sorting {
 }
 
 extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCollection, Iterator.Element == Proposal {
-  func get(by id: Int) -> Proposal? {
-    guard let index = firstIndex(where: { $0.id == id }) else {
+  func get(by identifier: Int) -> Proposal? {
+    guard let index = firstIndex(where: { $0.identifier == identifier }) else {
       return nil
     }
 
@@ -16,6 +16,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
 
   func filter(author: Person) -> [Proposal] {
     var filter: [Proposal] = []
+
     guard let name = author.name else {
       return []
     }
@@ -24,9 +25,10 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       guard let authors = $0.authors else {
         return false
       }
-      return !authors.filter(by: name).isEmpty
+      return authors.filter(by: name).isEmpty == false
     }
-    if !authors.isEmpty {
+
+    if authors.isEmpty == false {
       filter.append(contentsOf: authors)
     }
 
@@ -41,15 +43,17 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     }
 
     let reviewManagers = self.filter {
-      guard let manager = $0.reviewManager,
-            let name = manager.name,
-            name == managerName
+      guard
+        let manager = $0.reviewManager,
+        let name = manager.name,
+        name == managerName
       else {
         return false
       }
       return true
     }
-    if !reviewManagers.isEmpty {
+
+    if reviewManagers.isEmpty == false {
       filter.append(contentsOf: reviewManagers)
     }
 
@@ -67,27 +71,27 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
   func filter(by value: String) -> [Proposal] {
     var filter: [Proposal] = []
 
-    // ID
-    let ids = self.filter { String($0.id) == value }
-    if !ids.isEmpty {
+    // Identifier
+    let ids = self.filter { String($0.identifier) == value }
+    if ids.isEmpty == false {
       filter.append(contentsOf: ids)
     }
 
-    // ID with prefix
+    // Identifier with prefix
     let withPrefixes = self.filter { String($0.description).lowercased() == value.lowercased() }
-    if !withPrefixes.isEmpty {
+    if withPrefixes.isEmpty == false {
       filter.append(contentsOf: withPrefixes)
     }
 
     // Title
     let titles = self.filter { $0.title.contains(value) }
-    if !titles.isEmpty {
+    if titles.isEmpty == false {
       filter.append(contentsOf: titles)
     }
 
     // Status
     let statuses = self.filter { $0.status.state.rawValue.name.contains(value) }
-    if !statuses.isEmpty {
+    if statuses.isEmpty == false {
       filter.append(contentsOf: statuses)
     }
 
@@ -98,7 +102,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return summary.contains(value)
     }
-    if !summaries.isEmpty {
+    if summaries.isEmpty == false {
       filter.append(contentsOf: summaries)
     }
 
@@ -107,9 +111,9 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       guard let authors = $0.authors else {
         return false
       }
-      return !authors.filter(by: value).isEmpty
+      return authors.filter(by: value).isEmpty == false
     }
-    if !authors.isEmpty {
+    if authors.isEmpty == false {
       filter.append(contentsOf: authors)
     }
 
@@ -123,7 +127,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return name.contains(value) || username == value
     }
-    if !reviews.isEmpty {
+    if reviews.isEmpty == false {
       filter.append(contentsOf: reviews)
     }
 
@@ -132,9 +136,9 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       guard let bugs = $0.bugs else {
         return false
       }
-      return !bugs.filter(by: value).isEmpty
+      return bugs.filter(by: value).isEmpty == false
     }
-    if !bugs.isEmpty {
+    if bugs.isEmpty == false {
       filter.append(contentsOf: bugs)
     }
 
@@ -168,7 +172,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
   }
 
   func index(of proposal: Proposal) -> Int? {
-    firstIndex(where: { $0 == proposal }) as? Int
+    firstIndex { $0 == proposal } as? Int
   }
 
   func sort(_ direction: Sorting) -> [Proposal] {

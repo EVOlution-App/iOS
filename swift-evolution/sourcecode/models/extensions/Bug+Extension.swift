@@ -4,15 +4,15 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
   func filter(by value: String) -> [Bug] {
     var filter: [Bug] = []
 
-    // ID
-    let ids = self.filter { String($0.id).lowercased() == value.lowercased() }
-    if !ids.isEmpty {
-      filter.append(contentsOf: ids)
+    // Identifier
+    let identifiers = self.filter { String($0.identifier).lowercased() == value.lowercased() }
+    if identifiers.isEmpty == false {
+      filter.append(contentsOf: identifiers)
     }
 
-    // ID with prefix
+    // Identifier with prefix
     let withPrefixes = self.filter { String($0.description).lowercased() == value.lowercased() }
-    if !withPrefixes.isEmpty {
+    if withPrefixes.isEmpty == false {
       filter.append(contentsOf: withPrefixes)
     }
 
@@ -23,7 +23,8 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return status.lowercased() == value.lowercased()
     }
-    if !statuses.isEmpty {
+
+    if statuses.isEmpty == false {
       filter.append(contentsOf: statuses)
     }
 
@@ -34,7 +35,8 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return resolution.lowercased() == value.lowercased()
     }
-    if !resolutions.isEmpty {
+
+    if resolutions.isEmpty == false {
       filter.append(contentsOf: resolutions)
     }
 

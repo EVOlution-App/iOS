@@ -185,7 +185,13 @@ extension StatusState: RawRepresentable {
       )
 
     case .error:
-      RawState(name: "Error", shortName: "Error", className: "error", identifier: ".error", color: UIColor.clear)
+      RawState(
+        name: "Error",
+        shortName: "Error",
+        className: "error",
+        identifier: ".error",
+        color: UIColor.clear
+      )
     }
   }
 }

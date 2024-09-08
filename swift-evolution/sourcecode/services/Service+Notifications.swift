@@ -21,10 +21,12 @@ enum NotificationsService {
 
     params["platform"] = "ios"
     let url = Config.Base.URL.Notifications.add
-    let request = RequestSettings(url,
-                                  method: .post,
-                                  params: params,
-                                  headers: NotificationsService.authorizationHeader)
+    let request = RequestSettings(
+      url,
+      method: .post,
+      params: params,
+      headers: NotificationsService.authorizationHeader
+    )
 
     let task = Service.dispatch(request) { result in
       let value = result.flatMap { try JSONDecoder().decode(Notifications.Device.self, from: $0) }
@@ -38,10 +40,12 @@ enum NotificationsService {
 
   @discardableResult
   static func getDetails(from user: User, completion: @escaping UpdateTagsClosure) -> URLSessionDataTask? {
-    let request = RequestSettings(Config.Base.URL.Notifications.user(id: user.id),
-                                  method: .get,
-                                  params: nil,
-                                  headers: NotificationsService.authorizationHeader)
+    let request = RequestSettings(
+      Config.Base.URL.Notifications.user(identifier: user.identifier),
+      method: .get,
+      params: nil,
+      headers: NotificationsService.authorizationHeader
+    )
 
     let task = Service.dispatch(request, useLoadingMonitor: false) { result in
       let value: ServiceResult<User> = result.flatMap {
@@ -60,10 +64,12 @@ enum NotificationsService {
 
   @discardableResult
   static func listTags(completion: @escaping ListTagsClosure) -> URLSessionDataTask? {
-    let request = RequestSettings(Config.Base.URL.Notifications.tags,
-                                  method: .get,
-                                  params: nil,
-                                  headers: NotificationsService.authorizationHeader)
+    let request = RequestSettings(
+      Config.Base.URL.Notifications.tags,
+      method: .get,
+      params: nil,
+      headers: NotificationsService.authorizationHeader
+    )
 
     let task = Service.dispatch(request) { result in
       let value = result.flatMap { try JSONDecoder().decode([Notifications.Tag].self, from: $0) }
@@ -79,11 +85,15 @@ enum NotificationsService {
       return nil
     }
 
-    let url = Config.Base.URL.Notifications.user(id: user.id)
-    let request = RequestSettings(url,
-                                  method: .put,
-                                  params: params,
-                                  headers: NotificationsService.authorizationHeader)
+    let url = Config.Base.URL.Notifications.user(
+      identifier: user.identifier
+    )
+    let request = RequestSettings(
+      url,
+      method: .put,
+      params: params,
+      headers: NotificationsService.authorizationHeader
+    )
 
     let task = Service.dispatch(request, useLoadingMonitor: false) { result in
       let value: ServiceResult<User> = result.flatMap {
@@ -107,10 +117,12 @@ enum NotificationsService {
     }
 
     let url = Config.Base.URL.Notifications.track
-    let request = RequestSettings(url,
-                                  method: .post,
-                                  params: params,
-                                  headers: NotificationsService.authorizationHeader)
+    let request = RequestSettings(
+      url,
+      method: .post,
+      params: params,
+      headers: NotificationsService.authorizationHeader
+    )
 
     let task = Service.dispatch(request) { result in
       let value = result.flatMap { try JSONDecoder().decode(Response.self, from: $0) }

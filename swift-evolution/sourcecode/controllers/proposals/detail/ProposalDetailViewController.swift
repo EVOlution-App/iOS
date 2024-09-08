@@ -27,9 +27,7 @@ final class ProposalDetailViewController: BaseViewController {
 
   // MARK: - Reachability Retry Action
 
-  override func retryButtonAction(_ sender: UIAction) {
-    super.retryButtonAction(sender)
-
+  override func retry() {
     loadProposalDetail()
   }
 }
@@ -59,11 +57,6 @@ extension ProposalDetailViewController {
 
     // Allow rotation
     (UIApplication.shared.delegate as? AppDelegate)?.allowRotation()
-  }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
 }
 
@@ -222,10 +215,10 @@ extension ProposalDetailViewController: WKNavigationDelegate {
       if url.path.hasSuffix(".md") {
         let list = lastPathComponent.components(separatedBy: "-")
 
-        if let first = list.first, !list.isEmpty {
+        if let first = list.first, list.isEmpty == false {
           // Only load if the proposal touched isn't the same presented
-          if let id = Int(first), id != proposal.id {
-            let proposal = Proposal(id: id, link: lastPathComponent)
+          if let identifier = Int(first), identifier != proposal.identifier {
+            let proposal = Proposal(identifier: identifier, link: lastPathComponent)
 
             Config.Segues.proposalDetail.performSegue(in: self, with: proposal)
           }

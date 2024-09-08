@@ -7,7 +7,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     var filter: [StatusState] = []
 
     let states = self.filter { $0.rawValue.name.contains(value) }
-    if !states.isEmpty {
+    if states.isEmpty == false {
       filter.append(contentsOf: states)
     }
 

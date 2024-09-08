@@ -2,7 +2,7 @@ import Foundation
 
 extension Section {
   subscript(index: Int) -> ItemProtocol? {
-    guard !items.isEmpty else {
+    guard items.isEmpty == false else {
       return nil
     }
 

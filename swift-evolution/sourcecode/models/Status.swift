@@ -8,7 +8,7 @@ struct Status: Decodable {
   let start: Date?
   let end: Date?
 
-  enum StatusKeys: String, CodingKey {
+  enum CodingKeys: String, CodingKey {
     case version
     case state
     case start
@@ -18,7 +18,7 @@ struct Status: Decodable {
 
 extension Status {
   init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: StatusKeys.self)
+    let container = try decoder.container(keyedBy: CodingKeys.self)
 
     version = try container.decodeIfPresent(String.self, forKey: .version)
 

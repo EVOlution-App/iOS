@@ -46,11 +46,11 @@ enum Config {
 
   enum Common {
     enum Regex {
-      static var proposalID: String {
+      static var proposalIdentifier: String {
         "SE-([0-9]+)"
       }
 
-      static var bugID: String {
+      static var bugIdentifier: String {
         "SR-([0-9]+)"
       }
     }
@@ -62,7 +62,7 @@ enum Config {
      */
     static func portrait() {
       let isPad = UIDevice.current.userInterfaceIdiom == .pad
-      let value = !isPad
+      let value = isPad == false
         ? UIInterfaceOrientation.portrait.rawValue
         : UIDevice.current.orientation.rawValue
       UIDevice.current.setValue(value, forKey: "orientation")
@@ -80,8 +80,8 @@ enum Config {
           "\(base)/proposals"
         }
 
-        static func markdown(for id: String) -> String {
-          "\(base)/proposal/\(id)/markdown"
+        static func markdown(for identifier: String) -> String {
+          "\(base)/proposal/\(identifier)/markdown"
         }
       }
 
@@ -116,8 +116,8 @@ enum Config {
           "\(base)/track"
         }
 
-        static func user(id: String) -> String {
-          "\(base)/user/\(id)"
+        static func user(identifier: String) -> String {
+          "\(base)/user/\(identifier)"
         }
 
         static var tags: String {

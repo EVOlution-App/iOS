@@ -10,7 +10,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return version.contains(value)
     }
-    if !versions.isEmpty {
+    if versions.isEmpty == false {
       filter.append(contentsOf: versions)
     }
 
@@ -18,7 +18,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       let state = $0.state
       return state.rawValue.name.contains(value)
     }
-    if !states.isEmpty {
+    if states.isEmpty == false {
       filter.append(contentsOf: states)
     }
 

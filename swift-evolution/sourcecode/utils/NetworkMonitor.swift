@@ -4,27 +4,30 @@ import UIKit
 final class LoadingMonitor: URLProtocol {
   static let NetworkMonitorHandlerKey = "LoadingMonitorKey"
 
-  final class func register() {
+  static func register() {
     URLProtocol.registerClass(self)
   }
 
-  final class func unregister() {
+  static func unregister() {
     URLProtocol.unregisterClass(self)
   }
 
-  override public class func canInit(with request: URLRequest) -> Bool {
+  override class func canInit(with request: URLRequest) -> Bool {
     guard property(forKey: NetworkMonitorHandlerKey, in: request) == nil else {
       return false
     }
     return true
   }
 
-  override final class func canonicalRequest(for request: URLRequest) -> URLRequest {
+  override class func canonicalRequest(for request: URLRequest) -> URLRequest {
     request
   }
 
-  override final class func requestIsCacheEquivalent(_ a: URLRequest, to b: URLRequest) -> Bool {
-    super.requestIsCacheEquivalent(a, to: b)
+  override class func requestIsCacheEquivalent(_ firstRequest: URLRequest, to secondRequest: URLRequest) -> Bool {
+    super.requestIsCacheEquivalent(
+      firstRequest,
+      to: secondRequest
+    )
   }
 
   override func startLoading() {
@@ -35,10 +38,15 @@ final class LoadingMonitor: URLProtocol {
     LoadingMonitor.setProperty(true, forKey: LoadingMonitor.NetworkMonitorHandlerKey, in: mutableRequest)
 
     let task = URLSession.shared.dataTask(with: mutableRequest as URLRequest) { data, _, error in
-      guard error == nil, let data else {
-        self.client?.urlProtocol(self, didFailWithError: error!)
+      if let error {
+        self.client?.urlProtocol(self, didFailWithError: error)
         return
       }
+
+      guard let data else {
+        return
+      }
+
       self.client?.urlProtocol(self, didLoad: data)
       self.client?.urlProtocolDidFinishLoading(self)
     }

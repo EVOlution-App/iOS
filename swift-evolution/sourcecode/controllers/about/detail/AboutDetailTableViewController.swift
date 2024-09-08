@@ -26,10 +26,6 @@ final class AboutDetailTableViewController: UITableViewController {
 
     tableView.contentInset = contentInset
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
 }
 
 // MARK: UITableView DataSource
@@ -48,7 +44,7 @@ extension AboutDetailTableViewController {
       return UITableViewCell()
     }
 
-    let cell = tableView.cell(forRowAt: indexPath) as CustomSubtitleTableViewCell
+    let cell = tableView.cell(at: indexPath) as CustomSubtitleTableViewCell
     cell.selectionStyle = .none
 
     if about.items is [Contributor], let item = about.items[indexPath.row] as? Contributor {
@@ -77,7 +73,7 @@ extension AboutDetailTableViewController {
     UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {
       cell.transform = CGAffineTransform(scaleX: 1.07, y: 1.07)
       cell.contentView.alpha = 1
-    })
+    }, completion: nil)
   }
 
   override func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
@@ -88,7 +84,7 @@ extension AboutDetailTableViewController {
     UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {
       cell.transform = .identity
       cell.contentView.alpha = 1
-    })
+    }, completion: nil)
   }
 
   override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt _: IndexPath) {

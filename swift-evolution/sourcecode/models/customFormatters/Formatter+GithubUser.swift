@@ -5,8 +5,10 @@ enum GitHubUserFormatter {
     guard let unboxedValue else {
       return nil
     }
+    
     let values = unboxedValue.components(separatedBy: "/").filter { $0 != "" }
-    if !values.isEmpty, let value = values.last {
+    
+    if values.isEmpty == false, let value = values.last {
       return value
     }
 

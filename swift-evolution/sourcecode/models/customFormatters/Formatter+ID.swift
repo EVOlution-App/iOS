@@ -1,15 +1,13 @@
 import Foundation
 
-enum ProposalIDFormatter {
-  static func format(unboxedValue: String) -> Int {
-    let id: Int = unboxedValue.regex(Config.Common.Regex.proposalID)
-    return id
+enum ProposalIdentifierFormatter {
+  static func format(_ value: String) -> Int {
+    value.regex(Config.Common.Regex.proposalIdentifier)
   }
 }
 
-enum BugIDFormatter {
-  static func format(unboxedValue: String) -> Int {
-    let id: Int = unboxedValue.regex(Config.Common.Regex.bugID)
-    return id
+enum BugIdentifierFormatter {
+  static func format(_ value: String) -> Int {
+    value.regex(Config.Common.Regex.bugIdentifier)
   }
 }

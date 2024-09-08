@@ -11,7 +11,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return name.contains(value)
     }
-    if !names.isEmpty {
+    if names.isEmpty == false {
       filter.append(contentsOf: names)
     }
 
@@ -22,7 +22,7 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
       }
       return name.contains(value)
     }
-    if !users.isEmpty {
+    if users.isEmpty == false {
       filter.append(contentsOf: users)
     }
 
@@ -57,12 +57,12 @@ extension Sequence where Self: RangeReplaceableCollection, Self: RandomAccessCol
     return self[index]
   }
 
-  func get(id: String) -> Person? {
+  func get(identifier: String) -> Person? {
     guard let index = firstIndex(where: {
-      guard let user = $0.id, id != "" else {
+      guard let user = $0.identifier, identifier.isEmpty == false else {
         return false
       }
-      return user == id
+      return user == identifier
     })
     else {
       return nil

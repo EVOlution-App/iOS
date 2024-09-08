@@ -1,5 +1,6 @@
 import UIKit
 
+// swiftlint:disable force_cast
 extension UITableView {
   func registerNib<T: UITableViewCell>(withClass _: T.Type) {
     register(
@@ -12,7 +13,7 @@ extension UITableView {
     register(cellClass.self, forCellReuseIdentifier: cellClass.cellIdentifier)
   }
 
-  func cell<T: ReusableCellIdentifiable>(forRowAt indexPath: IndexPath) -> T {
+  func cell<T: ReusableCellIdentifiable>(at indexPath: IndexPath) -> T {
     dequeueReusableCell(withIdentifier: T.cellIdentifier, for: indexPath) as! T
   }
 
@@ -20,3 +21,5 @@ extension UITableView {
     dequeueReusableCell(withIdentifier: T.cellIdentifier) as! T
   }
 }
+
+// swiftlint:enable force_cast

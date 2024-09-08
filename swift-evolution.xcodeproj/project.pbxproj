@@ -72,6 +72,10 @@
 		9168963E1E93469F00FC6913 /* Service+GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9168963D1E93469F00FC6913 /* Service+GitHub.swift */; };
 		916896411E935ABD00FC6913 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896401E935ABD00FC6913 /* ProfileViewController.swift */; };
 		916896431E935ED700FC6913 /* GitHub+Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916896421E935ED700FC6913 /* GitHub+Profile.swift */; };
+		91717D272C8DFC92003F65FE /* UUID+NewIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91717D262C8DFC8C003F65FE /* UUID+NewIdentifier.swift */; };
+		91717D2A2C8E0D07003F65FE /* ListProposalsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91717D292C8E0CF8003F65FE /* ListProposalsViewController+UISearchBarDelegate.swift */; };
+		91717D2C2C8E0DFA003F65FE /* ListProposalsViewController+ProposalTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91717D2B2C8E0DF8003F65FE /* ListProposalsViewController+ProposalTableViewCellDelegate.swift */; };
+		91717D2E2C8E0EC4003F65FE /* ListProposalsViewController+FilterGenericViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91717D2D2C8E0EBF003F65FE /* ListProposalsViewController+FilterGenericViewDelegate.swift */; };
 		917E4C3120A63C1600846C87 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C3020A63C1600846C87 /* UIAlertController.swift */; };
 		917E4C7220A7588F00846C87 /* SwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917E4C7120A7588F00846C87 /* SwitchTableViewCell.xib */; };
 		917E4C7420A758C700846C87 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917E4C7320A758C700846C87 /* SwitchTableViewCell.swift */; };
@@ -198,6 +202,10 @@
 		9168963D1E93469F00FC6913 /* Service+GitHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Service+GitHub.swift"; sourceTree = "<group>"; };
 		916896401E935ABD00FC6913 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		916896421E935ED700FC6913 /* GitHub+Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GitHub+Profile.swift"; sourceTree = "<group>"; };
+		91717D262C8DFC8C003F65FE /* UUID+NewIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+NewIdentifier.swift"; sourceTree = "<group>"; };
+		91717D292C8E0CF8003F65FE /* ListProposalsViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListProposalsViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
+		91717D2B2C8E0DF8003F65FE /* ListProposalsViewController+ProposalTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListProposalsViewController+ProposalTableViewCellDelegate.swift"; sourceTree = "<group>"; };
+		91717D2D2C8E0EBF003F65FE /* ListProposalsViewController+FilterGenericViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListProposalsViewController+FilterGenericViewDelegate.swift"; sourceTree = "<group>"; };
 		917E4C3020A63C1600846C87 /* UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		917E4C7120A7588F00846C87 /* SwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwitchTableViewCell.xib; sourceTree = "<group>"; };
 		917E4C7320A758C700846C87 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = "swift-evolution/sourcecode/utils/views/uitableviewcell/SwitchTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
@@ -511,6 +519,7 @@
 		915265741E67811B00C2AFDA /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				91717D262C8DFC8C003F65FE /* UUID+NewIdentifier.swift */,
 				EB9994E12C8A496D007C4EFB /* EdgeInsets.swift */,
 				91E150291E6D250E00025B77 /* Array.swift */,
 				911432221EB9756500CCC0D0 /* Data.swift */,
@@ -560,9 +569,12 @@
 		915265871E67D86E00C2AFDA /* list */ = {
 			isa = PBXGroup;
 			children = (
-				91940A722C87CCD500B61D99 /* views */,
-				915265881E67D87E00C2AFDA /* uitableviewcell */,
 				915265891E67E01800C2AFDA /* ListProposalsViewController.swift */,
+				91717D2D2C8E0EBF003F65FE /* ListProposalsViewController+FilterGenericViewDelegate.swift */,
+				91717D2B2C8E0DF8003F65FE /* ListProposalsViewController+ProposalTableViewCellDelegate.swift */,
+				91717D292C8E0CF8003F65FE /* ListProposalsViewController+UISearchBarDelegate.swift */,
+				915265881E67D87E00C2AFDA /* uitableviewcell */,
+				91940A722C87CCD500B61D99 /* views */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -765,6 +777,7 @@
 				9152651E1E67659900C2AFDA /* Sources */,
 				9152651F1E67659900C2AFDA /* Frameworks */,
 				915265201E67659900C2AFDA /* Resources */,
+				91717D252C8DF0AB003F65FE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -923,6 +936,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		91717D252C8DF0AB003F65FE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if command -v /opt/homebrew/bin/swiftlint >/dev/null 2>&1\nthen\n    /opt/homebrew/bin/swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9152651E1E67659900C2AFDA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -942,6 +975,8 @@
 				915A883620A51DB900184F6E /* About+Extension.swift in Sources */,
 				91485DEF1E690A33008C4715 /* Protocols.swift in Sources */,
 				917E4C3120A63C1600846C87 /* UIAlertController.swift in Sources */,
+				91717D2E2C8E0EC4003F65FE /* ListProposalsViewController+FilterGenericViewDelegate.swift in Sources */,
+				91717D2A2C8E0D07003F65FE /* ListProposalsViewController+UISearchBarDelegate.swift in Sources */,
 				911B32F82C8926020083A391 /* View+UIView.swift in Sources */,
 				913520F220AA528900EC04E0 /* UNNotificationResponse.swift in Sources */,
 				914A5C1C1E7F5794005E653A /* ProposalDetailViewController.swift in Sources */,
@@ -954,6 +989,7 @@
 				EB9994E22C8A496D007C4EFB /* EdgeInsets.swift in Sources */,
 				9115A50320A0FDF100AC657E /* Sequence+Contributor.swift in Sources */,
 				91D589651E7E441C00FE958D /* Status+Extension.swift in Sources */,
+				91717D272C8DFC92003F65FE /* UUID+NewIdentifier.swift in Sources */,
 				91E1502A1E6D250E00025B77 /* Array.swift in Sources */,
 				91D5896B1E7E538600FE958D /* State+Extension.swift in Sources */,
 				91A454871EB99B6C00098A6B /* Environment.swift in Sources */,
@@ -992,6 +1028,7 @@
 				915265781E6781EF00C2AFDA /* Utils.swift in Sources */,
 				91D589691E7E4E4A00FE958D /* Bug+Extension.swift in Sources */,
 				915265651E677A3100C2AFDA /* Warning.swift in Sources */,
+				91717D2C2C8E0DFA003F65FE /* ListProposalsViewController+ProposalTableViewCellDelegate.swift in Sources */,
 				912B1508208553B3008EC81F /* Notifications.swift in Sources */,
 				91B1006C207ADDAB00B65E02 /* Service+CloudKit.swift in Sources */,
 				915265261E67659900C2AFDA /* AppDelegate.swift in Sources */,

@@ -122,7 +122,7 @@ extension AppDelegate {
 
   private func getAuthorizationStatus() {
     let current = UNUserNotificationCenter.current()
-    current.getNotificationSettings(completionHandler: { [weak self] settings in
+    current.getNotificationSettings { [weak self] settings in
       switch settings.authorizationStatus {
       case .notDetermined,
            .denied:
@@ -133,7 +133,7 @@ extension AppDelegate {
       default:
         break
       }
-    })
+    }
   }
 
   private func registerSchemes() {
@@ -197,7 +197,7 @@ extension AppDelegate {
 
     let device = Notifications.Device(
       token: deviceToken.hexString,
-      user: user.id,
+      user: user.identifier,
       test: deviceTest,
       os: systemVersion,
       appVersion: appVersion,
@@ -276,7 +276,7 @@ extension AppDelegate {
       Routes.shared.open(url)
     }
 
-    let track = Notifications.Track(notification: custom.notification, user: currentUser.id, source: "ios")
+    let track = Notifications.Track(notification: custom.notification, user: currentUser.identifier, source: "ios")
     NotificationsService.track(track)
   }
 }

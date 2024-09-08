@@ -28,20 +28,12 @@ extension UICollectionViewCell: ReusableCellIdentifiable {}
 // MARK: - FilterGenericView Delegate
 
 protocol FilterGenericViewDelegate: AnyObject {
-  func didSelectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
-  func didDeselectFilter(_ view: FilterListGenericView, type: FilterListGenericType, indexPath: IndexPath)
+  func filterGenericView(_ view: FilterListGenericView, didSelectFilter type: FilterListGenericType, at indexPath: IndexPath)
+  func filterGenericView(_ view: FilterListGenericView, didDeselectFilter type: FilterListGenericType, at indexPath: IndexPath)
 }
 
 protocol FilterGenericViewLayoutDelegate: AnyObject {
-  func didFinishCalculateHeightToView(type: FilterListGenericType, height: CGFloat)
-}
-
-// MARK: -
-
-protocol ProposalDelegate: AnyObject {
-  func didSelect(person: Person)
-  func didSelect(proposal: Proposal)
-  func didSelect(implementation: Implementation)
+  func filterGenericView(_ filterView: UIView, didFinishCalculateHeightToView type: FilterListGenericType, height: CGFloat)
 }
 
 // MARK: - Enum Representable Protocols

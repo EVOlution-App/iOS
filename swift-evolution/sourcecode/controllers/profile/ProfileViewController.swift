@@ -56,11 +56,6 @@ class ProfileViewController: BaseViewController {
     }
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
   // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
@@ -88,12 +83,12 @@ extension ProfileViewController {
       return
     }
 
-    if let author = profile.asAuthor, !author.isEmpty {
+    if let author = profile.asAuthor, author.isEmpty == false {
       let section = Section(title: "Author", proposals: author)
       sections.append(section)
     }
 
-    if let manager = profile.asManager, !manager.isEmpty {
+    if let manager = profile.asManager, manager.isEmpty == false {
       let section = Section(title: "Review Manager", proposals: manager)
       sections.append(section)
     }
@@ -136,7 +131,7 @@ extension ProfileViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.cell(forRowAt: indexPath) as ProposalTableViewCell
+    let cell = tableView.cell(at: indexPath) as ProposalTableViewCell
 
     let section = sections[indexPath.section]
     let proposal = section.proposals[indexPath.row]

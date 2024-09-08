@@ -7,7 +7,7 @@ enum Tag: String {
   case title
   case label
   case value
-  case id
+  case identifier = "id"
   case anchor
 
   func wrap(string: String) -> String {
@@ -91,7 +91,7 @@ extension String {
    */
   func regex(_ pattern: String) -> Int {
     let results: [Int] = regex(pattern)
-    guard let item = results.first, !results.isEmpty else {
+    guard let item = results.first, results.isEmpty == false else {
       return NSNotFound
     }
 
@@ -140,6 +140,7 @@ extension String {
 }
 
 extension String: Error {}
+
 extension String: LocalizedError {
   public var errorDescription: String? {
     self

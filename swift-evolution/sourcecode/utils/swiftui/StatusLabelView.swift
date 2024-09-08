@@ -1,11 +1,3 @@
-//
-//  StatusLabelView.swift
-//  swift-evolution
-//
-//  Created by Pedro Almeida on 05.09.24.
-//  Copyright © 2024 EVO App. All rights reserved.
-//
-
 import SwiftUI
 
 struct StatusLabelView<Label: View>: View {
@@ -23,7 +15,7 @@ struct StatusLabelView<Label: View>: View {
     let foreground = isOn ? selectedColor : normalColor
     let background = isOn ? normalColor : .clear
 
-    Toggle(isOn: $isOn, label: {
+    Toggle(isOn: $isOn) {
       label
         .padding(EdgeInsets(x: 10, y: 3))
         .foregroundStyle(foreground)
@@ -35,7 +27,7 @@ struct StatusLabelView<Label: View>: View {
             shape.fill(background)
           }
         }
-    })
+    }
     .toggleStyle(.button)
     .buttonStyle(_ButtonStyle())
   }
