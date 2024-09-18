@@ -1,5 +1,6 @@
 import UIKit
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 protocol RequestProtocol {
   var url: String { get }
   var method: ServiceMethod { get }
@@ -9,6 +10,7 @@ protocol RequestProtocol {
 
 // MARK: - Service Result
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum ServiceResult<T> {
   case failure(Error)
   case success(T)
@@ -53,6 +55,7 @@ enum ServiceResult<T> {
 
 // MARK: - Errors
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum ServiceError: Error {
   case unknownState
   case invalidURL(String)
@@ -66,6 +69,7 @@ enum ServiceError: Error {
 
 // MARK: - Method
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum ServiceMethod: String {
   case get
   case post
@@ -74,6 +78,7 @@ enum ServiceMethod: String {
 
 // MARK: -
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 class Service {
   typealias JSONDictionary = [String: Any]
 

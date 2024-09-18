@@ -1,5 +1,8 @@
 import Foundation
 
+import ModelsLibrary
+
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum GitHubService {
   typealias CompletionUserProfile = (ServiceResult<GitHubProfile>) -> Swift.Void
 

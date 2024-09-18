@@ -1,17 +1,20 @@
 import Foundation
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum Header: String {
   case accept = "Accept"
   case authorization = "Authorization"
   case contentType = "Content-Type"
 }
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum MimeType: String {
   case applicationJSON = "application/json"
   case formURLEncoded = "application/x-www-form-urlencoded"
   case textPlain = "text/plain"
 }
 
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 struct RequestSettings: RequestProtocol {
   var url: String
   var method: ServiceMethod

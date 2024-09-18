@@ -1,5 +1,8 @@
 import Foundation
 
+import ModelsLibrary
+
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum NotificationsService {
   typealias AddSuccessClosure = (ServiceResult<Notifications.Device>) -> Swift.Void
   typealias UpdateTagsClosure = (ServiceResult<User>) -> Swift.Void

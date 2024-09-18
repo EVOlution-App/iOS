@@ -1,12 +1,15 @@
 import CloudKit
 import KeychainAccess
 
+import ModelsLibrary
+
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum CloudKitService {
   typealias UserClosure = (ServiceResult<User>) -> Swift.Void
 
   static func user(completion: @escaping UserClosure) {
     let container = CKContainer.default()
-    container.fetchUserRecordID { result, error in  // swiftlint:disable:this no_abbreviation_id
+    container.fetchUserRecordID { result, error in
       if let error {
         completion(.failure(error))
       }

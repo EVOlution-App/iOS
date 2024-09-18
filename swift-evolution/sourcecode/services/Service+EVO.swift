@@ -1,5 +1,8 @@
 import Foundation
 
+import ModelsLibrary
+
+@available(*, deprecated, message: "Use NetworkLibrary instead")
 enum EvolutionService {
   typealias CompletionDetail = (ServiceResult<String>) -> Void
   typealias CompletionProposals = (ServiceResult<[Proposal]>) -> Void
@@ -21,7 +24,7 @@ enum EvolutionService {
   }
 
   static func detail(for proposal: Proposal, completion: @escaping CompletionDetail) {
-    let url = Config.Base.URL.Evolution.markdown(for: proposal.description)
+    let url = Config.Base.URL.Evolution.markdown(for: proposal.identifierFormatted)
     Service.requestText(url, completion: completion)
   }
 }
