@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Core"
+      name = "Core">
+      <FileRef
+         location = "container:swift-evolution.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Features"
+      name = "Features">
+   </Group>
+   <Group
+      location = "group:Libraries"
+      name = "Libraries">
+      <FileRef
+         location = "group:ModelsLibrary">
+      </FileRef>
+      <FileRef
+         location = "group:NetworkLibrary">
+      </FileRef>
+      <FileRef
+         location = "group:CommonLibrary">
+      </FileRef>
+      <FileRef
+         location = "group:DesignLibrary">
+      </FileRef>
+   </Group>
+</Workspace>
