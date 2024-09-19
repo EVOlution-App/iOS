@@ -4,6 +4,8 @@ import AppCenterCrashes
 import UIKit
 import UserNotifications
 
+import ModelsLibrary
+
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: Private properties
@@ -19,7 +21,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: - Life Cycle
 
   func application(
-    _ application: UIApplication,
+    _: UIApplication,
     willFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
     _ = Navigation.shared
@@ -28,9 +30,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  func application(_: UIApplication,
-                   didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
-  {
+  func application(
+    _: UIApplication,
+    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?
+  ) -> Bool {
     AppCenter.start(
       withAppSecret: "<AppCenter Key",
       services: [
@@ -76,8 +79,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // FIXME: This will return when we stabilize push notifications again
     // Get Authorization to Notifications
     // getAuthorizationStatus()
-    NotificationCenter.default.post(name: Notification.Name.AppDidBecomeActive,
-                                    object: nil)
+    NotificationCenter.default.post(
+      name: Notification.Name.AppDidBecomeActive,
+      object: nil
+    )
   }
 }
 

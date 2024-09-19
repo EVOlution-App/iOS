@@ -1,5 +1,7 @@
 import UIKit
 
+import ModelsLibrary
+
 public enum FilterLevels {
   case without
   case filtered

@@ -7,7 +7,7 @@ enum Tag: String {
   case title
   case label
   case value
-  case identifier = "id"
+  case identifier
   case anchor
 
   func wrap(string: String) -> String {

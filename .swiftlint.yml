@@ -103,8 +103,8 @@ custom_rules:
       - identifier
       - parameter
       - typeidentifier
-    message: "Abbreviation 'id' is forbidden. Use 'identifier' instead."
-    severity: error
+    message: "Abbreviation 'id' is not used in this project. Use 'identifier' instead."
+    severity: warning
 
   no_usage_ipad:
     name: "No usage iPad"

@@ -1,6 +1,8 @@
 import SwiftUI
 import UIKit
 
+import ModelsLibrary
+
 class ProfileViewController: BaseViewController {
   fileprivate struct Section {
     let title: String

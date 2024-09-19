@@ -1,6 +1,8 @@
 import StoreKit
 import UIKit
 
+import ModelsLibrary
+
 final class AboutViewController: UITableViewController {
   // MARK: - Private properties
     

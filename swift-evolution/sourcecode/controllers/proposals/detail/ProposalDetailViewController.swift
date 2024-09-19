@@ -1,6 +1,8 @@
 import SafariServices
 import UIKit
-import WebKit
+@preconcurrency import WebKit
+
+import ModelsLibrary
 
 final class ProposalDetailViewController: BaseViewController {
   // MARK: - IBOutlet connections
@@ -38,9 +40,9 @@ extension ProposalDetailViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    title = proposal?.description
+    title = proposal?.identifierFormatted
     appDelegate = UIApplication.shared.delegate as? AppDelegate
-    noSelectedProposalLabel?.isHidden = proposal?.description != nil
+    noSelectedProposalLabel?.isHidden = proposal?.identifierFormatted != nil
     navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
     navigationItem.leftItemsSupplementBackButton = true
 
@@ -176,7 +178,7 @@ extension ProposalDetailViewController {
       return
     }
 
-    let url = "https://evoapp.io/proposal/\(proposal.description)"
+    let url = "https://evoapp.io/proposal/\(proposal.identifierFormatted)"
 
     let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
     if UIDevice.current.userInterfaceIdiom == .pad, let sourceView = shareButton?.value(forKey: "view") as? UIView {
@@ -232,8 +234,9 @@ extension ProposalDetailViewController: WKNavigationDelegate {
       }
 
       // Check if the link is an author/review manager, if yes, send user to profile screen
-      else if let host = url.host, host.contains("github.com"),
-              let person = appDelegate?.people.get(username: lastPathComponent)
+      else if
+        let host = url.host, host.contains("github.com"),
+        let person = appDelegate?.people.get(username: lastPathComponent)
       {
         Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
       }

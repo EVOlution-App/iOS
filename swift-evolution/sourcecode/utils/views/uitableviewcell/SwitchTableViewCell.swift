@@ -1,7 +1,10 @@
 import UIKit
 
 protocol SwitchTableViewCellProtocol: AnyObject {
-  func `switch`(active: Bool, didChangeSelectionAt indexPath: IndexPath)
+  func toggle(
+    active: Bool,
+    didChangeSelectionAt indexPath: IndexPath
+  )
 }
 
 final class SwitchTableViewCell: UITableViewCell {
@@ -52,9 +55,11 @@ final class SwitchTableViewCell: UITableViewCell {
       }
     }
 
-    UIView.animate(withDuration: 0.25,
-                   animations: animation,
-                   completion: completion)
+    UIView.animate(
+      withDuration: 0.25,
+      animations: animation,
+      completion: completion
+    )
   }
 
   @IBAction private func changeSelection(_: UISwitch) {
@@ -62,6 +67,9 @@ final class SwitchTableViewCell: UITableViewCell {
       return
     }
 
-    delegate?.switch(active: activeSwitch.isOn, didChangeSelectionAt: indexPath)
+    delegate?.toggle(
+      active: activeSwitch.isOn,
+      didChangeSelectionAt: indexPath
+    )
   }
 }

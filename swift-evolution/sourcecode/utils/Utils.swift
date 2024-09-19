@@ -12,7 +12,7 @@ enum Config {
       }
 
       static var iso8601: DateFormatter {
-        custom("yyyy-MM-dd'T'HH:mm:ss.SSS")
+        custom("yyyy-MM-dd'T'HH:mm:ss'Z'")
       }
 
       static var yearMonthDay: DateFormatter {
@@ -20,7 +20,11 @@ enum Config {
       }
 
       static var monthDay: DateFormatter {
-        custom("MMMM dd")
+        custom("MMM. dd")
+      }
+
+      static var shortMonth: DateFormatter {
+        custom("MMM. ")
       }
     }
   }

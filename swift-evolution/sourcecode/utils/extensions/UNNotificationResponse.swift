@@ -1,6 +1,8 @@
 import Foundation
 import UserNotifications
 
+import ModelsLibrary
+
 extension UNNotificationResponse {
   func customContent() -> Notifications.CustomContent? {
     guard let custom = notification.request.content.userInfo["custom"] as? [String: Any] else {

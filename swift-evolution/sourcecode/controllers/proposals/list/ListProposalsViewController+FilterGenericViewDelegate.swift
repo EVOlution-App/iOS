@@ -1,5 +1,7 @@
 import UIKit
 
+import ModelsLibrary
+
 // MARK: - FilterGenericView Delegate
 
 extension ListProposalsViewController: FilterGenericViewDelegate {

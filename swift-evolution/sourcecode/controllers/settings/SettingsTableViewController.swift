@@ -1,5 +1,6 @@
-import SwiftUI
 import UIKit
+
+import ModelsLibrary
 
 final class SettingsTableViewController: UITableViewController {
   // MARK: - Private properties
@@ -7,8 +8,24 @@ final class SettingsTableViewController: UITableViewController {
   private var dataSource: [Section] = []
   private weak var appDelegate: AppDelegate?
 
-  // MARK: - Life cycle
+  deinit {
+    removeNotifications()
+  }
+}
 
+// MARK: - Initializer
+
+extension SettingsTableViewController {
+  static func create() -> Self {
+    let viewController = Self.loadFromNib()
+
+    return viewController
+  }
+}
+
+// MARK: - Life cycle
+
+extension SettingsTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -49,10 +66,6 @@ final class SettingsTableViewController: UITableViewController {
 
     // FIXME: This will return when we stabilize push notifications again
     // getDetails(from: User.current)
-  }
-
-  deinit {
-    removeNotifications()
   }
 
   // MARK: - Build data
@@ -205,7 +218,7 @@ extension SettingsTableViewController {
 // MARK: - UITableView Delegate
 
 extension SettingsTableViewController: SwitchTableViewCellProtocol {
-  func `switch`(active _: Bool, didChangeSelectionAt _: IndexPath) {
+  func toggle(active _: Bool, didChangeSelectionAt _: IndexPath) {
     guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
       return
     }

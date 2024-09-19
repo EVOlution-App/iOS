@@ -1,5 +1,7 @@
 import UIKit
 
+import ModelsLibrary
+
 final class AboutDetailTableViewController: UITableViewController {
   var about: Section? {
     didSet {

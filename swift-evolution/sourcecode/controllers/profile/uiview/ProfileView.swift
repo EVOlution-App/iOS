@@ -1,6 +1,8 @@
 import SwiftRichString
 import UIKit
 
+import ModelsLibrary
+
 class ProfileView: UIView {
   // IBOutlets
   @IBOutlet private var profileImageView: UIImageView!

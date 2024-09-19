@@ -1,15 +1,17 @@
 import SafariServices
 import UIKit
 
+import ModelsLibrary
+
 // MARK: - Proposal Delegate
 
 extension ListProposalsViewController: ProposalTableViewCellDelegate {
   func proposalTableViewCell(_: ProposalTableViewCell, didSelectPerson person: Person) {
-    guard let name = person.name else {
+    guard person.name.isEmpty == false else {
       return
     }
     
-    let profile = appDelegate?.people[name]
+    let profile = appDelegate?.people[person.name]
     Config.Segues.profile.performSegue(in: self, with: profile, formSheet: true)
   }
   

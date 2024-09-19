@@ -1,6 +1,8 @@
 import SwiftRichString
 import UIKit
 
+import ModelsLibrary
+
 protocol ProposalTableViewCellDelegate: AnyObject {
   func proposalTableViewCell(_ cell: ProposalTableViewCell, didSelectPerson person: Person)
   func proposalTableViewCell(_ cell: ProposalTableViewCell, didSelectProposal proposal: Proposal)
@@ -48,75 +50,83 @@ class ProposalTableViewCell: UITableViewCell {
       return
     }
 
-    let state = proposal.status.state.rawValue
-    statusLabel.borderColor = state.color
-    statusLabel.textColor = state.color
+    let state = proposal.status.state
+    let color = state.color
+
     statusLabel.text = state.shortName
-    statusIndicatorView.backgroundColor = state.color
+    statusLabel.textColor = color
+    statusLabel.borderColor = color
+    statusIndicatorView.backgroundColor = color
 
     // Fit size to status text
-    let statusWidth = state.shortName.estimatedWidth(height: statusLabel.bounds.size.height,
-                                                     font: statusLabel.font)
+    let statusWidth = state.shortName.estimatedWidth(
+      height: statusLabel.bounds.size.height,
+      font: statusLabel.font
+    )
     statusLabelWidthConstraint.constant = statusWidth + 20
 
     var details = ""
-    details += proposal.description.tag(.identifier)
+    details += proposal.identifierFormatted.tag(.identifier)
     details += String.newLine
 
     let title = proposal.title.trimmingCharacters(in: .whitespacesAndNewlines).convertHTMLEntities.tag(.title)
 
     details += title
 
-    if delegate != nil {
-      // Render Authors
-      if let authors = renderAuthors() {
-        details += String.newLine + String.newLine
-        details += authors
+//    if delegate != nil {
+    // Render Authors
+    if let authors = renderAuthors() {
+      details += String.newLine + String.newLine
+      details += authors
+    }
+
+    // Render Review Manager
+    if
+      let reviewer = proposal.reviewManagers?.first,
+      reviewer.name.isEmpty == false
+    {
+      var name = ""
+      if reviewer.name != "TBD", reviewer.name != "N/A" {
+        name = reviewer.name.tag(.anchor)
       }
 
-      // Render Review Manager
-      if let reviewer = proposal.reviewManager, var name = reviewer.name, name != "" {
-        if name != "TBD", name != "N/A" {
-          name = name.tag(.anchor)
-        }
+      details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name
+    }
 
-        details += String.newLine + "Review Manager:".tag(.label) + String.doubleSpace + name
-      }
+    // Render Bugs
+    if let bugs = renderBugs() {
+      details += String.newLine + bugs
+    }
 
-      // Render Bugs
-      if let bugs = renderBugs() {
-        details += String.newLine + bugs
-      }
+    // Render Implemented Proposal
+    if proposal.status.state == .implemented, let version = proposal.status.version {
+      details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)"
+        .tag(.value)
+    }
 
-      // Render Implemented Proposal
-      if proposal.status.state == .implemented, let version = proposal.status.version {
-        details += String.newLine + "Implemented in:".tag(.label) + String.doubleSpace + "Swift \(version)"
-          .tag(.value)
-      }
+    // Render Status
+    if proposal.status.state == .acceptedWithRevisions ||
+      proposal.status.state == .activeReview ||
+      proposal.status.state == .scheduledForReview ||
+      proposal.status.state == .returnedForRevision
+    {
+      details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
 
-      // Render Status
-      if proposal.status.state == .acceptedWithRevisions ||
-        proposal.status.state == .activeReview ||
-        proposal.status.state == .scheduledForReview ||
-        proposal.status.state == .returnedForRevision
+      if proposal.status.state == .activeReview ||
+        proposal.status.state == .scheduledForReview, let period = renderReviewPeriod()
       {
-        details += String.newLine + "Status:".tag(.label) + String.doubleSpace + state.name.tag(.value)
-
-        if proposal.status.state == .activeReview ||
-          proposal.status.state == .scheduledForReview, let period = renderReviewPeriod()
-        {
-          details += String.newLine + period
-        }
-      }
-
-      // Render Implementations
-      if let implementations = renderImplementations() {
-        details += String.newLine + implementations
+        details += String.newLine + period
       }
     }
-    else {
-      detailsLabel.isUserInteractionEnabled = false
+
+    // Render Implementations
+    if let implementations = renderImplementations() {
+      details += String.newLine + implementations
     }
+//    }
+//    else {
+//      detailsLabel.isUserInteractionEnabled = false
+//    }
 
     let defaultStyle = Style {
       $0.lineSpacing = 5.5
@@ -138,7 +148,7 @@ class ProposalTableViewCell: UITableViewCell {
     }
 
     // Review Manager
-    if let reviewer = proposal.reviewManager {
+    if let reviewer = proposal.reviewManagers {
       attributedText = attributedText.link(reviewer, text: details2)
       detailsLabel.attributedText = attributedText
     }
@@ -196,8 +206,8 @@ private extension ProposalTableViewCell {
   func renderAuthors() -> String? {
     guard
       let proposal,
-          let authors = proposal.authors,
-          authors.isEmpty == false
+      let authors = proposal.authors,
+      authors.isEmpty == false
     else {
       return nil
     }
@@ -211,33 +221,20 @@ private extension ProposalTableViewCell {
   }
 
   func renderBugs() -> String? {
-    guard let proposal,
-          let bugs = proposal.bugs,
-          bugs.isEmpty == false
+    guard
+      let proposal,
+      let bugs = proposal.bugs,
+      bugs.isEmpty == false
     else {
       return nil
     }
 
-    let names: [String] = bugs.compactMap {
-      if let assignee = $0.assignee, let status = $0.status {
-        var issue = $0.description
-        issue += " ("
-        issue += assignee == "" ? "Unassigned" : assignee
-
-        if status != "" {
-          issue += ", "
-          issue += status
-        }
-
-        issue += ")"
-
-        return issue
-      }
-      return nil
-    }
-
-    var detail = names.count > 1 ? "Bugs" : "Bug"
-    detail = "\(detail):".tag(.label) + String.doubleSpace + names.joined(separator: ", ").tag(.value)
+    var detail = bugs.count > 1 ? "Bugs" : "Bug"
+    detail = "\(detail):"
+      .tag(.label) + String.doubleSpace + bugs
+      .map { String($0.identifier) }
+      .map { $0.tag(.anchor) }
+      .joined(separator: ", ")
 
     return detail
   }
@@ -310,54 +307,54 @@ extension ProposalTableViewCell: UITextViewDelegate {
     }
 
     switch host {
-      case .proposal:
+    case .proposal:
+      delegate?.proposalTableViewCell(
+        self,
+        didSelectProposal: proposal
+      )
+
+    case .profile:
+      let username = URL.lastPathComponent
+      var person: Person?
+
+      if
+        let authors = proposal.authors,
+        let author = authors.get(username: username)
+      {
+        person = author
+      }
+
+      if
+        let manager = proposal.reviewManagers?.first,
+        let reviewer = manager.username,
+        reviewer == username
+      {
+        person = manager
+      }
+
+      if let person {
         delegate?.proposalTableViewCell(
           self,
-          didSelectProposal: proposal
+          didSelectPerson: person
         )
+      }
 
-      case .profile:
-        let username = URL.lastPathComponent
-        var person: Person?
+    case .implementation:
+      guard let implementations = proposal.implementations else {
+        return false
+      }
 
-        if
-          let authors = proposal.authors,
-          let author = authors.get(username: username)
-        {
-          person = author
-        }
+      guard
+        let path = URL["path"],
+        let value = implementations.get(by: path)
+      else {
+        return false
+      }
 
-        if
-          let manager = proposal.reviewManager,
-          let reviewer = manager.username,
-          reviewer == username
-        {
-          person = manager
-        }
-
-        if let person {
-          delegate?.proposalTableViewCell(
-            self,
-            didSelectPerson: person
-          )
-        }
-
-      case .implementation:
-        guard let implementations = proposal.implementations else {
-          return false
-        }
-
-        guard
-          let path = URL["path"],
-          let value = implementations.get(by: path)
-        else {
-          return false
-        }
-
-        delegate?.proposalTableViewCell(
-          self,
-          didSelectImplementation: value
-        )
+      delegate?.proposalTableViewCell(
+        self,
+        didSelectImplementation: value
+      )
     }
 
     return false
@@ -380,11 +377,11 @@ private extension NSMutableAttributedString {
     var attributed = self
 
     for person in people {
-      guard let username = person.username, let name = person.name else {
+      guard let username = person.username, person.name.isEmpty == false else {
         continue
       }
 
-      let nameRange = (text as NSString).range(of: name)
+      let nameRange = (text as NSString).range(of: person.name)
       if nameRange.location != NSNotFound {
         let style = Style {
           $0.linkURL = URL(string: "evo://profile/\(username)")
@@ -404,7 +401,7 @@ private extension NSMutableAttributedString {
     let titleRange = (text as NSString).range(of: title)
     if titleRange.location != NSNotFound {
       let style = Style {
-        $0.linkURL = URL(string: "evo://proposal/\(proposal.description)")
+        $0.linkURL = URL(string: "evo://proposal/\(proposal.identifierFormatted)")
       }
 
       attributed = attributed.add(style: style, range: titleRange)
@@ -429,4 +426,22 @@ private extension NSMutableAttributedString {
 
     return attributed
   }
+}
+
+#if DEBUG
+private extension ProposalTableViewCell {
+  static func create(with proposal: Proposal) -> Self {
+    let view = Self.loadFromNib()
+    view.proposal = proposal
+
+    return view
+  }
+}
+#endif
+
+#Preview("Proposal Cell", traits: .fixedLayout(width: 600, height: 500)) {
+  var proposal = Stubs.makeDummyForProposals[12]
+  let cell = ProposalTableViewCell.create(with: proposal)
+
+  return cell
 }

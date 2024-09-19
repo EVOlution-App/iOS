@@ -1,5 +1,7 @@
 import UIKit
 
+import ModelsLibrary
+
 // MARK: - SegueRepresentable Extension
 
 extension SegueRepresentable where RawValue == String {

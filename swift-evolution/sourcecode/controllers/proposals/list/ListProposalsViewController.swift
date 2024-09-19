@@ -1,6 +1,18 @@
+// swiftlint:disable file_length
+
 import SafariServices
 import SwiftUI
 import UIKit
+
+import ModelsLibrary
+import NetworkLibrary
+
+protocol ListProposalsViewControllerDelegate: AnyObject {
+  func listProposalsViewController(
+    _ viewController: ListProposalsViewController,
+    didSelect proposal: Proposal
+  )
+}
 
 final class ListProposalsViewController: BaseViewController {
   // Private IBOutlets
@@ -10,6 +22,8 @@ final class ListProposalsViewController: BaseViewController {
   @IBOutlet private(set) var filterHeaderViewHeightConstraint: NSLayoutConstraint!
 
   @IBOutlet private(set) var settingsBarButtonItem: UIBarButtonItem?
+
+  weak var delegate: ListProposalsViewControllerDelegate?
 
   // Private properties
   var timer: Timer = .init()
@@ -26,10 +40,12 @@ final class ListProposalsViewController: BaseViewController {
         return
       }
       DispatchQueue.main.async {
-//        self.didSelect(proposal: proposal)
+        // self.didSelect(proposal: proposal)
       }
     }
   }
+
+  private var viewModel: ListProposalsViewModel!
 
   private(set) weak var appDelegate: AppDelegate?
 
@@ -37,8 +53,8 @@ final class ListProposalsViewController: BaseViewController {
   var languages: [Version] = []
   var status: [StatusState] = []
 
-  // Proposal ordering
-  private lazy var statusOrder: [StatusState] = [
+  // Status sorted like the website
+  private lazy var statusSorted: [StatusState] = [
     .awaitingReview,
     .scheduledForReview,
     .activeReview,
@@ -47,13 +63,39 @@ final class ListProposalsViewController: BaseViewController {
     .previewing,
     .implemented,
     .returnedForRevision,
-    .deferred,
     .rejected,
     .withdrawn,
   ]
 
-  // MARK: - Life Cycle
+  // MARK: - Deinit
 
+  deinit {
+    self.removeNotifications()
+  }
+
+  // MARK: - Reachability Retry
+
+  override func retry() {
+    super.retry()
+
+    listProposals()
+  }
+}
+
+// MARK: - Initializer
+
+extension ListProposalsViewController {
+  static func create(viewModel: ListProposalsViewModel) -> Self {
+    let viewController = Self.loadFromNib()
+    viewController.viewModel = viewModel
+
+    return viewController
+  }
+}
+
+// MARK: - Life Cycle
+
+extension ListProposalsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -134,18 +176,6 @@ final class ListProposalsViewController: BaseViewController {
     }
   }
 
-  deinit {
-    self.removeNotifications()
-  }
-
-  // MARK: - Reachability Retry Action
-
-  override func retry() {
-    super.retry()
-
-    listProposals()
-  }
-
   // MARK: - Notifications
 
   func registerNotifications() {
@@ -222,24 +252,24 @@ final class ListProposalsViewController: BaseViewController {
     let sourceViewController = UIDevice.current.userInterfaceIdiom == .pad ? splitViewController : self
 
     switch host {
-      case .profile:
-        guard let appDelegate, let person = appDelegate.people.get(username: value) else {
-          return
-        }
+    case .profile:
+      guard let appDelegate, let person = appDelegate.people.get(username: value) else {
+        return
+      }
 
-        Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
+      Config.Segues.profile.performSegue(in: self, with: person, formSheet: true)
 
-      case .proposal:
-        let identifier: Int = value.regex(Config.Common.Regex.proposalIdentifier)
+    case .proposal:
+      let identifier: Int = value.regex(Config.Common.Regex.proposalIdentifier)
 
-        guard let proposal = dataSource.get(by: identifier) else {
-          return
-        }
+      guard let proposal = dataSource.get(by: identifier) else {
+        return
+      }
 
-        Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
+      Config.Segues.proposalDetail.performSegue(in: sourceViewController, with: proposal, split: true)
 
-      default:
-        break
+    default:
+      break
     }
   }
 
@@ -283,9 +313,9 @@ final class ListProposalsViewController: BaseViewController {
         return
       }
 
-      dataSource = proposals.filter(by: statusOrder)
+      dataSource = proposals.filter(by: statusSorted)
       filteredDataSource = dataSource
-      filterHeaderView?.statusSource = statusOrder
+      filterHeaderView?.statusSource = statusSorted
       buildPeople()
 
       // Language Versions source
@@ -393,16 +423,16 @@ final class ListProposalsViewController: BaseViewController {
     if filterHeaderView.filterButton.isSelected {
       // Check if there is at least on status selected
       if status.isEmpty == false {
-        var expection: [StatusState] = [.implemented]
+        var exceptions: [StatusState] = [.implemented]
 
         if selected(status: .implemented), languages.isEmpty {
-          expection = []
+          exceptions = []
         }
 
         filteredDataSource = filteredDataSource
           .filter(
             by: status,
-            exceptions: expection
+            exceptions: exceptions
           )
           .sort(.descending)
       }
@@ -417,7 +447,7 @@ final class ListProposalsViewController: BaseViewController {
     // Sort in the right order
     filteredDataSource = filteredDataSource
       .distinct()
-      .filter(by: statusOrder)
+      .filter(by: statusSorted)
 
     tableView.beginUpdates()
     tableView.reloadSections(IndexSet(integer: 0), with: .fade)
@@ -436,13 +466,14 @@ final class ListProposalsViewController: BaseViewController {
         proposalsPeople.append(author)
       }
 
-      if let reviewManager = proposal.reviewManager {
+      if let reviewManager = proposal.reviewManagers?.first {
         proposalsPeople.append(reviewManager)
       }
     }
 
     for person in proposalsPeople {
-      guard let name = person.name, name.isEmpty == false else {
+      let name = person.name
+      guard name.isEmpty == false else {
         continue
       }
 
@@ -456,7 +487,7 @@ final class ListProposalsViewController: BaseViewController {
         continue
       }
 
-      user.identifier = UUID.newIdentifier // swiftlint:disable:this no_abbreviation_id
+      user.identifier = UUID.newIdentifier
       user.asAuthor = dataSource.filter(author: user)
       user.asManager = dataSource.filter(manager: user)
 
@@ -523,3 +554,5 @@ extension ListProposalsViewController: UITableViewDelegate {
     0.01
   }
 }
+
+// swiftlint:enable file_length

@@ -1,5 +1,7 @@
 import UIKit
 
+import ModelsLibrary
+
 extension UIAlertController {
   static func presentAlert(to item: ItemProtocol) -> UIAlertController {
     var title = "Open Safari?"

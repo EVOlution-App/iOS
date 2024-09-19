@@ -17,7 +17,7 @@ class FilterListGenericView: UIView {
 
   open var height: CGFloat = 0
   open var type: FilterListGenericType = .none
-  open var selectedItems: [IndexPath] = []
+  open var selectedItems: Set<IndexPath> = .init()
   open var indexPathsForSelectedItems: [IndexPath]? {
     collectionView.indexPathsForSelectedItems
   }
@@ -89,8 +89,9 @@ extension FilterListGenericView: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+
     cell.contentConfiguration = UIHostingConfiguration {
-      StatusLabelView(
+      FilterLabelView(
         textFor(indexPath: indexPath),
         isOn: .constant(selectedItems.contains(indexPath))
       ).fixedSize()
@@ -103,7 +104,6 @@ extension FilterListGenericView: UICollectionViewDataSource {
 // MARK: - UICollectionView Delegate
 
 extension FilterListGenericView: UICollectionViewDelegate {
-  
   func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     delegate?.filterGenericView(self, didSelectFilter: type, at: indexPath)
   }
