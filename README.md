@@ -2,6 +2,15 @@
 
 The goal of this project is for the version 1.0 was: bring to iOS the experience provided by Swift Evolution [website](https://apple.github.io/swift-evolution).
 
+----
+
+> [!IMPORTANT]
+> **November 2024**
+> 
+> The EVO App is being reworked. If you want to follow along, all the new code is being pushed into the branch [back-from-the-deads-2024](https://github.com/EVOlution-App/iOS/tree/improvements/back-from-the-deads-2024). Basically, I (Thiago) am working to stabilize the app and make some conversions from the old structure to a new and more modern one. My choice is to work with MVVM-C, and the views are being converted to SwiftUI. This is taking some time due to a lack of time, but as soon as I have something stable, I will merge the code into the main branch. If by any chance you want to contribute, please drop me a line on [Mastodon](https://mastodon.social/@tholanda), using [EVO App](https://indieapps.space/@evoapp), or via email at feedback [at] evoapp.io.
+
+----
+
 Now we are shifting from the basic idea to make it more social. 
 
 On our roadmap (you can read at our [GitHub Projects](https://github.com/Evolution-App/iOS/projects/2)), we have some notes for the future, which will cover stuff like: Follow Proposals starring or watching them, Follow Authors and/or Review Managers, List of most popular proposals, featured proposals and other ideas coming from the community.
@@ -16,7 +25,7 @@ After you send your pull request, other developers will make a code review befor
 
 ## Author
 
-- Thiago Holanda - [GitHub](https://github.com/unnamedd) / [Twitter](https://twitter.com/tholanda)
+- Thiago Holanda - [GitHub](https://github.com/unnamedd) / [Twitter](https://twitter.com/tholanda) / [Mastodon](https://mastodon.social/@tholanda)
 
 
 ## Contributors 
@@ -38,7 +47,7 @@ After you send your pull request, other developers will make a code review befor
 
 ## License
 
-**EVOlution App** is available under the MIT license. See the LICENSE file for more info. 
+**EVO App** is available under the MIT license. See the LICENSE file for more info. 
 
 
 ---
